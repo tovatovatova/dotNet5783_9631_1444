@@ -6,6 +6,9 @@ namespace DO;
 /// </summary>
 public struct OrderItem
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public int ProductId { get; set; }
     public int OrderId { get; set; }
     public double price { get; set; }
