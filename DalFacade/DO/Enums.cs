@@ -2,6 +2,7 @@
 
 namespace DO;
 
-internal class Enums
+public struct Enums
 {
+
 }
