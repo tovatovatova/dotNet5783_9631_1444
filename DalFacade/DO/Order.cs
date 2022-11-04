@@ -3,9 +3,9 @@
 namespace DO;
 
 /// <summary>
-/// structure for order
+/// Structure for products Order details 
 /// </summary>
 public struct Order
 {
-
 }
+

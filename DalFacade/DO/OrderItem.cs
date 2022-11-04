@@ -1,7 +1,9 @@
 ﻿
 
 namespace DO;
-
+/// <summary>
+/// structure for details of one item in an order
+/// </summary>
 public struct OrderItem
 {
     public int ProductId { get; set; }
