@@ -23,7 +23,10 @@ public struct Product
     /// </summary>
     public bool InStock  { get; set; }
     public override string ToString()=>$@"
-//        
-    
-
+        product ID:{Id}
+        product name:{Name}
+        price of product:{Price}
+        whether in stock:{InStock}
+    ";
 }
+

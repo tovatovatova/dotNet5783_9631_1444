@@ -14,14 +14,14 @@ public struct OrderItem
     /// Order identification number
     /// </summary>
     public int OrderId { get; set; }
-    /// <summary>
-    ///Price of the Item in Order
-    /// </summary>
-    public double price { get; set; }
-    /// <summary>
-    /// The quantity of this item in the order
-    /// </summary>
-    public int amount { get; set; }
+    public double Price { get; set; }
+    public int Amount { get; set; }
+    public override string ToString() => $@"
+            product ID:{ProductId}
+            order ID:{OrderId}
+            price of item:{Price}
+            amount for order:{Amount}
+";
 
 
 }
