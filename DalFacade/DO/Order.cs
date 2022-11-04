@@ -7,5 +7,6 @@ namespace DO;
 /// </summary>
 public struct Order
 {
+
 }
 
