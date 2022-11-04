@@ -14,7 +14,13 @@ public struct OrderItem
     /// Order identification number
     /// </summary>
     public int OrderId { get; set; }
+    /// <summary>
+    /// Product price
+    /// </summary>
     public double Price { get; set; }
+    /// <summary>
+    /// Quantity of this item in order
+    /// </summary>
     public int Amount { get; set; }
     /// <summary>
     /// return a string for order item's details
