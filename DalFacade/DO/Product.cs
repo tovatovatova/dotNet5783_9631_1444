@@ -22,6 +22,10 @@ public struct Product
     /// Boolean variable with value true if the product is avaliable to order and false else
     /// </summary>
     public bool InStock  { get; set; }
+    /// <summary>
+    /// return a string for product's details
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()=>$@"
         product ID:{Id}
         product name:{Name}
