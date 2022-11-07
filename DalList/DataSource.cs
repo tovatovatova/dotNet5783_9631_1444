@@ -11,10 +11,22 @@ internal sealed class DataSource
     internal List<Product?> ProductList { get; } = new List<Product?>();
     internal List<Order?> OrderList { get; } = new List<Order?>();
     internal List<OrderItem?> OrderItemList { get; } = new List<OrderItem?>();
-    private void addProduct(string? idNum,string? nameProd,double priceProd,bool inStockProd)
+    private void addProduct(int productId,string productName,double productPrice,bool inStock)
     {
-      Product product;
-        product.Id = idNum;
-        ProductList.Add(product);
+      Product newProduct=new Product();
+        newProduct.Id = productId;
+        newProduct.Name = productName;
+        newProduct.Price = productPrice;
+        newProduct.InStock = inStock;
+
+        
+    }
+    private DataSource()
+    {
+        s_Initialize();
+    }
+    private void s_Initialize()
+    {
+        create
     }
 }
