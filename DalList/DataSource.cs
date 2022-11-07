@@ -14,8 +14,12 @@ internal sealed class DataSource
     internal List<OrderItem?> OrderItemList { get; } = new List<OrderItem?>();
     private void addProduct(string? idNum,string? nameProd,double priceProd,bool inStockProd)
     {
-      Product product;
-        product.Id = idNum;
-        ProductList.Add(product);
+      
+     
     }
+    private void addOrder(Order newOrde)
+    {
+        
+    }
+
 }
