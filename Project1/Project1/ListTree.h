@@ -5,6 +5,7 @@ using namespace std;
 #include <list>
 #include <string>
 #include "Tree.h"
+#include "ListTree.h"
 class ListTree
 {
 	list<Tree*> trees;
