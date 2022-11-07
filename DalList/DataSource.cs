@@ -1,8 +1,12 @@
 ﻿
 
+using System.Globalization;
+
 namespace Dal;
 
 internal static class DataSource
 {
-    static readonly Random R = new Random();
+    static readonly Random numbers=new Random();
+ 
+    
 }
