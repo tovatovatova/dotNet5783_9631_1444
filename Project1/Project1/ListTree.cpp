@@ -59,8 +59,13 @@ bool ListTree::delResponse(string diss, string son)//delete a respone and its su
 	{
 		if ((*it)->getContent() == diss)//if the current tree is the one with the given root
 		{
-			if((*it)->deleteSubTree(son))//send to func for deleting the sub tree
+			if ((*it)->deleteSubTree(son))//send to func for deleting the sub tree
+			{
+				if ((*it)->isEmpty())//if the all tree was deleted
+					trees.remove(*it);//delete from list of tree
 				return true;//end of this func
+			}
+			
 		}
 	}
 	return false;
@@ -82,7 +87,6 @@ void ListTree::printTree(string rt)//prints a tree that its root is the giveb st
 void ListTree::printAllTrees()//prints all the trees
 {
 	list <Tree*> ::iterator it;
-
 	int index = 1;
 	for (it = trees.begin(); it != trees.end(); it++)
 	{

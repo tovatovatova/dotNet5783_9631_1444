@@ -17,7 +17,7 @@ public:
 	string content;
 	bool isLeaf;
 	Node(string v) { isLeaf = true;  content = v; }//ctor
-
+	Node() { isLeaf = true; content = ""; }
 	friend class Tree;
 };
 
@@ -31,8 +31,6 @@ class Tree
 	{
 		if (p == nullptr)//if empty
 			return nullptr;
-		//if (p->isLeaf && p->content != val)//if a leaf and not the given value
-		//	return nullptr;
 		if (p->content == val)//if the given value in the current node
 			return p;
 		list <Node*>::iterator it;
@@ -64,15 +62,17 @@ public:
 	bool deleteAllTree(Node* t);
 	void addRoot(string newval);
 	bool addSon(string father, string son);
+	bool isEmpty() { return root == nullptr; }
 	string getContent()//return content
 	{
 		return root->content;
 	}
-	void printAllTree() { print(root,0); }
+	void printAllTree() {print(root,0); }
 	void printSubTree(string val) 
 	{ printSubTree(root, val);
 	 // searchAndPrintPath(val);
 	}
+	Node* findFather(Node* current, string val);
 	void printSubTree(Node* curr, string val);
 	bool deleteSubTree(string val);
 	friend class treeList;
