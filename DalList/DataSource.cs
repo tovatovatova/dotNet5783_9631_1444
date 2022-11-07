@@ -22,13 +22,16 @@ internal sealed class DataSource
 
         
     }
+
     private DataSource()
     {
         s_Initialize();
     }
     private void s_Initialize()
     {
-        create
+        createAndIinitProducts();
+        createAndIinitOrders();
+        createAndIinitOrderItems();
     }
 
 }
