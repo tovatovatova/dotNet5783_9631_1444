@@ -64,22 +64,28 @@ internal static class DataSource
     /// </summary>
     /// 
 
-   private static void createAndIinitOrders()
+    private static void createAndIinitOrders()
     {
-   string[] names = { "orit", "tova", "reuven", "shimon", "levi" };
-        for (int i= 0; i < 20; i++)
+        string[] names = { "orit", "tova", "reuven", "shimon", "levi" };
+        for (int i = 0; i < 20; i++)
         {
             Order addOrder = new Order();
             addOrder.OrderId = Config.NextOrderNumber;
             addOrder.CustomerName = names[i / 5];
             addOrder.CustomerEmail = addOrder.CustomerName + "@gmail.com";
+            TimeSpan ts = new TimeSpan(randNumbers.Next(1, 5));
+            addOrder.OrderDate = new DateTime((randNumbers.Next(2020, DateTime.Today.Year)), (randNumbers.Next(1, 12)), (randNumbers.Next(1, 29)));
+            addOrder.ShipDate = addOrder.OrderDate + ts;
+            addOrder.DeliveryDate = addOrder.ShipDate + ts;
+        }
+    }
+    private static void createAndIinitOrderItems()
+    {
 
+        for (int i = 0; i < 40; i++)
+        {
 
         }
-
-
-
-
     }
 
 }
