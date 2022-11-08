@@ -21,16 +21,22 @@ public struct Product
     /// <summary>
     /// Boolean variable with value true if the product is avaliable to order and false else
     /// </summary>
-    public bool InStock  { get; set; }
+    public bool AmountInStock  { get; set; }
+    /// <summary>
+    /// Product Category from the categoies in the enum
+    /// </summary>
+    public Category ProductCategoty { get; set; }
+
     /// <summary>
     /// return a string for product's details
     /// </summary>
     /// <returns></returns>
     public override string ToString()=>$@"
-        product ID:{Id}
-        product name:{Name}
-        price of product:{Price}
-        whether in stock:{InStock}
-    ";
+product ID:{Id}
+product name:{Name}
+category name:{ProductCategoty}
+price of product:{Price}
+Number of units in stock:{AmountInStock}
+";
 }
 

@@ -3,6 +3,6 @@
 namespace DO;
 
 
-  public enum Categories {Cakes,Donats,GiftBoxes, Desserts,Specials }
+  public enum Category {Cakes,Donats,GiftBoxes, Desserts,Specials }
 
 
