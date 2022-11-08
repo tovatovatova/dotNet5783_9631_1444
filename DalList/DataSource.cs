@@ -20,9 +20,9 @@ internal static class DataSource
         private static int s_nextOrderItemNumber = s_startOrderItemNumber;
         internal static int NextOrderItemNumber { get => s_nextOrderItemNumber++; }
     }
-        
-    
-    
+
+
+
     static DataSource()
     {
         s_Initialize();
@@ -35,20 +35,19 @@ internal static class DataSource
     }
 
     public static string[] arrCakes = { "birthday cake", "high cream cake", "color block cake" };
-   public static string[] arrDonats = { "lotus donat", "oreo donat", "mix donat" };
-  public static  string[] arrDesserts = { "chokolate ice Cream", "vanile ice cream" };
- public static  string[] arrGifts = { "mix Desserts", "mini donats", "mix mini cupcakes" };
-public   static string[] arrSpecials = { "vafel belgi", "crep", "frozen" };
-   static string [,] productsNames = new string[,] { { "birthday cake", "high cream cake", "color block cake" } , { "lotus donat", "oreo donat", "mix donat" },
+    public static string[] arrDonats = { "lotus donat", "oreo donat", "mix donat" };
+    public static string[] arrDesserts = { "chokolate ice Cream", "vanile ice cream" };
+    public static string[] arrGifts = { "mix Desserts", "mini donats", "mix mini cupcakes" };
+    public static string[] arrSpecials = { "vafel belgi", "crep", "frozen" };
+    static string[,] productsNames = new string[,] { { "birthday cake", "high cream cake", "color block cake" } , { "lotus donat", "oreo donat", "mix donat" },
         { "chokolate ice Cream", "vanile ice cream" ,"lotus ice cream"},{ "mix Desserts", "mini donats", "mix mini cupcakes" },{ "vafel belgi", "crep", "frozen" }};
     private static void createAndIinitProducts()
     {
-        Product addProduct= new Product();
+        Product addProduct = new Product();
         for (int i = 0; i < 10; i++)
         {
             int newId = randNumbers.Next(999999);
-            
-            while (ProductList.Exists(x=>x.Value.Id==newId))
+            while (ProductList.Exists(x => x.Value.Id == newId))
             {
                 newId = randNumbers.Next(999999);
             }
@@ -63,6 +62,7 @@ public   static string[] arrSpecials = { "vafel belgi", "crep", "frozen" };
     /// 
     /// </summary>
     /// 
+
    private static void createAndIinitOrders()
     {
         
@@ -77,6 +77,8 @@ public   static string[] arrSpecials = { "vafel belgi", "crep", "frozen" };
        
         
        
+    private static string[] names = { "orit", "tova", "reuven", "shimon", "levi" };
+      
     }
 
 }
