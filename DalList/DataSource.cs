@@ -53,10 +53,10 @@ public   static string[] arrSpecials = { "vafel belgi", "crep", "frozen" };
                 newId = randNumbers.Next(999999);
             }
             addProduct.Id =newId;
-            
-            addProduct.ProductCategoty = (Category)randNumbers.Next(4);
             addProduct.Name = productsNames[(int)addProduct.ProductCategoty, randNumbers.Next(2)];
-
+            addProduct.ProductCategoty = (Category)randNumbers.Next(4);
+            addProduct.Price = randNumbers.Next(25, 70);
+            addProduct.AmountInStock = randNumbers.Next(1, 10);
         }
     }
     /// <summary>
@@ -65,13 +65,18 @@ public   static string[] arrSpecials = { "vafel belgi", "crep", "frozen" };
     /// 
    private static void createAndIinitOrders()
     {
+        
+        for (int i= 0; i < 20; i++)
+        {
+            Order addOrder = new Order();
+            addOrder.OrderId = Config.NextOrderNumber;
+            TimeSpan ts = new TimeSpan(randNumbers.Next());
+            addOrder.CustomerName = names[i / 5];
+            addOrder.CustomerEmail = addOrder.CustomerName + "@gmail.com";
+        }
        
-        Order addOrder = new Order();
-        addOrder.OrderId = Config.NextOrderNumber;
-        TimeSpan ts = new TimeSpan(randNumbers.Next());
-        addOrder.OrderDate=new TimeSpan()
-     //   addOrder.OrderDate=TimeSpan()
-            
+        
+       
     }
 
 }

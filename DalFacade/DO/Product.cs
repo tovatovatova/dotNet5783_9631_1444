@@ -21,7 +21,7 @@ public struct Product
     /// <summary>
     /// Boolean variable with value true if the product is avaliable to order and false else
     /// </summary>
-    public bool AmountInStock  { get; set; }
+    public int AmountInStock  { get; set; }
     /// <summary>
     /// Product Category from the categoies in the enum
     /// </summary>
