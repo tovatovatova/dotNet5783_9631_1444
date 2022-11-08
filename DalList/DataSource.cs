@@ -34,18 +34,32 @@ internal static class DataSource
         createAndIinitOrderItems();
     }
 
-    public static string[] arrCakes = { "birthday cake", "high cream cake", "color block cake" };
-    public static string[] arrDonats = { "lotus donat", "oreo donat", "mix donat" };
-    public static string[] arrDesserts = { "chokolate ice Cream", "vanile ice cream" };
-    public static string[] arrGifts = { "mix Desserts", "mini donats", "mix mini cupcakes" };
-    public static string[] arrSpecials = { "vafel belgi", "crep", "frozen" };
-    static string[,] productsNames = new string[,] { { "birthday cake", "high cream cake", "color block cake" } , { "lotus donat", "oreo donat", "mix donat" },
-        { "chokolate ice Cream", "vanile ice cream" ,"lotus ice cream"},{ "mix Desserts", "mini donats", "mix mini cupcakes" },{ "vafel belgi", "crep", "frozen" }};
+    //public static string[] arrCakes = { "birthday cake", "high cream cake", "color block cake" };
+    //public static string[] arrDonats = { "lotus donat", "oreo donat", "mix donat" };
+    //public static string[] arrDesserts = { "chokolate ice Cream", "vanile ice cream" };
+    //public static string[] arrGifts = { "mix Desserts", "mini donats", "mix mini cupcakes" };
+    //public static string[] arrSpecials = { "vafel belgi", "crep", "frozen" };
+    static string[,] productsNames = new string[,] { 
+        { "birthday cake", "high cream cake", "color block cake" } ,
+        { "lotus donat", "oreo donat", "mix donat" },
+        { "chokolate ice Cream", "vanile ice cream" ,"lotus ice cream"},
+        { "mix Desserts", "mini donats", "mix mini cupcakes" },{ "vafel belgi", "crep", "frozen" }
+    };
     private static void createAndIinitProducts()
     {
         Product addProduct = new Product();
         for (int i = 0; i < 10; i++)
         {
+            int x=
+            ProductList.Add(new Product
+            {
+                Id = randNumbers.Next(100000,9999999),
+                ProductCategoty=(Category)randNumbers.Next(4),
+                Name = productsNames[,xxxxxx]
+                
+           }
+
+
             int newId = randNumbers.Next(999999);
             while (ProductList.Exists(x => x.Value.Id == newId))
             {
@@ -58,6 +72,7 @@ internal static class DataSource
             addProduct.Price = randNumbers.Next(25, 70);
             addProduct.AmountInStock = randNumbers.Next(1, 10);
         }
+
     }
     /// <summary>
     /// 
@@ -81,11 +96,8 @@ internal static class DataSource
     }
     private static void createAndIinitOrderItems()
     {
-
-        for (int i = 0; i < 40; i++)
-        {
-
-        }
+        OrderItem addItem = new OrderItem();
+        
     }
 
 }

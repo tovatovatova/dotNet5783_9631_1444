@@ -6,6 +6,7 @@ namespace DO;
 /// </summary>
 public struct OrderItem
 {
+
     /// <summary>
     /// Product's identification number
     /// </summary>
