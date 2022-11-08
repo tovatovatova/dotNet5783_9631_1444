@@ -8,6 +8,10 @@ public struct OrderItem
 {
 
     /// <summary>
+    /// identificatior number for item in order
+    /// </summary>
+    public int OrderItemId { get; set; }
+    /// <summary>
     /// Product's identification number
     /// </summary>
     public int ProductId { get; set; }
@@ -23,6 +27,7 @@ public struct OrderItem
     /// Quantity of this item in order
     /// </summary>
     public int Amount { get; set; }
+    
     /// <summary>
     /// return a string for order item's details
     /// </summary>

@@ -71,6 +71,7 @@ internal static class DataSource
             addProduct.Name = productsNames[(int)addProduct.ProductCategoty, randNumbers.Next(2)];
             addProduct.Price = randNumbers.Next(25, 70);
             addProduct.AmountInStock = randNumbers.Next(1, 10);
+            ProductList.Add(addProduct);
         }
 
     }
@@ -92,12 +93,24 @@ internal static class DataSource
             addOrder.OrderDate = new DateTime((randNumbers.Next(2020, DateTime.Today.Year)), (randNumbers.Next(1, 12)), (randNumbers.Next(1, 29)));
             addOrder.ShipDate = addOrder.OrderDate + ts;
             addOrder.DeliveryDate = addOrder.ShipDate + ts;
+            OrderList.Add(addOrder);
         }
     }
     private static void createAndIinitOrderItems()
     {
-        OrderItem addItem = new OrderItem();
-        
+        OrderItem addItem=new OrderItem();
+        for (int i = 0; i < 20; i++)
+        {
+            for (int j = 0; j <2; j++)
+            {
+                addItem.OrderItemId = Config.NextOrderItemNumber;
+                int newId = randNumbers.Next(999999);
+                addItem.ProductId = newId;
+                ///
+                addItem.Price = randNumbers.Next(25, 70);
+
+            }
+        }
     }
 
 }
