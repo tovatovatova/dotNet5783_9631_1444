@@ -47,26 +47,11 @@ internal static class DataSource
     };
     private static void createAndIinitProducts()
     {
-        Product addProduct = new Product();
+        int newId = 100000;
         for (int i = 0; i < 10; i++)
         {
-            int x=
-            ProductList.Add(new Product
-            {
-                Id = randNumbers.Next(100000,9999999),
-                ProductCategoty=(Category)randNumbers.Next(4),
-                Name = productsNames[,xxxxxx]
-                
-           }
-
-
-            int newId = randNumbers.Next(999999);
-            while (ProductList.Exists(x => x.Value.Id == newId))
-            {
-                newId = randNumbers.Next(999999);
-            }
+            Product addProduct = new Product();
             addProduct.Id =newId;
-            
             addProduct.ProductCategoty = (Category)randNumbers.Next(4);
             addProduct.Name = productsNames[(int)addProduct.ProductCategoty, randNumbers.Next(2)];
             addProduct.Price = randNumbers.Next(25, 70);
@@ -75,19 +60,18 @@ internal static class DataSource
         }
 
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// 
+    
 
     private static void createAndIinitOrders()
     {
         string[] names = { "orit", "tova", "reuven", "shimon", "levi" };
+        string[] address = { "geva", "ben guryon", "habanim", "yonatan", "rotshild" };
         for (int i = 0; i < 20; i++)
         {
             Order addOrder = new Order();
             addOrder.OrderId = Config.NextOrderNumber;
-            addOrder.CustomerName = names[i / 5];
+            addOrder.CustomerName = names[i % 5];
+            addOrder.CustomerAddress = address[randNumbers.Next(4)];
             addOrder.CustomerEmail = addOrder.CustomerName + "@gmail.com";
             TimeSpan ts = new TimeSpan(randNumbers.Next(1, 5));
             addOrder.OrderDate = new DateTime((randNumbers.Next(2020, DateTime.Today.Year)), (randNumbers.Next(1, 12)), (randNumbers.Next(1, 29)));
@@ -101,9 +85,11 @@ internal static class DataSource
         OrderItem addItem=new OrderItem();
         for (int i = 0; i < 20; i++)
         {
-            for (int j = 0; j <2; j++)
+            for (int j = 0; j <randNumbers.Next(1,3); j++)
             {
+
                 addItem.OrderItemId = Config.NextOrderItemNumber;
+                addItem.OrderId = 100000 + i+j;
                 int newId = randNumbers.Next(999999);
                 addItem.ProductId = newId;
                 ///
