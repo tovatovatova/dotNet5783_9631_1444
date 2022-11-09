@@ -1,2 +1,12 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿
+using Dal;
+
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+     DalOrder dalOrder=new DalOrder();
+   DalOrderItem  dalOrderItem=new DalOrderItem();
+        DalProduct dalProduct           
+    }
+}
