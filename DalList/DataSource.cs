@@ -34,12 +34,8 @@ internal static class DataSource
         createAndIinitOrderItems();
     }
 
-    //public static string[] arrCakes = { "birthday cake", "high cream cake", "color block cake" };
-    //public static string[] arrDonats = { "lotus donat", "oreo donat", "mix donat" };
-    //public static string[] arrDesserts = { "chokolate ice Cream", "vanile ice cream" };
-    //public static string[] arrGifts = { "mix Desserts", "mini donats", "mix mini cupcakes" };
-    //public static string[] arrSpecials = { "vafel belgi", "crep", "frozen" };
-    static string[,] productsNames = new string[,] { 
+
+    static string[,] productsNames = new string[,] {
         { "birthday cake", "high cream cake", "color block cake" } ,
         { "lotus donat", "oreo donat", "mix donat" },
         { "chokolate ice Cream", "vanile ice cream" ,"lotus ice cream"},
@@ -47,11 +43,12 @@ internal static class DataSource
     };
     private static void createAndIinitProducts()
     {
-        int newId = 100000;
+
         for (int i = 0; i < 10; i++)
         {
+
             Product addProduct = new Product();
-            addProduct.Id =newId;
+            addProduct.Id = 100000 + i;
             addProduct.ProductCategoty = (Category)randNumbers.Next(4);
             addProduct.Name = productsNames[(int)addProduct.ProductCategoty, randNumbers.Next(2)];
             addProduct.Price = randNumbers.Next(25, 70);
@@ -60,7 +57,7 @@ internal static class DataSource
         }
 
     }
-    
+
 
     private static void createAndIinitOrders()
     {
@@ -82,22 +79,27 @@ internal static class DataSource
     }
     private static void createAndIinitOrderItems()
     {
-        OrderItem addItem=new OrderItem();
         for (int i = 0; i < 20; i++)
         {
-            for (int j = 0; j <randNumbers.Next(1,3); j++)
+            for (int j = 0; j < randNumbers.Next(1, 3); j++)
             {
-
+                OrderItem addItem = new OrderItem();
                 addItem.OrderItemId = Config.NextOrderItemNumber;
-                addItem.OrderId = 100000 + i+j;
-                int newId = randNumbers.Next(999999);
-                ProductList.ElementAt(i % 10);
-                addItem.ProductId = newId;
-                ///
-                addItem.Price = randNumbers.Next(25, 70);
-
+                addItem.OrderId = 100000 + i;
+                addItem.ProductId = (100000) + (i + j) % 9;
+                addItem.Price = (ProductList.Find(x => x.Value.Id == (100000) + (i + j) % 9)).Value.Price;
+                addItem.Amount = randNumbers.Next(1, 3);
+                OrderItemList.Add(addItem);
             }
-        }
-    }
 
+        }
+
+    }
 }
+
+
+
+
+
+
+
