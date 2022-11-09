@@ -90,7 +90,7 @@ internal static class DataSource
                 addItem.OrderItemId = Config.NextOrderItemNumber;
                 int newId = randNumbers.Next(999999);
                 addItem.ProductId = newId;
-                ///
+                
                 addItem.Price = randNumbers.Next(25, 70);
 
             }
