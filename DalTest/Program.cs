@@ -91,7 +91,7 @@ internal class Program
                         input2 = Console.ReadLine();
                         if (int.TryParse(input2, out x2))
                         {
-
+                            Console.WriteLine(dalProduct.GetById(x2));
                         }
                             break;
                             default:
