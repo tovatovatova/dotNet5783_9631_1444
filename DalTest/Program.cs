@@ -15,7 +15,6 @@ internal class Program
         foreach (var item in dalOrder.GetAll())
             Console.WriteLine(item);
         enum OP { A,B,C}
-        enum Options { ADD, SEARCH, PRINT_ALL, UPDATE, DELETE, EXIT, SEARCH_ORDER_ITEMS, SEARCH_BY_ORDER_AND_PRODUCT };
     DalOrder dalOrder = new DalOrder();
     DalOrderItem dalOrderItem = new DalOrderItem();
     DalProduct dalProduct = new DalProduct();
