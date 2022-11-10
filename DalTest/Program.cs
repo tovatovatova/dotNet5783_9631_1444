@@ -11,15 +11,17 @@ internal class Program
         DalOrder dalOrder = new DalOrder();
         DalOrderItem dalOrderItem = new DalOrderItem();
         DalProduct dalProduct = new DalProduct();
-        foreach (var item in dalOrder.GetAll())
-            Console.WriteLine(item);
+        //foreach (var item in dalOrder.GetAll())
+        //    Console.WriteLine(item);
+        //foreach (Product item in dalProduct.GetAll())
+        //    Console.WriteLine(item);
 
         Console.WriteLine("Choose one of the following object:");
         Console.WriteLine("1: Products");
         Console.WriteLine("2: Orders");
         Console.WriteLine("3: OrderItems");
         Console.WriteLine("0: Exit");
-        int choice = System.Console.Read();
+        int choice = int.Parse(Console.ReadLine());
         switch (choice)
         {
             case 1:
@@ -86,7 +88,9 @@ internal class Program
                         }
                         break;
                     case 'c':
-                        dalProduct.GetAll();
+                        
+                        foreach(var item in dalProduct.GetAll())
+                            Console.WriteLine(item);
                         break;
                     case 'd':
                         string input3;
@@ -123,26 +127,41 @@ internal class Program
                     default:
                         break;
                 }
+                ch = char.Parse(Console.ReadLine());
+
             }
             // Console.WriteLine("");
         }
         void OrderOptions()
         {
-            char ch;
+            char Orderch;
             Console.WriteLine("choose one of the following options:");
             Console.WriteLine("a: Add new order");
             Console.WriteLine("b: See order details by insert order code");
             Console.WriteLine("c: See all orders");
             Console.WriteLine("d: update order");
             Console.WriteLine("e: delete order");
-            Console.WriteLine("g: change order");
-            ch = char.Parse(Console.ReadLine());
-            while (ch != 'h')
+            Console.WriteLine("h: exit");
+            Orderch = char.Parse(Console.ReadLine());
+            while (Orderch != 'h')
             {
-                switch (ch)
+                switch (Orderch)
                 {
                     case 'a':
-                        Console.WriteLine("enter id:")
+                        Order newOrder=new Order();
+                        Console.WriteLine("insert new Order details");
+                        Console.WriteLine("enter order id:");
+                        newOrder.OrderId=int.Parse(Console.ReadLine());
+                        Console.WriteLine("enter customer name:");
+                        newOrder.CustomerName=Console.ReadLine();
+                        Console.WriteLine("insert address for delivery");
+                        newOrder.CustomerAddress=Console.ReadLine();
+                        Console.WriteLine("insert email adress");
+                        newOrder.CustomerEmail=Console.ReadLine();
+                        newOrder.OrderDate = DateTime.Now;
+                        newOrder.ShipDate = null;
+                        newOrder.DeliveryDate = null;
+                        dalOrder.Add(newOrder);
                         break;
                     default:
                         break;
@@ -155,14 +174,16 @@ internal class Program
         }
         void OrderItemOptions()
         {
-            char ch;
+            char OrderItemch;
             Console.WriteLine("choose one of the following options:");
             Console.WriteLine("a: Add new order item");
-            Console.WriteLine("b: See order item details by insert order code");
+            Console.WriteLine("b: search order item details by order code");
             Console.WriteLine("c: See all order items");
             Console.WriteLine("d: update order item");
             Console.WriteLine("e: delete order item");
-            Console.WriteLine("g: change order item");
+            Console.WriteLine("f: search items in order");
+            Console.WriteLine("g: search order by order and product code");
+            Console.WriteLine("h:exit");
 
 
 
