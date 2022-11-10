@@ -48,11 +48,11 @@ internal class Program
             Console.WriteLine("c: See all products");
             Console.WriteLine("d: update product");
             Console.WriteLine("e: delete product");
-            Console.WriteLine("g: change object");
+            Console.WriteLine("h: exit");
             ch = char.Parse(Console.ReadLine());
-            while (ch != 0)
+            while (ch != 'h')
             {
-                
+
                 switch (ch)
                 {
                     case 'a':
@@ -90,9 +90,9 @@ internal class Program
                             Console.WriteLine(dalProduct.GetById(x2));
                         }
                         break;
-                        case 'c':
-                            dalProduct.GetAll();
-                            break;
+                    case 'c':
+                        dalProduct.GetAll();
+                        break;
                     case 'd':
                         string input3;
                         int x3;
@@ -117,47 +117,64 @@ internal class Program
                             product1.ProductCategoty = (Category)x3;
                         dalProduct.UpDate(product1);
                         break;
-                            default:
+                    case 'e':
+                        string input4;
+                        int x4;
+                        Console.WriteLine("enter id:");
+                        input2 = Console.ReadLine();
+                        if (int.TryParse(input2, out x4))
+                            dalProduct.Delete(x4);
+                            break;
+                    default:
                         break;
-    }
-}
+                }
+            }
             // Console.WriteLine("");
         }
         void OrderOptions()
-{
-    char ch;
-    Console.WriteLine("choose one of the following options:");
-    Console.WriteLine("a: Add new order");
-    Console.WriteLine("b: See order details by insert order code");
-    Console.WriteLine("c: See all orders");
-    Console.WriteLine("d: update order");
-    Console.WriteLine("e: delete order");
-    Console.WriteLine("g: change order");
+        {
+            char ch;
+            Console.WriteLine("choose one of the following options:");
+            Console.WriteLine("a: Add new order");
+            Console.WriteLine("b: See order details by insert order code");
+            Console.WriteLine("c: See all orders");
+            Console.WriteLine("d: update order");
+            Console.WriteLine("e: delete order");
+            Console.WriteLine("g: change order");
+            ch = char.Parse(Console.ReadLine());
+            while (ch!='h')
+            {
+                switch (ch)
+                {
+                    case 'a':
+                        break;
+                    default:
+                        break;
+                }
+            }
 
 
 
 
-
-}
-void OrderItemOptions()
-{
-    char ch;
-    Console.WriteLine("choose one of the following options:");
-    Console.WriteLine("a: Add new order item");
-    Console.WriteLine("b: See order item details by insert order code");
-    Console.WriteLine("c: See all order items");
-    Console.WriteLine("d: update order item");
-    Console.WriteLine("e: delete order item");
-    Console.WriteLine("g: change order item");
-
+        }
+        void OrderItemOptions()
+        {
+            char ch;
+            Console.WriteLine("choose one of the following options:");
+            Console.WriteLine("a: Add new order item");
+            Console.WriteLine("b: See order item details by insert order code");
+            Console.WriteLine("c: See all order items");
+            Console.WriteLine("d: update order item");
+            Console.WriteLine("e: delete order item");
+            Console.WriteLine("g: change order item");
 
 
 
-}
+
+        }
     }
 }
-           
-       //dalOrder.Add(new DO.Order() {1000 })
-        
-      
-              
+
+//dalOrder.Add(new DO.Order() {1000 })
+
+
