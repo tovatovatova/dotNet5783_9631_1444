@@ -42,12 +42,11 @@ public struct Order
     public override string ToString() => $@"
         order ID:{OrderId}
         customer name:{CustomerName}
-        customer 
+        customer address:{CustomerAddress} 
         customer email:{CustomerEmail}
         date order:{OrderDate}
         ship date:{ShipDate}
-
-
+date delivery: {DeliveryDate}
     ";
 
 
