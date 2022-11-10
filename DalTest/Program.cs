@@ -35,14 +35,6 @@ internal class Program
             default:
                 break;
         }
-
-
-
-
-
-
-
-
         void ProductOptions()
         {
             char ch;
@@ -93,7 +85,34 @@ internal class Program
                         {
                             Console.WriteLine(dalProduct.GetById(x2));
                         }
+                        break;
+                        case 'c':
+                            dalProduct.GetAll();
                             break;
+                    case 'd':
+                        string input3;
+                        int x3;
+                        double y3;
+                        Product product1 = new Product();
+                        Console.WriteLine("enter id:");
+                        input3 = Console.ReadLine();
+                        if (int.TryParse(input3, out x3))
+                            product1.Id = x3;
+                        Console.WriteLine("enter name:");
+                        product1.Name = Console.ReadLine();
+                        Console.WriteLine("enter price:");
+                        input1 = Console.ReadLine();
+                        if (double.TryParse(input3, out y3))
+                            product1.Price = x3;
+                        Console.WriteLine("enter amount in stock:");
+                        input3 = Console.ReadLine();
+                        if (int.TryParse(input3, out x3))
+                            product1.AmountInStock = x3;
+                        Console.WriteLine("enter category number:");
+                        if (int.TryParse(input3, out x3))
+                            product1.ProductCategoty = (Category)x3;
+                        dalProduct.UpDate(product1);
+                        break;
                             default:
                         break;
     }
