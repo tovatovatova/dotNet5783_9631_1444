@@ -3,9 +3,12 @@ using Dal;
 using DO;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
+enum Options { ADD=48, SEARCH, PRINT_ALL, UPDATE, DELETE, EXIT, SEARCH_ORDER_ITEMS, SEARCH_BY_ORDER_AND_PRODUCT };
 internal class Program
 {
+
     private static void Main(string[] args)
     {
 
@@ -20,10 +23,11 @@ internal class Program
         Console.WriteLine("2: Orders");
         Console.WriteLine("3: OrderItems");
         Console.WriteLine("0: Exit");
-        int choice = System.Console.Read();
+        
+        while(choice != Options.EXIT)
         switch (choice)
         {
-            case 1:
+         :
                 ProductOptions();
                 break;
             case 2:
