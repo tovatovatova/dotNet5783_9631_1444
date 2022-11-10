@@ -8,6 +8,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        enum OP { A,B,C}
         enum Options { ADD, SEARCH, PRINT_ALL, UPDATE, DELETE, EXIT, SEARCH_ORDER_ITEMS, SEARCH_BY_ORDER_AND_PRODUCT };
     DalOrder dalOrder = new DalOrder();
     DalOrderItem dalOrderItem = new DalOrderItem();
