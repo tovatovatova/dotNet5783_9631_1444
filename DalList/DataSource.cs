@@ -70,10 +70,12 @@ internal static class DataSource
             addOrder.CustomerName = names[i % 5];
             addOrder.CustomerAddress = address[randNumbers.Next(4)];
             addOrder.CustomerEmail = addOrder.CustomerName + "@gmail.com";
-            TimeSpan ts = new TimeSpan(randNumbers.Next(1, 5));
-            addOrder.OrderDate = new DateTime((randNumbers.Next(2020, DateTime.Today.Year)), (randNumbers.Next(1, 12)), (randNumbers.Next(1, 29)));
+            TimeSpan ts = new TimeSpan(randNumbers.Next(3), randNumbers.Next(23), randNumbers.Next(59), randNumbers.Next(59));
+            addOrder.OrderDate = new DateTime(randNumbers.Next(2020, DateTime.Today.Year), randNumbers.Next(1, 12), randNumbers.Next(1, 29),randNumbers.Next(0,23), randNumbers.Next(0, 59), randNumbers.Next(0, 59));
             addOrder.ShipDate = addOrder.OrderDate + ts;
+            ts = new TimeSpan(randNumbers.Next(0), randNumbers.Next(0), randNumbers.Next(0, 3), randNumbers.Next(0, 23), randNumbers.Next(0, 59));
             addOrder.DeliveryDate = addOrder.ShipDate + ts;
+           
             OrderList.Add(addOrder);
         }
     }
