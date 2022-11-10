@@ -20,7 +20,7 @@ internal class Program
         Console.WriteLine("2: Orders");
         Console.WriteLine("3: OrderItems");
         Console.WriteLine("0: Exit");
-        int choice = System.Console.Read();
+        int choice = int.Parse(Console.ReadLine());
         switch (choice)
         {
             case 1:
@@ -136,13 +136,14 @@ internal class Program
             Console.WriteLine("c: See all orders");
             Console.WriteLine("d: update order");
             Console.WriteLine("e: delete order");
-            Console.WriteLine("g: change order");
+            Console.WriteLine("h: exit");
             ch = char.Parse(Console.ReadLine());
             while (ch!='h')
             {
                 switch (ch)
                 {
                     case 'a':
+                        Console.WriteLine("enter id:");
                         break;
                     default:
                         break;
@@ -162,7 +163,54 @@ internal class Program
             Console.WriteLine("c: See all order items");
             Console.WriteLine("d: update order item");
             Console.WriteLine("e: delete order item");
-            Console.WriteLine("g: change order item");
+            Console.WriteLine("h: exit");
+            ch=char.Parse(Console.ReadLine());
+            while (ch!='h')
+            {
+                switch (ch)
+                {
+                    case 'a':
+                        string input1;
+                        int x1;
+                        double y1;
+                        OrderItem orderItem = new OrderItem();
+                        Console.WriteLine("enter order item id:");
+                        input1 = Console.ReadLine();
+                        if (int.TryParse(input1, out x1))
+                            orderItem.OrderItemId = x1;
+                        Console.WriteLine("enter product id:");
+                        input1 = Console.ReadLine();
+                        if (int.TryParse(input1, out x1))
+                            orderItem.ProductId = x1;
+                        Console.WriteLine("enter order id:");
+                        input1 = Console.ReadLine();
+                        if (int.TryParse(input1, out x1))
+                            orderItem.OrderId = x1;
+                        Console.WriteLine("enter price:");
+                        input1= Console.ReadLine();
+                        if(double.TryParse(input1 , out y1))
+                            orderItem.Price = y1;
+                        Console.WriteLine("enter amount:");
+                        input1 = Console.ReadLine();
+                        if (int.TryParse(input1, out x1))
+                            orderItem.Amount = x1;
+                        dalOrderItem.Add(orderItem);
+                        break;
+                    case 'b':
+                        string input2;
+                        int x2;
+                        Console.WriteLine("enter order item id:");
+                        input2= Console.ReadLine();
+                        if (int.TryParse(input2, out x2))
+                            Console.WriteLine(dalOrderItem.GetById(x2));
+                        break;
+                    case 'c':
+                        ////
+                        break;
+                    default:
+                        break;
+                }
+            }
 
 
 
