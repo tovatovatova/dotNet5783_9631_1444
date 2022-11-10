@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-enum Options { ADD=48, SEARCH, PRINT_ALL, UPDATE, DELETE, EXIT, SEARCH_ORDER_ITEMS, SEARCH_BY_ORDER_AND_PRODUCT };
+//enum Options { ADD=48, SEARCH, PRINT_ALL, UPDATE, DELETE, EXIT, SEARCH_ORDER_ITEMS, SEARCH_BY_ORDER_AND_PRODUCT };
 internal class Program
 {
 
