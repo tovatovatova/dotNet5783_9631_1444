@@ -28,8 +28,8 @@ public class DalProduct
     /// <exception cref="Exception"></exception>
     public Product GetById(int productId)
     {
-        Product p = DataSource.ProductList.Find(x => x?.Id == productId) ?? throw new Exception("This product doesn't exist");
-        return p;
+        Product product = DataSource.ProductList.Find(x => x?.Id == productId) ?? throw new Exception("This product doesn't exist");
+        return product;
     }
     /// <summary>
     /// UpDate
@@ -54,7 +54,6 @@ public class DalProduct
         if (productIndex == -1)
             throw new Exception("This product doesn't exist");
         DataSource.ProductList.RemoveAt(productIndex);
-
     }
     /// <summary>
     /// GetAll
