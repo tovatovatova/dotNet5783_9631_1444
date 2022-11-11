@@ -71,7 +71,7 @@ public class DalOrderItem
     public List<OrderItem?> GetItemsInOrder(int orderId)
     {
         List<OrderItem?> itemsInOrder = new List<OrderItem?>();
-        DataSource.OrderItemList.FindAll(x => x?.OrderId == orderId);
+       itemsInOrder= DataSource.OrderItemList.FindAll(x => x?.OrderId == orderId);
         return itemsInOrder;
     }
     public OrderItem GetItemByOrderAndProduct(int orderId,int productId)
