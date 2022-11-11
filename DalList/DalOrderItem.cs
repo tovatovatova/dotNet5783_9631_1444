@@ -32,7 +32,7 @@ public class DalOrderItem
             return (OrderItem)newOrder;
 
         }
-        throw new Exception("order item not exist");
+        throw new Exception("order item is not exist");
     }
     /// <summary>
     /// Delete
@@ -55,7 +55,7 @@ public class DalOrderItem
     {
         int index = DataSource.OrderItemList.FindIndex(x => x?.OrderItemId == newOrder.OrderItemId);
         if (index == -1)
-            throw new Exception("order itemnot exist");
+            throw new Exception("order item is not exist");
         DataSource.OrderItemList[index] = newOrder;
     }
     /// <summary>
