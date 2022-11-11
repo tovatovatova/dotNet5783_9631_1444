@@ -170,6 +170,8 @@ internal class Program
                     default:
                         break;
                 }
+                Orderch = char.Parse(Console.ReadLine());
+
             }
 
 
