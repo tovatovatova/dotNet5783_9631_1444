@@ -8,10 +8,10 @@ namespace Dal;
 public class DalOrder
 {
     /// <summary>
-    /// Create
+    /// the method add new order to list of orders
     /// </summary>
     /// <param name="newOrder"></param>
-    /// <returns></returns>
+    /// <returns>newOrder.OrderId</returns>
     public int Add(Order newOrder)
     {
         newOrder.OrderId = DataSource.Config.NextOrderNumber;
@@ -19,11 +19,11 @@ public class DalOrder
         return newOrder.OrderId;
     }
     /// <summary>
-    ///Request
+    /// the method returns the Order with the given id
     /// </summary>
     /// <param name="orderId"></param>
-    /// <returns></returns>
-    /// <exception cref="Exception"></exception>
+    /// <returns>newOrder</returns>
+    /// <exception cref="Exception">throw exeption when the the order not found</exception>
     public Order GetById(int orderId)
     {
         Order? newOrder=DataSource.OrderList.Find(x => x?.OrderId ==orderId);    
@@ -35,9 +35,10 @@ public class DalOrder
         throw new Exception("order not exist");
     }
     /// <summary>
-    /// Get All
+    /// deletes order according to the given id
     /// </summary>
-    /// <returns></returns>
+    /// <param name="orderId"></param>
+    /// <exception cref="Exception">throw exeption when the the order not found</exception>
     public void Delete(int orderId)
     {
         Order? newOrder = DataSource.OrderList.Find(x => x?.OrderId == orderId);
@@ -45,6 +46,11 @@ public class DalOrder
             throw new Exception("order not exist");
         DataSource.OrderList.Remove(newOrder);
     }
+    /// <summary>
+    /// update an order in its spesific index according to the given order
+    /// </summary>
+    /// <param name="newOrder"></param>
+    /// <exception cref="Exception">throw exeption when the the order not found</exception>
     public void Update(Order newOrder)
     {
        int index= DataSource.OrderList.FindIndex(x => x?.OrderId == newOrder.OrderId);
@@ -53,9 +59,9 @@ public class DalOrder
         DataSource.OrderList[index] = newOrder;
     }
     /// <summary>
-    /// Get All
+    /// runs on the list and add to a new list
     /// </summary>
-    /// <returns></returns>
+    /// <returns>newList</returns>
     public IEnumerable<Order?> GetAll()
     {
         List<Order?> newList = new List<Order?>();

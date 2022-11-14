@@ -46,7 +46,7 @@ public struct Order
         customer email:{CustomerEmail}
         date order:{OrderDate}
         ship date:{ShipDate}
-date delivery: {DeliveryDate}
+        date delivery: {DeliveryDate}
     ";
 
 
