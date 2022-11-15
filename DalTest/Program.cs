@@ -92,7 +92,6 @@ internal class Program
                             }
                             break;
                         case 'c'://prints all the list
-
                             foreach (var item in dalProduct.GetAll())
                                 Console.WriteLine(item);
                             break;
