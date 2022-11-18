@@ -2,10 +2,11 @@
 
 using DO;
 using static Dal.DataSource;
+using DalApi;
 
 namespace Dal;
 
-public class DalOrder
+internal class DalOrder : IOrder
 {
     /// <summary>
     /// the method add new order to list of orders
@@ -68,4 +69,8 @@ public class DalOrder
         DataSource.OrderList.ForEach(x => newList.Add(x));
         return newList;
     }
+
+    
+
+    
 }

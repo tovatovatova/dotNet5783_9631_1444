@@ -1,10 +1,10 @@
 ﻿
 
 using DO;
-
+using DalApi;
 namespace Dal;
 
-public class DalProduct
+public class DalProduct : IProduct
 {
     /// <summary>
     /// add the new given  product to list of products
@@ -36,7 +36,7 @@ public class DalProduct
     /// </summary>
     /// <param name="productToUpDate"></param>
     /// <exception cref="Exception">throw exeption when product doesnt exist</exception>
-    public void UpDate(Product productToUpDate)
+    public void Update(Product productToUpDate)
     {
         int ProductIndex = DataSource.ProductList.FindIndex(x => x?.Id == productToUpDate.Id);
         if (ProductIndex == -1)
@@ -65,5 +65,4 @@ public class DalProduct
         DataSource.ProductList.ForEach(x=> newList.Add(x));
         return newList;
     }
-
 }

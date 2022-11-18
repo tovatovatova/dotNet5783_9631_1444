@@ -2,10 +2,11 @@
 
 using DO;
 using System.Security.Cryptography.X509Certificates;
+using DalApi;
 
 namespace Dal;
 
-public class DalOrderItem
+public class DalOrderItem : IOrderItem
 {
     /// <summary>
     /// Add a new order item to the list 

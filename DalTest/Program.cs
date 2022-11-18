@@ -1,4 +1,5 @@
 ﻿using Dal;
+using DalApi;
 using DO;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -9,9 +10,11 @@ internal class Program
     /// <summary>
     /// 3 Objects to provide access to dalList classes
     /// </summary>
-    private static DalOrder dalOrder = new DalOrder();
-    private static DalOrderItem dalOrderItem = new DalOrderItem();
-    private static DalProduct dalProduct = new DalProduct();
+    //private static DalOrder dalOrder = new DalOrder();
+    //private static DalOrderItem dalOrderItem = new DalOrderItem();
+    //private static DalProduct dalProduct = new DalProduct();
+     static IDal dal = new DalList();
+
     /// <summary>
     /// function for the options of product check (add,delete,update,and so)
     /// </summary>
@@ -57,7 +60,8 @@ internal class Program
                         Console.WriteLine("enter category number:");
                         if (int.TryParse(input1, out x1))
                             product.ProductCategoty = (Category)x1;
-                        dalProduct.Add(product);
+                       dal.Product.Add(product);
+                        
                         break;
                     case 'b'://input:id of product. output:details of this product.
                         string input2;
@@ -66,13 +70,13 @@ internal class Program
                         input2 = Console.ReadLine();
                         if (int.TryParse(input2, out x2))
                         {
-                            Console.WriteLine(dalProduct.GetById(x2));
+                            Console.WriteLine(dal.Product.GetById(x2));
                         }
                         else throw new Exception("Wrong input");
                         break;
                     case 'c'://prints all the list
 
-                        foreach (var item in dalProduct.GetAll())
+                        foreach (var item in dal.Product.GetAll())
                             Console.WriteLine(item);
                         break;
                     case 'd'://update product
@@ -99,7 +103,7 @@ internal class Program
                         if (int.TryParse(input3, out x3))
                             product1.ProductCategoty = (Category)x3;
                         else throw new Exception("Wrong input");
-                        dalProduct.UpDate(product1);
+                        dal.Product.Update(product1);
                         break;
                     case 'e'://delete product
                         string input4;
@@ -107,7 +111,7 @@ internal class Program
                         Console.WriteLine("enter id:");
                         input2 = Console.ReadLine();
                         if (int.TryParse(input2, out x4))
-                            dalProduct.Delete(x4);
+                            dal.Product.Delete(x4);
                         else
                             throw new Exception("Wrong input");
                         break;
@@ -168,7 +172,7 @@ internal class Program
                         newOrder.OrderDate = DateTime.Now;
                         newOrder.ShipDate = null;
                         newOrder.DeliveryDate = null;
-                        dalOrder.Add(newOrder);
+                        dal.Order.Add(newOrder);
                         break;
                     case "b"://prints order by id
 
@@ -177,13 +181,13 @@ internal class Program
                         orderInputstr = Console.ReadLine();
                         if (int.TryParse(orderInputstr, out idO))
                         {
-                            Console.WriteLine(dalOrder.GetById(idO));
+                            Console.WriteLine(dal.Order.GetById(idO));
                         }
                         else
                             throw new Exception("Wrong input");
                         break;
                     case "c"://prints all the orders
-                        foreach (Order order in dalOrder.GetAll())
+                        foreach (Order order in dal.Order.GetAll())
                             Console.WriteLine(order);
                         break;
                     case "d"://updates order
@@ -219,14 +223,14 @@ internal class Program
                             newOrder1.DeliveryDate = date;
                         else
                             throw new Exception("Wrong input");
-                        dalOrder.Update(newOrder1);
+                        dal.Order.Update(newOrder1);
                         break;
                     case "e"://deletes order
                         int idDelO;
                         Console.WriteLine("enter id:");
                         orderInputstr = Console.ReadLine();
                         if (int.TryParse(orderInputstr, out idDelO))
-                            dalOrder.Delete(idDelO);
+                            dal.Order.Delete(idDelO);
                         else
                             throw new Exception("Wrong input");
                         break;
@@ -315,7 +319,7 @@ internal class Program
                             orderItem.Amount = input;
                         else
                             throw new Exception("Wrong input");
-                        dalOrderItem.Add(orderItem);
+                        dal.OrderItem.Add(orderItem);
                         break;
                     case "b"://prints order item by id
                         string itemIdStr2;
@@ -324,12 +328,12 @@ internal class Program
                         Console.WriteLine("enter order item id:");
                         itemIdStr2 = Console.ReadLine();
                         if (int.TryParse(itemIdStr2, out inputS))
-                            Console.WriteLine(dalOrderItem.GetById(inputS));
+                            Console.WriteLine(dal.OrderItem.GetById(inputS));
                         else
                             throw new Exception("Wrong input");
                         break;
                     case "c"://prints all the order item list
-                        foreach (var item in dalOrderItem.GetAll())
+                        foreach (var item in dal.OrderItem.GetAll())
                             Console.WriteLine(item);
                         break;
                     case "d"://updates order item
@@ -367,14 +371,14 @@ internal class Program
                             ordItemToUpD.Amount = inputUp;
                         else
                             throw new Exception("Wrong input");
-                        dalOrderItem.Update(ordItemToUpD);
+                        dal.OrderItem.Update(ordItemToUpD);
                         break;//delete order item
                     case "e":
                         Console.WriteLine("insert id of item to delete");
                         strInput = Console.ReadLine();
                         int itemIdDel;
                         if (int.TryParse(strInput, out itemIdDel))
-                            dalOrder.Delete(itemIdDel);
+                            dal.OrderItem.Delete(itemIdDel);
                         else
                             throw new Exception("Wrong input");
                         break;
@@ -384,7 +388,7 @@ internal class Program
                         strInput = Console.ReadLine();
                         if (int.TryParse(strInput, out idOr))
                         {
-                            foreach (var item in dalOrderItem.GetItemsInOrder(idOr))
+                            foreach (var item in dal.OrderItem.GetItemsInOrder(idOr))
                                 Console.WriteLine(item);
                         }
                         else
@@ -401,7 +405,7 @@ internal class Program
                             Console.WriteLine("insert order id");
                             strInput = Console.ReadLine();
                             if (int.TryParse(strInput, out orderC))
-                                Console.WriteLine(dalOrderItem.GetItemByOrderAndProduct(orderC, productC));
+                                Console.WriteLine(dal.OrderItem.GetItemByOrderAndProduct(orderC, productC));
                             else
                                 throw new Exception("Wrong input");
                         }
@@ -444,6 +448,7 @@ internal class Program
         Console.WriteLine("0: Exit");
         int choice = int.Parse(Console.ReadLine());
         //in case the input is not one of the options
+
         if (choice < 0 || choice > 3) throw new Exception("this option is not exist");
         while (choice != 0)
         {
@@ -468,6 +473,11 @@ internal class Program
             {
                 Console.WriteLine(e.Message);
             }
+            Console.WriteLine("Choose one of the following object:");
+            Console.WriteLine("1: Products");
+            Console.WriteLine("2: Orders");
+            Console.WriteLine("3: OrderItems");
+            Console.WriteLine("0: Exit");
             if (!int.TryParse(Console.ReadLine(),out choice)) throw new Exception("This option not exist!");
 
         }
