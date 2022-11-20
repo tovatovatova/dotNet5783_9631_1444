@@ -9,7 +9,7 @@ namespace BO
 {
    static class StaticClass
     {
-        public static string ToStringProperty<T>(this T t)
+        public static string ToStringProperty<T>(this T t)//785768978979(*&*(&(*&(((((((((((((
         {
             string str = "";
             foreach (PropertyInfo item in t.GetType().GetProperties())

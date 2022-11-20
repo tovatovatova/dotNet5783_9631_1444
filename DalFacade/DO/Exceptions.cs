@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    internal class Exceptions
+  public class DalDoNotExistException:Exception
     {
+        public DalDoNotExistException(string? message) : base(message) { }
     }
+    public class DalAlreadyExistsException:Exception
+    {
+        public DalAlreadyExistsException(string? message) : base(message) { }
+    }
+    
+
 }
