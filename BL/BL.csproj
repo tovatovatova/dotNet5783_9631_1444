@@ -13,12 +13,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BIApi\**" />
+    <EmbeddedResource Remove="BIApi\**" />
+    <None Remove="BIApi\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DalFacade\DalFacade.csproj" />
     <ProjectReference Include="..\DalList\DalList.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BIApi\" />
+    <Folder Include="BlApi\" />
     <Folder Include="BlImplementation\" />
   </ItemGroup>
 

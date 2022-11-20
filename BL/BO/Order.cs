@@ -28,8 +28,8 @@ namespace BO
         date order:{OrderDate}
         ship date:{ShipDate}
         date delivery: {DeliveryDate}
-        items in order:{Items}
-        total price for order:{TotalPrice}
+        items in order:{ foreach (var item in Items)Console.WriteLine(item);}
+            total price for order:{TotalPrice}
 ";
     }
 }
