@@ -27,17 +27,13 @@ public struct OrderItem
     /// Quantity of this item in order
     /// </summary>
     public int Amount { get; set; }
-    
+
     /// <summary>
     /// return a string for order item's details
     /// </summary>
     /// <returns></returns>
-   public override string ToString() => $@"
-            product ID:{ProductId}
-            order ID:{OrderId}
-            price of item:{Price}
-            amount of same product in order:{Amount}
-";
+    public override string ToString() => this.ToStringProperty();
+
 
 
 }
