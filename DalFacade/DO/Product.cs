@@ -31,13 +31,15 @@ public struct Product
     /// return a string for product's details
     /// </summary>
     /// <returns></returns>
-public override string ToString()=>$@"
-product ID:{Id}
-category name:{ProductCategoty}
-product name:{Name}
-price of product:{Price}
-Number of units in stock:{AmountInStock}
+        public override string ToString() => this.ToStringProperty();
 
-";
+    //public override string ToString()=>$@"
+    //product ID:{Id}
+    //category name:{ProductCategoty}
+    //product name:{Name}
+    //price of product:{Price}
+    //Number of units in stock:{AmountInStock}
+
+    //";
 }
 
