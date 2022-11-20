@@ -14,6 +14,14 @@ namespace BO
         public string? CustomerAddress { get; set; }
         public List<OrderItem> Items { get; set; }
         public double? TotalPrice { get; set; }
+        public override string ToString() => @$"
 
+        customer name:{CustomerName}
+        customer email:{CustomerEmail}
+        customer address:{CustomerAddress} 
+items in cart:{string.Join(' ', Items)}
+total price:{TotalPrice}
+";
+       
     }
 }

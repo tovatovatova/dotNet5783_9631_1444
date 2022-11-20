@@ -13,5 +13,14 @@ namespace BO
         public double Price { get; set; }
         public Category Category { get; set; }
         public int InStock { get; set; }
+        public override string ToString() => $@"
+product Id: {ID}
+product name:{Name}
+product price:{Price}
+product category{Category}
+amount in stock:{InStock}
+";
+
+
     }
 }

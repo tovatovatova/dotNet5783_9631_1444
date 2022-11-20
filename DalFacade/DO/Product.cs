@@ -37,6 +37,7 @@ category name:{ProductCategoty}
 product name:{Name}
 price of product:{Price}
 Number of units in stock:{AmountInStock}
+
 ";
 }
 

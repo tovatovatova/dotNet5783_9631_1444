@@ -22,13 +22,13 @@ namespace BO
         public override string ToString() => $@"
         order ID:{Id}
         customer name:{CustomerName}
-        customer address:{CustomerAddress} 
         customer email:{CustomerEmail}
+        customer address:{CustomerAddress} 
         order status:{Status}
         date order:{OrderDate}
         ship date:{ShipDate}
         date delivery: {DeliveryDate}
-        items in order:{ foreach (var item in Items)Console.WriteLine(item);}
+        items in order:{ string.Join(' ',Items)}
             total price for order:{TotalPrice}
 ";
     }
