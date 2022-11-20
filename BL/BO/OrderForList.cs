@@ -13,16 +13,6 @@ namespace BO
         public OrderStatus Status { get; set; }
         public int AmountOfItems { get; set; }
         public double TotalPrice { get; set; }
-        public override string ToString() => $@"
-order id: {ID}
-customer name:{CustomerName}
-order status: {Status}
-amount of items:{AmountOfItems}
-totel price: {TotalPrice}
-";
-
-       
-
-
+        public override string ToString() => this.ToStringProperty();
     }
 }

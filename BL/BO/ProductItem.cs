@@ -14,13 +14,7 @@ namespace BO
         public Category Category { get; set; }
         public int Amount { get; set; }
         public bool InStock { get; set; }
-        public override string ToString() => @$"
-product Id: {ID}
-product name:{Name}
-product price:{Price}
-product category{Category}
-amount :{Amount}
-avaliable:{InStock}
-    ";
+        public override string ToString() => this.ToStringProperty();
+
     }
 }

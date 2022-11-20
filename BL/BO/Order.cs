@@ -29,7 +29,7 @@ namespace BO
         ship date:{ShipDate}
         date delivery: {DeliveryDate}
         items in order:{ string.Join(' ',Items)}
-            total price for order:{TotalPrice}
+        total price for order:{TotalPrice}
 ";
     }
 }

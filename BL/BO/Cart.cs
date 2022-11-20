@@ -19,8 +19,8 @@ namespace BO
         customer name:{CustomerName}
         customer email:{CustomerEmail}
         customer address:{CustomerAddress} 
-items in cart:{string.Join(' ', Items)}
-total price:{TotalPrice}
+        items in cart:{string.Join(' ', Items)}
+        total price:{TotalPrice}
 ";
        
     }
