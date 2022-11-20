@@ -8,5 +8,6 @@ namespace BlApi
 {
    public interface IProduct
     {
+        public void RequestListOfProduct();
     }
 }
