@@ -1,4 +1,4 @@
-﻿using BO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +9,14 @@ namespace BlApi
 {
    public interface IProduct
     {
-        public  IEnumerable<Product> GetProductList();//manager
-        public Product GetProductDetails(int id);//manager
-        public void AddProduct(Product newProduct);//manager
+        public  IEnumerable<BO.Product?> GetProductList();//manager
+        public BO.Product GetProductDetails(int id);//manager
+        public void AddProduct(BO.Product newProduct);//manager
         public void DeleteProduct(int id);//manager
-        public void UpdateProduct(Product product);//manager
+        public void UpdateProduct(BO.Product product);//manager
 
-       public  IEnumerable<ProductItem> GetCatalog();//client
-      public  ProductItem GetProductByID(int id);//client
+       public  IEnumerable<BO.ProductItem?> GetCatalog();//client
+      public  BO.ProductItem GetProductByID(int id);//client
         
        
 

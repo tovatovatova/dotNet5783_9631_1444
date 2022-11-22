@@ -1,4 +1,4 @@
-﻿using BO;
+﻿
 
 using System;
 using System.Collections.Generic;
@@ -11,12 +11,12 @@ namespace BlApi
 {
     public interface IOrder
     {
-       public Order GetOrderByID(int orderID); //manager and client
-        public IEnumerable<OrderForList> GetOrderList();//manager
-        public Order UpdateShip(int orderID);//manager
-        public Order UpdateDelivery(int orderID);//manager
-       public OrderTracking OrderTracking (int orderID);//manager
-        public Order UpdateOrder(int orderId);//manager
+       public BO.Order GetOrderByID(int orderID); //manager and client
+        public IEnumerable<BO.OrderForList?> GetOrderList();//manager
+        public BO.Order UpdateShip(int orderID);//manager
+        public BO.Order UpdateDelivery(int orderID);//manager
+       public BO.OrderTracking OrderTracking (int orderID);//manager
+        public BO.Order UpdateOrder(int orderId);//manager
 
 
         
