@@ -2,6 +2,8 @@
 using System.Security.Cryptography.X509Certificates;
 using BlApi;
 using BlImplementation;
+using DalApi;
+
 namespace BITest
 {
     internal class Program
@@ -12,8 +14,6 @@ namespace BITest
         public enum OrderActions { Get_Order = 1, Order_List, Update_Ship, Update_Delivery, Order_Tracking, Update_Order, Exit }
         static IBl bl = new Bl();
 
-    internal class Program
-    {
        
         public static void ProductOptions()
         {
@@ -32,8 +32,11 @@ namespace BITest
                 switch (choice)
                 {
                     case ProductActions.Product_List:
+                        foreach (var item in bl.Product.GetProductList())
+                            Console.WriteLine(item); 
                         break;
                     case ProductActions.ProductDetails:
+                        
                         break;
                     case ProductActions.Add:
                         break;
