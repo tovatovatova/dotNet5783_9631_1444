@@ -5,10 +5,10 @@ namespace BITest
 {
     internal class Program
     {
-        enum Options {PRODUCT=1,ORDER,CART,EXIT};
-        enum ProductActions {Product_List=1,ProductDetails,Add,Delete,Update,Catalog,Product_in_Catalog,Exit}
-        enum CartActions {Add=1,Update,Create,Exit }
-        enum OrderActions { Get_Order=1,Order_List,Update_Ship,Update_Delivery,Order_Tracking,Update_Order,Exit}
+        public enum Options { PRODUCT = 1, ORDER, CART, EXIT };
+        public enum ProductActions { Product_List = 1, ProductDetails, Add, Delete, Update, Catalog, Product_in_Catalog, Exit }
+        public enum CartActions { Add = 1, Update, Create }
+        public enum OrderActions { Get_Order = 1, Order_List, Update_Ship, Update_Delivery, Order_Tracking, Update_Order, Exit }
 
         public static void ProductOptions()
         {
@@ -52,7 +52,20 @@ namespace BITest
         }
         public static void OrderOptions()
         {
+            Console.WriteLine(@"Choose one of the following options:
+1: oder details
+2:list of orders
+3:update ship date 
+4:update delivery date
+5:order tracking
+6:update order");
+            do
+            {
 
+                OrderActions choi;
+                if (!OrderActions.tryP)
+                    sw
+            } while (true);
         }
         public static void CartOptions()
         {
@@ -67,7 +80,7 @@ namespace BITest
 0:Exit");
             Options choice;
             if (!Options.TryParse(Console.ReadLine(), out choice)) throw new Exception("This option not exist!");
-            while (choice!=Options.EXIT)
+            while (choice != Options.EXIT)
             {
                 switch (choice)
                 {
