@@ -12,6 +12,9 @@ namespace BITest
         public enum OrderActions { Get_Order = 1, Order_List, Update_Ship, Update_Delivery, Order_Tracking, Update_Order, Exit }
         static IBl bl = new Bl();
 
+    internal class Program
+    {
+       
         public static void ProductOptions()
         {
             ProductActions choice;
@@ -60,7 +63,13 @@ namespace BITest
 4:update delivery date
 5:order tracking
 6:update order");
-            
+            do
+            {
+
+                OrderActions choi;
+                if (!OrderActions.TryParse(Console.ReadLine(), out choi)) throw new Exception("wrong input type");
+                   
+            } while (true);
         }
         public static void CartOptions()
         {
