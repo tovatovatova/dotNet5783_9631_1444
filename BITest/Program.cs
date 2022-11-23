@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        enum
+        enum 
         static void Main(string[] args)
         {
             
