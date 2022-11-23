@@ -2,6 +2,8 @@
 using System.Security.Cryptography.X509Certificates;
 using BlApi;
 using BlImplementation;
+using System.Linq.Expressions;
+
 namespace BITest
 {
     public enum Options { PRODUCT = 1, ORDER, CART, EXIT };
@@ -54,6 +56,7 @@ namespace BITest
         }
         public static void OrderOptions()
         {
+            int id;
             Console.WriteLine(@"Choose one of the following options:
 1: oder details
 2:list of orders
@@ -66,7 +69,28 @@ namespace BITest
 
                 OrderActions choi;
                 if (!OrderActions.TryParse(Console.ReadLine(), out choi)) throw new Exception("wrong input type");
-                   
+                switch (choi)
+                {
+                    case OrderActions.Get_Order:
+                        Console.WriteLine("please insert order Id");
+                        if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
+                        Console.WriteLine();
+                        break;
+                    case OrderActions.Order_List:
+                        break;
+                    case OrderActions.Update_Ship:
+                        break;
+                    case OrderActions.Update_Delivery:
+                        break;
+                    case OrderActions.Order_Tracking:
+                        break;
+                    case OrderActions.Update_Order:
+                        break;
+                    case OrderActions.Exit:
+                        break;
+                    default:
+                        break;
+                }
             } while (true);
         }
         public static void CartOptions()
