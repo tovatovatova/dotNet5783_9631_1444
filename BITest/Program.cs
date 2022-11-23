@@ -65,50 +65,57 @@ namespace BITest
 4:update delivery date
 5:order tracking
 6:update order");
-            OrderActions choi;
+            OrderActions choi=OrderActions.Exit;
 
             do
             {
-
-                if (!OrderActions.TryParse(Console.ReadLine(), out choi)) throw new Exception("wrong input type");
-                switch (choi)
+                try
                 {
-                    case OrderActions.Get_Order:
-                        Console.WriteLine("please insert order Id");
-                        if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
-                        Console.WriteLine(bl.Order.GetOrderByID(id));
-                        break;
-                    case OrderActions.Order_List:
-                        Console.WriteLine(String.Join("",bl.Order.GetOrderList()));
-                        break;
-                    case OrderActions.Update_Ship:
-                        Console.WriteLine("please insert order Id");
-                        if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
-                        Console.WriteLine(bl.Order.UpdateShip(id));    
-                        break;
-                    case OrderActions.Update_Delivery:
-                        Console.WriteLine("please insert order Id");
-                        if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
-                        Console.WriteLine(bl.Order.UpdateDelivery(id));
-                        break;
-                    case OrderActions.Order_Tracking:
-                        Console.WriteLine("please insert order Id");
-                        if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
-                        Console.WriteLine(bl.Order.OrderTracking(id));
-                        break;
-                    case OrderActions.Update_Order:
+                    if (!OrderActions.TryParse(Console.ReadLine(), out choi)) throw new Exception("wrong input type");
+                    switch (choi)
+                    {
+                        case OrderActions.Get_Order:
+                            Console.WriteLine("please insert order Id");
+                            if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
+                            Console.WriteLine(bl.Order.GetOrderByID(id));
+                            break;
+                        case OrderActions.Order_List:
+                            Console.WriteLine(String.Join("", bl.Order.GetOrderList()));
+                            break;
+                        case OrderActions.Update_Ship:
+                            Console.WriteLine("please insert order Id");
+                            if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
+                            Console.WriteLine(bl.Order.UpdateShip(id));
+                            break;
+                        case OrderActions.Update_Delivery:
+                            Console.WriteLine("please insert order Id");
+                            if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
+                            Console.WriteLine(bl.Order.UpdateDelivery(id));
+                            break;
+                        case OrderActions.Order_Tracking:
+                            Console.WriteLine("please insert order Id");
+                            if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
+                            Console.WriteLine(bl.Order.OrderTracking(id));
+                            break;
+                        case OrderActions.Update_Order:
 
-                        break;
-                    case OrderActions.Exit:
-                        break;
-                    default:
-                        break;
+                            break;
+                        case OrderActions.Exit:
+                            break;
+                        default:
+                            break;
+                    }
                 }
-            } while (choi!=OrderActions.Exit);
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            } while (choi != OrderActions.Exit);
+            
         }
         public static void CartOptions()
         {
-
+            Console.WriteLine(in);
         }
         static void Main(string[] args)
         {
