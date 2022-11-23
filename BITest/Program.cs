@@ -7,7 +7,7 @@ namespace BITest
 {
     public enum Options { PRODUCT = 1, ORDER, CART, EXIT };
     public enum ProductActions { Product_List = 1, ProductDetails, Add, Delete, Update, Catalog, Product_in_Catalog, Exit }
-    public enum CartActions { Add = 1, Update, Create }
+    public enum CartActions { Add = 1, Update, Create,Exit }
     public enum OrderActions { Get_Order = 1, Order_List, Update_Ship, Update_Delivery, Order_Tracking, Update_Order, Exit }
     internal class Program
     {
@@ -33,17 +33,63 @@ namespace BITest
                             Console.WriteLine(item); 
                         break;
                     case ProductActions.ProductDetails:
-                        
+                        int id;
+                        Console.WriteLine("enter id of product:");
+                        if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type");
+                        Console.WriteLine(bl.Product.GetProductDetails(id)); 
                         break;
                     case ProductActions.Add:
+                        Product addProduct = new Product();
+                        double price;
+                        int category;
+                        int stock;
+                        Console.WriteLine("enter id of product:");
+                        if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type");
+                        addProduct.ID= id;
+                        Console.WriteLine("enter name of product:");
+                        addProduct.Name=Console.ReadLine();
+                        Console.WriteLine("enter price of product:");
+                        if (!double.TryParse(Console.ReadLine(), out price)) throw new Exception("wrong input type");
+                        addProduct.Price= price;
+                        Console.WriteLine("enter category of product:");
+                        if (!int.TryParse(Console.ReadLine(), out category)) throw new Exception("wrong input type");
+                        addProduct.Category = (Category)(category);
+                        Console.WriteLine("enter amount in stock of product:");
+                        if (!int.TryParse(Console.ReadLine(), out stock)) throw new Exception("wrong input type");
+                        addProduct.InStock = stock;
+                        bl.Product.AddProduct(addProduct);
                         break;
                     case ProductActions.Delete:
+                        Console.WriteLine("enter id to delete product:");
+                        if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type");
+                        bl.Product.DeleteProduct(id);
                         break;
                     case ProductActions.Update:
+                        Product updateProduct = new Product();
+                        Console.WriteLine("enter id of product:");
+                        if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type");
+                        updateProduct.ID = id;
+                        Console.WriteLine("enter name of product:");
+                        updateProduct.Name = Console.ReadLine();
+                        Console.WriteLine("enter price of product:");
+                        if (!double.TryParse(Console.ReadLine(), out price)) throw new Exception("wrong input type");
+                        updateProduct.Price = price;
+                        Console.WriteLine("enter category of product:");
+                        if (!int.TryParse(Console.ReadLine(), out category)) throw new Exception("wrong input type");
+                        updateProduct.Category = (Category)(category);
+                        Console.WriteLine("enter amount in stock of product:");
+                        if (!int.TryParse(Console.ReadLine(), out stock)) throw new Exception("wrong input type");
+                        updateProduct.InStock = stock;
+                        bl.Product.UpdateProduct(updateProduct);
                         break;
                     case ProductActions.Catalog:
+                        foreach (var item in bl.Product.GetCatalog())
+                            Console.WriteLine(item);
                         break;
                     case ProductActions.Product_in_Catalog:
+                        Console.WriteLine("enter id of product:");
+                        if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type");
+                        Console.WriteLine(bl.Product.GetProductByID(id));
                         break;
                     case ProductActions.Exit:
                         break;
@@ -73,6 +119,38 @@ namespace BITest
         }
         public static void CartOptions()
         {
+            CartActions choice;
+            Console.WriteLine(@"Choose one of the following options:
+1:enter id of product to add to cart:
+2:enter amount of products to add to cart:
+3:create a new order:");
+            if (!CartActions.TryParse(Console.ReadLine(), out choice)) throw new Exception("wrong input type");
+            while (choice != CartActions.Exit)
+            {
+                switch (choice)
+                {
+                    case CartActions.Add:
+
+                        break;
+                    case CartActions.Update:
+
+                        break;
+                    case CartActions.Create:
+
+                        break;
+                    case CartActions.Exit:
+                        break;
+                    default:
+                        break;
+                }
+                Console.WriteLine(@"Choose one of the following options:
+1:enter id of product to add to cart:
+2:enter amount of products to add to cart:
+3:create a new order:");
+                if (!CartActions.TryParse(Console.ReadLine(), out choice)) throw new Exception("wrong input type");
+
+
+            }
 
         }
         static void Main(string[] args)

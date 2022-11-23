@@ -12,7 +12,7 @@ namespace BlApi
         
         public BO.Cart AddToCart(BO.Cart currentCart, int id);//client
         public BO.Cart UpdateProductInCart(BO.Cart currentCart, int newAmoount);//client
-        public void OrderCreate(BO.Cart cart, string CustomerName, string CustomerEmail, string CustomerAddress);//client -close order
+        public void OrderCreate(BO.Cart currentCart, string CustomerName, string CustomerEmail, string CustomerAddress);//client -close order
 
     }
 }
