@@ -3,13 +3,14 @@ using System.Security.Cryptography.X509Certificates;
 using BlApi;
 namespace BITest
 {
+    public enum Options { PRODUCT = 1, ORDER, CART, EXIT };
+    public enum ProductActions { Product_List = 1, ProductDetails, Add, Delete, Update, Catalog, Product_in_Catalog, Exit }
+    public enum CartActions { Add = 1, Update, Create }
+    public enum OrderActions { Get_Order = 1, Order_List, Update_Ship, Update_Delivery, Order_Tracking, Update_Order, Exit }
+
     internal class Program
     {
-        public enum Options { PRODUCT = 1, ORDER, CART, EXIT };
-        public enum ProductActions { Product_List = 1, ProductDetails, Add, Delete, Update, Catalog, Product_in_Catalog, Exit }
-        public enum CartActions { Add = 1, Update, Create }
-        public enum OrderActions { Get_Order = 1, Order_List, Update_Ship, Update_Delivery, Order_Tracking, Update_Order, Exit }
-
+       
         public static void ProductOptions()
         {
             ProductActions choice;
@@ -63,8 +64,8 @@ namespace BITest
             {
 
                 OrderActions choi;
-                if (!OrderActions.tryP)
-                    sw
+                if (!OrderActions.TryParse(Console.ReadLine(), out choi)) throw new Exception("wrong input type");
+                   
             } while (true);
         }
         public static void CartOptions()
