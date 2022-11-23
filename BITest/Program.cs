@@ -2,7 +2,7 @@
 using System.Security.Cryptography.X509Certificates;
 using BlApi;
 using BlImplementation;
-using System.Linq.Expressions;
+using DalApi;
 
 namespace BITest
 {
@@ -32,8 +32,11 @@ namespace BITest
                 switch (choice)
                 {
                     case ProductActions.Product_List:
+                        foreach (var item in bl.Product.GetProductList())
+                            Console.WriteLine(item); 
                         break;
                     case ProductActions.ProductDetails:
+                        
                         break;
                     case ProductActions.Add:
                         break;
