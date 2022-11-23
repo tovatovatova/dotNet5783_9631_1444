@@ -1,6 +1,6 @@
 ﻿using BO;
 using System.Security.Cryptography.X509Certificates;
-
+using BlApi;
 namespace BITest
 {
     internal class Program
@@ -13,6 +13,7 @@ namespace BITest
         public static void ProductOptions()
         {
             ProductActions choice;
+            IBI bl = new BL();
             Console.WriteLine(@"Choose one of the following options:
 1: list of products
 2:details of product
