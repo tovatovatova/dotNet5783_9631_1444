@@ -5,7 +5,7 @@ namespace BITest
 {
     internal class Program
     {
-        enum Options {PRODUCT,ORDER,CART,EXIT};
+        enum Options {PRODUCT=1,ORDER,CART,EXIT};
         enum ProductActions {Product_List=1,ProductDetails,Add,Delete,Update,Catalog,Product_in_Catalog,Exit}
         enum CartActions {Add=1,Update,Create,Exit }
         enum OrderActions { Get_Order=1,Order_List,Update_Ship,Update_Delivery,Order_Tracking,Update_Order,Exit}
