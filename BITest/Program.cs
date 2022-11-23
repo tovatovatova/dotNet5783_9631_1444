@@ -9,8 +9,6 @@ namespace BITest
         enum CartOptions {Add=1,Update,Create }
         enum OrderOption { Get_Order=1,Order_List,Update_Ship,Update_Delivery}
 
-       // enum
-
         public static void ProductOptions()
         {
 
