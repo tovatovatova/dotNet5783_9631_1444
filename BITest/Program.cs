@@ -1,6 +1,7 @@
 ﻿using BO;
 using System.Security.Cryptography.X509Certificates;
 using BlApi;
+using BlImplementation;
 namespace BITest
 {
     internal class Program
@@ -9,11 +10,11 @@ namespace BITest
         public enum ProductActions { Product_List = 1, ProductDetails, Add, Delete, Update, Catalog, Product_in_Catalog, Exit }
         public enum CartActions { Add = 1, Update, Create }
         public enum OrderActions { Get_Order = 1, Order_List, Update_Ship, Update_Delivery, Order_Tracking, Update_Order, Exit }
+        static IBl bl = new Bl();
 
         public static void ProductOptions()
         {
             ProductActions choice;
-            IBI bl = new BL();
             Console.WriteLine(@"Choose one of the following options:
 1: list of products
 2:details of product
@@ -59,13 +60,7 @@ namespace BITest
 4:update delivery date
 5:order tracking
 6:update order");
-            do
-            {
-
-                OrderActions choi;
-                if (!OrderActions.tryP)
-                    sw
-            } while (true);
+            
         }
         public static void CartOptions()
         {

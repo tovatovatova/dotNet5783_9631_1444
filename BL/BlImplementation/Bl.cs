@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BlApi;
 namespace BlImplementation
 {
-    public class Bl : IBI
+    public class Bl : IBl
     {
         public Bl() { }
         public IOrder Order { get;  set; } = new Order();
