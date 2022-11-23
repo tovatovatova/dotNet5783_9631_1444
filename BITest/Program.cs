@@ -2,7 +2,6 @@
 using System.Security.Cryptography.X509Certificates;
 using BlApi;
 using BlImplementation;
-using DalApi;
 
 namespace BITest
 {
@@ -10,11 +9,9 @@ namespace BITest
     public enum ProductActions { Product_List = 1, ProductDetails, Add, Delete, Update, Catalog, Product_in_Catalog, Exit }
     public enum CartActions { Add = 1, Update, Create }
     public enum OrderActions { Get_Order = 1, Order_List, Update_Ship, Update_Delivery, Order_Tracking, Update_Order, Exit }
-    
     internal class Program
     {
-
-       
+        static IBl bl = new Bl();
         public static void ProductOptions()
         {
             ProductActions choice;
