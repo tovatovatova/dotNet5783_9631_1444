@@ -10,6 +10,11 @@ namespace BlImplementation
 {
     internal class Product : IProduct
     {
+        /// <summary>
+        /// the function gets product to add to the products list (just if its id not exists) 
+        /// </summary>
+        /// <param name="newProduct"></param>
+        /// <exception cref="NotImplementedException"></exception>
         public void AddProduct(BO.Product newProduct)
         {
             throw new NotImplementedException();
