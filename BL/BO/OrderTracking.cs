@@ -19,7 +19,7 @@ namespace BO
         /// <summary>
         /// the tracking details- stage in Shipping progress and the date of it
         /// </summary>
-        public List<Tuple<DateTime, string>>? Tracking { get; set; }
+        public List<Tuple<DateTime?, string>>? Tracking { get; set; }
         /// <summary>
         /// override of ToString-returns one string to describe order tracking
         /// </summary>

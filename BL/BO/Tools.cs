@@ -15,10 +15,13 @@ namespace BO
             string str = "";
             foreach (PropertyInfo item in t.GetType().GetProperties())
             {
-                if (item is IEnumerable<object>)//specal case o IEnumerable property
+                if (item.GetValue(t, null) is IEnumerable<object>)//specal case o IEnumerable property
                 {
-                    str += "\n" + item.Name + ": " + String.Join(" ", item);
+                    IEnumerable<object> lst = (IEnumerable<object>)item.GetValue(obj:t, null);
+                    str += "\n" + item.Name + ": " + String.Join("  ", lst);
                 }
+                else
+                
                 str += "\n" + item.Name
                + ": " + item.GetValue(t, null);
             }
