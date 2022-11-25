@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using BlApi;
 using BO;
+using Dal;
 
 namespace BlImplementation
 {
     internal class Order : IOrder
     {
+        DalApi.IDal dal = new DalList();
         public BO.Order GetOrderByID(int orderID)
         {
             throw new NotImplementedException();
@@ -17,6 +19,7 @@ namespace BlImplementation
 
         public IEnumerable<OrderForList?> GetOrderList()
         {
+           
             throw new NotImplementedException();
         }
 

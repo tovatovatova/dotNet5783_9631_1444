@@ -10,7 +10,7 @@ namespace DO
 {
     static class Tools
     {
-        public static string ToStringProperty<T>(T t)
+        public static string ToStringProperty<T>(this T t)
         {
             string str = "";
             foreach (PropertyInfo item in t.GetType().GetProperties())

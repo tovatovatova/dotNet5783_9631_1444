@@ -1,4 +1,6 @@
 ﻿using BlApi;
+using Dal;
+using DalApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +11,11 @@ namespace BlImplementation
 {
     internal class Cart : ICart
     {
-        public BO.Cart AddToCart(BO.Cart currentCart, int id)
+        
+
+        public BO.Cart AddToCart(BO.Cart currentCart, int ProductID)
         {
+           
             throw new NotImplementedException();
         }
 
@@ -19,7 +24,7 @@ namespace BlImplementation
             throw new NotImplementedException();
         }
 
-        public BO.Cart UpdateProductInCart(BO.Cart currentCart, int newAmoount)
+        public BO.Cart UpdateProductInCart(BO.Cart currentCart, int newAmount)
         {
             throw new NotImplementedException();
         }

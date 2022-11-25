@@ -13,6 +13,9 @@ namespace BITest
     internal class Program
     {
         static IBl bl = new Bl();
+       static Cart newCart=new Cart() { CustomerAddress = "", CustomerEmail = "", CustomerName = "", Items = null, TotalPrice = 0 };
+     
+     
         public static void ProductOptions()
         {
             ProductActions choice;
@@ -22,7 +25,7 @@ namespace BITest
 3:add product
 4:delete product
 5:update product
-6:catalog
+6:show catalog
 7:delails of product item");
             if (!ProductActions.TryParse(Console.ReadLine(), out choice)) throw new Exception("This option not exist!");
             while (choice != ProductActions.Exit)
@@ -30,7 +33,8 @@ namespace BITest
                 switch (choice)
                 {
                     case ProductActions.Product_List:
-                        foreach (var item in bl.Product.GetProductList())
+                      var lst= bl.Product.GetProductList();
+                        foreach (var item in lst)
                             Console.WriteLine(item); 
                         break;
                     case ProductActions.ProductDetails:
@@ -172,6 +176,11 @@ namespace BITest
                 switch (choice)
                 {
                     case CartActions.Add:
+                        Console.WriteLine("please insert name:");
+                    // if (!CartActions.TryParse(Console.ReadLine(), out choice)) 
+                        Console.WriteLine("please insert email address:");
+                        Console.WriteLine("please insert address");
+
 
                         break;
                     case CartActions.Update:

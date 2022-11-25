@@ -9,7 +9,7 @@ namespace BlApi
 {
    public interface IProduct
     {
-        public  IEnumerable<BO.Product?> GetProductList();//manager
+        public  IEnumerable<BO.ProsuctForList?> GetProductList();//manager
         public BO.Product GetProductDetails(int id);//manager
         public void AddProduct(BO.Product newProduct);//manager
         public void DeleteProduct(int id);//manager
