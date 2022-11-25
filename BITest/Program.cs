@@ -187,18 +187,38 @@ namespace BITest
                 switch (choice)
                 {
                     case CartActions.Add:
+                        int id,amount;
                         Console.WriteLine("please insert name:");
-                    // if (!CartActions.TryParse(Console.ReadLine(), out choice)) 
+                        newCart.CustomerName= Console.ReadLine();
+                        Console.WriteLine("please insert address:");
+                        newCart.CustomerAddress= Console.ReadLine();
                         Console.WriteLine("please insert email address:");
-                        Console.WriteLine("please insert address");
-
-
+                        newCart.CustomerEmail = Console.ReadLine();
+                        Console.WriteLine("enter id of product to add to cart:");
+                        if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
+                        Console.WriteLine(bl.Cart.AddToCart(newCart,id));
                         break;
                     case CartActions.Update:
-
+                        Console.WriteLine("please insert name:");
+                        newCart.CustomerName = Console.ReadLine();
+                        Console.WriteLine("please insert address:");
+                        newCart.CustomerAddress = Console.ReadLine();
+                        Console.WriteLine("please insert email address:");
+                        newCart.CustomerEmail = Console.ReadLine();
+                        Console.WriteLine("enter id of product to add to cart:");
+                        if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
+                        Console.WriteLine("enter new amount of product:");
+                        if (!int.TryParse(Console.ReadLine(), out amount)) throw new Exception("wrong input type ");
+                        Console.WriteLine(bl.Cart.UpdateProductInCart(newCart,amount,id));
                         break;
                     case CartActions.Create:
-
+                        Console.WriteLine("please insert name:");
+                        newCart.CustomerName = Console.ReadLine();
+                        Console.WriteLine("please insert address:");
+                        newCart.CustomerAddress = Console.ReadLine();
+                        Console.WriteLine("please insert email address:");
+                        newCart.CustomerEmail = Console.ReadLine();
+                        bl.Cart.OrderCreate(newCart, newCart.CustomerName, newCart.CustomerEmail, newCart.CustomerAddress);
                         break;
                     case CartActions.Exit:
                         break;

@@ -11,7 +11,7 @@ namespace BlApi
     {
         
         public BO.Cart AddToCart(BO.Cart currentCart, int ProductID);//client
-        public BO.Cart UpdateProductInCart(BO.Cart currentCart, int newAmount);//client
+        public BO.Cart UpdateProductInCart(BO.Cart currentCart, int newAmount,int productId);//client
         public void OrderCreate(BO.Cart currentCart, string CustomerName, string CustomerEmail, string CustomerAddress);//client -close order
 
     }

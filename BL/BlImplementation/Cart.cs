@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DalApi;
 
 namespace BlImplementation
 {
@@ -25,7 +24,7 @@ namespace BlImplementation
             throw new NotImplementedException();
         }
 
-        public BO.Cart UpdateProductInCart(BO.Cart currentCart, int newAmount)
+        public BO.Cart UpdateProductInCart(BO.Cart currentCart, int newAmount,int productId)
         {
             throw new NotImplementedException();
         }
