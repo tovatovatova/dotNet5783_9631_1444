@@ -52,7 +52,6 @@ namespace BlImplementation
                        Amount = doProduct?.AmountInStock ?? throw new NullReferenceException("mising name"),
                        InStock = doProduct?.AmountInStock > 0 
                   };
-            throw new NotImplementedException();
         }
 
         public BO.ProductItem GetProductByID(int id)//client
@@ -82,7 +81,6 @@ namespace BlImplementation
                 Category = (Category)product.ProductCategoty,
                 InStock = product.AmountInStock
             };
-            throw new NotImplementedException();
         }
 
         public IEnumerable<BO.ProsuctForList?> GetProductList()
@@ -106,7 +104,7 @@ namespace BlImplementation
                 AmountInStock = product.InStock,
                 ProductCategoty = (DO.Category)(Category)product.Category
             });
-            throw new NotImplementedException();
+         
         }
     }
 }

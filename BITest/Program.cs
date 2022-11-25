@@ -141,7 +141,7 @@ namespace BITest
                             Console.WriteLine(bl.Order.GetOrderByID(id));
                             break;
                         case OrderActions.Order_List:
-                            Console.WriteLine(String.Join("", bl.Order.GetOrderList()));
+                            Console.WriteLine(String.Join(" ", bl.Order.GetOrderList()));
                             break;
                         case OrderActions.Update_Ship:
                             Console.WriteLine("please insert order Id");
