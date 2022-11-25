@@ -11,11 +11,11 @@ namespace BlImplementation
 {
     internal class Cart : ICart
     {
-        
-
+        DalApi.IDal dal = new Dal.DalList();
         public BO.Cart AddToCart(BO.Cart currentCart, int ProductID)
         {
-           
+            DO.Product product = dal.Product.GetById(ProductID);//74963987$R^&^&
+            //if exist in cart
             throw new NotImplementedException();
         }
 
@@ -24,7 +24,7 @@ namespace BlImplementation
             throw new NotImplementedException();
         }
 
-        public BO.Cart UpdateProductInCart(BO.Cart currentCart, int newAmount)
+        public BO.Cart UpdateProductInCart(BO.Cart currentCart, int newAmount,int productId)
         {
             throw new NotImplementedException();
         }
