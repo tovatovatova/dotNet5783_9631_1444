@@ -48,6 +48,7 @@ namespace BITest
                         double price;
                         int category;
                         int stock;
+
                         Console.WriteLine("enter id of product:");
                         if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type");
                         addProduct.ID= id;
@@ -57,7 +58,7 @@ namespace BITest
                         if (!double.TryParse(Console.ReadLine(), out price)) throw new Exception("wrong input type");
                         addProduct.Price= price;
                         Console.WriteLine("enter category of product:");
-                        if (!int.TryParse(Console.ReadLine(), out category)) throw new Exception("wrong input type");
+                        if (!int.TryParse(Console.ReadLine(),out category)) throw new Exception("wrong input type");
                         addProduct.Category = (Category)(category);
                         Console.WriteLine("enter amount in stock of product:");
                         if (!int.TryParse(Console.ReadLine(), out stock)) throw new Exception("wrong input type");
@@ -81,7 +82,7 @@ namespace BITest
                         updateProduct.Price = price;
                         Console.WriteLine("enter category of product:");
                         if (!int.TryParse(Console.ReadLine(), out category)) throw new Exception("wrong input type");
-                        updateProduct.Category = (Category)(category);
+                        updateProduct.Category = (Category)category;
                         Console.WriteLine("enter amount in stock of product:");
                         if (!int.TryParse(Console.ReadLine(), out stock)) throw new Exception("wrong input type");
                         updateProduct.InStock = stock;
@@ -101,6 +102,16 @@ namespace BITest
                     default:
                         break;
                 }
+                Console.WriteLine("");
+                Console.WriteLine(@"Choose one of the following options:
+1: list of products
+2:details of product
+3:add product
+4:delete product
+5:update product
+6:show catalog
+7:delails of product item");
+                if (!ProductActions.TryParse(Console.ReadLine(), out choice)) throw new Exception("This option not exist!");
             }
 
 
