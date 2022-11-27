@@ -92,32 +92,36 @@ namespace BlImplementation
           DO.Order doOrder=dal.Order.GetById(orderID);
             BO.Order? boOrder = ConvertO(doOrder)?? throw new Exception("cant convert");
             BO.OrderTracking track=new BO.OrderTracking();
+            track.ID = orderID;
+            track.Status = boOrder.Status;
             track.Tracking = new List<Tuple<DateTime?, string>>();
-            Tuple<DateTime?,string> tp;
+            Tuple<DateTime?,string> deliveredT;
+            Tuple<DateTime?,string> shipedT;
+            Tuple<DateTime?,string> orderedT=new Tuple<DateTime?, string>(boOrder.OrderDate, BO.OrderStatus.Ordered.ToString());
+            track.Tracking.Add(orderedT);
             if (boOrder.Status == OrderStatus.Delivered)
-            {
-                tp = new Tuple<DateTime?, string>(boOrder.DeliveryDate, boOrder.Status.ToString());
-                track.Tracking.Add(tp);
-                tp = new Tuple<DateTime?, string>(boOrder.ShipDate,BO.OrderStatus.Shipped.ToString());
-                track.Tracking.Add(tp);
-               tp=new Tuple<DateTime?, string>(boOrder.OrderDate, BO.OrderStatus.Ordered.ToString());
-                track.Tracking.Add(tp);
-            }
-            else if (boOrder.Status == OrderStatus.Shipped)
             {
                 tp = new Tuple<DateTime?, string>(boOrder.ShipDate, BO.OrderStatus.Shipped.ToString());
                 track.Tracking.Add(tp);
-                tp = new Tuple<DateTime?, string>(boOrder.OrderDate, BO.OrderStatus.Ordered.ToString());
+                tp = new Tuple<DateTime?, string>(boOrder.DeliveryDate, boOrder.Status.ToString());
                 track.Tracking.Add(tp);
+               
+                
             }
-            else
-                tp = new Tuple<DateTime?, string>(boOrder.OrderDate, BO.OrderStatus.Ordered.ToString());
-            track.Tracking.Add(tp);
+            //else if (boOrder.Status == OrderStatus.Shipped)
+            //{
+            //    tp = new Tuple<DateTime?, string>(boOrder.ShipDate, BO.OrderStatus.Shipped.ToString());
+            //    track.Tracking.Add(tp);
+            //    tp = new Tuple<DateTime?, string>(boOrder.OrderDate, BO.OrderStatus.Ordered.ToString());
+            //    track.Tracking.Add(tp);
+            //}
+            //else
+            //    tp = new Tuple<DateTime?, string>(boOrder.OrderDate, BO.OrderStatus.Ordered.ToString());
+            //track.Tracking.Add(tp);
 
-           
-            track.ID = orderID;
-            track.Status = boOrder.Status;
-            return track;
+
+
+            //return track;
 
             //throw new NotImplementedException();
         }
