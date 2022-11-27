@@ -14,6 +14,5 @@ namespace DalApi
         void Update(T item);
         void Delete(int id);
         IEnumerable<T?> GetAll();
-
     }
 }
