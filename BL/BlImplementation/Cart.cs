@@ -48,13 +48,41 @@ namespace BlImplementation
 
         public BO.Cart UpdateProductInCart(BO.Cart currentCart, int newAmount,int productId)
         {
+            if (newAmount < 0) throw new Exception(" cant be nagative amount");
+            DO.Product product = dal.Product.GetById(productId);
             BO.OrderItem? itemInCart = currentCart.Items?.FirstOrDefault(item => item.ID == productId);
             if (itemInCart != null)
             {
-
+                int amountDifference = newAmount - itemInCart.Amount;
+                if (newAmount == 0)
+                {
+                    currentCart.Items.ToList().Remove(itemInCart);
+                }
+                else if (amountDifference == 0) 
+                    return currentCart; 
+                else if (amountDifference > 0)//the new amount bigger than the old one
+                {
+                    if (product.AmountInStock >= newAmount)//if there is enough items in stock
+                    {
+                        itemInCart.Amount = newAmount;
+                        itemInCart.TotalPrice += product.Price * amountDifference;
+                        currentCart.TotalPrice += product.Price * amountDifference;
+                    }
+                }
+                else if (amountDifference < 0)//if the new amount little than the old one
+                {
+                    if (newAmount - product.AmountInStock > 0)
+                    {
+                        itemInCart.Amount = newAmount;
+                        itemInCart.TotalPrice += product.Price * (newAmount - itemInCart.Amount);
+                        currentCart.TotalPrice += product.Price * (newAmount - itemInCart.Amount);
+                        //%^^%%^^^ need to check in stock??????
+                    }
+                }
+                
             }
-
-            throw new NotImplementedException();
+            return currentCart;
+          //  throw new NotImplementedException();
         }
     }
 }

@@ -33,14 +33,17 @@ namespace BO
         /// function return string describing cart object properties and values
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => @$"
+        public override string ToString() => this.ToStringProperty();
 
-        customer name:{CustomerName}
-        customer email:{CustomerEmail}
-        customer address:{CustomerAddress} 
-        items in cart:{string.Join("", Items)}
-        total price:{TotalPrice}
-";
-       
+        //        public override string ToString() => @$"
+
+        //        customer name:{CustomerName}
+        //        customer email:{CustomerEmail}
+        //        customer address:{CustomerAddress} 
+        //        items in cart:{string.Join("", Items)}
+        //        total price:{TotalPrice}
+        //";
+
+        //    }
     }
 }
