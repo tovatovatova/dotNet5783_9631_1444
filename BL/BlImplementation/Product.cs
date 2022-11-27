@@ -11,7 +11,7 @@ using BO;
 namespace BlImplementation
 {
     internal class Product : IProduct
-    {//לא לשכוח לשות תקינות קלט
+    {//לא לשכוח לעשות תקינות קלט
         DalApi.IDal dal = new Dal.DalList();
 
 
