@@ -37,6 +37,7 @@ namespace BlImplementation
 
         public BO.Cart UpdateProductInCart(BO.Cart currentCart, int newAmount,int productId)
         {
+
             throw new NotImplementedException();
         }
     }
