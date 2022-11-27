@@ -30,45 +30,7 @@ namespace BlImplementation
             catch (Exception e)
             {
                 throw new Exception(e.Message);
-            }            //BO.Order boOrder;//dont shure if its ok to do it like that 
-            //    try
-            //    {
-            //        if (orderID <= 0) throw new Exception("Invalid ID");
-
-            //        DO.Order doOrder = dal.Order.GetById(orderID);
-            //        boOrder = new BO.Order()
-            //        {
-            //            Id = orderID,
-            //            CustomerName = doOrder.CustomerName,
-            //            CustomerEmail = doOrder.CustomerEmail,
-            //            CustomerAddress = doOrder.CustomerAddress,
-            //            OrderDate = doOrder.OrderDate,
-            //            ShipDate = doOrder.ShipDate,
-            //            DeliveryDate = doOrder.DeliveryDate,
-            //        };
-            //        if (doOrder.ShipDate != null)
-            //        {
-            //            if (doOrder.DeliveryDate != null && doOrder.DeliveryDate < DateTime.Now)
-            //                boOrder.Status = OrderStatus.Delivered;
-            //            else boOrder.Status = OrderStatus.Shipped;
-            //        }
-            //        else
-            //            boOrder.Status = OrderStatus.Ordered;
-            //        boOrder.Items = from DO.OrderItem? items in dal.OrderItem.GetAll()
-            //                        where items.Value.OrderId == orderID
-            //                        select new BO.OrderItem
-            //                        {
-            //                            ID = items.Value.OrderItemId,
-            //                            Name = dal.Product.GetById(items.Value.ProductId).Name,
-            //                            ProductID = items.Value.ProductId,
-            //                            Price = items.Value.Price,
-            //                            Amount = items.Value.Amount,
-            //                            TotalPrice = items.Value.Price * items.Value.Amount
-            //                        };
-            //        boOrder.TotalPrice = boOrder.Items.Sum(item => item.TotalPrice);
-            //        return boOrder;
-            //    }
-            //    catch (Exception e) { throw new Exception(e.Message); }
+            }            //BO.Order boOrder;//dont shure if its ok to do it like that         
         }
 
         public IEnumerable<OrderForList?> GetOrderList()
@@ -89,41 +51,30 @@ namespace BlImplementation
 
         public OrderTracking OrderTracking(int orderID)
         {
-          DO.Order doOrder=dal.Order.GetById(orderID);
-            BO.Order? boOrder = ConvertO(doOrder)?? throw new Exception("cant convert");
-            BO.OrderTracking track=new BO.OrderTracking();
+            DO.Order doOrder = dal.Order.GetById(orderID);
+            BO.Order? boOrder = ConvertO(doOrder) ?? throw new Exception("cant convert");
+            BO.OrderTracking track = new BO.OrderTracking();
             track.ID = orderID;
             track.Status = boOrder.Status;
             track.Tracking = new List<Tuple<DateTime?, string>>();
-            Tuple<DateTime?,string> deliveredT;
-            Tuple<DateTime?,string> shipedT;
-            Tuple<DateTime?,string> orderedT=new Tuple<DateTime?, string>(boOrder.OrderDate, BO.OrderStatus.Ordered.ToString());
+            Tuple<DateTime?, string> deliveredT;
+            Tuple<DateTime?, string> shipedT;
+            Tuple<DateTime?, string> orderedT = new Tuple<DateTime?, string>(boOrder.OrderDate, BO.OrderStatus.Ordered.ToString());
             track.Tracking.Add(orderedT);
             if (boOrder.Status == OrderStatus.Delivered)
             {
-                tp = new Tuple<DateTime?, string>(boOrder.ShipDate, BO.OrderStatus.Shipped.ToString());
-                track.Tracking.Add(tp);
-                tp = new Tuple<DateTime?, string>(boOrder.DeliveryDate, boOrder.Status.ToString());
-                track.Tracking.Add(tp);
-               
-                
+                shipedT = new Tuple<DateTime?, string>(boOrder.ShipDate, BO.OrderStatus.Shipped.ToString());
+                track.Tracking.Add(shipedT);
+                deliveredT = new Tuple<DateTime?, string>(boOrder.DeliveryDate, boOrder.Status.ToString());
+                track.Tracking.Add(deliveredT);
             }
-            //else if (boOrder.Status == OrderStatus.Shipped)
-            //{
-            //    tp = new Tuple<DateTime?, string>(boOrder.ShipDate, BO.OrderStatus.Shipped.ToString());
-            //    track.Tracking.Add(tp);
-            //    tp = new Tuple<DateTime?, string>(boOrder.OrderDate, BO.OrderStatus.Ordered.ToString());
-            //    track.Tracking.Add(tp);
-            //}
-            //else
-            //    tp = new Tuple<DateTime?, string>(boOrder.OrderDate, BO.OrderStatus.Ordered.ToString());
-            //track.Tracking.Add(tp);
-
-
-
-            //return track;
-
-            //throw new NotImplementedException();
+            else if (boOrder.Status == OrderStatus.Shipped)
+            {
+                shipedT = new Tuple<DateTime?, string>(boOrder.ShipDate, BO.OrderStatus.Shipped.ToString());
+                track.Tracking.Add(shipedT);
+                //throw new NotImplementedException();
+            }
+            return track;
         }
 
         public BO.Order UpdateDelivery(int orderID)
