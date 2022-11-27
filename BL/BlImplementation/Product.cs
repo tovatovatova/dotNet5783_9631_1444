@@ -54,21 +54,21 @@ namespace BlImplementation
                   };
         }
 
-        public BO.ProductItem GetProductByID(int id)//client
-        {
-            DO.Product product = dal.Product.GetById(id);
-                BO.ProductItem item = new BO.ProductItem()
-                {
-                    ID = product.Id,
-                    Name = product.Name,
-                    Price = product.Price,
-                    Category = (Category)(product.ProductCategoty),
-                    Amount = product.AmountInStock,
-                    InStock = product.AmountInStock > 0
-                };
-                return item;
-            //throw new NotImplementedException();
-        }  
+        //public BO.ProductItem GetProductByID(int id)//client
+        //{
+        //    DO.Product product = dal.Product.GetById(id);
+        //        BO.ProductItem item = new BO.ProductItem()
+        //        {
+        //            ID = product.Id,
+        //            Name = product.Name,
+        //            Price = product.Price,
+        //            Category = (Category)(product.ProductCategoty),
+        //            Amount = product.AmountInStock,
+        //            InStock = product.AmountInStock > 0
+        //        };
+        //        return item;
+        //    //throw new NotImplementedException();
+        //}  
         public BO.ProductItem GetProductByID(BO.Cart cart,int id)//client
         {
             DO.Product product = dal.Product.GetById(id);

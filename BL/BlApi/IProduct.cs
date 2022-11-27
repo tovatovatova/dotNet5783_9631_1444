@@ -17,7 +17,7 @@ namespace BlApi
         public void UpdateProduct(BO.Product product);//manager
 
        public  IEnumerable<BO.ProductItem?> GetCatalog();//client
-      public  BO.ProductItem GetProductByID(int id);//client
+    //  public  BO.ProductItem GetProductByID(int id);//client
       public  BO.ProductItem GetProductByID(Cart cart, int id);//client
         
        
