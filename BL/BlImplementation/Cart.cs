@@ -22,26 +22,43 @@ namespace BlImplementation
                 if (product.AmountInStock>itemInCart.Amount)//or amountisstock>currentcart amount 
                 {
                     itemInCart.Amount += 1;
-                    itemInCart.TotalPrice = product.Price * itemInCart.Amount;
+                    itemInCart.TotalPrice += product.Price;
                     currentCart.TotalPrice += product.Price;
+
                 }
             }
             else//not exist
             {
                 if(product.AmountInStock>0)//exist in stock
                 {//id????????????????????????????????????????????????????????????????fvihbrfgvyuerfyvb
-                    BO.OrderItem? orderItemToAdd=new BO.OrderItem() { ID=363636,Name=product.Name,ProductID=product.Id,
+                   itemInCart=new BO.OrderItem() { ID=363636,Name=product.Name,ProductID=product.Id,
                     Price=product.Price,Amount=1,TotalPrice=product.Price};
-                    currentCart.Items?.ToList().Add(orderItemToAdd);//add new item to list of items in cart
-                    currentCart.TotalPrice += orderItemToAdd.Price;//add price of item to total price
+                    currentCart.TotalPrice += itemInCart.Price;//add price of item to total price
                 }
             }
+            currentCart.Items?.ToList().Add(itemInCart);
             return currentCart;//return cart after changes
             throw new NotImplementedException();
         }
 
-        public void OrderCreate(BO.Cart cart, string CustomerName, string CustomerEmail, string CustomerAddress)
+        public void OrderCreate(BO.Cart cart, string customerName, string customerEmail, string customerAddress)
         {
+            BO.Order order = new BO.Order() { CustomerAddress = customerAddress,
+            CustomerName=customerName,CustomerEmail=customerEmail,OrderDate=DateTime.Now};
+            DO.Order orderToAdd=new DO.Order() {
+                CustomerAddress = customerAddress,
+                CustomerName = customerName,
+                CustomerEmail = customerEmail,
+                OrderDate = DateTime.Now
+            };
+            order.Id=dal.Order.Add(orderToAdd);//add the id
+            foreach (var orderItem in cart.Items)
+            {
+                DO.OrderItem itemInCart = new DO.OrderItem() {/*orderItemId*/ProductId = orderItem.ProductID, OrderId = orderItem.ID };//ID ???
+                dal.OrderItem.Add(itemInCart);//add to order item and put order item id 
+                /////////
+            }
+
 
             throw new NotImplementedException();
         }
