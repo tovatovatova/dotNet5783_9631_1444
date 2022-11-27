@@ -68,6 +68,22 @@ namespace BlImplementation
                 };
                 return item;
             //throw new NotImplementedException();
+        }  
+        public BO.ProductItem GetProductByID(BO.Cart cart,int id)//client
+        {
+            DO.Product product = dal.Product.GetById(id);
+            BO.OrderItem? itemIn = cart.Items?.FirstOrDefault(item => item.ProductID == id);
+                BO.ProductItem item = new BO.ProductItem()
+                {
+                    ID = product.Id,
+                    Name = product.Name,
+                    Price = product.Price,
+                    Category = (Category)(product.ProductCategoty),
+                    Amount = itemIn?.Amount??0,
+                    InStock = product.AmountInStock > 0
+                };
+                return item;
+            //throw new NotImplementedException();
         }
 
         public BO.Product GetProductDetails(int id)

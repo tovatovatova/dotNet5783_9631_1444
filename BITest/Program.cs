@@ -13,11 +13,14 @@ namespace BITest
     internal class Program
     {
         static IBl bl = new Bl();
-       static Cart newCart=new Cart() { CustomerAddress = "", CustomerEmail = "", CustomerName = "", Items = null, TotalPrice = 0 };
-     
-     
+       
+       static Cart newCart=new Cart() { CustomerAddress = "", CustomerEmail = "", CustomerName = "", Items = Enumerable.Empty<BO.OrderItem>() , TotalPrice = 0 };
+   
+
+
         public static void ProductOptions()
         {
+           
             ProductActions choice;
             Console.WriteLine(@"Choose one of the following options:
 1: list of products
@@ -26,7 +29,7 @@ namespace BITest
 4:delete product
 5:update product
 6:show catalog
-7:delails of product item");
+7:delails of product from catalog");
             if (!ProductActions.TryParse(Console.ReadLine(), out choice)) throw new Exception("This option not exist!");
             while (choice != ProductActions.Exit)
             {
@@ -95,7 +98,7 @@ namespace BITest
                     case ProductActions.Product_in_Catalog:
                         Console.WriteLine("enter id of product:");
                         if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type");
-                        Console.WriteLine(bl.Product.GetProductByID(id));
+                        Console.WriteLine(bl.Product.GetProductByID(newCart, id));
                         break;
                     case ProductActions.Exit:
                         break;
@@ -178,8 +181,8 @@ namespace BITest
         {
             CartActions choice;
             Console.WriteLine(@"Choose one of the following options:
-1:enter id of product to add to cart:
-2:enter amount of products to add to cart:
+1:add product to cart
+2:update amount of product in cart
 3:create a new order:");
             if (!CartActions.TryParse(Console.ReadLine(), out choice)) throw new Exception("wrong input type");
             while (choice != CartActions.Exit)

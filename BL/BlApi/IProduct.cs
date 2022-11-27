@@ -1,4 +1,5 @@
 ﻿
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace BlApi
 
        public  IEnumerable<BO.ProductItem?> GetCatalog();//client
       public  BO.ProductItem GetProductByID(int id);//client
+      public  BO.ProductItem GetProductByID(Cart cart, int id);//client
         
        
 
