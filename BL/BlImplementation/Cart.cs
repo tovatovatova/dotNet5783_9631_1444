@@ -42,11 +42,17 @@ namespace BlImplementation
 
         public void OrderCreate(BO.Cart cart, string CustomerName, string CustomerEmail, string CustomerAddress)
         {
+
             throw new NotImplementedException();
         }
 
         public BO.Cart UpdateProductInCart(BO.Cart currentCart, int newAmount,int productId)
         {
+            BO.OrderItem? itemInCart = currentCart.Items?.FirstOrDefault(item => item.ID == productId);
+            if (itemInCart != null)
+            {
+
+            }
 
             throw new NotImplementedException();
         }
