@@ -19,7 +19,7 @@ namespace BlImplementation
             if (itemInCart!=null)//if exist in cart
 
             {
-                if (product.AmountInStock>0)//or amountisstock>currentcart amount 
+                if (product.AmountInStock>itemInCart.Amount)//or amountisstock>currentcart amount 
                 {
                     itemInCart.Amount += 1;
                     itemInCart.TotalPrice = product.Price * itemInCart.Amount;
@@ -29,14 +29,14 @@ namespace BlImplementation
             else//not exist
             {
                 if(product.AmountInStock>0)//exist in stock
-                {
-                    BO.OrderItem? orderItemToAdd=new BO.OrderItem() { ID=-1,Name=product.Name,ProductID=product.Id,
+                {//id????????????????????????????????????????????????????????????????fvihbrfgvyuerfyvb
+                    BO.OrderItem? orderItemToAdd=new BO.OrderItem() { ID=363636,Name=product.Name,ProductID=product.Id,
                     Price=product.Price,Amount=1,TotalPrice=product.Price};
-                    DO
-                    dal.OrderItem.Add(orderItemToAdd);
-                    //currentCart.Items.ToList().Add();
+                    currentCart.Items?.ToList().Add(orderItemToAdd);//add new item to list of items in cart
+                    currentCart.TotalPrice += orderItemToAdd.Price;//add price of item to total price
                 }
             }
+            return currentCart;//return cart after changes
             throw new NotImplementedException();
         }
 
