@@ -30,17 +30,29 @@ namespace BlImplementation
 
         public void DeleteProduct(int id)
         {
-            try//^*^*%464688
+            IEnumerable<DO.OrderItem>? idOfOrderItem = from DO.Order order in dal.Order.GetAll()//runs on list of order
+                                                       from DO.OrderItem item in dal.OrderItem.GetAll()//runs on list of order item
+                                                       where (order.OrderId == item.OrderId)
+                                                       where(item.ProductId == id)
+                                                       select item;
+            //idOfOrderItem has  all the orderItem with the given productId
+            if (idOfOrderItem.Count() == 0)// the given productId doesnt exist in orders-we can delete it
             {
-                dal.Product.Delete(id);
+                try
+                {
+                    dal.Product.Delete(id);
+                }
+                catch (Exception e)//there is no product with this id
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message); 
-            }
+            else//exist-cant delete-throw exeption
+                throw new Exception("cant delete, exist in orders");
+
         }
 
-        public IEnumerable<BO.ProductItem> GetCatalog()
+        public IEnumerable<ProductItem> GetCatalog()
         {
             return from DO.Product? doProduct in dal.Product.GetAll()
                    select new BO.ProductItem
@@ -53,22 +65,7 @@ namespace BlImplementation
                        InStock = doProduct?.AmountInStock > 0 
                   };
         }
-
-        //public BO.ProductItem GetProductByID(int id)//client
-        //{
-        //    DO.Product product = dal.Product.GetById(id);
-        //        BO.ProductItem item = new BO.ProductItem()
-        //        {
-        //            ID = product.Id,
-        //            Name = product.Name,
-        //            Price = product.Price,
-        //            Category = (Category)(product.ProductCategoty),
-        //            Amount = product.AmountInStock,
-        //            InStock = product.AmountInStock > 0
-        //        };
-        //        return item;
-        //    //throw new NotImplementedException();
-        //}  
+ 
         public BO.ProductItem GetProductByID(BO.Cart cart,int id)//client
         {
             DO.Product product = dal.Product.GetById(id);
