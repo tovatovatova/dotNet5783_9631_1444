@@ -25,7 +25,7 @@ namespace BO
         /// </summary>
         public Category Category { get; set; }
         /// <summary>
-        /// boolean variable describes the avaliability of product(inStok=true/out of stock=false)
+        /// int variable describes the amount of product is stock
         /// </summary>
         public int InStock { get; set; }
         /// <summary>

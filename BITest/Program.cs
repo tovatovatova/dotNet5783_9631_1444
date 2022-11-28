@@ -221,7 +221,7 @@ namespace BITest
                         newCart.CustomerAddress = Console.ReadLine();
                         Console.WriteLine("please insert email address:");
                         newCart.CustomerEmail = Console.ReadLine();
-                        bl.Cart.OrderCreate(newCart, newCart.CustomerName, newCart.CustomerEmail, newCart.CustomerAddress);
+                        bl.Cart.OrderCreate(newCart/*, newCart.CustomerName, newCart.CustomerEmail, newCart.CustomerAddress*/);
                         break;
                     case CartActions.Exit:
                         break;
