@@ -1,4 +1,5 @@
 ﻿using BlApi;
+
 using Dal;
 using DalApi;
 using System;
@@ -14,31 +15,53 @@ namespace BlImplementation
         DalApi.IDal dal = new Dal.DalList();
         public BO.Cart AddToCart(BO.Cart currentCart, int ProductID)
         {
-            DO.Product product = dal.Product.GetById(ProductID);
+            
+            DO.Product product = dal.Product.GetById(ProductID) ;
+            
             BO.OrderItem? itemInCart = currentCart.Items?.FirstOrDefault(item => item.ID == ProductID);
-            if (itemInCart!=null)//if exist in cart
-
+            if (itemInCart != null)
             {
-                if (product.AmountInStock>itemInCart.Amount)//or amountisstock>currentcart amount 
-                {
-                    itemInCart.Amount += 1;
-                    itemInCart.TotalPrice += product.Price;
-                    currentCart.TotalPrice += product.Price;
-
-                }
+                int x = currentCart?.Items?.ToList().FindIndex(item => item.ID == ProductID) ?? -1;
+              
+                    if (product.AmountInStock > itemInCart.Amount)
+                    {
+                        currentCart.Items.ToList().ElementAt(x).Amount += 1;
+                        currentCart.Items.ToList().ElementAt(x).TotalPrice += product.Price;
+                        currentCart.TotalPrice += product.Price;
+                    }
+                
             }
             else//not exist
             {
-                if(product.AmountInStock>0)//exist in stock
+                if (product.AmountInStock > 0)//exist in stock
                 {//id????????????????????????????????????????????????????????????????fvihbrfgvyuerfyvb
-                   itemInCart=new BO.OrderItem() { ID=363636,Name=product.Name,ProductID=product.Id,
-                    Price=product.Price,Amount=1,TotalPrice=product.Price};
+                    itemInCart = new BO.OrderItem()
+                    {
+                        ID = ProductID,
+                        Name = product.Name,
+                        ProductID = product.Id,
+                        Price = product.Price,
+                        Amount = 1,
+                        TotalPrice = product.Price
+                    };
                     currentCart.TotalPrice += itemInCart.Price;//add price of item to total price
+                    if (currentCart.Items == null)
+                    {
+                      
+                       // List<OrderItem> lst = new List<BOrderItem>();
+                       // lst.Add(itemInCart);
+                        //currentCart.Items = lst;
+                    }
+                    // currentCart.Items.ToList().Add(itemInCart);
+                    //foreach(var item in currentCart.Items)
+                    //{
+                    //    Console.WriteLine(item);
+                    //}
+
                 }
             }
-            currentCart.Items?.ToList().Add(itemInCart);
             return currentCart;//return cart after changes
-            throw new NotImplementedException();
+            
         }
 
         public void OrderCreate(BO.Cart cart, string customerName, string customerEmail, string customerAddress)

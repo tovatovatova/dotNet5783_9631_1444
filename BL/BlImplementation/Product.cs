@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
-using BO;
+//using BO;
 
 
 namespace BlImplementation
@@ -30,7 +30,7 @@ namespace BlImplementation
 
         public void DeleteProduct(int id)
         {
-            try
+            try//^*^*%464688
             {
                 dal.Product.Delete(id);
             }
@@ -40,7 +40,7 @@ namespace BlImplementation
             }
         }
 
-        public IEnumerable<ProductItem> GetCatalog()
+        public IEnumerable<BO.ProductItem> GetCatalog()
         {
             return from DO.Product? doProduct in dal.Product.GetAll()
                    select new BO.ProductItem
@@ -48,7 +48,7 @@ namespace BlImplementation
                        ID = doProduct?.Id ?? throw new NullReferenceException("missing id"),
                        Name = doProduct?.Name ?? throw new NullReferenceException("mising name"),
                        Price = doProduct?.Price ?? throw new NullReferenceException("missing price"),
-                       Category = (Category)(doProduct?.ProductCategoty ?? throw new NullReferenceException("missing category")),
+                       Category = (BO.Category)(doProduct?.ProductCategoty ?? throw new NullReferenceException("missing category")),
                        Amount = doProduct?.AmountInStock ?? throw new NullReferenceException("mising name"),
                        InStock = doProduct?.AmountInStock > 0 
                   };
@@ -78,7 +78,7 @@ namespace BlImplementation
                     ID = product.Id,
                     Name = product.Name,
                     Price = product.Price,
-                    Category = (Category)(product.ProductCategoty),
+                    Category = (BO.Category)(product.ProductCategoty),
                     Amount = itemIn?.Amount??0,
                     InStock = product.AmountInStock > 0
                 };
@@ -94,7 +94,7 @@ namespace BlImplementation
                 ID = product.Id,
                 Name = product.Name,
                 Price = product.Price,
-                Category = (Category)product.ProductCategoty,
+                Category = (BO.Category)product.ProductCategoty,
                 InStock = product.AmountInStock
             };
         }
@@ -118,7 +118,7 @@ namespace BlImplementation
                 Name = product.Name,
                 Price = product.Price,
                 AmountInStock = product.InStock,
-                ProductCategoty = (DO.Category)(Category)product.Category
+                ProductCategoty = (DO.Category)(BO.Category)product.Category
             });
          
         }

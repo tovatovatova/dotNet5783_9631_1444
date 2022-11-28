@@ -14,7 +14,7 @@ namespace BITest
     {
         static IBl bl = new Bl();
        
-       static Cart newCart=new Cart() { CustomerAddress = "", CustomerEmail = "", CustomerName = "", Items = Enumerable.Empty<BO.OrderItem>() , TotalPrice = 0 };
+       static Cart newCart=new Cart() { CustomerAddress = "", CustomerEmail = "", CustomerName = "", Items =null , TotalPrice = 0 };
    
 
 
@@ -229,8 +229,8 @@ namespace BITest
                         break;
                 }
                 Console.WriteLine(@"Choose one of the following options:
-1:enter id of product to add to cart:
-2:enter amount of products to add to cart:
+1:add product to cart
+2:update amount of product in cart
 3:create a new order:");
                 if (!CartActions.TryParse(Console.ReadLine(), out choice)) throw new Exception("wrong input type");
 

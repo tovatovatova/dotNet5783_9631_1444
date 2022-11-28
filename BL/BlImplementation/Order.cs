@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
-using BO;
+
 
 using DO;
 
@@ -33,7 +33,7 @@ namespace BlImplementation
             }            //BO.Order boOrder;//dont shure if its ok to do it like that         
         }
 
-        public IEnumerable<OrderForList?> GetOrderList()
+        public IEnumerable<BO.OrderForList?> GetOrderList()
         {
             try
             {
@@ -49,7 +49,7 @@ namespace BlImplementation
            // throw new NotImplementedException();
         }
 
-        public OrderTracking OrderTracking(int orderID)
+        public BO.OrderTracking OrderTracking(int orderID)
         {
             DO.Order doOrder = dal.Order.GetById(orderID);
             BO.Order? boOrder = ConvertO(doOrder) ?? throw new Exception("cant convert");
@@ -61,14 +61,14 @@ namespace BlImplementation
             Tuple<DateTime?, string> shipedT;
             Tuple<DateTime?, string> orderedT = new Tuple<DateTime?, string>(boOrder.OrderDate, BO.OrderStatus.Ordered.ToString());
             track.Tracking.Add(orderedT);
-            if (boOrder.Status == OrderStatus.Delivered)
+            if (boOrder.Status == BO.OrderStatus.Delivered)
             {
                 shipedT = new Tuple<DateTime?, string>(boOrder.ShipDate, BO.OrderStatus.Shipped.ToString());
                 track.Tracking.Add(shipedT);
                 deliveredT = new Tuple<DateTime?, string>(boOrder.DeliveryDate, boOrder.Status.ToString());
                 track.Tracking.Add(deliveredT);
             }
-            else if (boOrder.Status == OrderStatus.Shipped)
+            else if (boOrder.Status == BO.OrderStatus.Shipped)
             {
                 shipedT = new Tuple<DateTime?, string>(boOrder.ShipDate, BO.OrderStatus.Shipped.ToString());
                 track.Tracking.Add(shipedT);
@@ -107,7 +107,7 @@ namespace BlImplementation
         }
        public BO.OrderForList? ConvertOrderList(BO.Order orderToCon)
         {
-            return new OrderForList()
+            return new BO.OrderForList()
             {
                 ID = orderToCon.Id,
                 CustomerName = orderToCon.CustomerName,
@@ -140,11 +140,11 @@ namespace BlImplementation
                 if (doOrder?.ShipDate != null)
                 {
                     if (doOrder?.DeliveryDate != null && doOrder?.DeliveryDate < DateTime.Now)
-                        boOrder.Status = OrderStatus.Delivered;
-                    else boOrder.Status = OrderStatus.Shipped;
+                        boOrder.Status = BO.OrderStatus.Delivered;
+                    else boOrder.Status = BO.OrderStatus.Shipped;
                 }
                 else
-                    boOrder.Status = OrderStatus.Ordered;
+                    boOrder.Status = BO.OrderStatus.Ordered;
                 boOrder.Items = from DO.OrderItem? items in dal.OrderItem.GetAll()
                                 where items.Value.OrderId == doOrder?.OrderId
                                 select new BO.OrderItem
