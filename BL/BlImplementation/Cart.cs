@@ -74,14 +74,14 @@ namespace BlImplementation
             
         }
 
-        public void OrderCreate(BO.Cart cart, string customerName, string customerEmail, string customerAddress)
+        public void OrderCreate(BO.Cart cart/*, string customerName, string customerEmail, string customerAddress*/)
         {
-            BO.Order order = new BO.Order() { CustomerAddress = customerAddress,
-            CustomerName=customerName,CustomerEmail=customerEmail,OrderDate=DateTime.Now};
+            BO.Order order = new BO.Order() { CustomerAddress = cart.CustomerAddress,
+            CustomerName=cart.CustomerName,CustomerEmail=cart.CustomerEmail,OrderDate=DateTime.Now};
             DO.Order orderToAdd=new DO.Order() {
-                CustomerAddress = customerAddress,
-                CustomerName = customerName,
-                CustomerEmail = customerEmail,
+                CustomerAddress = cart.CustomerAddress,
+                CustomerName = cart.CustomerName,
+                CustomerEmail = cart.CustomerEmail,
                 OrderDate = DateTime.Now
             };
             order.Id=dal.Order.Add(orderToAdd);//add the id
@@ -89,7 +89,15 @@ namespace BlImplementation
             {
                 DO.OrderItem itemInCart = new DO.OrderItem() {/*orderItemId*/ProductId = orderItem.ProductID, OrderId = orderItem.ID };//ID ???
                 dal.OrderItem.Add(itemInCart);//add to order item and put order item id 
-                /////////
+                DO.Product product = dal.Product.GetById(itemInCart.ProductId);//return the product of the specific item
+                if(product.AmountInStock>itemInCart.Amount)//if there are enough products in stock
+                {
+                    product.AmountInStock-=itemInCart.Amount;//reduce amount from stock
+                }
+                else //there's not enough
+                { 
+                    throw new NotImplementedException();///648$$^&&(^^*)
+                }
             }
 
 
