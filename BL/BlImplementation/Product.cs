@@ -52,7 +52,7 @@ namespace BlImplementation
 
         }
 
-        public IEnumerable<ProductItem> GetCatalog()
+        public IEnumerable<BO.ProductItem> GetCatalog()
         {
             return from DO.Product? doProduct in dal.Product.GetAll()
                    select new BO.ProductItem

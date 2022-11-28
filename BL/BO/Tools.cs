@@ -30,18 +30,17 @@ namespace BO
             //    }
             foreach (PropertyInfo item in t.GetType().GetProperties())
             {
-                if (item.GetValue(t, null) is IEnumerable<object>)//specal case o IEnumerable property
+                str += "\n" + item.Name+": ";
+                if (item.GetValue(t, null) is IEnumerable<object>)//case of IEnumerable property
                 {
                     IEnumerable<object> lst = (IEnumerable<object>)item.GetValue(obj: t, null);
                     string s = String.Join("  ", lst);
-                    str += "\n" + item.Name + ": " + s;
+                    str +=  s;
                 }
                 else
-
-                    str += "\n" + item.Name
-                   + ": " + item.GetValue(t, null);
+                    str +=item.GetValue(t, null);
             }
-            return str;
+            return str+"\n";
 
         }
 

@@ -14,7 +14,7 @@ namespace BITest
     {
         static IBl bl = new Bl();
        
-       static Cart newCart=new Cart() { CustomerAddress = "", CustomerEmail = "", CustomerName = "", Items =null , TotalPrice = 0 };
+       static Cart newCart=new Cart() { CustomerAddress = "", CustomerEmail = "", CustomerName = "", Items =new List<OrderItem>() , TotalPrice = 0 };
    
 
 

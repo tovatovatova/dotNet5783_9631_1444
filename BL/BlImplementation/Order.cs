@@ -30,7 +30,7 @@ namespace BlImplementation
             catch (Exception e)
             {
                 throw new Exception(e.Message);
-            }            //BO.Order boOrder;//dont shure if its ok to do it like that         
+            }                     
         }
 
         public IEnumerable<BO.OrderForList?> GetOrderList()
@@ -119,14 +119,10 @@ namespace BlImplementation
         }
         public BO.Order? ConvertO(DO.Order? doOrder)
         {
-            BO.Order boOrder;//dont shure if its ok to do it like that 
-
+            BO.Order boOrder;//dont shure if if it ok
             try
             {
-                //if (orderID <= 0) throw new Exception("Invalid ID");
-
-                // DO.Order doOrder = dal.Order.GetById(orderID);
-                boOrder = new BO.Order()
+               boOrder = new BO.Order()
                 {
                     Id = doOrder?.OrderId ?? throw new Exception("nulll value"),
                     CustomerName = doOrder?.CustomerName?? throw new Exception("null value"),
@@ -135,7 +131,6 @@ namespace BlImplementation
                     OrderDate = doOrder?.OrderDate,
                     ShipDate = doOrder?.ShipDate,
                     DeliveryDate = doOrder?.DeliveryDate,
-
                 };
                 if (doOrder?.ShipDate != null)
                 {
