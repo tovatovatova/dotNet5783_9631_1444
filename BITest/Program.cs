@@ -6,10 +6,10 @@ using BlImplementation;
 
 namespace BITest
 {
-    public enum Options { PRODUCT = 1, ORDER, CART, EXIT };
-    public enum ProductActions { Product_List = 1, ProductDetails, Add, Delete, Update, Catalog, Product_in_Catalog, Exit }
-    public enum CartActions { Add = 1, Update, Create,Exit }
-    public enum OrderActions { Get_Order = 1, Order_List, Update_Ship, Update_Delivery, Order_Tracking, Update_Order, Exit }
+    public enum Options { EXIT, PRODUCT, ORDER, CART };
+    public enum ProductActions { Exit, Product_List , ProductDetails, Add, Delete, Update, Catalog, Product_in_Catalog  }
+    public enum CartActions { Exit, Add , Update, Create }
+    public enum OrderActions { Exit, Get_Order , Order_List, Update_Ship, Update_Delivery, Order_Tracking, Update_Order }
     internal class Program
     {
         static IBl bl = new Bl();
@@ -29,7 +29,8 @@ namespace BITest
 4:delete product
 5:update product
 6:show catalog
-7:delails of product from catalog");
+7:delails of product from catalog
+0:exit");
             if (!ProductActions.TryParse(Console.ReadLine(), out choice)) throw new Exception("This option not exist!");
             while (choice != ProductActions.Exit)
             {
@@ -113,7 +114,8 @@ namespace BITest
 4:delete product
 5:update product
 6:show catalog
-7:delails of product item");
+7:delails of product item
+0:exit");
                 if (!ProductActions.TryParse(Console.ReadLine(), out choice)) throw new Exception("This option not exist!");
             }
 
@@ -123,12 +125,13 @@ namespace BITest
         {
             int id;
             Console.WriteLine(@"Choose one of the following options:
-1: oder details
+1: order details
 2:list of orders
 3:update ship date 
 4:update delivery date
 5:order tracking
-6:update order");
+6:update order
+0:exit");
             OrderActions choi=OrderActions.Exit;
 
             do
@@ -169,6 +172,7 @@ namespace BITest
                         default:
                             break;
                     }
+
                 }
                 catch (Exception e)
                 {
@@ -183,7 +187,8 @@ namespace BITest
             Console.WriteLine(@"Choose one of the following options:
 1:add product to cart
 2:update amount of product in cart
-3:create a new order:");
+3:create a new order:
+0:exit");
             if (!CartActions.TryParse(Console.ReadLine(), out choice)) throw new Exception("wrong input type");
             while (choice != CartActions.Exit)
             {
@@ -229,9 +234,10 @@ namespace BITest
                         break;
                 }
                 Console.WriteLine(@"Choose one of the following options:
-1:enter id of product to add to cart:
-2:enter amount of products to add to cart:
-3:create a new order:");
+1:add product to cart
+2:update amount of product in cart
+3:create a new order:
+0:exit");
                 if (!CartActions.TryParse(Console.ReadLine(), out choice)) throw new Exception("wrong input type");
 
 
@@ -259,6 +265,8 @@ namespace BITest
                         break;
                     case Options.CART:
                         CartOptions();
+                        break;
+                    case Options.EXIT:
                         break;
                     default:
                         break;

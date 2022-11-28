@@ -8,7 +8,7 @@ public struct OrderItem
 {
 
     /// <summary>
-    /// identificatior number for item in order
+    /// identificatior number for item in order,running number
     /// </summary>
     public int OrderItemId { get; set; }
     /// <summary>
