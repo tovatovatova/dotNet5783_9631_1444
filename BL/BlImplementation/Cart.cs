@@ -2,6 +2,7 @@
 
 using Dal;
 using DalApi;
+using DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace BlImplementation
             if (itemInCart != null)
             {
                 int x = currentCart?.Items?.ToList().FindIndex(item => item.ID == ProductID) ?? -1;
-              
+             
                     if (product.AmountInStock > itemInCart.Amount)
                     {
                         currentCart.Items.ToList().ElementAt(x).Amount += 1;
@@ -44,13 +45,22 @@ namespace BlImplementation
                         Amount = 1,
                         TotalPrice = product.Price
                     };
+                    //from DO.Product? doProduct in dal.Product.GetAll()
+                   IEnumerable<OrderItem> ienu = from OrderItem d in currentCart.Items
+                                           select d;
+                    List<BO.OrderItem> lst2 = new List<BO.OrderItem>();
+
+                    foreach (OrderItem item in ienu)
+                    {
+                       // lst2.Add(ienu.ToArray().ElementAt(2))
+                    }
                     currentCart.TotalPrice += itemInCart.Price;//add price of item to total price
                     if (currentCart.Items == null)
                     {
                       
-                       // List<OrderItem> lst = new List<BOrderItem>();
-                       // lst.Add(itemInCart);
-                        //currentCart.Items = lst;
+                       List<BO.OrderItem> lst = new List<BO.OrderItem>();/////////////checkkk
+                        lst.Add(itemInCart);
+                        currentCart.Items = lst;
                     }
                     // currentCart.Items.ToList().Add(itemInCart);
                     //foreach(var item in currentCart.Items)

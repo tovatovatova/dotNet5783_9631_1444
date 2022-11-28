@@ -34,7 +34,6 @@ namespace BO
                 {
                     IEnumerable<object> lst = (IEnumerable<object>)item.GetValue(obj: t, null);
                     string s = String.Join("  ", lst);
-                   // str += "\n" + item.Name + ": " + String.Join("  ", lst);
                     str += "\n" + item.Name + ": " + s;
                 }
                 else
