@@ -17,8 +17,8 @@ namespace BlImplementation
         DalApi.IDal dal = new Dal.DalList();
         public BO.Cart AddToCart(BO.Cart currentCart, int ProductID)
         {
-            DO.Product product = dal.Product.GetById(ProductID) ;
-             BO.OrderItem? itemInCart = currentCart.Items.FirstOrDefault(item => item.ID == ProductID);// check if product exists in cart
+            DO.Product product = dal.Product.GetById(ProductID);//return product from dal with the given id
+             BO.OrderItem? itemInCart = currentCart.Items.FirstOrDefault(item => item.ID == ProductID);// check if product exists in cart-if so, return the first object
             if (itemInCart != null)//product exists
             {
                 int x = currentCart?.Items?.ToList().FindIndex(item => item.ID == ProductID) ?? -1;//find the index of the product in order to edit
@@ -100,21 +100,26 @@ namespace BlImplementation
                 CustomerEmail = cart.CustomerEmail,
                 OrderDate = DateTime.Now
             };
-            DO.Order orderToAdd = new DO.Order()
+            DO.Order orderToAdd = new DO.Order()//the same as "order".need it for sending to dal
             {
                 CustomerAddress = cart.CustomerAddress,
                 CustomerName = cart.CustomerName,
                 CustomerEmail = cart.CustomerEmail,
                 OrderDate = DateTime.Now
             };
-            order.Id = dal.Order.Add(orderToAdd);//add the id
-            foreach (var orderItem in cart.Items)
+            order.Id = dal.Order.Add(orderToAdd);//add the id to the new order in BO
+            foreach (var orderItem in cart.Items)//runs on the items in cart
             {
-                DO.OrderItem itemInCart = new DO.OrderItem() {/*orderItemId*/ProductId = orderItem.ProductID, OrderId = orderItem.ID };//ID ???
-                dal.OrderItem.Add(itemInCart);//add to order item and put order item id 
-                DO.Product product = dal.Product.GetById(itemInCart.ProductId);//return the product of the specific item
+                DO.OrderItem itemInCart = new DO.OrderItem() {ProductId = orderItem.ProductID, OrderId = orderItem.ID,
+                Price=orderItem.Price,Amount=orderItem.Amount };//builds object of order item
+                dal.OrderItem.Add(itemInCart);//add to order item to list of order item and put orderItem id 
+                DO.Product product = dal.Product.GetById(orderItem.ProductID);//if not exist throw exeption
+                BO.Product? prod = dal.Product.GetAll().FirstOrDefault(item => item.Id== product.Id);//return the first element than has this condition
+                int x = dal.Product.GetAll().ToList().FindIndex(item => item.Value.Id == orderItem.ProductID);//return the index of the needed product
                 if (product.AmountInStock > itemInCart.Amount)//if there are enough products in stock
                 {
+                   
+                    dal.Product.GetAll().ToList().ElementAt(x).AmountInStock -= itemInCart.Amount;
                     product.AmountInStock -= itemInCart.Amount;//reduce amount from stock
                 }
                 else //there's not enough
