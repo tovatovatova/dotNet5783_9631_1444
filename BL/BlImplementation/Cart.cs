@@ -21,10 +21,11 @@ namespace BlImplementation
              BO.OrderItem? itemInCart = currentCart.Items.FirstOrDefault(item => item.ID == ProductID);// check if product exists in cart
             if (itemInCart != null)//product exists
             {
-                int x = currentCart?.Items?.ToList().FindIndex(item => item.ID == ProductID) ?? -1;//find the index of the product in order to edit
+                int x = currentCart?.Items?.ToList().FindIndex(item => item.ID == ProductID)??-1 ;//find the index of the product in order to edit
+                //how to do this without -1??????
                 if (product.AmountInStock > itemInCart.Amount)//if the amount in stock is enough to add(at least) one item to cart
                     {
-                        currentCart.Items.ToList().ElementAt(x).Amount += 1;
+                    currentCart.Items.ToList().ElementAt(x).Amount += 1;
                     currentCart.Items.ToList().ElementAt(x).Price = product.Price;
                     currentCart.Items.ToList().ElementAt(x).TotalPrice += product.Price;
                     currentCart.TotalPrice += product.Price;//add price of the one product we add
@@ -61,7 +62,7 @@ namespace BlImplementation
                 int amountDifference = newAmount - itemInCart.Amount;
                 if (newAmount == 0)
                 {
-                    currentCart.Items = currentCart.Items.ToList().Where(prod=> prod.ProductID==productId);
+                    currentCart.Items = currentCart.Items.ToList().Where(prod=> prod.ProductID!=productId);
                 }
                 else if (amountDifference == 0) 
                     return currentCart; 

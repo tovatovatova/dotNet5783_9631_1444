@@ -69,14 +69,19 @@ namespace BlImplementation
         public BO.ProductItem GetProductByID(BO.Cart cart,int id)//client
         {
             DO.Product product = dal.Product.GetById(id);
-            BO.OrderItem? itemIn = cart.Items?.FirstOrDefault(item => item.ProductID == id);
+            BO.OrderItem itemIn = cart.Items.FirstOrDefault(item => item.ProductID == id);//if items in cart null error in runtime!!!!
+            int amount;
+            if (itemIn == null || cart.Items == null)
+                amount = 0;
+            else
+                amount = itemIn.Amount;
                 BO.ProductItem item = new BO.ProductItem()
                 {
                     ID = product.Id,
                     Name = product.Name,
                     Price = product.Price,
                     Category = (BO.Category)(product.ProductCategoty),
-                    Amount = itemIn?.Amount??0,
+                    Amount = amount,//////what to do if the product is not in cart\ if the items in cart is null 
                     InStock = product.AmountInStock > 0
                 };
                 return item;
