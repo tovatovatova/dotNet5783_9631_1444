@@ -19,7 +19,7 @@ public struct Product
     /// </summary>
     public double Price { get; set; }
     /// <summary>
-    /// Boolean variable with value true if the product is avaliable to order and false else
+    ///  variable with value true if the product is avaliable to order and false else
     /// </summary>
     public int AmountInStock  { get; set; }
     /// <summary>
