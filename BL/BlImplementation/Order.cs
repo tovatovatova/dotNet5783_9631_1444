@@ -32,7 +32,6 @@ namespace BlImplementation
                 throw new Exception(e.Message);
             }                     
         }
-
         public IEnumerable<BO.OrderForList?> GetOrderList()
         {
             try
@@ -48,7 +47,6 @@ namespace BlImplementation
             }
            // throw new NotImplementedException();
         }
-
         public BO.OrderTracking OrderTracking(int orderID)
         {
             DO.Order doOrder = dal.Order.GetById(orderID);
@@ -76,7 +74,6 @@ namespace BlImplementation
             }
             return track;
         }
-
         public BO.Order UpdateDelivery(int orderID)
         {
             try

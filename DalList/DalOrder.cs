@@ -63,7 +63,7 @@ internal class DalOrder : IOrder
     /// runs on the list and add to a new list
     /// </summary>
     /// <returns>newList</returns>
-    public IEnumerable<Order?> GetAll()
+    public IEnumerable<Order?> GetAll(Func<Order?, bool>? filter = null)
     {
         List<Order?> newList = new List<Order?>();
         DataSource.OrderList.ForEach(x => newList.Add(x));

@@ -59,7 +59,7 @@ public class DalProduct : IProduct
     /// add all the products to a new list and return the list
     /// </summary>
     /// <returns>newList</returns>
-    public IEnumerable<Product?> GetAll()
+    public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null)
     {
         List<Product?> newList=new List<Product?>();
         DataSource.ProductList.ForEach(x=> newList.Add(x));

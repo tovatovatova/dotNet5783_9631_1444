@@ -28,7 +28,7 @@ namespace BO
         /// <summary>
         /// Total price of the shopping cart now
         /// </summary>
-        public double? TotalPrice { get; set; }
+        public double TotalPrice { get; set; }
         /// <summary>
         /// function return string describing cart object properties and values
         /// </summary>

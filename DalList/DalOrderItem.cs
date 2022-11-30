@@ -63,7 +63,7 @@ public class DalOrderItem : IOrderItem
     ///add all list to a new list of order item and return
     /// </summary>
     /// <returns>newList</returns>
-     public IEnumerable<OrderItem?> GetAll()
+    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter = null)
     {
         List<OrderItem?> newList=new List<OrderItem?>();
         DataSource.OrderItemList.ForEach(x=> newList.Add(x));
