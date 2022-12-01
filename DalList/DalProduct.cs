@@ -14,10 +14,9 @@ public class DalProduct : IProduct
     /// <exception cref="Exception">throw exeption when there is already product with the same id</exception>
     public int Add(Product newProduct)
     {
-        if (DataSource.ProductList.Exists(x => x?.Id == newProduct.Id))
-            throw new Exception("There is already product with the same Id");
-        else
-            DataSource.ProductList.Add(newProduct);
+
+        Product? addProduct = DataSource.ProductList.FirstOrDefault(prod => prod.Value.Id == newProduct.Id) ?? throw new DalIdAlreadyExistException(newProduct.Id, "product");
+        DataSource.ProductList.Add(newProduct);
         return newProduct.Id;
     }
     /// <summary>
@@ -28,8 +27,7 @@ public class DalProduct : IProduct
     /// <exception cref="Exception">trow exeption when the product doesnt exist</exception>
     public Product GetById(int productId)
     {
-        Product product = DataSource.ProductList.Find(x => x?.Id == productId) ?? throw new Exception("This product doesn't exist");
-        return product;
+        return DataSource.ProductList.FirstOrDefault(prod => prod.Value.Id == productId) ?? throw new DalIdDoNotExistException(productId, "product");
     }
     /// <summary>
     /// UpDate the specific product according to the given product
@@ -38,9 +36,8 @@ public class DalProduct : IProduct
     /// <exception cref="Exception">throw exeption when product doesnt exist</exception>
     public void Update(Product productToUpDate)
     {
+        Product? addProduct = DataSource.ProductList.FirstOrDefault(prod => prod.Value.Id == productToUpDate.Id) ?? throw new DalIdDoNotExistException(productToUpDate.Id, "product");
         int ProductIndex = DataSource.ProductList.FindIndex(x => x?.Id == productToUpDate.Id);
-        if (ProductIndex == -1)
-            throw new Exception("This product doesn't exist");
         DataSource.ProductList[ProductIndex] = productToUpDate;
     }
     /// <summary>
@@ -50,9 +47,8 @@ public class DalProduct : IProduct
     /// <exception cref="Exception">throw exeption when product doesnt exist</exception>
     public void Delete(int productId)
     {
+        Product? addProduct = DataSource.ProductList.FirstOrDefault(prod => prod.Value.Id == productId) ?? throw new DalIdDoNotExistException(productId, "product");
         int productIndex = DataSource.ProductList.FindIndex(x => x?.Id == productId);
-        if (productIndex == -1)
-            throw new Exception("This product doesn't exist");
         DataSource.ProductList.RemoveAt(productIndex);
     }
     /// <summary>

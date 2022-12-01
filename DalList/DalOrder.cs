@@ -27,13 +27,14 @@ internal class DalOrder : IOrder
     /// <exception cref="Exception">throw exeption when the the order not found</exception>
     public Order GetById(int orderId)
     {
-        Order? newOrder=DataSource.OrderList.Find(x => x?.OrderId ==orderId);    
-        if(newOrder!= null)
-        {
-            return (Order)newOrder;
+        return DataSource.OrderList.FirstOrDefault(order => order.Value.OrderId == orderId) ?? throw new DalIdDoNotExistException(orderId, "order");
+        //Order? newOrder=DataSource.OrderList.Find(x => x?.OrderId ==orderId);    
+        //if(newOrder!= null)
+        //{
+        //    return (Order)newOrder;
 
-        }
-        throw new Exception("order not exist");
+        //}
+        //throw new Exception("order not exist");
     }
     /// <summary>
     /// deletes order according to the given id
@@ -42,10 +43,8 @@ internal class DalOrder : IOrder
     /// <exception cref="Exception">throw exeption when the the order not found</exception>
     public void Delete(int orderId)
     {
-        Order? newOrder = DataSource.OrderList.Find(x => x?.OrderId == orderId);
-        if( newOrder== null)
-            throw new Exception("order not exist");
-        DataSource.OrderList.Remove(newOrder);
+        Order? delOrder= DataSource.OrderList.FirstOrDefault(order => order.Value.OrderId == orderId) ?? throw new DalIdDoNotExistException(orderId, "order");
+        DataSource.OrderList.Remove(delOrder);
     }
     /// <summary>
     /// update an order in its spesific index according to the given order
@@ -54,9 +53,8 @@ internal class DalOrder : IOrder
     /// <exception cref="Exception">throw exeption when the the order not found</exception>
     public void Update(Order newOrder)
     {
-       int index= DataSource.OrderList.FindIndex(x => x?.OrderId == newOrder.OrderId);
-        if(index==-1)
-            throw new Exception("order not exist");
+        Order? delOrder = DataSource.OrderList.FirstOrDefault(order => order.Value.OrderId == newOrder.OrderId) ?? throw new DalIdDoNotExistException(newOrder.OrderId, "order");
+        int index = DataSource.OrderList.FindIndex(x => x?.OrderId == newOrder.OrderId);
         DataSource.OrderList[index] = newOrder;
     }
     /// <summary>

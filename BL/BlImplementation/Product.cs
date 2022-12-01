@@ -5,7 +5,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
-//using BO;
 
 
 namespace BlImplementation
@@ -22,9 +21,31 @@ namespace BlImplementation
         /// <exception cref="NotImplementedException"></exception>
         public void AddProduct(BO.Product newProduct)
         {
-               dal.Product.Add(new DO.Product() { Id=newProduct.ID, Name=newProduct.Name,
-               Price=newProduct.Price,AmountInStock=newProduct.InStock,
-               ProductCategoty=(DO.Category)newProduct.Category });
+            if (newProduct.ID < 0)//negative id
+                throw new BO.BlInvalidInputException("id");
+            if(newProduct.InStock < 0)//negative amount
+                throw new BO.BlInvalidInputException("amount");
+            if (newProduct.Price < 0)//negative price
+                throw new BO.BlInvalidInputException("price");
+            if (newProduct.Name == "")//emptu string
+                throw new BO.BlInvalidInputException("name");
+            try
+            {
+                dal.Product.Add(new DO.Product()
+                {
+                    Id = newProduct.ID,
+                    Name = newProduct.Name,
+                    Price = newProduct.Price,
+                    AmountInStock = newProduct.InStock,
+                    ProductCategoty = (DO.Category)newProduct.Category
+                });
+            }
+            catch (DO.DalIdAlreadyExistException ex)
+            {
+
+                throw new BO.BlIdAlreadyExistException(,ex)
+            }
+           
         }
 
         public void DeleteProduct(int id)

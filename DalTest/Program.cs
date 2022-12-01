@@ -58,6 +58,7 @@ internal class Program
                         if (int.TryParse(input1, out x1))
                             product.AmountInStock = x1;
                         Console.WriteLine("enter category number:");
+                        input1 = Console.ReadLine();
                         if (int.TryParse(input1, out x1))
                             product.ProductCategoty = (Category)x1;
                        dal.Product.Add(product);
