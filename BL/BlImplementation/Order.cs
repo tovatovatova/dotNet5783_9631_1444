@@ -79,9 +79,9 @@ namespace BlImplementation
             try
             {
                 DO.Order order = dal.Order.GetById(orderID);
-                if (order.DeliveryDate == null && order.ShipDate == null)
+                if (order.DeliveryDate == null)
                     order.DeliveryDate = DateTime.Now;
-                else throw new Exception("cant update shiped order");
+                else throw new Exception("cant update delivered order");
                 return ConvertO(order) ?? throw new Exception("cant convert to bo order");
             }
             catch (Exception ex)
@@ -98,7 +98,9 @@ namespace BlImplementation
             try
             {
                 DO.Order order = dal.Order.GetById(orderID);
-                order.ShipDate = DateTime.Now;
+                if (order.DeliveryDate == null && order.ShipDate == null)
+                    order.DeliveryDate = DateTime.Now;
+                else throw new Exception("cant update shiped order");
                 return ConvertO(order) ?? throw new Exception("cant convert to bo order");
             }
             catch (Exception ex)
