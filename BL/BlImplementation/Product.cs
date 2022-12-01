@@ -25,7 +25,6 @@ namespace BlImplementation
                dal.Product.Add(new DO.Product() { Id=newProduct.ID, Name=newProduct.Name,
                Price=newProduct.Price,AmountInStock=newProduct.InStock,
                ProductCategoty=(DO.Category)newProduct.Category });
-
         }
 
         public void DeleteProduct(int id)
@@ -61,7 +60,7 @@ namespace BlImplementation
                        Name = doProduct?.Name ?? throw new NullReferenceException("mising name"),
                        Price = doProduct?.Price ?? throw new NullReferenceException("missing price"),
                        Category = (BO.Category)(doProduct?.ProductCategoty ?? throw new NullReferenceException("missing category")),
-                       Amount = doProduct?.AmountInStock ?? throw new NullReferenceException("mising name"),
+                     AmountInCart = doProduct?.AmountInStock ?? throw new NullReferenceException("mising name"),
                        InStock = doProduct?.AmountInStock > 0 
                   };
         }
@@ -81,7 +80,7 @@ namespace BlImplementation
                     Name = product.Name,
                     Price = product.Price,
                     Category = (BO.Category)(product.ProductCategoty),
-                    Amount = amount,//////what to do if the product is not in cart\ if the items in cart is null 
+                  AmountInCart = amount,//////what to do if the product is not in cart\ if the items in cart is null 
                     InStock = product.AmountInStock > 0
                 };
                 return item;

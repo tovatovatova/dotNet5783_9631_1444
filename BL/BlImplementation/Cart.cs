@@ -108,11 +108,15 @@ namespace BlImplementation
                 DeliveryDate = null,
                 TotalPrice = cart.TotalPrice
             };
-            bool x = cart.Items.Any(item => CheckAndUpdate(item.ID, item.Amount) == false);
-            // IEnumerable <OrderItem> notEnough= cart.Items.Where(item => ifInStock(item.ID, item.Amount) == false);
-            if (x)
+           boOrder.Items = cart.Items.Where(item => dal.Product.GetById(item.ProductID).AmountInStock >= item.Amount);
+            foreach (var item in cart.Items)
+            {
+                Console.WriteLine("amount {0}",dal.Product.GetById(item.ProductID).AmountInStock);
+                Console.WriteLine("amount {0}",item.Amount);
+            }
+            if(boOrder.Items.Count()!=cart.Items.Count())
                 throw new Exception("you need to update your cart!");
-            boOrder.Items = cart.Items.Select(item => item);//copy the items into order
+            
             DO.Order newOrder = new DO.Order()
             {
                 CustomerName = boOrder.CustomerName,
@@ -132,52 +136,23 @@ namespace BlImplementation
                                Price = itemInOrder.Price,
                                Amount = itemInOrder.Amount,
                            };
-            //foreach (var item in doOrderItems)
-            //{
-            //    dal.OrderItem.Add(item);
-            //}
            doOrderItems.Select(x=> dal.OrderItem.Add(x)).ToList();
-         //   return boOrder;
-
-            //DO.Order orderToAdd = new DO.Order()//the same as "order".need it for sending to dal
-            //{
-            //    CustomerAddress = cart.CustomerAddress,
-            //    CustomerName = cart.CustomerName,
-            //    CustomerEmail = cart.CustomerEmail,
-            //    OrderDate = DateTime.Now
-            //};
-            //order.Id = dal.Order.Add(orderToAdd);//add the id to the new order in BO
-            //foreach (var orderItem in cart.Items)//runs on the items in cart
-            //{
-            //    DO.OrderItem itemInCart = new DO.OrderItem() {ProductId = orderItem.ProductID, OrderId = orderItem.ID,
-            //    Price=orderItem.Price,Amount=orderItem.Amount };//builds object of order item
-            //    dal.OrderItem.Add(itemInCart);//add to order item to list of order item and put orderItem id 
-            //    DO.Product product = dal.Product.GetById(orderItem.ProductID);//if not exist throw exeption
-            //    BO.Product? prod = dal.Product.GetAll().FirstOrDefault(item => item.Id== product.Id);//return the first element than has this condition
-            //    int x = dal.Product.GetAll().ToList().FindIndex(item => item.Value.Id == orderItem.ProductID);//return the index of the needed product
-            //    if (product.AmountInStock > itemInCart.Amount)//if there are enough products in stock
-            //    {
-
-                           //        dal.Product.GetAll().ToList().ElementAt(x).AmountInStock -= itemInCart.Amount;
-                           //        product.AmountInStock -= itemInCart.Amount;//reduce amount from stock
-                           //    }
-                           //    else //there's not enough
-                           //    {
-                           //        throw new Exception("not enough in stock please update your order");///648$$^&&(^^*)
-                           //    }
+            boOrder.Items.ToList().ForEach(item => UpdateAmount(item.ProductID, item.Amount));
             }
-        bool CheckAndUpdate(int productId, int amount)
+        bool Check(int productId,int amount)
         {
-            if (dal.Product.GetById(productId).AmountInStock >= amount);
-            {
-                DO.Product prod= dal.Product.GetById(productId);
-                prod.AmountInStock-=amount;
-                dal.Product.Update(prod);
+            if (dal.Product.GetById(productId).AmountInStock >= amount)
+            
                 return true;
-            }
+            
             return false;
         }
-
+        void UpdateAmount(int productId, int amount)
+        {
+            DO.Product prod= dal.Product.GetById(productId);
+            prod.AmountInStock-=amount;
+           dal.Product.Update(prod);
+        }
     }
 }
 

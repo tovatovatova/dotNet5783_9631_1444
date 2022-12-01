@@ -46,7 +46,6 @@ internal static class DataSource
 
         for (int i = 0; i < 10; i++)
         {
-
             Product addProduct = new Product();
             addProduct.Id = 100000 + i;
             addProduct.ProductCategoty = (Category)randNumbers.Next(4);//casting for category
@@ -58,7 +57,6 @@ internal static class DataSource
                  addProduct.AmountInStock = randNumbers.Next(1, 10);
             ProductList.Add(addProduct);//add new product to list of products
         }
-
     }
 
 
@@ -74,12 +72,12 @@ internal static class DataSource
             addOrder.CustomerAddress = address[randNumbers.Next(4)];
             addOrder.CustomerEmail = addOrder.CustomerName + "@gmail.com";//thread of the name with ordinary end of gmail adress
             TimeSpan ts = new TimeSpan(randNumbers.Next(3), randNumbers.Next(23), randNumbers.Next(59), randNumbers.Next(59));
-            addOrder.OrderDate = new DateTime(randNumbers.Next(2020, DateTime.Today.Year), randNumbers.Next(1, 12), randNumbers.Next(1, 29),randNumbers.Next(0,23), randNumbers.Next(0, 59), randNumbers.Next(0, 59));
+            addOrder.OrderDate = new DateTime(randNumbers.Next(2020, 2023), randNumbers.Next(1, 12), randNumbers.Next(1, 29),randNumbers.Next(0,23), randNumbers.Next(0, 59), randNumbers.Next(0, 59));
             if(i<20*0.8)//80% of the orders will have ship date right after the order date
                  addOrder.ShipDate = addOrder.OrderDate + ts;
             else
                 addOrder.ShipDate = null;
-            ts = new TimeSpan(randNumbers.Next(0), randNumbers.Next(0), randNumbers.Next(0, 3), randNumbers.Next(0, 23), randNumbers.Next(0, 59));
+            ts = new TimeSpan(randNumbers.Next(3), randNumbers.Next(0), randNumbers.Next(0, 3), randNumbers.Next(0, 23), randNumbers.Next(0, 59));
             if(i < 20*0.6)//60% of the orders will have delavery date(12 orders)
                 addOrder.DeliveryDate = addOrder.ShipDate + ts;
            else

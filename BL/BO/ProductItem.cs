@@ -27,7 +27,7 @@ namespace BO
         /// <summary>
         /// amount of this product in the customer cart
         /// </summary>
-        public int Amount { get; set; }
+        public int AmountInCart { get; set; }
         /// <summary>
         /// boolean variable describes the avaliability of product(inStok=true/out of stock=false)
         /// </summary>

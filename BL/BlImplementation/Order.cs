@@ -79,7 +79,9 @@ namespace BlImplementation
             try
             {
                 DO.Order order = dal.Order.GetById(orderID);
-                order.DeliveryDate = DateTime.Now;
+                if (order.DeliveryDate == null && order.ShipDate == null)
+                    order.DeliveryDate = DateTime.Now;
+                else throw new Exception("cant update shiped order");
                 return ConvertO(order) ?? throw new Exception("cant convert to bo order");
             }
             catch (Exception ex)
