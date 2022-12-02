@@ -48,14 +48,25 @@ namespace BlImplementation
                     currentCart.TotalPrice += itemInCart.Price;//add price of item to total price
                     currentCart.Items = currentCart.Items.Append(itemInCart);
                 }
-                else throw new Exception("not enough in stock");
+                else 
+                    throw new BO.BlNullPropertyException("not enough in stock");
             }
             return currentCart;//return cart after changes
         }
         public BO.Cart UpdateProductInCart(BO.Cart currentCart, int newAmount, int productId)
         {
-            if (newAmount < 0) throw new Exception("nagative amount is invalid");
-            DO.Product product = dal.Product.GetById(productId);
+            if (newAmount < 0) throw new BO.BlInvalidInputException(" amount to add to cart");
+            DO.Product product;
+            try
+            {
+                 product = dal.Product.GetById(productId);
+
+            }
+            catch (DO.DalIdDoNotExistException ex)//product doesnt exist
+            {
+
+                throw new BO.BlIdDoNotExistException("product in cart", ex);
+            }
             BO.OrderItem? itemInCart = currentCart.Items.FirstOrDefault(item => item.ID == productId);
             int x = currentCart?.Items?.ToList().FindIndex(item => item.ID == productId) ?? -1;//find the index of the product in order to edit
             if (itemInCart != null)
@@ -77,7 +88,7 @@ namespace BlImplementation
                         currentCart.Items.ToList().ElementAt(x).TotalPrice += product.Price * amountDifference;//add the exstra price after the change
                         currentCart.TotalPrice += amountDifference * product.Price; //add to the cart total price
                     }
-                    else throw new Exception("not enough in stock");
+                    throw new BO.BlNullPropertyException("not enough in stock");
                 }
             }
             else

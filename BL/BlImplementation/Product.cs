@@ -10,7 +10,7 @@ using BlApi;
 namespace BlImplementation
 {
     internal class Product : IProduct
-    {//לא לשכוח לעשות תקינות קלט
+    {
         DalApi.IDal dal = new Dal.DalList();
 
 
@@ -45,14 +45,14 @@ namespace BlImplementation
             catch (DO.DalIdAlreadyExistException ex)
             {
                 throw new BO.BlIdAlreadyExistException("add product faild",ex);
-               // throw new BO.BlIdAlreadyExistException(,ex)
             }
            
         }
 
         public void DeleteProduct(int id)
         {
-            
+            if (id <= 0)//negative id
+                throw new BO.BlInvalidInputException("product ID");
             IEnumerable<DO.OrderItem>? idOfOrderItem = from DO.Order order in dal.Order.GetAll()//runs on list of order
                                                        from DO.OrderItem item in dal.OrderItem.GetAll()//runs on list of order item
                                                        where (order.OrderId == item.OrderId)
@@ -65,13 +65,13 @@ namespace BlImplementation
                 {
                     dal.Product.Delete(id);
                 }
-                catch (Exception e)//there is no product with this id
+                catch (DO.DalIdDoNotExistException ex)//there is no product with this id
                 {
-                    throw new BO.BlIdDoNotExistException("product", e);
+                    throw new BO.BlIdDoNotExistException("product", ex);
                 }
             }
             else//exist-cant delete-throw exeption
-                throw new Exception("cant delete, exist in orders");//-43909------------------99887897987987979879797797
+                throw new BO.BlNullPropertyException("cant delete, exist in orders");////565#$%&^*&
 
         }
 
@@ -81,10 +81,10 @@ namespace BlImplementation
                    select new BO.ProductItem
                    {
                        ID = doProduct?.Id ?? throw new NullReferenceException("missing id"),
-                       Name = doProduct?.Name ?? throw new NullReferenceException("mising name"),
+                       Name = doProduct?.Name ?? throw new NullReferenceException("missing name"),
                        Price = doProduct?.Price ?? throw new NullReferenceException("missing price"),
                        Category = (BO.Category)(doProduct?.ProductCategoty ?? throw new NullReferenceException("missing category")),
-                     AmountInCart = doProduct?.AmountInStock ?? throw new NullReferenceException("mising name"),
+                       AmountInCart = doProduct?.AmountInStock ?? throw new NullReferenceException("missing name"),
                        InStock = doProduct?.AmountInStock > 0 
                   };
         }
@@ -150,13 +150,21 @@ namespace BlImplementation
             {
                 ID = item?.Id ?? throw new NullReferenceException("missing id"),
                 Name = item?.Name ?? throw new NullReferenceException("mising name"),
-                Category = (BO.Category?)item?.ProductCategoty ?? throw new NullReferenceException("mis category"),
+                Category = (BO.Category?)item?.ProductCategoty ?? throw new BO.BlWrongCategoryException("worng category"),
                 Price = item?.Price ?? 0
             });
         }
 
         public void UpdateProduct(BO.Product product)
         {
+            if (product.ID <= 0)//negative id
+                throw new BO.BlInvalidInputException("product ID");
+            if (product.InStock < 0)//negative amount
+                throw new BO.BlInvalidInputException("product amount");
+            if (product.Price < 0)//negative price
+                throw new BO.BlInvalidInputException("product price");
+            if (product.Name == "")//empty string
+                throw new BO.BlInvalidInputException("product name");
             try
             {
                 dal.Product.Update(new DO.Product()
