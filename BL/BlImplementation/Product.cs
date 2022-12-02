@@ -31,19 +31,21 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("name");
             try
             {
-                dal.Product.Add(new DO.Product()
+
+               DO.Product p= new DO.Product
                 {
                     Id = newProduct.ID,
                     Name = newProduct.Name,
                     Price = newProduct.Price,
                     AmountInStock = newProduct.InStock,
                     ProductCategoty = (DO.Category)newProduct.Category
-                });
+                };
+                dal.Product.Add(p);
             }
             catch (DO.DalIdAlreadyExistException ex)
             {
-
-                throw new BO.BlIdAlreadyExistException(,ex)
+                throw BO.BlIdAlreadyExistException("product",ex);
+               // throw new BO.BlIdAlreadyExistException(,ex)
             }
            
         }

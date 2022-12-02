@@ -64,9 +64,9 @@ public class DalOrderItem : IOrderItem
     /// <returns>newList</returns>
     public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter = null)
     {
-        List<OrderItem?> newList=new List<OrderItem?>();
-        DataSource.OrderItemList.ForEach(x=> newList.Add(x));
-        return newList;
+        if (filter != null)
+            return DataSource.OrderItemList.Where(item => filter(item));
+        return DataSource.OrderItemList.Select(item => item);
     }
     /// <summary>
     /// find the order with the given value and return it

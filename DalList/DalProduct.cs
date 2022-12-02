@@ -57,8 +57,8 @@ public class DalProduct : IProduct
     /// <returns>newList</returns>
     public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null)
     {
-        List<Product?> newList=new List<Product?>();
-        DataSource.ProductList.ForEach(x=> newList.Add(x));
-        return newList;
+        if (filter != null)
+            return DataSource.ProductList.Where(item => filter(item));
+        return DataSource.ProductList.Select(item => item);
     }
 }

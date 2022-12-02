@@ -63,11 +63,12 @@ namespace BlImplementation
                 int amountDifference = newAmount - itemInCart.Amount;
                 if (newAmount == 0)
                 {
-                    currentCart.Items = currentCart.Items.ToList().Where(prod => prod.ProductID != productId);
+                    currentCart.Items = currentCart.Items.Where(item => item.ProductID != productId);
+                    currentCart.TotalPrice += product.Price * amountDifference;
                 }
                 else if (amountDifference == 0)
                     return currentCart;
-                else if (amountDifference > 0)//the new amount bigger than the old one
+                else //the new amount bigger than the old one or little than it
                 {
                     if (product.AmountInStock >= newAmount)//if there is enough items in stock
                     {
@@ -76,19 +77,30 @@ namespace BlImplementation
                         currentCart.Items.ToList().ElementAt(x).TotalPrice += product.Price * amountDifference;//add the exstra price after the change
                         currentCart.TotalPrice += amountDifference * product.Price; //add to the cart total price
                     }
+                    else throw new Exception("not enough in stock");
                 }
-                else if (amountDifference < 0)//if the new amount little than the old one
+            }
+            else
+            {
+                if (newAmount != 0)
                 {
-                    if (newAmount <= product.AmountInStock)
+                    if (product.AmountInStock >= newAmount)
                     {
-                        currentCart.Items.ToList().ElementAt(x).Amount = newAmount;
-                        currentCart.Items.ToList().ElementAt(x).Price = product.Price;
-                        currentCart.Items.ToList().ElementAt(x).TotalPrice += product.Price * amountDifference;
-                        currentCart.TotalPrice += amountDifference * product.Price; //sub from the cart total price
-                        //%^^%%^^^ need to check in stock??????
+                        BO.OrderItem itemCart = new BO.OrderItem()
+                        {
+                            ID = productId,
+                            Name = product.Name,
+                            ProductID = product.Id,
+                            Price = product.Price,
+                            Amount = newAmount,
+                            TotalPrice = product.Price * newAmount
+                        };
+                        currentCart.Items = currentCart.Items.Append(itemCart);
+                        currentCart.TotalPrice=product.Price* newAmount;    
                     }
-                }
 
+                }
+              
             }
             return currentCart;
             //  throw new NotImplementedException();
@@ -108,15 +120,11 @@ namespace BlImplementation
                 DeliveryDate = null,
                 TotalPrice = cart.TotalPrice
             };
-           boOrder.Items = cart.Items.Where(item => dal.Product.GetById(item.ProductID).AmountInStock >= item.Amount);
-            foreach (var item in cart.Items)
-            {
-                Console.WriteLine("amount {0}",dal.Product.GetById(item.ProductID).AmountInStock);
-                Console.WriteLine("amount {0}",item.Amount);
-            }
-            if(boOrder.Items.Count()!=cart.Items.Count())
+            boOrder.Items = cart.Items.Where(item => dal.Product.GetById(item.ProductID).AmountInStock >= item.Amount);
+           
+            if (boOrder.Items.Count() != cart.Items.Count())
                 throw new Exception("you need to update your cart!");
-            
+
             DO.Order newOrder = new DO.Order()
             {
                 CustomerName = boOrder.CustomerName,
@@ -136,22 +144,22 @@ namespace BlImplementation
                                Price = itemInOrder.Price,
                                Amount = itemInOrder.Amount,
                            };
-           doOrderItems.Select(x=> dal.OrderItem.Add(x)).ToList();
+            doOrderItems.Select(x => dal.OrderItem.Add(x)).ToList();
             boOrder.Items.ToList().ForEach(item => UpdateAmount(item.ProductID, item.Amount));
-            }
-        bool Check(int productId,int amount)
+        }
+        bool Check(int productId, int amount)
         {
             if (dal.Product.GetById(productId).AmountInStock >= amount)
-            
+
                 return true;
-            
+
             return false;
         }
         void UpdateAmount(int productId, int amount)
         {
-            DO.Product prod= dal.Product.GetById(productId);
-            prod.AmountInStock-=amount;
-           dal.Product.Update(prod);
+            DO.Product prod = dal.Product.GetById(productId);
+            prod.AmountInStock -= amount;
+            dal.Product.Update(prod);
         }
     }
 }

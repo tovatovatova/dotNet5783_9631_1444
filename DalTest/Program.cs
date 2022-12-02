@@ -419,7 +419,7 @@ internal class Program
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(e.ToString());
             }
 
             Console.WriteLine("choose one of the following options:");

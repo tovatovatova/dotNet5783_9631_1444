@@ -196,23 +196,23 @@ namespace BITest
                 {
                     case CartActions.Add:
                         int id,amount;
-                        Console.WriteLine("please insert name:");
-                        newCart.CustomerName= Console.ReadLine();
-                        Console.WriteLine("please insert address:");
-                        newCart.CustomerAddress= Console.ReadLine();
-                        Console.WriteLine("please insert email address:");
-                        newCart.CustomerEmail = Console.ReadLine();
+                        //Console.WriteLine("please insert name:");
+                        //newCart.CustomerName= Console.ReadLine();
+                        //Console.WriteLine("please insert address:");
+                        //newCart.CustomerAddress= Console.ReadLine();
+                        //Console.WriteLine("please insert email address:");
+                        //newCart.CustomerEmail = Console.ReadLine();
                         Console.WriteLine("enter id of product to add to cart:");
                         if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
                         Console.WriteLine(bl.Cart.AddToCart(newCart,id));
                         break;
                     case CartActions.Update:
-                        Console.WriteLine("please insert name:");
-                        newCart.CustomerName = Console.ReadLine();
-                        Console.WriteLine("please insert address:");
-                        newCart.CustomerAddress = Console.ReadLine();
-                        Console.WriteLine("please insert email address:");
-                        newCart.CustomerEmail = Console.ReadLine();
+                        //Console.WriteLine("please insert name:");
+                        //newCart.CustomerName = Console.ReadLine();
+                        //Console.WriteLine("please insert address:");
+                        //newCart.CustomerAddress = Console.ReadLine();
+                        //Console.WriteLine("please insert email address:");
+                        //newCart.CustomerEmail = Console.ReadLine();
                         Console.WriteLine("enter id of product to add to cart:");
                         if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
                         Console.WriteLine("enter new amount of product:");
@@ -238,7 +238,7 @@ namespace BITest
 2:update amount of product in cart
 3:create a new order:
 0:exit");
-                if (!CartActions.TryParse(Console.ReadLine(), out choice)) throw new Exception("wrong input type");
+                if (!CartActions.TryParse(Console.ReadLine(), out choice)) throw new FormatException("wrong input type");
 
 
             }
