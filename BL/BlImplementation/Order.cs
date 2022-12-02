@@ -17,43 +17,59 @@ namespace BlImplementation
 
         DalApi.IDal dal = new Dal.DalList();
 
-        private delegate BO.OrderForList? sc <in T>(T obj);
+        private delegate BO.OrderForList? sc<in T>(T obj);
         public delegate TOutput Converter<in TInput, out TOutput>(TInput input);
-       
+
         //have to check if this what they mean i''l do
         public BO.Order GetOrderByID(int orderID)
         {
+            BO.Order order;
             try
             {
-                return ConvertO(dal.Order.GetById(orderID));
+                order = ConvertOrderDoToBO(dal.Order.GetById(orderID));
             }
-            catch (Exception e)
+            catch (BO.BlNullPropertyException e)
             {
-                throw new Exception(e.Message);
-            }                     
+                throw new BO.BlNullPropertyException("", e);
+            }
+            catch (DO.DalIdDoNotExistException ex)
+            {
+                throw new BO.BlIdDoNotExistException("order", ex);
+            }
+            return order;
         }
         public IEnumerable<BO.OrderForList?> GetOrderList()
         {
+            IEnumerable<BO.Order?> boOrder;
+            IEnumerable<BO.OrderForList> boOrderList;
+            IEnumerable<DO.Order?> doList = dal.Order.GetAll();
             try
             {
-                IEnumerable<DO.Order?> doList = dal.Order.GetAll();
-                IEnumerable<BO.Order> boOrder = doList.Select(item => ConvertO(item));
-                return boOrder.Select(item => ConvertOrderList(item));
-                //return doList.Select(item => ConvertOrderList(ConvertO(item)));
+                boOrder = doList?.Select(item => ConvertOrderDoToBO(item)) ?? throw new BO.BlNullPropertyException("no orders");
             }
-            catch(Exception e)
+            catch (BO.BlNullPropertyException e)
             {
-                throw new Exception(e.Message);
+                throw new BO.BlNullPropertyException("", e);
             }
-           // throw new NotImplementedException();
+            boOrderList = from BO.Order item in boOrder
+                          select (ConvertToOrderList(item));
+            return boOrderList;
         }
         public BO.OrderTracking OrderTracking(int orderID)
         {
-            DO.Order doOrder = dal.Order.GetById(orderID);
-            BO.Order? boOrder = ConvertO(doOrder) ?? throw new Exception("cant convert");
+            DO.Order doOrder;
+            try
+            {
+                doOrder = dal.Order.GetById(orderID);
+            }
+            catch (BO.BlNullPropertyException e)
+            {
+                throw new BO.BlNullPropertyException("order", e);
+            }
+            BO.Order? boOrder = ConvertOrderDoToBO(doOrder);
             BO.OrderTracking track = new BO.OrderTracking();
             track.ID = orderID;
-            track.Status = boOrder.Status;
+            track.Status = boOrder.Status;//we assume that bo order is not empty couse we made a check up
             track.Tracking = new List<Tuple<DateTime?, string>>();
             Tuple<DateTime?, string> deliveredT;
             Tuple<DateTime?, string> shipedT;
@@ -73,6 +89,7 @@ namespace BlImplementation
                 //throw new NotImplementedException();
             }
             return track;
+            
         }
         public BO.Order UpdateDelivery(int orderID)
         {
@@ -82,7 +99,7 @@ namespace BlImplementation
                 if (order.DeliveryDate == null)
                     order.DeliveryDate = DateTime.Now;
                 else throw new Exception("cant update delivered order");
-                return ConvertO(order) ?? throw new Exception("cant convert to bo order");
+                return ConvertOrderDoToBO(order) ?? throw new Exception("cant convert to bo order");
             }
             catch (Exception ex)
             { throw new Exception(ex.Message); }
@@ -101,12 +118,12 @@ namespace BlImplementation
                 if (order.DeliveryDate == null && order.ShipDate == null)
                     order.DeliveryDate = DateTime.Now;
                 else throw new Exception("cant update shiped order");
-                return ConvertO(order) ?? throw new Exception("cant convert to bo order");
+                return ConvertOrderDoToBO(order) ?? throw new Exception("cant convert to bo order");
             }
             catch (Exception ex)
             { throw new Exception(ex.Message); }
         }
-       public BO.OrderForList? ConvertOrderList(BO.Order orderToCon)
+        public BO.OrderForList? ConvertToOrderList(BO.Order orderToCon)
         {
             return new BO.OrderForList()
             {
@@ -115,21 +132,20 @@ namespace BlImplementation
                 Status = orderToCon.Status,
                 AmountOfItems = orderToCon?.Items.Count() ?? 0,
                 TotalPrice = orderToCon?.TotalPrice ?? 0
-
             };
         }
-        public BO.Order? ConvertO(DO.Order? doOrder)
+        public BO.Order? ConvertOrderDoToBO(DO.Order? doOrder)
         {
-            BO.Order boOrder;//dont shure if if it ok
+            BO.Order boOrder;//what about rhe exeptions below (email)%$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
             try
             {
-               boOrder = new BO.Order()
+                boOrder = new BO.Order()
                 {
-                    Id = doOrder?.OrderId ?? throw new Exception("nulll value"),
-                    CustomerName = doOrder?.CustomerName?? throw new Exception("null value"),
-                    CustomerEmail = doOrder?.CustomerEmail,
-                    CustomerAddress = doOrder?.CustomerAddress,
-                    OrderDate = doOrder?.OrderDate,
+                    Id = doOrder?.OrderId ?? throw new BO.BlNullPropertyException("order id"),
+                    CustomerName = doOrder?.CustomerName ?? throw new BO.BlNullPropertyException("missing order customer name"),
+                    CustomerEmail = doOrder?.CustomerEmail ?? throw new BO.BlNullPropertyException("missing order customer email"),
+                    CustomerAddress = doOrder?.CustomerAddress ?? throw new BO.BlNullPropertyException("missing order customer email"),
+                    OrderDate = doOrder?.OrderDate ?? throw new BO.BlNullPropertyException("missing order date"),
                     ShipDate = doOrder?.ShipDate,
                     DeliveryDate = doOrder?.DeliveryDate,
                 };
@@ -151,16 +167,15 @@ namespace BlImplementation
                                     Price = items.Value.Price,
                                     Amount = items.Value.Amount,
                                     TotalPrice = items.Value.Price * items.Value.Amount
-
                                 };
                 boOrder.TotalPrice = boOrder.Items.Sum(item => item.TotalPrice);
                 return boOrder;
 
             }
 
-            catch (Exception e) { throw new Exception(e.Message); }
+            catch (Exception e) { throw new BO.BlNullPropertyException("order", e); }
         }
-        
+
     }
-    
+
 }

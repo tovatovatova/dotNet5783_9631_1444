@@ -21,14 +21,14 @@ namespace BlImplementation
         /// <exception cref="NotImplementedException"></exception>
         public void AddProduct(BO.Product newProduct)
         {
-            if (newProduct.ID < 0)//negative id
-                throw new BO.BlInvalidInputException("id");
+            if (newProduct.ID <= 0)//negative id
+                throw new BO.BlInvalidInputException("product ID");
             if(newProduct.InStock < 0)//negative amount
-                throw new BO.BlInvalidInputException("amount");
+                throw new BO.BlInvalidInputException("product amount");
             if (newProduct.Price < 0)//negative price
-                throw new BO.BlInvalidInputException("price");
-            if (newProduct.Name == "")//emptu string
-                throw new BO.BlInvalidInputException("name");
+                throw new BO.BlInvalidInputException("product price");
+            if (newProduct.Name == "")//empty string
+                throw new BO.BlInvalidInputException("product name");
             try
             {
 
@@ -44,7 +44,7 @@ namespace BlImplementation
             }
             catch (DO.DalIdAlreadyExistException ex)
             {
-                throw BO.BlIdAlreadyExistException("product",ex);
+                throw new BO.BlIdAlreadyExistException("add product faild",ex);
                // throw new BO.BlIdAlreadyExistException(,ex)
             }
            
@@ -52,6 +52,7 @@ namespace BlImplementation
 
         public void DeleteProduct(int id)
         {
+            
             IEnumerable<DO.OrderItem>? idOfOrderItem = from DO.Order order in dal.Order.GetAll()//runs on list of order
                                                        from DO.OrderItem item in dal.OrderItem.GetAll()//runs on list of order item
                                                        where (order.OrderId == item.OrderId)
@@ -66,11 +67,11 @@ namespace BlImplementation
                 }
                 catch (Exception e)//there is no product with this id
                 {
-                    Console.WriteLine(e.Message);
+                    throw new BO.BlIdDoNotExistException("product", e);
                 }
             }
             else//exist-cant delete-throw exeption
-                throw new Exception("cant delete, exist in orders");
+                throw new Exception("cant delete, exist in orders");//-43909------------------99887897987987979879797797
 
         }
 
@@ -90,29 +91,49 @@ namespace BlImplementation
  
         public BO.ProductItem GetProductByID(BO.Cart cart,int id)//client
         {
-            DO.Product product = dal.Product.GetById(id);
-            BO.OrderItem itemIn = cart.Items.FirstOrDefault(item => item.ProductID == id);//if items in cart null error in runtime!!!!
-            int amount;
-            if (itemIn == null || cart.Items == null)
-                amount = 0;
-            else
-                amount = itemIn.Amount;
-                BO.ProductItem item = new BO.ProductItem()
-                {
-                    ID = product.Id,
-                    Name = product.Name,
-                    Price = product.Price,
-                    Category = (BO.Category)(product.ProductCategoty),
-                  AmountInCart = amount,//////what to do if the product is not in cart\ if the items in cart is null 
-                    InStock = product.AmountInStock > 0
-                };
-                return item;
-            //throw new NotImplementedException();
+            DO.Product product;
+            try
+            {
+                product = dal.Product.GetById(id);
+            }
+            catch(DO.DalIdDoNotExistException ex)
+            {
+                throw new BO.BlIdDoNotExistException("product",ex);
+            }
+            int amount = 0;
+
+            if (cart.Items != null)
+            {
+                BO.OrderItem itemIn = cart.Items?.FirstOrDefault(item => item.ProductID == id);//if items in cart null error in runtime!!!!
+
+                if (itemIn != null)
+                    amount = itemIn.Amount;
+                
+            }
+            BO.ProductItem item = new BO.ProductItem()
+            {
+                ID = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                Category = (BO.Category)product.ProductCategoty,
+                AmountInCart = amount,//////what to do if the product is not in cart\ if the items in cart is null 
+                InStock = product.AmountInStock > 0
+            };
+            return item;
+           
         }
 
         public BO.Product GetProductDetails(int id)
         {
-            DO.Product product = dal.Product.GetById(id);
+            DO.Product product;
+            try
+            {
+                product = dal.Product.GetById(id);
+            }
+            catch(DO.DalIdDoNotExistException ex)
+            {
+                throw new BO.BlIdDoNotExistException("product", ex);
+            }
             return new BO.Product()
             {
                 ID = product.Id,
@@ -136,15 +157,23 @@ namespace BlImplementation
 
         public void UpdateProduct(BO.Product product)
         {
-            dal.Product.Update(new DO.Product()
+            try
             {
-                Id = product.ID,
-                Name = product.Name,
-                Price = product.Price,
-                AmountInStock = product.InStock,
-                ProductCategoty = (DO.Category)(BO.Category)product.Category
-            });
-         
+                dal.Product.Update(new DO.Product()
+                {
+                    Id = product.ID,
+                    Name = product.Name,
+                    Price = product.Price,
+                    AmountInStock = product.InStock,
+                    ProductCategoty = (DO.Category)(BO.Category)product.Category
+                });
+            }
+            catch(DO.DalIdDoNotExistException ex)
+            {
+                throw new BO.BlIdDoNotExistException("product", ex);
+
+            }
+
         }
     }
 }

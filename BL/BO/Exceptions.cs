@@ -9,13 +9,13 @@ namespace BO
     [Serializable]
     public class BlIdDoNotExistException : Exception//if not exist
     {
-       public BlIdDoNotExistException(int id, string EName, string message, Exception innerException) : base(message, innerException) { }
+       public BlIdDoNotExistException(string message, Exception innerException) : base(message, innerException) { }
         public override string ToString() => base.ToString() + $"Entity does not exist";
     }
     [Serializable]
     public class BlIdAlreadyExistException : Exception//if already exist
     {
-        public BlIdAlreadyExistException(int id, string EName, string message, Exception innerException) : base(message, innerException) { }
+        public BlIdAlreadyExistException(/*int id, string EName,*/ string message, Exception innerException) : base(message, innerException) { }
         public override string ToString() => base.ToString() + $"Entity already exist";
     }
     [Serializable]
