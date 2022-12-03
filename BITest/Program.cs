@@ -9,7 +9,7 @@ namespace BITest
     public enum Options { EXIT, PRODUCT, ORDER, CART };
     public enum ProductActions { Exit, Product_List , ProductDetails, Add, Delete, Update, Catalog, Product_in_Catalog  }
     public enum CartActions { Exit, Add , Update, Create }
-    public enum OrderActions { Exit, Get_Order , Order_List, Update_Ship, Update_Delivery, Order_Tracking, Update_Order }
+    public enum OrderActions { Exit, Get_Order , Order_List, Update_Ship, Update_Delivery, Order_Tracking }
     internal class Program
     {
         static IBl bl = new Bl();
@@ -139,18 +139,18 @@ namespace BITest
         public static void OrderOptions()
         {
             int id;
-            Console.WriteLine(@"Choose one of the following options:
+
+            OrderActions choi=OrderActions.Exit;
+
+            do
+            {
+                Console.WriteLine(@"Choose one of the following options:
 1: order details
 2:list of orders
 3:update ship date 
 4:update delivery date
 5:order tracking
-6:update order
 0:exit");
-            OrderActions choi=OrderActions.Exit;
-
-            do
-            {
                 try
                 {
                     if (!OrderActions.TryParse(Console.ReadLine(), out choi)) throw new FormatException ("wrong input type");
@@ -179,11 +179,7 @@ namespace BITest
                             if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
                             Console.WriteLine(bl.Order.OrderTracking(id));
                             break;
-                        case OrderActions.Update_Order:
-                            Console.WriteLine("please insert order Id");
-                            if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type ");
-                            Console.WriteLine(bl.Order.UpdateDelivery(id));
-                            break;
+                        
                         case OrderActions.Exit:
                             break;
                         default:
@@ -199,6 +195,7 @@ namespace BITest
                 catch (BO.BlWrongCategoryException ex) { Console.WriteLine(ex); }
                 catch (FormatException ex) { Console.WriteLine(ex); }
                 catch (ArgumentException ex) { Console.WriteLine(ex); }
+
             } while (choi != OrderActions.Exit);
             
         }
