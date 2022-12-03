@@ -31,9 +31,20 @@ namespace BlImplementation
         public BO.Order GetOrderByID(int orderID)
         {
             BO.Order order;
+            DO.Order ord;
+            if (orderID < 0)//negative id
+                throw new BO.BlInvalidInputException("order id");
             try
             {
-                order = ConvertOrderDoToBO(dal.Order.GetById(orderID));//try to covert the order that is return from dal
+                ord = dal.Order.GetById(orderID);//return order from do
+            }
+            catch (DO.DalIdDoNotExistException ex)
+            {
+                throw new BO.BlIdDoNotExistException("order", ex);
+            }
+            try
+            {
+                order = ConvertOrderDoToBO(ord);//try to covert the order that is return from dal
             }
             catch (BO.BlNullPropertyException e)//if couldnt convert
             {
@@ -76,6 +87,8 @@ namespace BlImplementation
         /// <exception cref="BO.BlNullPropertyException">throw if couldnt convert</exception>
         public BO.OrderTracking OrderTracking(int orderID)
         {
+            if (orderID < 0)//negative id
+                throw new BO.BlInvalidInputException("order id");
             DO.Order doOrder;
             try
             {
@@ -129,6 +142,8 @@ namespace BlImplementation
         /// <exception cref="BO.BlNullPropertyException">throw if coudnt convert</exception>
         public BO.Order UpdateDelivery(int orderID)
         {
+            if (orderID < 0)//negative id
+                throw new BO.BlInvalidInputException("order id");
             DO.Order order;
             try
             {
@@ -151,11 +166,6 @@ namespace BlImplementation
                 throw new BO.BlNullPropertyException("cant convert to bo order",ex);
             }
         }
-
-        public BO.Order UpdateOrder(int orderId)
-        {
-            throw new NotImplementedException();//bonus still stay empty
-        }
         /// <summary>
         /// update ship date of the given order id
         /// </summary>
@@ -167,6 +177,8 @@ namespace BlImplementation
         public BO.Order UpdateShip(int orderID)
         {
             DO.Order order;
+            if (orderID < 0)//negative id
+                throw new BO.BlInvalidInputException("order id");
             try
             {
                  order= dal.Order.GetById(orderID); //return order by the given id from dal
