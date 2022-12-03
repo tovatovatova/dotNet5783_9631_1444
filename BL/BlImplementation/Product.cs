@@ -148,8 +148,8 @@ namespace BlImplementation
         {
             return dal.Product.GetAll().Select(item => new BO.ProsuctForList
             {
-                ID = item?.Id ?? throw new NullReferenceException("missing id"),
-                Name = item?.Name ?? throw new NullReferenceException("mising name"),
+                ID = item?.Id ?? throw new BO.BlNullPropertyException("missing id"),
+                Name = item?.Name ?? throw new BO.BlNullPropertyException("mising name"),
                 Category = (BO.Category?)item?.ProductCategoty ?? throw new BO.BlWrongCategoryException("worng category"),
                 Price = item?.Price ?? 0
             });

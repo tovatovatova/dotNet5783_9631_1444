@@ -21,9 +21,9 @@ namespace BO
     [Serializable]
     public class BlNullPropertyException:Exception
     {
-        string message;
+        public string? message;
 
-        public BlNullPropertyException(string mess):base(mess) { }
+        public BlNullPropertyException(string mess):base() { message = mess; }
         public BlNullPropertyException(string message, Exception innerException) : base(message, innerException) { }
         public override string ToString() => $"{message}";
         
@@ -31,22 +31,22 @@ namespace BO
     [Serializable]
     public class BlWrongCategoryException:Exception
     {
-        string message;
-        public BlWrongCategoryException(string mess) : base(mess) { }
+        public string? message;
+        public BlWrongCategoryException(string mess) : base() { message = mess; }
         public BlWrongCategoryException(string message, Exception innerException) : base(message, innerException) { }
         public override string ToString() => $"{message}";
     }
     [Serializable]
     public class BlIncorrectDateException:Exception
     {
-        string message;
-        public BlIncorrectDateException(string mess) : base(mess) { }
+        public string ?message;
+        public BlIncorrectDateException(string mess) : base() { message = mess; }
         public BlIncorrectDateException(string message, Exception innerException) : base(message, innerException) { }
         public override string ToString() => $"{message}";
     }
     public class BlInvalidInputException : Exception
     {
-        public string Entity;
+        public string? Entity;
         public BlInvalidInputException(string ent) : base() { Entity = ent; }
         public BlInvalidInputException(string Entity, Exception innerException) : base(Entity, innerException) { }
         public override string ToString() => $"invalid {Entity}";
