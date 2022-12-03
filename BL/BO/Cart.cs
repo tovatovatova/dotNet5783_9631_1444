@@ -26,7 +26,7 @@ namespace BO
         /// </summary>
         public IEnumerable<OrderItem>? Items { get; set; }
         /// <summary>
-        /// Total price of the shopping cart now
+        /// Total price of the shopping cart 
         /// </summary>
         public double TotalPrice { get; set; }
         /// <summary>
