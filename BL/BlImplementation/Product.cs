@@ -18,7 +18,8 @@ namespace BlImplementation
         /// the function gets product to add to the products list (just if its id not exists) 
         /// </summary>
         /// <param name="newProduct"></param>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <exception cref="BO.BlInvalidInputException"></exception>
+        /// <exception cref="BO.BlIdAlreadyExistException"></exception>
         public void AddProduct(BO.Product newProduct)
         {
             if (newProduct.ID <= 0)//negative id

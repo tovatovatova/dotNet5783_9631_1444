@@ -140,6 +140,12 @@ namespace BlImplementation
             }
             return currentCart;
         }
+        /// <summary>
+        /// create an order from a cart
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <exception cref="BO.BlNullPropertyException">throw if cant convert to order-no items in cart</exception>
+        /// <exception cref="BO.BlInvalidInputException">throw if entered a falese input</exception>
         public void OrderCreate(BO.Cart cart)
         {
             //input validation
