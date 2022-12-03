@@ -82,24 +82,7 @@ namespace BlImplementation
                 throw new BO.BlNullPropertyException("cant delete, exist in orders");////565#$%&^*&
 
         }
-        /// <summary>
-        /// runs on all the products, creates ienumerable of product item and return
-        /// </summary>
-        /// <returns>IEnumerable<BO.ProductItem></returns>
-        /// <exception cref="NullReferenceException">throw if couldnt convert</exception>
-        public IEnumerable<BO.ProductItem> GetCatalog()
-        {
-            return from DO.Product? doProduct in dal.Product.GetAll()
-                   select new BO.ProductItem
-                   {
-                       ID = doProduct?.Id ?? throw new NullReferenceException("missing id"),
-                       Name = doProduct?.Name ?? throw new NullReferenceException("missing name"),
-                       Price = doProduct?.Price ?? throw new NullReferenceException("missing price"),
-                       Category = (BO.Category)(doProduct?.ProductCategoty ?? throw new NullReferenceException("missing category")),
-                       AmountInCart = doProduct?.AmountInStock ?? throw new NullReferenceException("missing name"),
-                       InStock = doProduct?.AmountInStock > 0 
-                  };
-        }
+        
         /// <summary>
         /// return product item in cart by the given id
         /// </summary>
@@ -216,6 +199,24 @@ namespace BlImplementation
 
             }
 
+        }
+        // <summary>
+        /// runs on all the products, creates ienumerable of product item and return
+        /// </summary>
+        /// <returns>IEnumerable<BO.ProductItem></returns>
+        /// <exception cref="NullReferenceException">throw if couldnt convert</exception>
+        public IEnumerable<BO.ProductItem> GetCatalog()
+        {
+            return from DO.Product? doProduct in dal.Product.GetAll()
+                   select new BO.ProductItem
+                   {
+                       ID = doProduct?.Id ?? throw new NullReferenceException("missing id"),
+                       Name = doProduct?.Name ?? throw new NullReferenceException("missing name"),
+                       Price = doProduct?.Price ?? throw new NullReferenceException("missing price"),
+                       Category = (BO.Category)(doProduct?.ProductCategoty ?? throw new NullReferenceException("missing category")),
+                       AmountInCart = 0,//we cant know here the amount in cart
+                       InStock = doProduct?.AmountInStock > 0
+                   };
         }
     }
 }

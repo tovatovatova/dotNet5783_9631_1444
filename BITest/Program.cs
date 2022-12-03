@@ -54,7 +54,8 @@ namespace BITest
                         case ProductActions.Add:
                             Product addProduct = new Product();
                             double price;
-                            int category;
+                           string x;
+                            Category category;
                             int stock;
 
                             Console.WriteLine("enter id of product:");
@@ -66,8 +67,9 @@ namespace BITest
                             if (!double.TryParse(Console.ReadLine(), out price)) throw new FormatException ("wrong input type");
                             addProduct.Price = price;
                             Console.WriteLine("enter category of product:");
-                            if (!int.TryParse(Console.ReadLine(), out category)) throw new FormatException ("wrong input type");
-                            if (category < 0 || category > 4)//#$%^&*()
+                            x= Console.ReadLine();
+                            if (!Category.TryParse(x, out category)) throw new FormatException ("wrong input type");
+                            if ((int)category < 0 || (int)category > 4)
                                 throw new ArgumentException("category doenst exist");
                             addProduct.Category = (Category)(category);
                             Console.WriteLine("enter amount in stock of product:");
@@ -91,7 +93,7 @@ namespace BITest
                             if (!double.TryParse(Console.ReadLine(), out price)) throw new FormatException ("wrong input type");
                             updateProduct.Price = price;
                             Console.WriteLine("enter category of product:");
-                            if (!int.TryParse(Console.ReadLine(), out category)) throw new FormatException ("wrong input type");
+                            if (!Category.TryParse(Console.ReadLine(), out category)) throw new FormatException ("wrong input type");
                             updateProduct.Category = (Category)category;
                             Console.WriteLine("enter amount in stock of product:");
                             if (!int.TryParse(Console.ReadLine(), out stock)) throw new FormatException ("wrong input type");
