@@ -155,7 +155,7 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("customer name");
             if (cart.CustomerAddress == " ")//empty address
                 throw new BO.BlInvalidInputException("customer address");
-            if (cart.CustomerEmail == " "||cart.CustomerEmail.Contains("@gmail.com")==false)//empty email or worng email
+            if (cart.CustomerEmail == null||cart.CustomerEmail.Contains("@gmail.com")==false)//empty email or worng email
                 throw new BO.BlInvalidInputException("customer email");
             if (cart.Items.All(item => item.Amount < 0))//negative amounts of items
                 throw new BO.BlInvalidInputException("items amount");
