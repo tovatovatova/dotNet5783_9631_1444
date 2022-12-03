@@ -48,7 +48,7 @@ namespace BITest
                         case ProductActions.ProductDetails:
                             int id;
                             Console.WriteLine("enter id of product:");
-                            if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type");
+                            if (!int.TryParse(Console.ReadLine(), out id)) throw new FormatException ("wrong input type");
                             Console.WriteLine(bl.Product.GetProductDetails(id));
                             break;
                         case ProductActions.Add:
@@ -58,43 +58,43 @@ namespace BITest
                             int stock;
 
                             Console.WriteLine("enter id of product:");
-                            if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type");
+                            if (!int.TryParse(Console.ReadLine(), out id)) throw new FormatException ("wrong input type");
                             addProduct.ID = id;
                             Console.WriteLine("enter name of product:");
                             addProduct.Name = Console.ReadLine();
                             Console.WriteLine("enter price of product:");
-                            if (!double.TryParse(Console.ReadLine(), out price)) throw new Exception("wrong input type");
+                            if (!double.TryParse(Console.ReadLine(), out price)) throw new FormatException ("wrong input type");
                             addProduct.Price = price;
                             Console.WriteLine("enter category of product:");
-                            if (!int.TryParse(Console.ReadLine(), out category)) throw new Exception("wrong input type");
+                            if (!int.TryParse(Console.ReadLine(), out category)) throw new FormatException ("wrong input type");
                             if (category < 0 || category > 4)//#$%^&*()
                                 throw new ArgumentException("category doenst exist");
                             addProduct.Category = (Category)(category);
                             Console.WriteLine("enter amount in stock of product:");
-                            if (!int.TryParse(Console.ReadLine(), out stock)) throw new Exception("wrong input type");
+                            if (!int.TryParse(Console.ReadLine(), out stock)) throw new FormatException ("wrong input type");
                             addProduct.InStock = stock;
                             bl.Product.AddProduct(addProduct);
                             break;
                         case ProductActions.Delete:
                             Console.WriteLine("enter id to delete product:");
-                            if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type");
+                            if (!int.TryParse(Console.ReadLine(), out id)) throw new FormatException ("wrong input type");
                             bl.Product.DeleteProduct(id);
                             break;
                         case ProductActions.Update:
                             Product updateProduct = new Product();
                             Console.WriteLine("enter id of product:");
-                            if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type");
+                            if (!int.TryParse(Console.ReadLine(), out id)) throw new FormatException ("wrong input type");
                             updateProduct.ID = id;
                             Console.WriteLine("enter name of product:");
                             updateProduct.Name = Console.ReadLine();
                             Console.WriteLine("enter price of product:");
-                            if (!double.TryParse(Console.ReadLine(), out price)) throw new Exception("wrong input type");
+                            if (!double.TryParse(Console.ReadLine(), out price)) throw new FormatException ("wrong input type");
                             updateProduct.Price = price;
                             Console.WriteLine("enter category of product:");
-                            if (!int.TryParse(Console.ReadLine(), out category)) throw new Exception("wrong input type");
+                            if (!int.TryParse(Console.ReadLine(), out category)) throw new FormatException ("wrong input type");
                             updateProduct.Category = (Category)category;
                             Console.WriteLine("enter amount in stock of product:");
-                            if (!int.TryParse(Console.ReadLine(), out stock)) throw new Exception("wrong input type");
+                            if (!int.TryParse(Console.ReadLine(), out stock)) throw new FormatException ("wrong input type");
                             updateProduct.InStock = stock;
                             bl.Product.UpdateProduct(updateProduct);
                             break;
@@ -104,7 +104,7 @@ namespace BITest
                             break;
                         case ProductActions.Product_in_Catalog:
                             Console.WriteLine("enter id of product:");
-                            if (!int.TryParse(Console.ReadLine(), out id)) throw new Exception("wrong input type");
+                            if (!int.TryParse(Console.ReadLine(), out id)) throw new FormatException ("wrong input type");
                             Console.WriteLine(bl.Product.GetProductByID(newCart, id));
                             break;
                         case ProductActions.Exit:
@@ -151,7 +151,7 @@ namespace BITest
             {
                 try
                 {
-                    if (!OrderActions.TryParse(Console.ReadLine(), out choi)) throw new Exception("wrong input type");
+                    if (!OrderActions.TryParse(Console.ReadLine(), out choi)) throw new FormatException ("wrong input type");
                     switch (choi)
                     {
                         case OrderActions.Get_Order:
@@ -210,7 +210,7 @@ namespace BITest
 0:exit");
             try
             {
-                if (!CartActions.TryParse(Console.ReadLine(), out choice)) throw new Exception("wrong input type");
+                if (!CartActions.TryParse(Console.ReadLine(), out choice)) throw new FormatException ("wrong input type");
                 while (choice != CartActions.Exit)
                 {
                     switch (choice)
