@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="ProductListWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="661*"/>
+            <ColumnDefinition Width="139*"/>
+        </Grid.ColumnDefinitions>
+
     </Grid>
 </Window>
