@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ProductWindow" Height="240" Width="700">
-    <Grid RenderTransformOrigin="0.781,0.689">
-        <Grid x:Name="grdAdd" RenderTransformOrigin="0.141,0.399" Background="#FF4CEECB" Margin="10,10,330,31" Visibility="Hidden">
-            <Grid ShowGridLines="True">
+    <Grid RenderTransformOrigin="0.781,0.689" d:IsHidden="True">
+        <Grid x:Name="grdAdd" RenderTransformOrigin="0.141,0.399" Background="#FF4CEECB" Margin="0,0,340,41" d:IsHidden="True">
+            <Grid ShowGridLines="True" d:IsHidden="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30" />
                     <RowDefinition Height="30" />
@@ -34,13 +34,15 @@
             <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="72,65,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="{x:Null}" d:IsLocked="True"/>
             <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Margin="72,126,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="{x:Null}" d:IsLocked="True"/>
             <Label x:Name="lblPrice" Content="price" HorizontalAlignment="Left" Margin="11,120,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.341,0.287"/>
-            <ComboBox x:Name="cmbCategory" HorizontalAlignment="Left" Margin="74,94,0,0" VerticalAlignment="Top" Width="120" BorderBrush="#FF171212" Visibility="Hidden"/>
+            <ComboBox x:Name="cmbCategory" HorizontalAlignment="Left" Margin="74,94,0,0" VerticalAlignment="Top" Width="120" BorderBrush="#FF171212"/>
             <Label x:Name="lblInStock" Content="inStock" HorizontalAlignment="Left" Margin="5,152,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtInStock" HorizontalAlignment="Left" Margin="75,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFA29C9C" Visibility="Hidden"/>
+            <TextBox x:Name="txtInStock" HorizontalAlignment="Left" Margin="75,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFA29C9C"/>
 
 
         </Grid>
-        <WrapPanel/>
+        <GroupBox x:Name="gbxAdd" Header="GroupBox" Content="add product" />
+
+
 
     </Grid>
 </Window>
