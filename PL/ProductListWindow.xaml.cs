@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlApi;
+using BlImplementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,18 @@ namespace PL
     /// </summary>
     public partial class ProductListWindow : Window
     {
+        private IBl bl = new Bl();
+
         public ProductListWindow()
         {
             InitializeComponent();
+            ProductListView.ItemsSource=bl.Product.GetProductList();
+            ProductSelector.ItemsSource=Enum.GetValues(typeof(BO.Category));
+        }
+
+        private void ProductSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ProductListView.ItemsSource = bl.Product.GetProductListByCategory(item => item.Category == ((BO.Category)(ProductSelector.SelectedItem)));
         }
     }
 }
