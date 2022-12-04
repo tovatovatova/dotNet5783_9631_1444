@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlApi;
+using BlImplementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,15 +22,13 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        private IBl bl = new Bl();
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void btnAdmin_Click(object sender, RoutedEventArgs e)
-        {
-            ProductWindow p = new ProductWindow();
-            p.Show();
-        }
+        private void btnAdmin_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
+       
     }
 }

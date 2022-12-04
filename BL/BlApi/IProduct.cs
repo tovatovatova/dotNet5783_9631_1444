@@ -18,8 +18,11 @@ namespace BlApi
 
       public  IEnumerable<BO.ProductItem?> GetCatalog();//client
       public  BO.ProductItem GetProductByID(Cart cart, int id);//client
-        
-       
+
+        public IEnumerable<BO.ProductItem> GetProductListByCategory(Func<Product?, bool>? filter);
+
+
+
 
 
 
