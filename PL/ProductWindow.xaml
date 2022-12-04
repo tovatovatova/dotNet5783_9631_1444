@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ProductWindow" Height="240" Width="700">
-    <Grid RenderTransformOrigin="0.781,0.689" d:IsHidden="True">
-        <Grid x:Name="grdAdd" RenderTransformOrigin="0.141,0.399" Background="#FF4CEECB" Margin="0,0,340,41" d:IsHidden="True">
-            <Grid ShowGridLines="True" d:IsHidden="True">
+    <Grid RenderTransformOrigin="0.781,0.689">
+        <Grid x:Name="grdAdd" RenderTransformOrigin="0.141,0.399" Background="#FF4CEECB" Margin="0,0,340,41">
+            <Grid ShowGridLines="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30" />
                     <RowDefinition Height="30" />
