@@ -2,6 +2,7 @@
 using BlImplementation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace PL
             InitializeComponent();
             ProductListView.ItemsSource=bl.Product.GetProductList();
             ProductSelector.ItemsSource=Enum.GetValues(typeof(BO.Category));
+          //  ProductSelector.ItemsSource += "none";
         }
 
         private void ProductSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
