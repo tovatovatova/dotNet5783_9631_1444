@@ -249,7 +249,7 @@ namespace BlImplementation
                                 where items.Value.OrderId == doOrder?.OrderId//if order item has the same order id as the order
                                 select new BO.OrderItem//choose those who stood in the conditions and convert them to order in BO
                                 {
-                                    ID = items.Value.OrderItemId,
+                                    ID = (int)(items?.OrderItemId),
                                     Name = dal.Product.GetById(items.Value.ProductId).Name,
                                     ProductID = items.Value.ProductId,
                                     Price = items.Value.Price,
