@@ -32,7 +32,11 @@ namespace PL
 
         private void ProductSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ProductListView.ItemsSource = bl.Product.GetProductListByCategory(item=>item.Category == ((BO.Category)(ProductSelector.SelectedItem)));
+            var list = from item in bl.Product.GetProductList()
+                       where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
+                       select item;
+            ProductListView.ItemsSource=list;
+            //ProductListView.ItemsSource = bl.Product.GetProductListByCategory(item => item.Category == ((BO.Category)(ProductSelector.SelectedItem)));
         }
     }
 }

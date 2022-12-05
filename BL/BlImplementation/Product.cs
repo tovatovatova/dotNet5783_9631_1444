@@ -218,23 +218,18 @@ namespace BlImplementation
                        InStock = doProduct?.AmountInStock > 0
                    };
         }
-        public IEnumerable<BO.ProductItem> GetProductListByCategory(Func<BO.Product?, bool>? filter)
-        {
-          return from DO.Product? prod in dal.Product.GetAll(item=>filter(item))
-                 select new BO.ProductItem
-                 {
-                     ID = prod?.Id ?? throw new NullReferenceException("missing id"),
-                     Name = prod?.Name ?? throw new NullReferenceException("missing name"),
-                     Price = prod?.Price ?? throw new NullReferenceException("missing price"),
-                     Category = (BO.Category)(prod?.ProductCategoty ?? throw new NullReferenceException("missing category")),
-                     AmountInCart = 0,//we cant know here the amount in cart
-                     InStock = prod?.AmountInStock > 0
-                 };
-        }
-        //private DO.Product convertToDo(BO.Product prod)
+        //public IEnumerable<BO.ProductItem> GetProductListByCategory(Func<BO.Product?, bool>? filter)
         //{
-        //    DO.Product item = new DO.Product() { Id = prod.ID, Name = prod.Name, AmountInStock = prod.InStock, Price = prod.Price, ProductCategoty = (DO.Category)(prod.Category) };
-        //    return item;
+        //   return from DO.Product? prod in dal.Product.GetAll(item => filter(item))//runs on all the products
+        //          select new BO.ProductItem
+        //          {
+        //              ID = prod?.Id ?? throw new NullReferenceException("missing id"),
+        //              Name = prod?.Name ?? throw new NullReferenceException("missing name"),
+        //              Price = prod?.Price ?? throw new NullReferenceException("missing price"),
+        //              Category = (BO.Category)(prod?.ProductCategoty ?? throw new NullReferenceException("missing category")),
+        //              AmountInCart = 0,//we cant know here the amount in cart
+        //              InStock = prod?.AmountInStock > 0
+        //          };
         //}
     }
 }

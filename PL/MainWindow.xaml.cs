@@ -15,6 +15,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
+
+
 namespace PL
 {
     /// <summary>
@@ -28,7 +31,7 @@ namespace PL
             InitializeComponent();
         }
 
-        private void btnAdmin_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
+       private void btnAdmin_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
        
     }
 }
