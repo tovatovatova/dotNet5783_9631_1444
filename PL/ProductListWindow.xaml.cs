@@ -27,16 +27,35 @@ namespace PL
         {
             InitializeComponent();
             ProductListView.ItemsSource=bl.Product.GetProductList();
-            ProductSelector.ItemsSource=Enum.GetValues(typeof(BO.Category));
+            //IEnumerable<string?> cat = Enum.GetNames(typeof(BO.Category));
+            //cat.Append("All Products");
+            ProductSelector.Items.Add("Cakes");
+            ProductSelector.Items.Add("Donats");
+            ProductSelector.Items.Add("GiftBoxes");
+            ProductSelector.Items.Add("Desserts");
+            ProductSelector.Items.Add("Specials");
+            ProductSelector.Items.Add("All Products");
+        
+           //ProductSelector.ItemsSource=cat/*Enum.GetValues(typeof(BO.Category))*/;
+           //ComboBoxItem returnAllItem=new ComboBoxItem();
+           //returnAllItem.Content = "All Product";
+           //ProductSelector.Items.Add(returnAllItem);
+
+
         }
 
         private void ProductSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if(ProductSelector.SelectedItem=="All Products")
+            {
+                ProductListView.ItemsSource = bl.Product.GetProductList();
+                return;
+            }
             var list = from item in bl.Product.GetProductList()
                        where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
                        select item;
             ProductListView.ItemsSource=list;
-            //ProductListView.ItemsSource = bl.Product.GetProductListByCategory(item => item.Category == ((BO.Category)(ProductSelector.SelectedItem)));
+
         }
     }
 }
