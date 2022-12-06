@@ -49,16 +49,18 @@ namespace PL
         public ProductWindow(object sender, EventArgs e, BO.ProsuctForList sender2)
         {
             InitializeComponent();
-            cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
-            BO.Product pt = bl.Product.GetProductDetails(sender2.ID);
-            cmbCategory.SelectedItem = sender2.Category;
-            txtID.Text =sender2.ID.ToString();
-            txtID.IsEnabled = false;
-           cmbCategory.IsEnabled = false;
-            txtPrice.Text=sender2.Price.ToString();
-            txtInStock.Text=pt.InStock.ToString();
-            txtName.Text = sender2.Name;
-
+            if (sender2 != null)
+            {
+                cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
+                BO.Product pt = bl.Product.GetProductDetails(sender2.ID);
+                cmbCategory.SelectedItem = sender2.Category;
+                txtID.Text = sender2.ID.ToString();
+                txtID.IsEnabled = false;
+                cmbCategory.IsEnabled = false;
+                txtPrice.Text = sender2.Price.ToString();
+                txtInStock.Text = pt.InStock.ToString();
+                txtName.Text = sender2.Name;
+            }
 
           //  Control container = new Control();
           
@@ -87,7 +89,7 @@ namespace PL
             newProduct.Price = Convert.ToInt32(txtPrice.Text);
             newProduct.InStock= Convert.ToInt32(txtInStock.Text);
             bl.Product.AddProduct(newProduct);
-            this.Close();
+            Close();
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -98,7 +100,7 @@ namespace PL
             newProduct.Price = Convert.ToInt32(txtPrice.Text);
             newProduct.InStock = Convert.ToInt32(txtInStock.Text);
             bl.Product.UpdateProduct(newProduct);
-            this.Close();
+            Close();
 
         }
     }

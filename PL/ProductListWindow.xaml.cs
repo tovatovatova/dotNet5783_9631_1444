@@ -26,6 +26,7 @@ namespace PL
 
         public ProductListWindow()
         {
+          
             InitializeComponent();
             ProductListView.Items.Clear();  
             ProductListView.ItemsSource=bl.Product.GetProductList();
@@ -34,11 +35,7 @@ namespace PL
 
         private void ProductSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(ProductSelector.SelectedItem=="All Products")
-            {
-                ProductListView.ItemsSource = bl.Product.GetProductList();
-                return;
-            }
+           
             var list = from item in bl.Product.GetProductList()
                        where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
                        select item;
@@ -55,13 +52,22 @@ namespace PL
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             ProductWindow p = new ProductWindow(e);
-            p.Show();
+            p.ShowDialog();
+            ProductListView.ItemsSource = bl.Product.GetProductList();
+
         }
 
         private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ProductWindow p = new ProductWindow(sender, e, (BO.ProsuctForList)ProductListView.SelectedItem);
             p.Show();
+          //  ProductListView.UnselectAll();
         }
+        private void ProductListView_SelectionChanged( SelectionChangedEventArgs e)
+        {
+            
+        }
+
+       
     }
 }
