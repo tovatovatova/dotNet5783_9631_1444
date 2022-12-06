@@ -34,11 +34,16 @@ namespace PL
 
         private void ProductSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if(ProductSelector.SelectedItem=="All Products")
+            {
+                ProductListView.ItemsSource = bl.Product.GetProductList();
+                return;
+            }
             var list = from item in bl.Product.GetProductList()
                        where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
                        select item;
             ProductListView.ItemsSource=list;
-            //ProductListView.ItemsSource = bl.Product.GetProductListByCategory(item => item.Category == ((BO.Category)(ProductSelector.SelectedItem)));
+
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
