@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ProductListWindow" Height="640" Width="800">
-    <Grid Name="MainGrid" ShowGridLines="False">
+    <Grid Name="MainGrid" ShowGridLines="False" Background="#FFF1CFE4">
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
@@ -21,14 +21,32 @@ VerticalAlignment="Stretch" Width="auto" ShowGridLines="False">
             <ComboBox x:Name="ProductSelector"  Grid.Column="1" Height="46" VerticalAlignment="Bottom" SelectionChanged="ProductSelector_SelectionChanged"/>
             <Label Content="product"   Grid.Column="0" Grid.Row="0" />
         </Grid>
-        <ListView x:Name="ProductListView" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView x:Name="ProductListView" Margin="109,46,0,208" Grid.RowSpan="2" SelectionChanged="ProductListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
+            <Button Content="Button"/>
         </ListView>
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="57,445,0,0" Grid.Row="1" VerticalAlignment="Top" Height="85" Width="185" FontFamily="Arial Black" FontSize="18" FontWeight="Bold" Click="btnAdd_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/pic.jpg.png"/>
+            </Button.Background>
+            <Button.BorderBrush>
+                <ImageBrush ImageSource="/pic2.png" Stretch="Fill" TileMode="None">
+                    <ImageBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform X="3"/>
+                        </TransformGroup>
+                    </ImageBrush.RelativeTransform>
+                </ImageBrush>
+            </Button.BorderBrush>
+        </Button>
 
     </Grid>
-   
+
 </Window>

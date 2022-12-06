@@ -27,9 +27,9 @@ namespace PL
         public ProductListWindow()
         {
             InitializeComponent();
+            ProductListView.Items.Clear();  
             ProductListView.ItemsSource=bl.Product.GetProductList();
             ProductSelector.ItemsSource=Enum.GetValues(typeof(BO.Category));
-          //  ProductSelector.ItemsSource += "none";
         }
 
         private void ProductSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,6 +39,24 @@ namespace PL
                        select item;
             ProductListView.ItemsSource=list;
             //ProductListView.ItemsSource = bl.Product.GetProductListByCategory(item => item.Category == ((BO.Category)(ProductSelector.SelectedItem)));
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            ProductWindow p=new ProductWindow(e);
+            p.Show();
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            ProductWindow p = new ProductWindow(e);
+            p.Show();
+        }
+
+        private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ProductWindow p = new ProductWindow(sender, e, (BO.ProsuctForList)ProductListView.SelectedItem);
+            p.Show();
         }
     }
 }

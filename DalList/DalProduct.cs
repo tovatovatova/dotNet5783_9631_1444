@@ -15,7 +15,9 @@ public class DalProduct : IProduct
     public int Add(Product newProduct)
     {
 
-        Product? addProduct = DataSource.ProductList.FirstOrDefault(prod => prod.Value.Id == newProduct.Id) ?? throw new DalIdAlreadyExistException(newProduct.Id, "product");
+       bool x= DataSource.ProductList.Any(prod => prod.Value.Id == newProduct.Id);
+            if(x)
+              throw new DalIdAlreadyExistException(newProduct.Id, "product");
         DataSource.ProductList.Add(newProduct);
         return newProduct.Id;
     }
