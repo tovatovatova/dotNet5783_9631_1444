@@ -30,7 +30,7 @@ namespace PL
             ProductListView.ItemsSource=bl.Product.GetProductList();
             //IEnumerable<string?> cat = Enum.GetNames(typeof(BO.Category));
             //cat.Append("All Products");
-            ProductSelector.Items.Add("Cakes");
+            ProductSelector.Items.Add(BO.Category.Cakes.ToString());
             ProductSelector.Items.Add("Donats");
             ProductSelector.Items.Add("GiftBoxes");
             ProductSelector.Items.Add("Desserts");
