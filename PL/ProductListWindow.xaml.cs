@@ -30,7 +30,12 @@ namespace PL
             InitializeComponent();
             ProductListView.Items.Clear();  
             ProductListView.ItemsSource=bl.Product.GetProductList();
-            ProductSelector.ItemsSource=Enum.GetValues(typeof(BO.Category));
+            ProductSelector.Items.Add("All products");
+            foreach (var item in Enum.GetValues(typeof(BO.Category)))
+            {
+                ProductSelector.Items.Add(item);
+            }
+           // ProductSelector.ItemsSource=Enum.GetValues(typeof(BO.Category));
         }
 
         private void ProductSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
