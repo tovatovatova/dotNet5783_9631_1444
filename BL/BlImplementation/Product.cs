@@ -46,7 +46,7 @@ namespace BlImplementation
             }
             catch (DO.DalIdAlreadyExistException ex)//product already exist
             {
-                throw new BO.BlIdAlreadyExistException("add product faild",ex);
+                throw new BO.BlIdAlreadyExistException("this ID already exist",ex);
             }
            
         }
@@ -155,7 +155,7 @@ namespace BlImplementation
         /// <returns>IEnumerable<BO.ProsuctForList?></returns>
         /// <exception cref="BO.BlNullPropertyException">throw if cant convert to product for list</exception>
         /// <exception cref="BO.BlWrongCategoryException">throw i=if cant convert category</exception>
-        public IEnumerable<BO.ProsuctForList?> GetProductList()
+        public IEnumerable<BO.ProsuctForList?> GetProductList(Func<BO.ProsuctForList?, bool>? filter = null)
         {
             return dal.Product.GetAll().Select(item => new BO.ProsuctForList//runs on all the product and for each one of them create a product for list and return
             {

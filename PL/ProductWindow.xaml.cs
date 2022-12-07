@@ -3,6 +3,7 @@ using BlImplementation;
 using BO;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace PL
 {
     /// <summary>
@@ -24,7 +26,7 @@ namespace PL
     {
         private IBl bl = new Bl();
         private BO.Product newProduct = new BO.Product() { };
-        private Brush red;
+        
 
         public ProductWindow()
         {
@@ -75,20 +77,50 @@ namespace PL
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
            
-            if (txtID.Text == null)
-                txtID.BorderBrush = red;
-            if (txtPrice.Text == null)
-                txtPrice.BorderBrush = red;
-            if (txtName.Text == null)
-                txtName.BorderBrush = red;
-            if (txtInStock.Text == null)
-                txtInStock.BorderBrush = red;
-            newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
-            newProduct.Name = txtName.Text.ToString();
-            newProduct.ID = Convert.ToInt32(txtID.Text);
-            newProduct.Price = Convert.ToInt32(txtPrice.Text);
-            newProduct.InStock= Convert.ToInt32(txtInStock.Text);
-            bl.Product.AddProduct(newProduct);
+            
+            List<TextBox> texts = new List<TextBox>();
+            texts.Add(txtID);
+            texts.Add(txtName);
+            texts.Add(txtPrice);
+            texts.Add(txtInStock);
+            int id,price,inStock;
+            if (int.TryParse(txtID.Text.ToString(), out id))
+                texts.Remove(txtID);
+            if (int.TryParse(txtPrice.Text.ToString(), out price))
+                texts.Remove(txtID);
+            if (int.TryParse(txtInStock.Text.ToString(), out inStock))
+                texts.Remove(txtID);
+            foreach (var item in texts)
+            {
+               
+            }
+          // foreach (TextBox text in texts) (text=> BorderBrush.Transform. )
+            //    txtID.BorderBrush = red;
+            //if (txtPrice.Text == null)
+            //    txtPrice.BorderBrush = red;
+            //if (txtName.Text == null)
+            //    txtName.BorderBrush = red;
+            //if (txtInStock.Text == null)
+            //    txtInStock.BorderBrush.SetValue(Colors.Red)
+            try
+            {
+                newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
+                newProduct.Name = txtName.Text.ToString();
+                newProduct.ID = Convert.ToInt32(txtID.Text);
+                newProduct.Price = Convert.ToInt32(txtPrice.Text);
+                newProduct.InStock = Convert.ToInt32(txtInStock.Text);
+                bl.Product.AddProduct(newProduct);
+            }
+            catch (BO.BlIdAlreadyExistException ex)
+            {
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                //MessageBoxButton button = MessageBoxButton.YesNoCancel;
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                //MessageBox.Show(ex.ToString() + "there is already product with the same ID");
+                result=MessageBox.Show(messageBoxText, caption, MessageBoxButton.OKCancel, icon,MessageBoxResult.OK);    
+            }
             Close();
         }
 
@@ -102,6 +134,11 @@ namespace PL
             bl.Product.UpdateProduct(newProduct);
             Close();
 
+        }
+
+        private void txtID_TouchEnter(object sender, TouchEventArgs e)
+        {
+            //if(bl.Product.GetProductList(Convert.ToInt32(txtID.Text.ToString())==)
         }
     }
 }

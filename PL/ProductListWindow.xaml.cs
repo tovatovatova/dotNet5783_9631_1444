@@ -53,14 +53,14 @@ namespace PL
         {
             ProductWindow p = new ProductWindow(e);
             p.ShowDialog();
-            ProductListView.ItemsSource = bl.Product.GetProductList();
+            ProductSelector.SelectedItem = ProductSelector.Items.GetItemAt(0);
+           // ProductListView.ItemsSource = bl.Product.GetProductList();
 
         }
 
         private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ProductWindow p = new ProductWindow(sender, e, (BO.ProsuctForList)ProductListView.SelectedItem);
-            p.Show();
+            
           //  ProductListView.UnselectAll();
         }
         private void ProductListView_SelectionChanged( SelectionChangedEventArgs e)
@@ -68,6 +68,10 @@ namespace PL
             
         }
 
-       
+        private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ProductWindow p = new ProductWindow(sender, e, (BO.ProsuctForList)ProductListView.SelectedItem);
+            p.Show();
+        }
     }
 }

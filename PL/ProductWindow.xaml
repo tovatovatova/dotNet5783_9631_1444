@@ -8,7 +8,7 @@
         Title="ProductWindow" Height="450" Width="800">
     <Grid Background="#FFF1CFE4">
         <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="306,349,0,0" VerticalAlignment="Top" Background="#FF32BBC4" Height="43" Width="94" FontFamily="Arial Black" FontSize="19" Click="btnAdd_Click"/>
-        <TextBox x:Name="txtID" HorizontalAlignment="Left" Margin="342,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#FFF1CFE4" Foreground="#FFF32929" BorderThickness="4,4,4,4"/>
+        <TextBox x:Name="txtID" HorizontalAlignment="Left" Margin="342,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#FFF1CFE4" Foreground="#FFF32929" BorderThickness="4,4,4,4" TouchEnter="txtID_TouchEnter"/>
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="342,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Margin="342,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
         <TextBox x:Name="txtInStock" HorizontalAlignment="Center" Margin="0,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

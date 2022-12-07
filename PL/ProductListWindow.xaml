@@ -22,7 +22,7 @@ VerticalAlignment="Stretch" Width="auto" ShowGridLines="False">
             </ComboBox>
             <Label Content="product"   Grid.Column="0" Grid.Row="0" />
         </Grid>
-        <ListView x:Name="ProductListView" Margin="0,46,0,188" Grid.RowSpan="2" SelectionChanged="ProductListView_SelectionChanged" HorizontalAlignment="Stretch" >
+        <ListView x:Name="ProductListView" Margin="0,46,0,188" Grid.RowSpan="2" SelectionChanged="ProductListView_SelectionChanged" HorizontalAlignment="Stretch" MouseDoubleClick="ProductListView_MouseDoubleClick" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
