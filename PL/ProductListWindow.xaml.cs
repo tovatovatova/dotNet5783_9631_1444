@@ -26,7 +26,9 @@ namespace PL
 
         public ProductListWindow()
         {
+          
             InitializeComponent();
+            ProductListView.Items.Clear();  
             ProductListView.ItemsSource=bl.Product.GetProductList();
             //IEnumerable<string?> cat = Enum.GetNames(typeof(BO.Category));
             //cat.Append("All Products");
@@ -42,21 +44,29 @@ namespace PL
            //returnAllItem.Content = "All Product";
            //ProductSelector.Items.Add(returnAllItem);
 
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            ProductWindow p = new ProductWindow(e);
+            p.ShowDialog();
+            ProductSelector.SelectedItem = ProductSelector.Items.GetItemAt(0);
+           // ProductListView.ItemsSource = bl.Product.GetProductList();
 
         }
 
-        private void ProductSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(ProductSelector.SelectedItem=="All Products")
-            {
-                ProductListView.ItemsSource = bl.Product.GetProductList();
-                return;
-            }
-            var list = from item in bl.Product.GetProductList()
-                       where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
-                       select item;
-            ProductListView.ItemsSource=list;
+            
+          //  ProductListView.UnselectAll();
+        }
+        private void ProductListView_SelectionChanged( SelectionChangedEventArgs e)
+        {
+            
+        }
 
+        private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ProductWindow p = new ProductWindow(sender, e, (BO.ProsuctForList)ProductListView.SelectedItem);
+            p.Show();
         }
     }
 }

@@ -1,0 +1,27 @@
+﻿<Window x:Class="PL.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="ProductWindow" Height="450" Width="800">
+    <Grid Background="#FFF1CFE4">
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="306,349,0,0" VerticalAlignment="Top" Background="#FF32BBC4" Height="43" Width="94" FontFamily="Arial Black" FontSize="19" Click="btnAdd_Click"/>
+        <TextBox x:Name="txtID" HorizontalAlignment="Left" Margin="342,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#FFF1CFE4" Foreground="#FFF32929" BorderThickness="4,4,4,4" TouchEnter="txtID_TouchEnter"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="342,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Margin="342,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="txtInStock" HorizontalAlignment="Center" Margin="0,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label HorizontalAlignment="Left" Margin="224,62,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Aharoni" FontWeight="Bold">
+            <Label x:Name="lblId" Content="product id:" RenderTransformOrigin="-0.602,-1.18" FontSize="14" FontFamily="Aharoni" FontWeight="Bold"/>
+        </Label>
+        <Label x:Name="lblCategory" Content="Category" HorizontalAlignment="Left" Margin="235,101,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.156,-0.718" FontSize="14" FontFamily="Aharoni" FontWeight="Bold"/>
+        <Label x:Name="lblName" Content="product name:" HorizontalAlignment="Left" Margin="214,152,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.302,0.117" FontSize="14" FontFamily="Aharoni" FontWeight="Bold"/>
+        <Label x:Name="lblInStock" Content="amount in stock" HorizontalAlignment="Left" Margin="200,253,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.277,0.117" FontSize="14" FontFamily="Aharoni" FontWeight="Bold"/>
+        <Label x:Name="lblPrice" Content="price:" HorizontalAlignment="Left" Margin="235,208,0,0" VerticalAlignment="Top" FontFamily="Aharoni" FontSize="14"/>
+        <ComboBox x:Name="cmbCategory" HorizontalAlignment="Center" Margin="0,109,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cmbCategory_SelectionChanged"/>
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="354,520,0,0" VerticalAlignment="Top" Height="56" Width="169" Click="btnUpdate_Click"/>
+        <Button x:Name="btnUpdate_Copy" Content="Update" HorizontalAlignment="Left" Margin="483,347,0,0" VerticalAlignment="Top" Height="50" Width="169" Click="btnUpdate_Click"/>
+
+    </Grid>
+</Window>
