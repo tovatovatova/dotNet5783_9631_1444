@@ -42,7 +42,7 @@ namespace PL
             //ComboBoxItem returnAllItem=new ComboBoxItem();
             //returnAllItem.Content = "All Product";
             //ProductSelector.Items.Add(returnAllItem);
-        }
+        
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
