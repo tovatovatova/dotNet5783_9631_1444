@@ -64,5 +64,10 @@ namespace PL
             ProductWindow p = new ProductWindow(sender, e, (BO.ProsuctForList)ProductListView.SelectedItem);
             p.Show();
         }
+
+        private void ProductSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
