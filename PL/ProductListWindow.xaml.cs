@@ -26,10 +26,10 @@ namespace PL
 
         public ProductListWindow()
         {
-          
+
             InitializeComponent();
-            ProductListView.Items.Clear();  
-            ProductListView.ItemsSource=bl.Product.GetProductList();
+            ProductListView.Items.Clear();
+            ProductListView.ItemsSource = bl.Product.GetProductList();
             //IEnumerable<string?> cat = Enum.GetNames(typeof(BO.Category));
             //cat.Append("All Products");
             ProductSelector.Items.Add(BO.Category.Cakes.ToString());
@@ -38,11 +38,12 @@ namespace PL
             ProductSelector.Items.Add("Desserts");
             ProductSelector.Items.Add("Specials");
             ProductSelector.Items.Add("All Products");
-        
-           //ProductSelector.ItemsSource=cat/*Enum.GetValues(typeof(BO.Category))*/;
-           //ComboBoxItem returnAllItem=new ComboBoxItem();
-           //returnAllItem.Content = "All Product";
-           //ProductSelector.Items.Add(returnAllItem);
+
+            //ProductSelector.ItemsSource=cat/*Enum.GetValues(typeof(BO.Category))*/;
+            //ComboBoxItem returnAllItem=new ComboBoxItem();
+            //returnAllItem.Content = "All Product";
+            //ProductSelector.Items.Add(returnAllItem);
+        }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
@@ -57,10 +58,6 @@ namespace PL
         {
             
           //  ProductListView.UnselectAll();
-        }
-        private void ProductListView_SelectionChanged( SelectionChangedEventArgs e)
-        {
-            
         }
 
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
