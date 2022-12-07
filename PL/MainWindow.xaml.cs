@@ -32,6 +32,7 @@ namespace PL
         }
 
        private void btnAdmin_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
-       
+
+        
     }
 }
