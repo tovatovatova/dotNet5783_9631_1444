@@ -88,13 +88,14 @@ namespace PL
             int check=0;
 
             
-            int id, price, inStock;
+            int id,  inStock;
+            double price;   
             if (int.TryParse(txtID.Text.ToString(), out id))
             {
                 check++;
                 texts.Remove(txtID);
             }
-            if (int.TryParse(txtPrice.Text.ToString(), out price))
+            if (double.TryParse(txtPrice.Text.ToString(), out price))
             {
                 texts.Remove(txtPrice);
                 check++;
@@ -116,7 +117,7 @@ namespace PL
                     newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
                     newProduct.Name = txtName.Text.ToString();
                     newProduct.ID = Convert.ToInt32(txtID.Text);
-                    newProduct.Price = Convert.ToInt32(txtPrice.Text);
+                    newProduct.Price = price;
                     newProduct.InStock = Convert.ToInt32(txtInStock.Text);
                     bl.Product.AddProduct(newProduct);
                 }
