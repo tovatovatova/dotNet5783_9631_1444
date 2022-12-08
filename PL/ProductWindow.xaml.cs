@@ -142,6 +142,7 @@ namespace PL
                     newProduct.Price = price;
                     newProduct.InStock = Convert.ToInt32(txtInStock.Text);
                     bl.Product.AddProduct(newProduct);
+                    Close();
                 }
                 catch (BO.BlIdAlreadyExistException ex)
                 {
@@ -156,7 +157,7 @@ namespace PL
                             item.Clear();
                         }
                 }
-                Close();
+                
             }
             else
             {

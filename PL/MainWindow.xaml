@@ -7,11 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="#FFF1CFE4">
-        <Button x:Name="btnAdmin" Content="Admin" HorizontalAlignment="Left" Margin="251,175,0,0" VerticalAlignment="Top" Height="77" Width="220" Click="btnAdmin_Click" FontSize="19" FontFamily="Arial Black" FontWeight="Bold" Foreground="#FFEFF0F1">
+        <Button x:Name="btnAdmin" Content="Admin" HorizontalAlignment="Left" Margin="251,175,0,0" VerticalAlignment="Top" Height="77" Width="220" Click="btnAdmin_Click" FontSize="19" FontFamily="Arial Black" FontWeight="Bold" Foreground="#FFEFF0F1" PreviewTouchDown="btnAdmin_PreviewTouchDown">
             <Button.Background>
                 <ImageBrush ImageSource="/pic.jpg.png"/>
+                
             </Button.Background>
         </Button>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="307,311,0,0" VerticalAlignment="Top" Visibility="Hidden" >
+            <Button.Background>
+                <ImageBrush ImageSource="/pic2.png"/>
+            </Button.Background>
+        </Button>
+
+
+
 
     </Grid>
 </Window>
