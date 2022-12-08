@@ -100,7 +100,7 @@ namespace PL
            Image image = new Image();
             string path = System.AppDomain.CurrentDomain.BaseDirectory + "pic2.png";
             // image.Source = new Uri("C: \Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pic2.png")
-           image.Source = new BitmapImage(new Uri(path));
+           //.Source = new BitmapImage(new Uri(path));
             //btnAdd.Background = Brushes(image);
             //btnAdd.Background = image.Source("pic2.jpg");
             ProductWindow p = new ProductWindow();
