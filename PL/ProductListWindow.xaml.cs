@@ -38,7 +38,7 @@ namespace PL
             {
                 ProductSelector.Items.Add(item);
             }
-            
+
 
         }
 
@@ -48,14 +48,7 @@ namespace PL
         //ProductSelector.Items.Add(returnAllItem);
 
 
-        //private void btnUpdate_Click(object sender, RoutedEventArgs e)
-        //{
-        //    ProductWindow p = new ProductWindow();
-        //    p.ShowDialog();
-        //    ProductSelector.SelectedItem = ProductSelector.Items.GetItemAt(0);
-        //    // ProductListView.ItemsSource = bl.Product.GetProductList();
 
-        //}
 
 
 
@@ -65,36 +58,36 @@ namespace PL
             ProductWindow p = new ProductWindow(sender, e, ((BO.ProsuctForList)ProductListView.SelectedItem).ID);
             p.ShowDialog();
             ProductSelector.SelectedItem = ProductSelector.Items.GetItemAt(0);
+            ProductListView.ItemsSource = bl.Product.GetProductList();
         }
+
+
+
+
+
 
         private void ProductSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-
             if (ProductSelector.SelectedItem == ProductSelector.Items.GetItemAt(0))
             {
                 ProductListView.ItemsSource = bl.Product.GetProductList();
-
+                return;
             }
 
-            else
-            {
-                var list = from item in bl.Product.GetProductList()
-                           where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
-                           select item;
-                ProductListView.ItemsSource = list;
-
-
-
-            }
-
-
-
+            var list = from item in bl.Product.GetProductList()
+                       where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
+                       select item;
+            ProductListView.ItemsSource = list;
         }
+
+       
+
+
+
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-          
+
             ProductWindow p = new ProductWindow();
 
             p.ShowDialog();
@@ -117,5 +110,7 @@ namespace PL
                 ProductListView.ItemsSource = list;
             }
         }
+
+       
     }
 }
