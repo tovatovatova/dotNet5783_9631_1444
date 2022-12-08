@@ -24,6 +24,7 @@ namespace PL
     public partial class ProductListWindow : Window
     {
         private IBl bl = new Bl();
+
         public ProductListWindow()
         {
 
@@ -37,10 +38,8 @@ namespace PL
             {
                 ProductSelector.Items.Add(item);
             }
+            
 
-           
-            //ProductSelector.Items.DeferRefresh();
-            // ProductSelector.ItemsSource=Enum.GetValues(typeof(BO.Category));
         }
 
         //ProductSelector.ItemsSource=cat/*Enum.GetValues(typeof(BO.Category))*/;
@@ -80,12 +79,10 @@ namespace PL
 
             else
             {
-                //var list = from item in bl.Product.GetProductList()
-                //           where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
-                //           select item;
-                //ProductListView.ItemsSource = list;
-                ProductListView.ItemsSource = bl.Product.GetListedListByCategory(item => item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString()));
-
+                var list = from item in bl.Product.GetProductList()
+                           where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
+                           select item;
+                ProductListView.ItemsSource = list;
 
 
 
@@ -97,12 +94,7 @@ namespace PL
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-           Image image = new Image();
-            string path = System.AppDomain.CurrentDomain.BaseDirectory + "pic2.png";
-            // image.Source = new Uri("C: \Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pic2.png")
-           image.Source = new BitmapImage(new Uri(path));
-            //btnAdd.Background = Brushes(image);
-            //btnAdd.Background = image.Source("pic2.jpg");
+          
             ProductWindow p = new ProductWindow();
 
             p.ShowDialog();
