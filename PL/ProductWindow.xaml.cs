@@ -190,8 +190,7 @@ namespace PL
             texts.Clear();
             double price;
             int inStock;
-            string invalid = "";
-            bool flag = true;
+            
             BO.Category cat;
             cat = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
 
