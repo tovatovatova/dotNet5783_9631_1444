@@ -20,7 +20,7 @@ namespace PL
     /// <summary>
     /// Interaction logic for ProductListWindow.xaml
     /// </summary>
-   
+
     public partial class ProductListWindow : Window
     {
         private IBl bl = new Bl();
@@ -31,10 +31,15 @@ namespace PL
             ProductListView.Items.Clear();
             ProductListView.ItemsSource = bl.Product.GetProductList();
             ProductSelector.Items.Add("All products");
+
+            ProductSelector.SelectedItem = ProductSelector.Items.GetItemAt(0);
             foreach (var item in Enum.GetValues(typeof(BO.Category)))
             {
                 ProductSelector.Items.Add(item);
             }
+
+           
+            //ProductSelector.Items.DeferRefresh();
             // ProductSelector.ItemsSource=Enum.GetValues(typeof(BO.Category));
         }
 
@@ -52,9 +57,9 @@ namespace PL
         //    // ProductListView.ItemsSource = bl.Product.GetProductList();
 
         //}
-        
 
-           
+
+
 
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -65,14 +70,8 @@ namespace PL
 
         private void ProductSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //int index = ProductSelector.SelectedIndex;
-            //ProductSelector.Items.Clear();
-            //ProductSelector.Items.Add("All products");
-            //foreach (var item in Enum.GetValues(typeof(BO.Category)))
-            //{
-            //    ProductSelector.Items.Add(item);
-            //}
-            
+
+
             if (ProductSelector.SelectedItem == ProductSelector.Items.GetItemAt(0))
             {
                 ProductListView.ItemsSource = bl.Product.GetProductList();
@@ -86,37 +85,28 @@ namespace PL
                            select item;
                 ProductListView.ItemsSource = list;
             }
-               // ProductSelector.Items.RemoveAt(index);
-               
+
+
 
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            
-                ProductWindow p = new ProductWindow();
-                
-                p.ShowDialog();
-                ProductListView.ItemsSource = bl.Product.GetProductList();
-            
+
+            ProductWindow p = new ProductWindow();
+
+            p.ShowDialog();
+            ProductListView.ItemsSource = bl.Product.GetProductList();
+
         }
 
         private void ProductSelector_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            int index = ProductSelector.SelectedIndex;
-            ProductSelector.Items.Clear();
-            ProductSelector.Items.Add("All products");
-            foreach (var item in Enum.GetValues(typeof(BO.Category)))
-            {
-                ProductSelector.Items.Add(item);
-            }
-
             if (ProductSelector.SelectedItem == ProductSelector.Items.GetItemAt(0))
             {
                 ProductListView.ItemsSource = bl.Product.GetProductList();
 
             }
-
             else
             {
                 var list = from item in bl.Product.GetProductList()
@@ -124,9 +114,6 @@ namespace PL
                            select item;
                 ProductListView.ItemsSource = list;
             }
-            ProductSelector.Items.RemoveAt(index);
-
-        
-    }
+        }
     }
 }

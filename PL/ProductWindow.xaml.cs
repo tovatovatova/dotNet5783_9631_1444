@@ -1,10 +1,11 @@
 ﻿using BlApi;
 using BlImplementation;
-using BO;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -27,14 +29,14 @@ namespace PL
     {
         private IBl bl = new Bl();
         private BO.Product newProduct = new BO.Product() { };
-            List<TextBox> texts = new List<TextBox>();
+        List<TextBox> texts = new List<TextBox>();
 
 
         public ProductWindow()
         {
             InitializeComponent();
-           
-            
+
+
             cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
             btnAdd.Visibility = Visibility.Visible;
             texts.Add(txtID);
@@ -46,11 +48,11 @@ namespace PL
         //public ProductWindow(EventArgs btnAdd_Click)
         //{
         //    InitializeComponent();
-           
-            
+
+
         //    cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
         //  //  Control container = new Control();
-          
+
 
         //}
         public ProductWindow(object sender, EventArgs e, BO.ProsuctForList sender2)
@@ -63,7 +65,7 @@ namespace PL
                 cmbCategory.SelectedItem = sender2.Category;
                 txtID.Text = sender2.ID.ToString();
                 txtID.IsEnabled = false;
-                cmbCategory.IsEnabled = false;
+                //cmbCategory.IsEnabled = false;
                 txtPrice.Text = sender2.Price.ToString();
                 txtInStock.Text = pt.InStock.ToString();
                 txtName.Text = sender2.Name;
@@ -83,13 +85,13 @@ namespace PL
         {
             foreach (var item in texts)
             {
-             
-            }
-            int check=0;
 
-            
-            int id,  inStock;
-            double price;   
+            }
+            int check = 0;
+
+
+            int id, inStock;
+            double price;
             if (int.TryParse(txtID.Text.ToString(), out id))
             {
                 check++;
@@ -110,7 +112,7 @@ namespace PL
                 texts.Remove(txtName);
                 check++;
             }
-            if (check==4)
+            if (check == 4)
             {
                 try
                 {
@@ -128,7 +130,7 @@ namespace PL
                     MessageBoxImage icon = MessageBoxImage.Error;
                     MessageBoxResult result;
                     result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                    if(result == MessageBoxResult.OK)
+                    if (result == MessageBoxResult.OK)
                         foreach (var item in texts)
                         {
                             item.Clear();
@@ -151,28 +153,79 @@ namespace PL
                     {
                         item.Focus();
                         item.BorderBrush = new SolidColorBrush(Colors.Red);
-                        item.IsTabStop=IsTabStop;
-                       
+                        item.IsTabStop = IsTabStop;
+
                     }
                     Keyboard.ClearFocus();
                 }
 
-               
+
 
             }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            try
+            texts.Clear();
+            double price;
+            int inStock;
+            string invalid = "";
+            bool flag = true;
+            BO.Category cat;
+            cat = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
+
+            if (!double.TryParse(txtPrice.Text.ToString(), out price))
             {
-                newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
-                newProduct.Name = txtName.Text.ToString();
-                newProduct.ID = Convert.ToInt32(txtID.Text);
-                newProduct.Price = Convert.ToInt32(txtPrice.Text);
-                newProduct.InStock = Convert.ToInt32(txtInStock.Text);
-                bl.Product.UpdateProduct(newProduct);
+                texts.Add(txtPrice);
+                lblXPrice.Visibility = Visibility;
             }
+            else if (price < 0)
+            {
+                texts.Add(txtPrice);
+                lblXPrice.Visibility = Visibility;
+            }
+            if (!int.TryParse(txtInStock.Text.ToString(), out inStock))
+            {
+                texts.Add(txtInStock);
+                lblXInStock.Visibility = Visibility;
+
+            }
+            else if (inStock < 0)
+            {
+                texts.Add(txtInStock);
+                lblXInStock.Visibility = Visibility;
+            }
+            if (txtName.Text == "")
+            {
+                texts.Add(txtName);
+                lblXName.Visibility = Visibility;
+            }
+            if (texts.Count > 0)//there is at least one error with at least one input
+            {
+                string messageBoxText = "you insert invalid values\n please try again";
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                if (result == MessageBoxResult.OK)
+                {
+                    foreach (var item in texts)
+                    {
+                        item.BorderBrush = new SolidColorBrush(Colors.Red);
+                    }
+                }
+
+            }
+           else try
+            {
+                newProduct.Category = cat;
+                newProduct.Name = txtName.Text;
+                newProduct.ID = Convert.ToInt32(txtID.Text);
+                newProduct.Price = price;
+                newProduct.InStock = inStock;
+                bl.Product.UpdateProduct(newProduct);
+                    Close();
+                }
             catch (BO.BlIdDoNotExistException ex)
             {
                 string messageBoxText = ex.Message.ToString();
@@ -187,7 +240,7 @@ namespace PL
             }
             catch (BO.BlInvalidInputException ex)
             {
-                string messageBoxText = ex.ToString()+"\ntry again";
+                string messageBoxText = ex.ToString() + "\ntry again";
                 string caption = "error";
                 MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBoxResult result;
@@ -203,13 +256,26 @@ namespace PL
             //newProduct.Price = Convert.ToInt32(txtPrice.Text);
             //newProduct.InStock = Convert.ToInt32(txtInStock.Text);
             //bl.Product.UpdateProduct(newProduct);
-            Close();
-            
+          
+
 
         }
 
-       
+        private void txtName_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            string messageBoxText = "yoooo";
+            string caption = "error";
+            MessageBoxImage icon = MessageBoxImage.Error;
+            MessageBoxResult result;
+            result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
 
-   
+        }
+        //event happens when user press left mouse button (no matter where)
+        private void mainGrid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            lblXInStock.Visibility = Visibility.Hidden;
+            lblXName.Visibility = Visibility.Hidden;
+            lblXPrice.Visibility= Visibility.Hidden;
+        }
     }
 }
