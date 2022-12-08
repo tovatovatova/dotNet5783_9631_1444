@@ -68,13 +68,14 @@ namespace PL
                 string messageBoxText = ex.Message.ToString();
                 string caption = "error";
                 MessageBoxImage icon = MessageBoxImage.Error;
-
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
             }
             cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
             cmbCategory.SelectedItem = p.Category;
             txtID.Text = p.ID.ToString();
             txtID.IsEnabled = false;
-            cmbCategory.IsEnabled = false;
+            cmbCategory.IsEnabled = true;
             txtPrice.Text = p.Price.ToString();
             txtInStock.Text = p.InStock.ToString();
             txtName.Text = p.Name;

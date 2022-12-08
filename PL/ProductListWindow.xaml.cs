@@ -120,5 +120,7 @@ namespace PL
                 ProductListView.ItemsSource = list;
             }
         }
+
+        
     }
 }

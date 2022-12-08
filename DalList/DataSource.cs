@@ -39,7 +39,8 @@ internal static class DataSource
         { "birthday cake", "high cream cake", "color block cake" } ,
         { "lotus donat", "oreo donat", "mix donat" },
         { "chokolate ice Cream", "vanile ice cream" ,"lotus ice cream"},
-        { "mix Desserts", "mini donats", "mix mini cupcakes" },{ "vafel belgi", "crep", "frozen" }
+        { "mix Desserts", "mini donats", "mix mini cupcakes" },
+        { "vafel belgi", "crep", "frozen" }
     };
     private static void createAndIinitProducts()
     {

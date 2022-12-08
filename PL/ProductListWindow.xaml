@@ -28,6 +28,7 @@
                         <GradientStop Color="#FF41CFA8" Offset="1"/>
                     </LinearGradientBrush>
                 </ComboBox.OpacityMask>
+                
             </ComboBox>
             <Label Content="PRODUCTS:"   Grid.Column="0" Grid.Row="0" FontFamily="Algerian" FontSize="20" OpacityMask="Black" >
                 <Label.Style>
