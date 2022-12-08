@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ProductWindow" Height="450" Width="800">
-    <Grid  Name="mainGrid" Background="#FFF1CFE4">
+    <Grid  Name="mainGrid" Background="#FFF1CFE4" PreviewMouseLeftButtonDown="mainGrid_PreviewMouseLeftButtonDown">
         <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="306,349,0,0" VerticalAlignment="Top" Background="#FF32BBC4" Height="43" Width="94" FontFamily="Arial Black" FontSize="19" Click="btnAdd_Click" Visibility="Hidden"/>
         <TextBox x:Name="txtID" HorizontalAlignment="Left" Margin="342,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#FFF1CFE4" Foreground="#FF1C1313" BorderThickness="4,4,4,4" />
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="342,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="4,4,4,4" BorderBrush="#FFF1CFE4"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="342,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="4,4,4,4" BorderBrush="#FFF1CFE4"  />
         <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Margin="342,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" BorderThickness="4,4,4,4" BorderBrush="#FFF1CFE4"/>
         <TextBox x:Name="txtInStock" HorizontalAlignment="Center" Margin="0,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="4,4,4,4" BorderBrush="#FFF1CFE4" />
         <Label HorizontalAlignment="Left" Margin="224,62,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Aharoni" FontWeight="Bold">
@@ -21,6 +21,9 @@
         <Label x:Name="lblPrice" Content="price:" HorizontalAlignment="Left" Margin="235,208,0,0" VerticalAlignment="Top" FontFamily="Aharoni" FontSize="14"/>
         <ComboBox x:Name="cmbCategory" HorizontalAlignment="Center" Margin="0,109,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cmbCategory_SelectionChanged"/>
         <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="483,347,0,0" VerticalAlignment="Top" Height="50" Width="169" Click="btnUpdate_Click" Background="#FF32BBC4" Visibility="Hidden"/>
+        <Label x:Name="lblXPrice" Content="*" HorizontalAlignment="Left" Margin="472,207,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFA1B1B" FontSize="25" FontFamily="Arial Black" Height="25" Width="20" Visibility="Hidden"/>
+        <Label x:Name="lblXName" Content="*" HorizontalAlignment="Left" Margin="472,159,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFA1B1B" FontSize="25" FontFamily="Arial Black" Height="25" Width="20" Visibility="Hidden"/>
+        <Label x:Name="lblXInStock" Content="*" HorizontalAlignment="Left" Margin="472,252,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFA1B1B" FontSize="25" FontFamily="Arial Black" Height="25" Width="20" RenderTransformOrigin="0.982,8.476" Visibility="Hidden"/>
 
     </Grid>
 </Window>
