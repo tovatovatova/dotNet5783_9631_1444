@@ -35,7 +35,7 @@ namespace PL
 
         private void btnAdmin_PreviewTouchDown(object sender, TouchEventArgs e)
         {
-            btnAdmin.Style=button
+            //btnAdmin.Style = button
         }
     }
 }
