@@ -53,23 +53,43 @@ namespace PL
           
 
         //}
-        public ProductWindow(object sender, EventArgs e, BO.ProsuctForList sender2)
+        public ProductWindow(object sender, EventArgs e,int id /*BO.ProsuctForList sender2*/)
         {
             InitializeComponent();
-            if (sender2 != null)
+            BO.Product p=new BO.Product();
+            try
             {
-                cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
-                BO.Product pt = bl.Product.GetProductDetails(sender2.ID);
-                cmbCategory.SelectedItem = sender2.Category;
-                txtID.Text = sender2.ID.ToString();
-                txtID.IsEnabled = false;
-                cmbCategory.IsEnabled = false;
-                txtPrice.Text = sender2.Price.ToString();
-                txtInStock.Text = pt.InStock.ToString();
-                txtName.Text = sender2.Name;
+                p=bl.Product.GetProductDetails(id);
             }
+            catch (BO.BlIdDoNotExistException ex)
+            {
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+
+            }
+            cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            cmbCategory.SelectedItem = p.Category;
+            txtID.Text = p.ID.ToString();
+            txtID.IsEnabled = false;
+            cmbCategory.IsEnabled = false;
+            txtPrice.Text = p.Price.ToString();
+            txtInStock.Text = p.InStock.ToString();
+            txtName.Text = p.Name;
+            //if (sender2 != null)
+            //{
+            //    cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            //    BO.Product pt = bl.Product.GetProductDetails(sender2.ID);
+            //    cmbCategory.SelectedItem = sender2.Category;
+            //    txtID.Text = sender2.ID.ToString();
+            //    txtID.IsEnabled = false;
+            //    cmbCategory.IsEnabled = false;
+            //    txtPrice.Text = sender2.Price.ToString();
+            //    txtInStock.Text = pt.InStock.ToString();
+            //    txtName.Text = sender2.Name;
+            //}
             btnUpdate.Visibility = Visibility.Visible;
-            //  Control container = new Control();
+            Control container = new Control();
 
 
         }

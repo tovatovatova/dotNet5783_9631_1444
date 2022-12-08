@@ -155,7 +155,7 @@ namespace BlImplementation
         /// <returns>IEnumerable<BO.ProsuctForList?></returns>
         /// <exception cref="BO.BlNullPropertyException">throw if cant convert to product for list</exception>
         /// <exception cref="BO.BlWrongCategoryException">throw i=if cant convert category</exception>
-        public IEnumerable<BO.ProsuctForList?> GetProductList(Func<BO.ProsuctForList?, bool>? filter = null)
+        public IEnumerable<BO.ProsuctForList?> GetProductList()
         {
             return dal.Product.GetAll().Select(item => new BO.ProsuctForList//runs on all the product and for each one of them create a product for list and return
             {
@@ -164,6 +164,12 @@ namespace BlImplementation
                 Category = (BO.Category?)item?.ProductCategoty ?? throw new BO.BlWrongCategoryException("worng category"),
                 Price = item?.Price ?? 0
             });
+        }
+        public IEnumerable<BO.ProsuctForList?> GetListedListByCategory(Func<BO.ProsuctForList?, bool>? filter = null)
+        {
+            return from BO.ProsuctForList p in GetProductList()
+                   where filter(p)
+                   select p;        
         }
         /// <summary>
         /// update product

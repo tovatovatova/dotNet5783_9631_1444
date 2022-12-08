@@ -10,7 +10,7 @@ namespace BlApi
 {
    public interface IProduct
     {
-        public  IEnumerable<BO.ProsuctForList?> GetProductList(Func<BO.ProsuctForList?, bool>? filter = null);//manager
+        public  IEnumerable<BO.ProsuctForList?> GetProductList();//manager
         public BO.Product GetProductDetails(int id);//manager
         public void AddProduct(BO.Product newProduct);//manager
         public void DeleteProduct(int id);//manager
@@ -19,7 +19,7 @@ namespace BlApi
       public  IEnumerable<BO.ProductItem?> GetCatalog();//client
       public  BO.ProductItem GetProductByID(Cart cart, int id);//client
 
-      //  public IEnumerable<BO.ProductItem> GetProductListByCategory(Func<Product?, bool>? filter);
+        public IEnumerable<BO.ProsuctForList?> GetListedListByCategory(Func<BO.ProsuctForList?, bool>? filter = null);
 
 
 

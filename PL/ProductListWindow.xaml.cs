@@ -58,7 +58,7 @@ namespace PL
 
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ProductWindow p = new ProductWindow(sender, e, (BO.ProsuctForList)ProductListView.SelectedItem);
+            ProductWindow p = new ProductWindow(sender, e, ((BO.ProsuctForList)ProductListView.SelectedItem).ID);
             p.ShowDialog();
             ProductSelector.SelectedItem = ProductSelector.Items.GetItemAt(0);
         }
@@ -81,10 +81,15 @@ namespace PL
 
             else
             {
-                var list = from item in bl.Product.GetProductList()
-                           where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
-                           select item;
-                ProductListView.ItemsSource = list;
+                //var list = from item in bl.Product.GetProductList()
+                //           where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
+                //           select item;
+                //ProductListView.ItemsSource = list;
+                ProductListView.ItemsSource = bl.Product.GetListedListByCategory(item => item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString()));
+
+
+
+
             }
                // ProductSelector.Items.RemoveAt(index);
                
