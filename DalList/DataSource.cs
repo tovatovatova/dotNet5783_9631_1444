@@ -45,11 +45,11 @@ internal static class DataSource
     private static void createAndIinitProducts()
     {
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 15; i++)
         {
             Product addProduct = new Product();
             addProduct.Id = 100000 + i;
-            addProduct.ProductCategoty = (Category)randNumbers.Next(4);//casting for category
+            addProduct.ProductCategoty = (Category)randNumbers.Next(5);//casting for category
             addProduct.Name = productsNames[(int)addProduct.ProductCategoty, randNumbers.Next(2)];
             addProduct.Price = randNumbers.Next(25, 70);
             if (i < 10 * 0.05)//5% of the products have 0 amount in stock

@@ -31,14 +31,14 @@ namespace PL
         private BO.Product newProduct = new BO.Product() { };
         List<TextBox> texts = new List<TextBox>();
 
-
+        /// <summary>
+        /// initialization. options for adding(add btn) or updating(double click on product)
+        /// </summary>
         public ProductWindow()
         {
             InitializeComponent();
-
-
             cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
-            btnAdd.Visibility = Visibility.Visible;
+            btnAdd.Visibility = Visibility.Visible;//can see add btn
             texts.Add(txtID);
             texts.Add(txtName);
             texts.Add(txtPrice);
@@ -55,64 +55,49 @@ namespace PL
 
 
         //}
+        /// <summary>
+        /// gets an id of product-return the product for BO and show its details
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="id"></param>
         public ProductWindow(object sender, EventArgs e,int id )
         {
             InitializeComponent();
             BO.Product p=new BO.Product();
             try
             {
-                p=bl.Product.GetProductDetails(id);
+                p=bl.Product.GetProductDetails(id);//return product from BO 
             }
-            catch (BO.BlIdDoNotExistException ex)
-            {
+            catch (BO.BlIdDoNotExistException ex)//product doesnt exist
+            {//throw an error message box 
                 string messageBoxText = ex.Message.ToString();
                 string caption = "error";
                 MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
             }
+            //show details of product
             cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
             cmbCategory.SelectedItem = p.Category;
             txtID.Text = p.ID.ToString();
-            txtID.IsEnabled = false;
-           
+            txtID.IsEnabled = false;//cant change id
             txtPrice.Text = p.Price.ToString();
             txtInStock.Text = p.InStock.ToString();
             txtName.Text = p.Name;
-            //if (sender2 != null)
-            //{
-            //    cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
-            //    BO.Product pt = bl.Product.GetProductDetails(sender2.ID);
-            //    cmbCategory.SelectedItem = sender2.Category;
-            //    txtID.Text = sender2.ID.ToString();
-            //    txtID.IsEnabled = false;
-            //    cmbCategory.IsEnabled = false;
-            //    txtPrice.Text = sender2.Price.ToString();
-            //    txtInStock.Text = pt.InStock.ToString();
-            //    txtName.Text = sender2.Name;
-            //}
             btnUpdate.Visibility = Visibility.Visible;
-            Control container = new Control();
-
-
         }
-
-
-        //private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //}
-
+        /// <summary>
+        /// adding new product
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var item in texts)
-            {
-
-            }
             int check = 0;
-
-
             int id, inStock;
             double price;
+            //input validation-if check==4 all basic options for error are covered
             if (int.TryParse(txtID.Text.ToString(), out id))
             {
                 check++;
@@ -142,28 +127,27 @@ namespace PL
                     newProduct.ID = Convert.ToInt32(txtID.Text);
                     newProduct.Price = price;
                     newProduct.InStock = Convert.ToInt32(txtInStock.Text);
-                    bl.Product.AddProduct(newProduct);
+                    bl.Product.AddProduct(newProduct);//send to BO for adding
                     Close();
                 }
-                catch (BO.BlIdAlreadyExistException ex)
-                {
+                catch (BO.BlIdAlreadyExistException ex)//if product already exist
+                {//throw an error message box
                     string messageBoxText = ex.Message.ToString();
                     string caption = "error";
                     MessageBoxImage icon = MessageBoxImage.Error;
                     MessageBoxResult result;
                     result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
                     if (result == MessageBoxResult.OK)
-                        foreach (var item in texts)
+                        foreach (var item in texts)//clear details that were written
                         {
                             item.Clear();
                         }
                 }
                 
             }
-            else
-            {
+            else//incorrect input
+            {//throw an error message box
                 string messageBoxText = "invalid values";
-
                 string caption = "error";
                 MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBoxResult result;
@@ -171,27 +155,25 @@ namespace PL
                 if (result == MessageBoxResult.OK)
                 {
                     foreach (var item in texts)
-
                     {
                         item.Focus();
                         item.BorderBrush = new SolidColorBrush(Colors.Red);
                         item.IsTabStop = IsTabStop;
-
                     }
                     Keyboard.ClearFocus();
                 }
-
-
-
             }
         }
-
+        /// <summary>
+        /// updating product 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             texts.Clear();
             double price;
-            int inStock;
-            
+            int inStock;           
             BO.Category cat;
             cat = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
 
@@ -282,21 +264,28 @@ namespace PL
 
         }
 
-        private void txtName_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            string messageBoxText = "yoooo";
-            string caption = "error";
-            MessageBoxImage icon = MessageBoxImage.Error;
-            MessageBoxResult result;
-            result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+        //private void txtName_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    string messageBoxText = "yoooo";
+        //    string caption = "error";
+        //    MessageBoxImage icon = MessageBoxImage.Error;
+        //    MessageBoxResult result;
+        //    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
 
-        }
-        //event happens when user press left mouse button (no matter where)
+        
+        /// <summary>
+        /// event happens when user press left mouse button (no matter where)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mainGrid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             lblXInStock.Visibility = Visibility.Hidden;
             lblXName.Visibility = Visibility.Hidden;
             lblXPrice.Visibility= Visibility.Hidden;
         }
+
+        
+        
     }
 }

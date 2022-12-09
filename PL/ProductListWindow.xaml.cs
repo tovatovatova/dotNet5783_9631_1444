@@ -24,51 +24,44 @@ namespace PL
     public partial class ProductListWindow : Window
     {
         private IBl bl = new Bl();
-
+        /// <summary>
+        /// initialize product list window -combo box options and list view
+        /// </summary>
         public ProductListWindow()
         {
 
             InitializeComponent();
-            ProductListView.Items.Clear();
-            ProductListView.ItemsSource = bl.Product.GetProductList();
-            ProductSelector.Items.Add("All products");
+           // ProductListView.Items.Clear();
+            ProductListView.ItemsSource = bl.Product.GetProductList();//see all products
+            ProductSelector.Items.Add("All products");//add option for combo box of seeing all the products
 
-            ProductSelector.SelectedItem = ProductSelector.Items.GetItemAt(0);
-            foreach (var item in Enum.GetValues(typeof(BO.Category)))
+            ProductSelector.SelectedItem = ProductSelector.Items.GetItemAt(0);//all products
+            foreach (var item in Enum.GetValues(typeof(BO.Category)))//add the products' category to combo box
             {
                 ProductSelector.Items.Add(item);
             }
-
-
         }
-
-        //ProductSelector.ItemsSource=cat/*Enum.GetValues(typeof(BO.Category))*/;
-        //ComboBoxItem returnAllItem=new ComboBoxItem();
-        //returnAllItem.Content = "All Product";
-        //ProductSelector.Items.Add(returnAllItem);
-
-
-
-
-
-
-
+        /// <summary>
+        /// when pressing a product a product window file will be open with option of adding or updating
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            ProductWindow p = new ProductWindow(sender, e, ((BO.ProsuctForList)ProductListView.SelectedItem).ID);
+        {////////////////@#$%^&*()(*&^%$#@#$%^&*(
+
+            ProductWindow p = new ProductWindow(sender, e, ((BO.ProsuctForList)ProductListView.SelectedItem).ID);//send the selected product id
             p.ShowDialog();
             ProductSelector.SelectedItem = ProductSelector.Items.GetItemAt(0);
-            ProductListView.ItemsSource= bl.Product.GetProductList();
+            ProductListView.ItemsSource= bl.Product.GetProductList();//can show all the products back again-after updating
         }
-
-
-
-
-
-
+        /// <summary>
+        /// when pressing an item in the combo box the products will be shown with filter-the chosen category
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProductSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ProductSelector.SelectedItem == ProductSelector.Items.GetItemAt(0))
+            if (ProductSelector.SelectedItem == ProductSelector.Items.GetItemAt(0))//all product option
             {
                 ProductListView.ItemsSource = bl.Product.GetProductList();
                 return;
@@ -80,40 +73,42 @@ namespace PL
                 //           where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
                 //           select item;
                 //ProductListView.ItemsSource = list;
-                ProductListView.ItemsSource = bl.Product.GetListedListByFilter(item => item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString()));
+                ProductListView.ItemsSource = bl.Product.GetListedListByFilter(item => item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString()));//sort product list view by category
 
-
-       
-
-
-
-
+            }
+        }
+        /// <summary>
+        /// when pressing the add buttum product window will be shown
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
 
             ProductWindow p = new ProductWindow();
 
             p.ShowDialog();
-            ProductListView.ItemsSource = bl.Product.GetProductList();
+            ProductListView.ItemsSource = bl.Product.GetProductList();//refreshing product list view
 
         }
 
-        private void ProductSelector_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (ProductSelector.SelectedItem == ProductSelector.Items.GetItemAt(0))
-            {
-                ProductListView.ItemsSource = bl.Product.GetProductList();
+        //private void ProductSelector_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    if (ProductSelector.SelectedItem == ProductSelector.Items.GetItemAt(0))
+        //    {
+        //        ProductListView.ItemsSource = bl.Product.GetProductList();
 
-            }
-            else
-            {
-                var list = from item in bl.Product.GetProductList()
-                           where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
-                           select item;
-                ProductListView.ItemsSource = list;
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        var list = from item in bl.Product.GetProductList()
+        //                   where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
+        //                   select item;
+        //        ProductListView.ItemsSource = list;
+        //    }
+        //}
 
         
     }
 }
+
