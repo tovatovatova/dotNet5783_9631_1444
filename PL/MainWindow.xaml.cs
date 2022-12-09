@@ -30,7 +30,11 @@ namespace PL
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// when pressing the admin buttum open the product list window file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
        private void btnAdmin_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
 
        

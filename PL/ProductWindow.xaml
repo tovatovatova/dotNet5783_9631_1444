@@ -19,7 +19,7 @@
         <Label x:Name="lblName" Content="product name:" HorizontalAlignment="Left" Margin="214,152,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.302,0.117" FontSize="14" FontFamily="Aharoni" FontWeight="Bold"/>
         <Label x:Name="lblInStock" Content="amount in stock" HorizontalAlignment="Left" Margin="200,253,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.277,0.117" FontSize="14" FontFamily="Aharoni" FontWeight="Bold"/>
         <Label x:Name="lblPrice" Content="price:" HorizontalAlignment="Left" Margin="235,208,0,0" VerticalAlignment="Top" FontFamily="Aharoni" FontSize="14"/>
-        <ComboBox x:Name="cmbCategory" HorizontalAlignment="Center" Margin="0,109,0,0" VerticalAlignment="Top" Width="120" />
+        <ComboBox x:Name="cmbCategory" HorizontalAlignment="Center" Margin="0,109,0,0" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="483,347,0,0" VerticalAlignment="Top" Height="50" Width="169" Click="btnUpdate_Click" Background="#FF32BBC4" Visibility="Hidden"/>
         <Label x:Name="lblXPrice" Content="*" HorizontalAlignment="Left" Margin="472,207,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFA1B1B" FontSize="25" FontFamily="Arial Black" Height="25" Width="20" Visibility="Hidden"/>
         <Label x:Name="lblXName" Content="*" HorizontalAlignment="Left" Margin="472,159,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFA1B1B" FontSize="25" FontFamily="Arial Black" Height="25" Width="20" Visibility="Hidden"/>
