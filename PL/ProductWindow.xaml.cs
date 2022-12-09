@@ -98,9 +98,9 @@ namespace PL
         }
 
 
-        private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        }
+        //private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //}
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
