@@ -45,13 +45,7 @@ namespace PL
             texts.Add(txtInStock);
 
         }
-        //public ProductWindow(EventArgs btnAdd_Click)
-        //{
-        //    InitializeComponent();
-
-
-        //    cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
-        //  //  Control container = new Control();
+       
 
 
         //}
@@ -195,87 +189,7 @@ namespace PL
             }
 
         }
-            //    }
-            //}
-            //foreach (var item in texts)
-            //{
-
-            //}
-            //int check = 0;
-
-
-            //int id, inStock;
-            //double price;
-            //if (int.TryParse(txtID.Text.ToString(), out id))
-            //{
-            //    check++;
-            //    texts.Remove(txtID);
-            //}
-            //if (double.TryParse(txtPrice.Text.ToString(), out price))
-            //{
-            //    texts.Remove(txtPrice);
-            //    check++;
-            //}
-            //if (int.TryParse(txtInStock.Text.ToString(), out inStock))
-            //{
-            //    texts.Remove(txtInStock);
-            //    check++;
-            //}
-            //if (txtName.Text != "")
-            //{
-            //    texts.Remove(txtName);
-            //    check++;
-            //}
-
-            //try
-            //{
-            //    newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
-            //    newProduct.Name = txtName.Text.ToString();
-            //    newProduct.ID = Convert.ToInt32(txtID.Text);
-            //    newProduct.Price = price;
-            //    newProduct.InStock = Convert.ToInt32(txtInStock.Text);
-            //    bl.Product.AddProduct(newProduct);
-            //    Close();
-            //}
-            //catch (BO.BlIdAlreadyExistException ex)
-            //{
-            //    messageBoxText = ex.Message.ToString();
-            //    caption = "error";
-            //    icon = MessageBoxImage.Error;
-
-            //    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-            //    if (result == MessageBoxResult.OK)
-            //        foreach (var item in texts)
-            //        {
-            //            item.Clear();
-            //        }
-            //}
-
-
-            //     else
-            //     {
-            //         messageBoxText = "invalid values";
-
-            //caption = "error";
-            //        icon = MessageBoxImage.Error;
-
-            //         result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-            //         if (result == MessageBoxResult.OK)
-            //         {
-            //             foreach (var item in texts)
-
-            //             {
-            //                 item.Focus();
-            //                 item.BorderBrush = new SolidColorBrush(Colors.Red);
-            //                 item.IsTabStop = IsTabStop;
-
-            //             }
-            //             Keyboard.ClearFocus();
-            //         }
-
-
-
-            //     }
+            
         
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -364,25 +278,13 @@ namespace PL
                         return;
                     }
                 }
-            //newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
-            //newProduct.Name = txtName.Text.ToString();
-            //newProduct.ID = Convert.ToInt32(txtID.Text);
-            //newProduct.Price = Convert.ToInt32(txtPrice.Text);
-            //newProduct.InStock = Convert.ToInt32(txtInStock.Text);
-            //bl.Product.UpdateProduct(newProduct);
+           
 
 
 
         }
 
-        //private void txtName_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    string messageBoxText = "yoooo";
-        //    string caption = "error";
-        //    MessageBoxImage icon = MessageBoxImage.Error;
-        //    MessageBoxResult result;
-        //    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-
+        
         
         /// <summary>
         /// event happens when user press left mouse button (no matter where)

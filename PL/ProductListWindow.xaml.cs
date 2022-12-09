@@ -71,10 +71,7 @@ namespace PL
 
             else
             {
-                //var list = from item in bl.Product.GetProductList()
-                //           where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
-                //           select item;
-                //ProductListView.ItemsSource = list;
+                
                 ProductListView.ItemsSource = bl.Product.GetListedListByFilter(item => item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString()));//sort product list view by category
 
             }
@@ -93,22 +90,6 @@ namespace PL
             ProductListView.ItemsSource = bl.Product.GetProductList();//refreshing product list view
 
         }
-
-        //private void ProductSelector_MouseDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    if (ProductSelector.SelectedItem == ProductSelector.Items.GetItemAt(0))
-        //    {
-        //        ProductListView.ItemsSource = bl.Product.GetProductList();
-
-        //    }
-        //    else
-        //    {
-        //        var list = from item in bl.Product.GetProductList()
-        //                   where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
-        //                   select item;
-        //        ProductListView.ItemsSource = list;
-        //    }
-        //}
 
         
     }
