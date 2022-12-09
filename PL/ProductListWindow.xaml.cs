@@ -39,19 +39,7 @@ namespace PL
                 ProductSelector.Items.Add(item);
             }
 
-
         }
-
-        //ProductSelector.ItemsSource=cat/*Enum.GetValues(typeof(BO.Category))*/;
-        //ComboBoxItem returnAllItem=new ComboBoxItem();
-        //returnAllItem.Content = "All Product";
-        //ProductSelector.Items.Add(returnAllItem);
-
-
-
-
-
-
 
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -82,7 +70,8 @@ namespace PL
                 //ProductListView.ItemsSource = list;
                 ProductListView.ItemsSource = bl.Product.GetListedListByFilter(item => item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString()));
 
-
+            }
+        }
        
 
 

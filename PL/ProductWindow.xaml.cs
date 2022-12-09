@@ -55,13 +55,13 @@ namespace PL
 
 
         //}
-        public ProductWindow(object sender, EventArgs e,int id )
+        public ProductWindow(object sender, EventArgs e, int id)
         {
             InitializeComponent();
-            BO.Product p=new BO.Product();
+            BO.Product p = new BO.Product();
             try
             {
-                p=bl.Product.GetProductDetails(id);
+                p = bl.Product.GetProductDetails(id);
             }
             catch (BO.BlIdDoNotExistException ex)
             {
@@ -75,7 +75,7 @@ namespace PL
             cmbCategory.SelectedItem = p.Category;
             txtID.Text = p.ID.ToString();
             txtID.IsEnabled = false;
-           
+
             txtPrice.Text = p.Price.ToString();
             txtInStock.Text = p.InStock.ToString();
             txtName.Text = p.Name;
@@ -104,94 +104,196 @@ namespace PL
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var item in texts)
-            {
-
-            }
-            int check = 0;
-
-
-            int id, inStock;
+            string messageBoxText;
+            string caption;
+            MessageBoxImage icon;
+            MessageBoxResult result;
+            texts.Clear();
             double price;
-            if (int.TryParse(txtID.Text.ToString(), out id))
+            int inStock, id;
+            if (cmbCategory.SelectedItem == null)
             {
-                check++;
-                texts.Remove(txtID);
-            }
-            if (double.TryParse(txtPrice.Text.ToString(), out price))
-            {
-                texts.Remove(txtPrice);
-                check++;
-            }
-            if (int.TryParse(txtInStock.Text.ToString(), out inStock))
-            {
-                texts.Remove(txtInStock);
-                check++;
-            }
-            if (txtName.Text != "")
-            {
-                texts.Remove(txtName);
-                check++;
-            }
-            if (check == 4)
-            {
-                try
+                messageBoxText = "choose category";
+                caption = "error";
+                icon = MessageBoxImage.Error;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                if (result == MessageBoxResult.OK)
                 {
-                    newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
-                    newProduct.Name = txtName.Text.ToString();
-                    newProduct.ID = Convert.ToInt32(txtID.Text);
-                    newProduct.Price = price;
-                    newProduct.InStock = Convert.ToInt32(txtInStock.Text);
-                    bl.Product.AddProduct(newProduct);
-                    Close();
+                    return;
                 }
-                catch (BO.BlIdAlreadyExistException ex)
-                {
-                    string messageBoxText = ex.Message.ToString();
-                    string caption = "error";
-                    MessageBoxImage icon = MessageBoxImage.Error;
-                    MessageBoxResult result;
-                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                    if (result == MessageBoxResult.OK)
-                        foreach (var item in texts)
-                        {
-                            item.Clear();
-                        }
-                }
-                
             }
-            else
+            if (!int.TryParse(txtID.Text.ToString(), out id))
             {
-                string messageBoxText = "invalid values";
+                texts.Add(txtID);
+                lblXid.Visibility = Visibility;
+            }
+            else if (id < 0)
+            {
+                texts.Add(txtID);
+                lblXid.Visibility = Visibility;
+            }
+            if (!double.TryParse(txtPrice.Text.ToString(), out price))
+            {
+                texts.Add(txtPrice);
+                lblXPrice.Visibility = Visibility;
+            }
+            else if (price < 0)
+            {
+                texts.Add(txtPrice);
+                lblXPrice.Visibility = Visibility;
+            }
+            if (!int.TryParse(txtInStock.Text.ToString(), out inStock))
+            {
+                texts.Add(txtInStock);
+                lblXInStock.Visibility = Visibility;
 
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
+            }
+            else if (inStock < 0)
+            {
+                texts.Add(txtInStock);
+                lblXInStock.Visibility = Visibility;
+            }
+            if (txtName.Text == "")
+            {
+                texts.Add(txtName);
+                lblXName.Visibility = Visibility;
+            }
+
+            if (texts.Count > 0)//there is at least one error with at least one input
+            {
+                messageBoxText = "you insert invalid values\n please try again";
+                caption = "error";
+                icon = MessageBoxImage.Error;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
                 if (result == MessageBoxResult.OK)
                 {
                     foreach (var item in texts)
-
                     {
-                        item.Focus();
                         item.BorderBrush = new SolidColorBrush(Colors.Red);
-                        item.IsTabStop = IsTabStop;
-
                     }
-                    Keyboard.ClearFocus();
                 }
 
-
-
             }
+            else
+            {
+                try
+                {
+
+                    newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
+                    newProduct.Name = txtName.Text.ToString();
+                    newProduct.ID = id;
+                    newProduct.Price = price;
+                    newProduct.InStock = inStock;
+                    bl.Product.AddProduct(newProduct);
+                    messageBoxText = "product added successfully";
+                    caption = "";
+                    icon = MessageBoxImage.Information;
+                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
+                    if (result == MessageBoxResult.OK)
+                        Close();
+                }
+                catch (BO.BlIdAlreadyExistException ex)
+                {
+                    messageBoxText = ex.Message + "\n" + "try again";
+                    caption = "";
+                    icon = MessageBoxImage.Information;
+                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
+                    if (result == MessageBoxResult.OK)
+                        return;
+
+                }
+            }
+
         }
+            //    }
+            //}
+            //foreach (var item in texts)
+            //{
+
+            //}
+            //int check = 0;
+
+
+            //int id, inStock;
+            //double price;
+            //if (int.TryParse(txtID.Text.ToString(), out id))
+            //{
+            //    check++;
+            //    texts.Remove(txtID);
+            //}
+            //if (double.TryParse(txtPrice.Text.ToString(), out price))
+            //{
+            //    texts.Remove(txtPrice);
+            //    check++;
+            //}
+            //if (int.TryParse(txtInStock.Text.ToString(), out inStock))
+            //{
+            //    texts.Remove(txtInStock);
+            //    check++;
+            //}
+            //if (txtName.Text != "")
+            //{
+            //    texts.Remove(txtName);
+            //    check++;
+            //}
+
+            //try
+            //{
+            //    newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
+            //    newProduct.Name = txtName.Text.ToString();
+            //    newProduct.ID = Convert.ToInt32(txtID.Text);
+            //    newProduct.Price = price;
+            //    newProduct.InStock = Convert.ToInt32(txtInStock.Text);
+            //    bl.Product.AddProduct(newProduct);
+            //    Close();
+            //}
+            //catch (BO.BlIdAlreadyExistException ex)
+            //{
+            //    messageBoxText = ex.Message.ToString();
+            //    caption = "error";
+            //    icon = MessageBoxImage.Error;
+
+            //    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+            //    if (result == MessageBoxResult.OK)
+            //        foreach (var item in texts)
+            //        {
+            //            item.Clear();
+            //        }
+            //}
+
+
+            //     else
+            //     {
+            //         messageBoxText = "invalid values";
+
+            //caption = "error";
+            //        icon = MessageBoxImage.Error;
+
+            //         result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+            //         if (result == MessageBoxResult.OK)
+            //         {
+            //             foreach (var item in texts)
+
+            //             {
+            //                 item.Focus();
+            //                 item.BorderBrush = new SolidColorBrush(Colors.Red);
+            //                 item.IsTabStop = IsTabStop;
+
+            //             }
+            //             Keyboard.ClearFocus();
+            //         }
+
+
+
+            //     }
+        
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             texts.Clear();
             double price;
             int inStock;
-            
+
             BO.Category cat;
             cat = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
 
@@ -221,6 +323,7 @@ namespace PL
                 texts.Add(txtName);
                 lblXName.Visibility = Visibility;
             }
+
             if (texts.Count > 0)//there is at least one error with at least one input
             {
                 string messageBoxText = "you insert invalid values\n please try again";
@@ -237,47 +340,47 @@ namespace PL
                 }
 
             }
-           else try
-            {
-                newProduct.Category = cat;
-                newProduct.Name = txtName.Text;
-                newProduct.ID = Convert.ToInt32(txtID.Text);
-                newProduct.Price = price;
-                newProduct.InStock = inStock;
-                bl.Product.UpdateProduct(newProduct);
+            else try
+                {
+                    newProduct.Category = cat;
+                    newProduct.Name = txtName.Text;
+                    newProduct.ID = Convert.ToInt32(txtID.Text);
+                    newProduct.Price = price;
+                    newProduct.InStock = inStock;
+                    bl.Product.UpdateProduct(newProduct);
                     Close();
                 }
-            catch (BO.BlIdDoNotExistException ex)
-            {
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                if (result == MessageBoxResult.OK)
+                catch (BO.BlIdDoNotExistException ex)
                 {
-                    return;
+                    string messageBoxText = ex.Message.ToString();
+                    string caption = "error";
+                    MessageBoxImage icon = MessageBoxImage.Error;
+                    MessageBoxResult result;
+                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        return;
+                    }
                 }
-            }
-            catch (BO.BlInvalidInputException ex)
-            {
-                string messageBoxText = ex.ToString() + "\ntry again";
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                if (result == MessageBoxResult.OK)
+                catch (BO.BlInvalidInputException ex)
                 {
-                    return;
+                    string messageBoxText = ex.ToString() + "\ntry again";
+                    string caption = "error";
+                    MessageBoxImage icon = MessageBoxImage.Error;
+                    MessageBoxResult result;
+                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        return;
+                    }
                 }
-            }
             //newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
             //newProduct.Name = txtName.Text.ToString();
             //newProduct.ID = Convert.ToInt32(txtID.Text);
             //newProduct.Price = Convert.ToInt32(txtPrice.Text);
             //newProduct.InStock = Convert.ToInt32(txtInStock.Text);
             //bl.Product.UpdateProduct(newProduct);
-          
+
 
 
         }
@@ -296,7 +399,11 @@ namespace PL
         {
             lblXInStock.Visibility = Visibility.Hidden;
             lblXName.Visibility = Visibility.Hidden;
-            lblXPrice.Visibility= Visibility.Hidden;
+            lblXPrice.Visibility = Visibility.Hidden;
         }
+
+       
+
+       
     }
 }
