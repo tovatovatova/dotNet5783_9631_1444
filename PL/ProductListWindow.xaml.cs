@@ -65,6 +65,7 @@ namespace PL
             ProductWindow p = new ProductWindow(sender, e, ((BO.ProsuctForList)ProductListView.SelectedItem).ID);
             p.ShowDialog();
             ProductSelector.SelectedItem = ProductSelector.Items.GetItemAt(0);
+            ProductListView.ItemsSource= bl.Product.GetProductList();
         }
 
         private void ProductSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -79,10 +80,11 @@ namespace PL
 
             else
             {
-                var list = from item in bl.Product.GetProductList()
-                           where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
-                           select item;
-                ProductListView.ItemsSource = list;
+                //var list = from item in bl.Product.GetProductList()
+                //           where item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())
+                //           select item;
+                //ProductListView.ItemsSource = list;
+                ProductListView.ItemsSource = bl.Product.GetListedListByFilter(item => item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString()));
 
 
 

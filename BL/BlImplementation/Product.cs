@@ -165,8 +165,9 @@ namespace BlImplementation
                 Price = item?.Price ?? 0
             });
         }
-        public IEnumerable<BO.ProsuctForList?> GetListedListByCategory(Func<BO.ProsuctForList?, bool>? filter = null)
+        public IEnumerable<BO.ProsuctForList?> GetListedListByFilter(Func<BO.ProsuctForList?, bool>? filter = null)
         {
+   
             return from BO.ProsuctForList p in GetProductList()
                    where filter(p)
                    select p;        
@@ -224,6 +225,12 @@ namespace BlImplementation
                        InStock = doProduct?.AmountInStock > 0
                    };
         }
+        //public IEnumerable<BO.ProsuctForList?> GetListedListByCategory(Func<BO.ProsuctForList?, bool>? filter = null)
+        //{
+        //    return from BO.ProsuctForList p in GetProductList()
+        //           where filter(p)
+        //           select p;
+        //}
         //public IEnumerable<BO.ProductItem> GetProductListByCategory(Func<BO.Product?, bool>? filter)
         //{
         //   return from DO.Product? prod in dal.Product.GetAll(item => filter(item))//runs on all the products

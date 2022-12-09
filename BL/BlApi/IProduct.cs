@@ -19,7 +19,7 @@ namespace BlApi
       public  IEnumerable<BO.ProductItem?> GetCatalog();//client
       public  BO.ProductItem GetProductByID(Cart cart, int id);//client
 
-        public IEnumerable<BO.ProsuctForList?> GetListedListByCategory(Func<BO.ProsuctForList?, bool>? filter = null);
+        public IEnumerable<BO.ProsuctForList?> GetListedListByFilter(Func<BO.ProsuctForList?, bool>? filter = null);
 
 
 
