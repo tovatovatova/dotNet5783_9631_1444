@@ -55,7 +55,7 @@ namespace PL
 
 
         //}
-        public ProductWindow(object sender, EventArgs e,int id /*BO.ProsuctForList sender2*/)
+        public ProductWindow(object sender, EventArgs e,int id )
         {
             InitializeComponent();
             BO.Product p=new BO.Product();
@@ -75,7 +75,7 @@ namespace PL
             cmbCategory.SelectedItem = p.Category;
             txtID.Text = p.ID.ToString();
             txtID.IsEnabled = false;
-            cmbCategory.IsEnabled = true;
+           
             txtPrice.Text = p.Price.ToString();
             txtInStock.Text = p.InStock.ToString();
             txtName.Text = p.Name;
