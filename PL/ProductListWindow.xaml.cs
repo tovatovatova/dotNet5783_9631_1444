@@ -48,7 +48,7 @@ namespace PL
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {////////////////@#$%^&*()(*&^%$#@#$%^&*(
+        {
             if (ProductListView.SelectedIndex==-1)
                 return;
             ProductWindow p = new ProductWindow(sender, e, ((BO.ProsuctForList)ProductListView.SelectedItem).ID);//send the selected product id
