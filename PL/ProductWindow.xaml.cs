@@ -71,6 +71,7 @@ namespace PL
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
             }
+
             //show details of product
             cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
             cmbCategory.SelectedItem = p.Category;
