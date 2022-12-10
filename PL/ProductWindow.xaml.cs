@@ -32,13 +32,14 @@ namespace PL
         List<TextBox> texts = new List<TextBox>();
 
         /// <summary>
-        /// initialization. options for adding(add btn) or updating(double click on product)
+        /// productWindow empty constructor provide the option to add new product
         /// </summary>
         public ProductWindow()
         {
             InitializeComponent();
             cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
-            btnAdd.Visibility = Visibility.Visible;//can see add btn
+            btnAdd.Visibility = Visibility.Visible;//add button getting visible
+            //kipping list of textboxs
             texts.Add(txtID);
             texts.Add(txtName);
             texts.Add(txtPrice);
@@ -50,7 +51,7 @@ namespace PL
 
         //}
         /// <summary>
-        /// gets an id of product-return the product for BO and show its details
+        /// gets an id of product-return the product for BO and show its details-update case
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -83,7 +84,7 @@ namespace PL
             btnUpdate.Visibility = Visibility.Visible;
         }
         /// <summary>
-        /// adding new product
+        /// the event when user press the butt-ADD in order to finish the adding
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -96,7 +97,7 @@ namespace PL
             texts.Clear();
             double price;
             int inStock, id;
-            if (cmbCategory.SelectedItem == null)
+            if (cmbCategory.SelectedItem == null)//check if the user choose category and show message if not
             {
                 messageBoxText = "choose category";
                 caption = "error";
@@ -107,7 +108,7 @@ namespace PL
                     return;
                 }
             }
-            if (!int.TryParse(txtID.Text.ToString(), out id))
+            if (!int.TryParse(txtID.Text.ToString(), out id))//id validation
             {
                 texts.Add(txtID);
                 lblXid.Visibility = Visibility;
@@ -117,7 +118,7 @@ namespace PL
                 texts.Add(txtID);
                 lblXid.Visibility = Visibility;
             }
-            if (!double.TryParse(txtPrice.Text.ToString(), out price))
+            if (!double.TryParse(txtPrice.Text.ToString(), out price))//check price validation
             {
                 texts.Add(txtPrice);
                 lblXPrice.Visibility = Visibility;
@@ -127,7 +128,7 @@ namespace PL
                 texts.Add(txtPrice);
                 lblXPrice.Visibility = Visibility;
             }
-            if (!int.TryParse(txtInStock.Text.ToString(), out inStock))
+            if (!int.TryParse(txtInStock.Text.ToString(), out inStock))//amount in stock validation
             {
                 texts.Add(txtInStock);
                 lblXInStock.Visibility = Visibility;
@@ -138,7 +139,7 @@ namespace PL
                 texts.Add(txtInStock);
                 lblXInStock.Visibility = Visibility;
             }
-            if (txtName.Text == "")
+            if (txtName.Text == "")//check if name is written
             {
                 texts.Add(txtName);
                 lblXName.Visibility = Visibility;
@@ -154,14 +155,14 @@ namespace PL
                 {
                     foreach (var item in texts)
                     {
-                        item.BorderBrush = new SolidColorBrush(Colors.Red);
+                        item.BorderBrush = new SolidColorBrush(Colors.Red);//brush the text border with red -to show were the error is
                     }
                 }
 
             }
             else
             {
-                try
+                try//try to add the product with call to a bl function od add
                 {
 
                     newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
@@ -191,7 +192,11 @@ namespace PL
 
         }
             
-        
+        /// <summary>
+        /// when update button press- the function calls and responsible of meking the update of existin product
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
@@ -201,7 +206,7 @@ namespace PL
 
             BO.Category cat;
             cat = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
-
+            //check validation of the inputs
             if (!double.TryParse(txtPrice.Text.ToString(), out price))
             {
                 texts.Add(txtPrice);
@@ -228,7 +233,7 @@ namespace PL
                 texts.Add(txtName);
                 lblXName.Visibility = Visibility;
             }
-
+            //if at least one of the texts went wrong
             if (texts.Count > 0)//there is at least one error with at least one input
             {
                 string messageBoxText = "you insert invalid values\n please try again";
@@ -245,7 +250,7 @@ namespace PL
                 }
 
             }
-            else try
+            else try//if all are valid -try to update them
                 {
                     newProduct.Category = cat;
                     newProduct.Name = txtName.Text;
