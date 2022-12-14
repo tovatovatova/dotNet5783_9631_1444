@@ -12,9 +12,9 @@ namespace BITest
     public enum OrderActions { Exit, Get_Order , Order_List, Update_Ship, Update_Delivery, Order_Tracking }
     internal class Program
     {
-        static IBl bl = new Bl();
-       
-       static Cart newCart=new Cart() { CustomerAddress = "geva 20", CustomerEmail = "Avraham", CustomerName = "Avraham", Items =new List<OrderItem>() , TotalPrice = 0 };
+        static IBl bl = BlApi.Factory.Get();
+
+        static Cart newCart=new Cart() { CustomerAddress = "geva 20", CustomerEmail = "Avraham", CustomerName = "Avraham", Items =new List<OrderItem>() , TotalPrice = 0 };
    
 
 

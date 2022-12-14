@@ -1,6 +1,4 @@
-﻿using BlApi;
-using BlImplementation;
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -27,7 +25,7 @@ namespace PL
     /// </summary>
     public partial class ProductWindow : Window
     {
-        private IBl bl = new Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
         private BO.Product newProduct = new BO.Product() { };
         List<TextBox> texts = new List<TextBox>();
 
