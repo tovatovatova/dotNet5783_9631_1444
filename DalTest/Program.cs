@@ -13,7 +13,8 @@ internal class Program
     //private static DalOrder dalOrder = new DalOrder();
     //private static DalOrderItem dalOrderItem = new DalOrderItem();
     //private static DalProduct dalProduct = new DalProduct();
-     static IDal dal = new DalList();
+     static IDal? dal =  DalApi.Factory.Get();
+
 
     /// <summary>
     /// function for the options of product check (add,delete,update,and so)

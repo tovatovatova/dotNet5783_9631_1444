@@ -15,8 +15,7 @@ namespace BlImplementation
     internal class Order : IOrder
     {
 
-        DalApi.IDal dal = new Dal.DalList();
-
+        DalApi.IDal? dal = DalApi.Factory.Get();
         private delegate BO.OrderForList? sc<in T>(T obj);
         public delegate TOutput Converter<in TInput, out TOutput>(TInput input);
 

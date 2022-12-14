@@ -1,5 +1,4 @@
-﻿using BlApi;
-using BlImplementation;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
@@ -23,7 +22,7 @@ namespace PL
 
     public partial class ProductListWindow : Window
     {
-        private IBl bl = new Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
         /// <summary>
         /// initialize product list window -combo box options and list view
         /// </summary>
