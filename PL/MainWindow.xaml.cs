@@ -29,6 +29,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+        
         }
         /// <summary>
         /// when pressing the admin buttum open the product list window file
