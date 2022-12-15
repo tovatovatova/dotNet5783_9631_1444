@@ -22,7 +22,7 @@ namespace PL
 
     public partial class ProductListWindow : Window
     {
-        BlApi.IBl? bl = BlApi.Factory.Get();
+        BlApi.IBl bl = BlApi.Factory.Get();
         /// <summary>
         /// initialize product list window -combo box options and list view
         /// </summary>

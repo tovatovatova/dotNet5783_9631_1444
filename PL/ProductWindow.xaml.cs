@@ -25,7 +25,7 @@ namespace PL
     /// </summary>
     public partial class ProductWindow : Window
     {
-        BlApi.IBl? bl = BlApi.Factory.Get();
+        BlApi.IBl bl = BlApi.Factory.Get();
         private BO.Product newProduct = new BO.Product() { };
         List<TextBox> texts = new List<TextBox>();
 
