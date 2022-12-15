@@ -11,7 +11,7 @@ namespace BlImplementation
 {
     internal class Product : IProduct
     {
-        DalApi.IDal? dal = DalApi.Factory.Get();
+        DalApi.IDal dal = DalApi.Factory.Get();
         /// <summary>
         /// the function gets product to add to the products list (just if its id not exists) 
         /// </summary>

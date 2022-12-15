@@ -12,7 +12,7 @@ namespace BlImplementation
 {
     internal class Cart : ICart
     {
-        DalApi.IDal? dal = DalApi.Factory.Get();
+        DalApi.IDal dal = DalApi.Factory.Get();
         /// <summary>
         /// gets a cart and id of product-add to cart(checks if its possible...)
         /// </summary>
