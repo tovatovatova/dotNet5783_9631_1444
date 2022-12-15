@@ -6,23 +6,14 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" >
-    <Grid Margin="-153,-89,0,0" RenderTransformOrigin="0.5,0.5">
+    <Grid Margin="-153,-89,0,0" RenderTransformOrigin="0.5,0.5" Background="#FFF4B3F4">
         <Grid.FocusVisualStyle>
             <Style/>
         </Grid.FocusVisualStyle>
-        <Grid.Background>
-            <ImageBrush ImageSource="/ff04f7b6288c87dc4517cf547046b69d.jpg" TileMode="FlipXY" Stretch="Fill">
-                <ImageBrush.RelativeTransform>
-                    <TransformGroup>
-                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="-1"/>
-                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                        <RotateTransform CenterX="0.5" CenterY="0.5"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </ImageBrush.RelativeTransform>
-            </ImageBrush>
-        </Grid.Background>
-        <Button x:Name="btnAdmin" Content="Admin" HorizontalAlignment="Left" Margin="98,355,0,0" VerticalAlignment="Top" Height="127" Width="249" Click="btnAdmin_Click" FontSize="29" FontFamily="Bodoni MT Black" FontWeight="Bold" Foreground="#FFEFF0F1" Background="#FFAED956" RenderTransformOrigin="0.5,0.5" FontStyle="Oblique" >
+        <Button x:Name="btnAdmin" Content="Admin" HorizontalAlignment="Left" Margin="98,355,0,0" VerticalAlignment="Top" Height="127" Width="249" Click="btnAdmin_Click" FontSize="29" FontFamily="Bodoni MT Black" FontWeight="Bold" Foreground="#FFEFF0F1" RenderTransformOrigin="0.5,0.5" FontStyle="Oblique" >
+            <Button.Background>
+                <ImageBrush ImageSource="/pic2.png"/>
+            </Button.Background>
             <Button.FocusVisualStyle>
                 <Style/>
             </Button.FocusVisualStyle>
