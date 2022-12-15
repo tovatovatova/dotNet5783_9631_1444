@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" >
-    <Grid Margin="-153,-89,0,0" RenderTransformOrigin="0.5,0.5" Background="#FFF4B3F4">
+    <Grid Margin="0,-14,0,0" RenderTransformOrigin="0.5,0.5" Background="#FFF4B3F4" Grid.IsSharedSizeScope="True">
         <Grid.FocusVisualStyle>
             <Style/>
         </Grid.FocusVisualStyle>
-        <Button x:Name="btnAdmin" Content="Admin" HorizontalAlignment="Left" Margin="98,355,0,0" VerticalAlignment="Top" Height="127" Width="249" Click="btnAdmin_Click" FontSize="29" FontFamily="Bodoni MT Black" FontWeight="Bold" Foreground="#FFEFF0F1" RenderTransformOrigin="0.5,0.5" FontStyle="Oblique" >
+        <Button x:Name="btnAdmin" Content="Admin" HorizontalAlignment="Left" Margin="24,275,0,0" VerticalAlignment="Top" Height="127" Width="249" Click="btnAdmin_Click" FontSize="29" FontFamily="Bodoni MT Black" FontWeight="Bold" Foreground="#FFEFF0F1" RenderTransformOrigin="0.5,0.5" FontStyle="Oblique" >
             <Button.Background>
-                <ImageBrush ImageSource="/pic2.png"/>
+                <ImageBrush ImageSource="/pic2.png" Stretch="Fill"/>
             </Button.Background>
             <Button.FocusVisualStyle>
                 <Style/>
