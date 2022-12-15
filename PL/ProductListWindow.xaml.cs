@@ -35,6 +35,7 @@ namespace PL
             ProductSelector.Items.Add("All products");//add option for combo box of seeing all the products
 
             ProductSelector.SelectedItem = ProductSelector.Items.GetItemAt(0);//all products
+            
             foreach (var item in Enum.GetValues(typeof(BO.Category)))//add the products' category to combo box
             {
                 ProductSelector.Items.Add(item);
