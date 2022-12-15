@@ -96,7 +96,7 @@ internal static class DataSource
                 addItem.OrderItemId = Config.NextOrderItemNumber;//initialize running number
                 addItem.OrderId = 100000 + i;
                 addItem.ProductId = (100000) + (i + j) % 9;
-                addItem.Price = (ProductList.Find(x => x.Value.Id == (100000) + (i + j) % 9)).Value.Price;
+                addItem.Price = (ProductList.Find(x => x.Value.Id == (100000) + (i + j) % 9))?.Price ?? 0;
                 addItem.Amount = randNumbers.Next(1, 3);
                 OrderItemList.Add(addItem);
             }

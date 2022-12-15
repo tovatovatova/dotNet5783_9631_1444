@@ -300,6 +300,10 @@ namespace PL
             lblXInStock.Visibility = Visibility.Hidden;
             lblXName.Visibility = Visibility.Hidden;
             lblXPrice.Visibility = Visibility.Hidden;
+            txtID.BorderBrush = Background;
+           txtInStock.BorderBrush= Background;
+            txtName.BorderBrush= Background;
+           txtPrice.BorderBrush= Background;
         }
 
        
