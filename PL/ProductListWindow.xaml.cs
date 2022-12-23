@@ -66,14 +66,14 @@ namespace PL
         {
             if (ProductSelector.SelectedItem == ProductSelector.Items.GetItemAt(0))//all product option
             {
-                ProductListView.ItemsSource = bl.Product.GetProductList().OrderBy(x=>x.Price);
+                ProductListView.ItemsSource = bl.Product.GetProductList();
                 return;
             }
 
             else
             {
                 
-                ProductListView.ItemsSource = bl.Product.GetListedListByFilter(item => item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString())).OrderBy(x=>x.Price);//sort product list view by category
+                ProductListView.ItemsSource = bl.Product.GetListedListByFilter(item => item.Category == Enum.Parse<BO.Category>(ProductSelector.SelectedItem.ToString()));//sort product list view by category
 
             }
         }

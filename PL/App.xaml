@@ -17,7 +17,15 @@
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="15" />
             <Setter Property="FontFamily" Value="Algerian"/>
-           
+
+        </Style>
+        <Style TargetType="Window">
+            <Setter Property="Icon" Value="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pic.jpg.png"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pic.jpg.png" Stretch="Uniform"/>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Application.Resources>
 </Application>
