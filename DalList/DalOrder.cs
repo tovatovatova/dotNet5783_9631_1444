@@ -27,7 +27,7 @@ internal class DalOrder : IOrder
     /// <exception cref="Exception">throw exeption when the the order not found</exception>
     public Order GetById(int orderId)
     {
-        return DataSource.OrderList.FirstOrDefault(order => order.Value.OrderId == orderId) ?? throw new DalIdDoNotExistException(orderId, "order");
+        return DataSource.OrderList.FirstOrDefault(order => order?.OrderId == orderId) ?? throw new DalIdDoNotExistException(orderId, "order");
         //Order? newOrder=DataSource.OrderList.Find(x => x?.OrderId ==orderId);    
         //if(newOrder!= null)
         //{
@@ -43,7 +43,7 @@ internal class DalOrder : IOrder
     /// <exception cref="Exception">throw exeption when the the order not found</exception>
     public void Delete(int orderId)
     {
-        Order? delOrder= DataSource.OrderList.FirstOrDefault(order => order.Value.OrderId == orderId) ?? throw new DalIdDoNotExistException(orderId, "order");
+        Order? delOrder= DataSource.OrderList.FirstOrDefault(order => order?.OrderId == orderId) ?? throw new DalIdDoNotExistException(orderId, "order");
         DataSource.OrderList.Remove(delOrder);
     }
     /// <summary>
@@ -53,7 +53,7 @@ internal class DalOrder : IOrder
     /// <exception cref="Exception">throw exeption when the the order not found</exception>
     public void Update(Order newOrder)
     {
-        Order? delOrder = DataSource.OrderList.FirstOrDefault(order => order.Value.OrderId == newOrder.OrderId) ?? throw new DalIdDoNotExistException(newOrder.OrderId, "order");
+        Order? delOrder = DataSource.OrderList.FirstOrDefault(order => order?.OrderId == newOrder.OrderId) ?? throw new DalIdDoNotExistException(newOrder.OrderId, "order");
         int index = DataSource.OrderList.FindIndex(x => x?.OrderId == newOrder.OrderId);
         DataSource.OrderList[index] = newOrder;
     }

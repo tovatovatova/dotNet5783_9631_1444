@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,6 +30,7 @@ namespace PL
         private BO.Product newProduct = new BO.Product() { };
         List<TextBox> texts = new List<TextBox>();
 
+        Regex rg = new Regex("[0-9]+");
         /// <summary>
         /// productWindow empty constructor provide the option to add new product
         /// </summary>
@@ -44,7 +46,7 @@ namespace PL
             texts.Add(txtInStock);
 
         }
-       
+
 
 
         //}
@@ -54,13 +56,13 @@ namespace PL
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <param name="id"></param>
-        public ProductWindow(object sender, EventArgs e,int id )
+        public ProductWindow(object sender, EventArgs e, int id)
         {
             InitializeComponent();
             BO.Product p = new BO.Product();
             try
             {
-                p=bl.Product.GetProductDetails(id);//return product from BO 
+                p = bl.Product.GetProductDetails(id);//return product from BO 
             }
             catch (BO.BlIdDoNotExistException ex)//product doesnt exist
             {//throw an error message box 
@@ -111,32 +113,32 @@ namespace PL
                 texts.Add(txtID);
                 lblXid.Visibility = Visibility;
             }
-            else if (id < 0)
-            {
-                texts.Add(txtID);
-                lblXid.Visibility = Visibility;
-            }
+            //else if (id < 0)
+            //{
+            //    texts.Add(txtID);
+            //    lblXid.Visibility = Visibility;
+            //}
             if (!double.TryParse(txtPrice.Text.ToString(), out price))//check price validation
             {
                 texts.Add(txtPrice);
                 lblXPrice.Visibility = Visibility;
             }
-            else if (price < 0)
-            {
-                texts.Add(txtPrice);
-                lblXPrice.Visibility = Visibility;
-            }
+            //else if (price < 0)
+            //{
+            //    texts.Add(txtPrice);
+            //    lblXPrice.Visibility = Visibility;
+            //}
             if (!int.TryParse(txtInStock.Text.ToString(), out inStock))//amount in stock validation
             {
                 texts.Add(txtInStock);
                 lblXInStock.Visibility = Visibility;
 
             }
-            else if (inStock < 0)
-            {
-                texts.Add(txtInStock);
-                lblXInStock.Visibility = Visibility;
-            }
+            //else if (inStock < 0)
+            //{
+            //    texts.Add(txtInStock);
+            //    lblXInStock.Visibility = Visibility;
+            //}
             if (txtName.Text == "")//check if name is written
             {
                 texts.Add(txtName);
@@ -184,12 +186,31 @@ namespace PL
                     result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
                     if (result == MessageBoxResult.OK)
                         return;
-
                 }
+                catch (BO.BlInvalidInputException ex)
+                {
+                    messageBoxText = ex.Message + "\n" + "check your input";
+                    caption = "";
+                    icon = MessageBoxImage.Information;
+                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
+                    if (result == MessageBoxResult.OK)
+                        return;
+                }
+                catch (BO.BlWrongCategoryException ex)
+                {
+                    messageBoxText = ex.Message + "\n" + "choose category again";
+                    caption = "";
+                    icon = MessageBoxImage.Information;
+                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
+                    if (result == MessageBoxResult.OK)
+                        return;
+                }
+
+
             }
 
         }
-            
+
         /// <summary>
         /// when update button press- the function calls and responsible of meking the update of existin product
         /// </summary>
@@ -210,22 +231,22 @@ namespace PL
                 texts.Add(txtPrice);
                 lblXPrice.Visibility = Visibility;
             }
-            else if (price < 0)
-            {
-                texts.Add(txtPrice);
-                lblXPrice.Visibility = Visibility;
-            }
+            //else if (price < 0)
+            //{
+            //    texts.Add(txtPrice);
+            //    lblXPrice.Visibility = Visibility;
+            //}
             if (!int.TryParse(txtInStock.Text.ToString(), out inStock))
             {
                 texts.Add(txtInStock);
                 lblXInStock.Visibility = Visibility;
 
             }
-            else if (inStock < 0)
-            {
-                texts.Add(txtInStock);
-                lblXInStock.Visibility = Visibility;
-            }
+            //else if (inStock < 0)
+            //{
+            //    texts.Add(txtInStock);
+            //    lblXInStock.Visibility = Visibility;
+            //}
             if (txtName.Text == "")
             {
                 texts.Add(txtName);
@@ -282,14 +303,14 @@ namespace PL
                         return;
                     }
                 }
-           
+
 
 
 
         }
 
-        
-        
+
+
         /// <summary>
         /// event happens when user press left mouse button (no matter where)
         /// </summary>
@@ -301,11 +322,14 @@ namespace PL
             lblXName.Visibility = Visibility.Hidden;
             lblXPrice.Visibility = Visibility.Hidden;
             txtID.BorderBrush = Background;
-           txtInStock.BorderBrush= Background;
-            txtName.BorderBrush= Background;
-           txtPrice.BorderBrush= Background;
+            txtInStock.BorderBrush = Background;
+            txtName.BorderBrush = Background;
+            txtPrice.BorderBrush = Background;
         }
 
-       
+        private void txtInStock_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

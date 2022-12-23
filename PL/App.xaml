@@ -4,6 +4,28 @@
              xmlns:local="clr-namespace:Ex5_EventObject"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!--<Style x:Key="myButtonStyle"   TargetType="Button">
+            <Setter Property="FontSize"
+              Value="32" />
+            <Setter Property="FontFamily"
+              Value="Consolas" />
+            <Setter Property="FontWeight"
+              Value="Bold" />
+        </Style>-->
+        <Style  TargetType="Button">
+            <Setter Property="Background" Value="Aquamarine" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Algerian"/>
+
+        </Style>
+        <Style TargetType="Window">
+            <Setter Property="Icon" Value="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pic.jpg.png"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pic.jpg.png" Stretch="Uniform"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

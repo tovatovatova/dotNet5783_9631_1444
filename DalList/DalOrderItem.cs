@@ -27,7 +27,7 @@ public class DalOrderItem : IOrderItem
     /// <exception cref="Exception">throw exeption if order item doesnt exist</exception>
     public OrderItem GetById(int orderItemId)
     {
-        return  DataSource.OrderItemList.FirstOrDefault(orderItem => orderItem.Value.OrderItemId==orderItemId) ?? throw new DalIdDoNotExistException(orderItemId, "orderItem");
+        return  DataSource.OrderItemList.FirstOrDefault(orderItem => orderItem?.OrderItemId==orderItemId) ?? throw new DalIdDoNotExistException(orderItemId, "orderItem");
 
         //OrderItem? newOrder = DataSource.OrderItemList.Find(x => x?.OrderItemId == orderItemId);
         //if (newOrder != null)
@@ -44,7 +44,7 @@ public class DalOrderItem : IOrderItem
     /// <exception cref="Exception">throw exeption if order item doesnt exist</exception>
     public void Delete(int orderItemId)
     {
-        OrderItem? delOrderItem = DataSource.OrderItemList.FirstOrDefault(orderItem => orderItem.Value.OrderItemId == orderItemId) ?? throw new DalIdDoNotExistException(orderItemId, "orderItem");
+        OrderItem? delOrderItem = DataSource.OrderItemList.FirstOrDefault(orderItem => orderItem?.OrderItemId == orderItemId) ?? throw new DalIdDoNotExistException(orderItemId, "orderItem");
         DataSource.OrderItemList.Remove(delOrderItem);
     }
     /// <summary>
@@ -54,7 +54,7 @@ public class DalOrderItem : IOrderItem
     /// <exception cref="Exception">throw exeption if order item doesnt exist</exception>
     public void Update(OrderItem newOrder)
     {
-        OrderItem? uplOrder = DataSource.OrderItemList.FirstOrDefault(orderItem => orderItem.Value.OrderItemId == newOrder.OrderItemId) ?? throw new DalIdDoNotExistException(newOrder.OrderItemId, "orderItem");
+        OrderItem? uplOrder = DataSource.OrderItemList.FirstOrDefault(orderItem => orderItem?.OrderItemId == newOrder.OrderItemId) ?? throw new DalIdDoNotExistException(newOrder.OrderItemId, "orderItem");
         int index = DataSource.OrderItemList.FindIndex(x => x?.OrderItemId == newOrder.OrderItemId);
         DataSource.OrderItemList[index] = newOrder;
     }
@@ -88,7 +88,7 @@ public class DalOrderItem : IOrderItem
     /// <exception cref="Exception"></exception>
     public OrderItem GetItemByOrderAndProduct(int orderId,int productId)
     {
-        return DataSource.OrderItemList.FirstOrDefault(Item => (Item.Value.OrderId == orderId)&&(Item.Value.ProductId==productId)) ?? throw new DalIdDoNotExistException(orderId, "orderItem");
+        return DataSource.OrderItemList.FirstOrDefault(Item => (Item?.OrderId == orderId)&&(Item?.ProductId==productId)) ?? throw new DalIdDoNotExistException(orderId, "orderItem");
 
     }
 }

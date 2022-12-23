@@ -15,7 +15,7 @@ public class DalProduct : IProduct
     public int Add(Product newProduct)
     {
 
-       bool x= DataSource.ProductList.Any(prod => prod.Value.Id == newProduct.Id);
+       bool x= DataSource.ProductList.Any(prod => prod?.Id == newProduct.Id);
             if(x)
               throw new DalIdAlreadyExistException(newProduct.Id, "product");
         DataSource.ProductList.Add(newProduct);
@@ -29,7 +29,7 @@ public class DalProduct : IProduct
     /// <exception cref="Exception">trow exeption when the product doesnt exist</exception>
     public Product GetById(int productId)
     {
-        return DataSource.ProductList.FirstOrDefault(prod => prod.Value.Id == productId) ?? throw new DalIdDoNotExistException(productId, "product");
+        return DataSource.ProductList.FirstOrDefault(prod => prod?.Id == productId) ?? throw new DalIdDoNotExistException(productId, "product");
     }
     /// <summary>
     /// UpDate the specific product according to the given product
@@ -38,7 +38,7 @@ public class DalProduct : IProduct
     /// <exception cref="Exception">throw exeption when product doesnt exist</exception>
     public void Update(Product productToUpDate)
     {
-        Product? addProduct = DataSource.ProductList.FirstOrDefault(prod => prod.Value.Id == productToUpDate.Id) ?? throw new DalIdDoNotExistException(productToUpDate.Id, "product");
+        Product? addProduct = DataSource.ProductList.FirstOrDefault(prod => prod?.Id == productToUpDate.Id) ?? throw new DalIdDoNotExistException(productToUpDate.Id, "product");
         int ProductIndex = DataSource.ProductList.FindIndex(x => x?.Id == productToUpDate.Id);
         DataSource.ProductList[ProductIndex] = productToUpDate;
     }
@@ -49,7 +49,7 @@ public class DalProduct : IProduct
     /// <exception cref="Exception">throw exeption when product doesnt exist</exception>
     public void Delete(int productId)
     {
-        Product? addProduct = DataSource.ProductList.FirstOrDefault(prod => prod.Value.Id == productId) ?? throw new DalIdDoNotExistException(productId, "product");
+        Product? addProduct = DataSource.ProductList.FirstOrDefault(prod => prod?.Id == productId) ?? throw new DalIdDoNotExistException(productId, "product");
         int productIndex = DataSource.ProductList.FindIndex(x => x?.Id == productId);
         DataSource.ProductList.RemoveAt(productIndex);
     }

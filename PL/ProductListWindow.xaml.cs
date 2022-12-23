@@ -30,8 +30,9 @@ namespace PL
         {
 
             InitializeComponent();
-           // ProductListView.Items.Clear();
-            ProductListView.ItemsSource = bl.Product.GetProductList();//see all products
+            // ProductListView.Items.Clear();
+            ProductListView.ItemsSource = (bl.Product.GetProductList().ToList().OrderByDescending(x => x.Price));
+            ;//see all products
             ProductSelector.Items.Add("All products");//add option for combo box of seeing all the products
 
             ProductSelector.SelectedItem = ProductSelector.Items.GetItemAt(0);//all products

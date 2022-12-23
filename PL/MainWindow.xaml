@@ -38,10 +38,9 @@
                 </LinearGradientBrush>
             </Button.BorderBrush>
         </Button>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="307,311,0,0" VerticalAlignment="Top" Visibility="Hidden" >
-            <Button.Background>
-                <ImageBrush ImageSource="/pic2.png"/>
-            </Button.Background>
-        </Button>
+
+
+
+
     </Grid>
 </Window>
