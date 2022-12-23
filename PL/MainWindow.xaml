@@ -43,9 +43,5 @@
                 <ImageBrush ImageSource="/pic2.png"/>
             </Button.Background>
         </Button>
-
-
-
-
     </Grid>
 </Window>
