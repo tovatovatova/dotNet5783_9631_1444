@@ -4,6 +4,20 @@
              xmlns:local="clr-namespace:Ex5_EventObject"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!--<Style x:Key="myButtonStyle"   TargetType="Button">
+            <Setter Property="FontSize"
+              Value="32" />
+            <Setter Property="FontFamily"
+              Value="Consolas" />
+            <Setter Property="FontWeight"
+              Value="Bold" />
+        </Style>-->
+        <Style  TargetType="Button">
+            <Setter Property="Background" Value="Aquamarine" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Algerian"/>
+           
+        </Style>
     </Application.Resources>
 </Application>

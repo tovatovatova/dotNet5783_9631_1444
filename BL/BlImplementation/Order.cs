@@ -245,15 +245,15 @@ namespace BlImplementation
                 else
                     boOrder.Status = BO.OrderStatus.Ordered;
                 boOrder.Items = from DO.OrderItem? items in dal.OrderItem.GetAll()//runs on list of order item from dal
-                                where items.Value.OrderId == doOrder?.OrderId//if order item has the same order id as the order
+                                where items?.OrderId == doOrder?.OrderId//if order item has the same order id as the order
                                 select new BO.OrderItem//choose those who stood in the conditions and convert them to order in BO
                                 {
-                                    ID = (int)(items?.OrderItemId),
-                                    Name = dal.Product.GetById(items.Value.ProductId).Name,
-                                    ProductID = items.Value.ProductId,
-                                    Price = items.Value.Price,
-                                    Amount = items.Value.Amount,
-                                    TotalPrice = items.Value.Price * items.Value.Amount
+                                    ID = (items?.OrderItemId)??throw new BO.BlNullPropertyException("id"),
+                                    Name = dal.Product.GetById(items?.ProductId??-1).Name??throw new BO.BlNullPropertyException("price"),
+                                    ProductID = items?.ProductId??0,
+                                    Price = items?.Price??0,
+                                    Amount = items?.Amount??0,
+                                    TotalPrice = items?.Price * items?.Amount?? throw new BO.BlNullPropertyException("total price")
                                 };
                 boOrder.TotalPrice = boOrder.Items.Sum(item => item.TotalPrice);//the total price of the order
                 return boOrder;
