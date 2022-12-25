@@ -27,27 +27,38 @@ namespace PL
     public partial class ProductWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
-        private BO.Product newProduct = new BO.Product() { };
+        //private BO.Product newProduct = new BO.Product() { };
         List<TextBox> texts = new List<TextBox>();
 
         Regex rg = new Regex("[0-9]+");
+
+
+        public BO.Product? PlProduct
+        {
+            get { return (BO.Product?)GetValue(PlProductProperty); }
+            set { SetValue(PlProductProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PlProduct.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PlProductProperty =
+            DependencyProperty.Register("PlProduct", typeof(BO.Product), typeof(Window), new PropertyMetadata(null));
+
+
         /// <summary>
         /// productWindow empty constructor provide the option to add new product
         /// </summary>
         public ProductWindow()
         {
             InitializeComponent();
-            cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            categoryComboBox.ItemsSource = Enum.GetValues(typeof(BO.Category));
             btnAdd.Visibility = Visibility.Visible;//add button getting visible
-            //kipping list of textboxs
-            texts.Add(txtID);
-            texts.Add(txtName);
-            texts.Add(txtPrice);
-            texts.Add(txtInStock);
-
+            //keeping list of textboxs
+            texts.Add(iDTextBox);
+            texts.Add(nameTextBox);
+            texts.Add(priceTextBox);
+            texts.Add(inStockTextBox);
+            
         }
-
-
 
         //}
         /// <summary>
@@ -59,10 +70,12 @@ namespace PL
         public ProductWindow(object sender, EventArgs e, int id)
         {
             InitializeComponent();
-            BO.Product p = new BO.Product();
+            categoryComboBox.ItemsSource = Enum.GetValues(typeof(BO.Category));
+
+            //BO.Product p = new BO.Product();
             try
             {
-                p = bl.Product.GetProductDetails(id);//return product from BO 
+                PlProduct = bl.Product.GetProductDetails(id);//return product from BO 
             }
             catch (BO.BlIdDoNotExistException ex)//product doesnt exist
             {//throw an error message box 
@@ -73,14 +86,14 @@ namespace PL
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
             }
 
-            //show details of product
-            cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
-            cmbCategory.SelectedItem = p.Category;
-            txtID.Text = p.ID.ToString();
-            txtID.IsEnabled = false;//cant change id
-            txtPrice.Text = p.Price.ToString();
-            txtInStock.Text = p.InStock.ToString();
-            txtName.Text = p.Name;
+            ////show details of product
+            //cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            //cmbCategory.SelectedItem = p.Category;
+            //txtID.Text = p.ID.ToString();
+            //txtID.IsEnabled = false;//cant change id
+            //txtPrice.Text = p.Price.ToString();
+            //txtInStock.Text = p.InStock.ToString();
+            //txtName.Text = p.Name;
             btnUpdate.Visibility = Visibility.Visible;
         }
         /// <summary>
@@ -97,7 +110,7 @@ namespace PL
             texts.Clear();
             double price;
             int inStock, id;
-            if (cmbCategory.SelectedItem == null)//check if the user choose category and show message if not
+            if (categoryComboBox.SelectedItem == null)//check if the user choose category and show message if not
             {
                 messageBoxText = "choose category";
                 caption = "error";
@@ -108,69 +121,65 @@ namespace PL
                     return;
                 }
             }
-            if (!int.TryParse(txtID.Text.ToString(), out id))//id validation
+            if (PlProduct.ID<0)
             {
-                texts.Add(txtID);
-                lblXid.Visibility = Visibility;
+                ifError();
             }
+            //if (!int.TryParse(PlProduct.ID, out id))//id validation
+            //{
+            //    ifError();
+            //}
             //else if (id < 0)
             //{
-            //    texts.Add(txtID);
-            //    lblXid.Visibility = Visibility;
+            //    ifError();
             //}
-            if (!double.TryParse(txtPrice.Text.ToString(), out price))//check price validation
+            if (!double.TryParse(priceTextBox.Text.ToString(), out price))//check price validation
             {
-                texts.Add(txtPrice);
-                lblXPrice.Visibility = Visibility;
+                ifError();
             }
-            //else if (price < 0)
+            else if (price < 0)
+            {
+                ifError();
+            }
+            if (!int.TryParse(inStockTextBox.Text.ToString(), out inStock))//amount in stock validation
+            {
+                ifError();
+            }
+            else if (inStock < 0)
+            {
+                ifError();
+            }
+            if (nameTextBox.Text == "")//check if name is written
+            {
+                ifError();
+            }
+
+            //if (texts.Count > 0)//there is at least one error with at least one input
             //{
-            //    texts.Add(txtPrice);
-            //    lblXPrice.Visibility = Visibility;
-            //}
-            if (!int.TryParse(txtInStock.Text.ToString(), out inStock))//amount in stock validation
-            {
-                texts.Add(txtInStock);
-                lblXInStock.Visibility = Visibility;
+            //    messageBoxText = "you insert invalid values\n please try again";
+            //    caption = "error";
+            //    icon = MessageBoxImage.Error;
+            //    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+            //    if (result == MessageBoxResult.OK)
+            //    {
+            //        foreach (var item in texts)
+            //        {
+            //            item.BorderBrush = new SolidColorBrush(Colors.Red);//brush the text border with red -to show were the error is
+            //        }
+            //    }
 
-            }
-            //else if (inStock < 0)
+            //}
+            //else
             //{
-            //    texts.Add(txtInStock);
-            //    lblXInStock.Visibility = Visibility;
-            //}
-            if (txtName.Text == "")//check if name is written
-            {
-                texts.Add(txtName);
-                lblXName.Visibility = Visibility;
-            }
-
-            if (texts.Count > 0)//there is at least one error with at least one input
-            {
-                messageBoxText = "you insert invalid values\n please try again";
-                caption = "error";
-                icon = MessageBoxImage.Error;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                if (result == MessageBoxResult.OK)
-                {
-                    foreach (var item in texts)
-                    {
-                        item.BorderBrush = new SolidColorBrush(Colors.Red);//brush the text border with red -to show were the error is
-                    }
-                }
-
-            }
-            else
-            {
                 try//try to add the product with call to a bl function od add
                 {
 
-                    newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
-                    newProduct.Name = txtName.Text.ToString();
-                    newProduct.ID = id;
-                    newProduct.Price = price;
-                    newProduct.InStock = inStock;
-                    bl.Product.AddProduct(newProduct);
+                    //newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
+                    //newProduct.Name = txtName.Text.ToString();
+                    //newProduct.ID = id;
+                    //newProduct.Price = price;
+                    //newProduct.InStock = inStock;
+                    bl.Product.AddProduct(PlProduct!);
                     messageBoxText = "product added successfully";
                     caption = "";
                     icon = MessageBoxImage.Information;
@@ -205,10 +214,7 @@ namespace PL
                     if (result == MessageBoxResult.OK)
                         return;
                 }
-
-
-            }
-
+            //}
         }
 
         /// <summary>
@@ -220,38 +226,38 @@ namespace PL
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             texts.Clear();
-            double price;
-            int inStock;
+            //double price;
+            //int inStock;
 
-            BO.Category cat;
-            cat = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
-            //check validation of the inputs
-            if (!double.TryParse(txtPrice.Text.ToString(), out price))
-            {
-                texts.Add(txtPrice);
-                lblXPrice.Visibility = Visibility;
-            }
-            //else if (price < 0)
+            //BO.Category cat;
+            //cat = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
+            ////check validation of the inputs
+            //if (!double.TryParse(txtPrice.Text.ToString(), out price))
             //{
             //    texts.Add(txtPrice);
             //    lblXPrice.Visibility = Visibility;
             //}
-            if (!int.TryParse(txtInStock.Text.ToString(), out inStock))
-            {
-                texts.Add(txtInStock);
-                lblXInStock.Visibility = Visibility;
+            ////else if (price < 0)
+            ////{
+            ////    texts.Add(txtPrice);
+            ////    lblXPrice.Visibility = Visibility;
+            ////}
+            //if (!int.TryParse(txtInStock.Text.ToString(), out inStock))
+            //{
+            //    texts.Add(txtInStock);
+            //    lblXInStock.Visibility = Visibility;
 
-            }
+            //}
             //else if (inStock < 0)
             //{
             //    texts.Add(txtInStock);
             //    lblXInStock.Visibility = Visibility;
             //}
-            if (txtName.Text == "")
-            {
-                texts.Add(txtName);
-                lblXName.Visibility = Visibility;
-            }
+            //if (txtName.Text == "")
+            //{
+            //    texts.Add(txtName);
+            //    lblXName.Visibility = Visibility;
+            //}
             //if at least one of the texts went wrong
             if (texts.Count > 0)//there is at least one error with at least one input
             {
@@ -271,12 +277,12 @@ namespace PL
             }
             else try//if all are valid -try to update them
                 {
-                    newProduct.Category = cat;
-                    newProduct.Name = txtName.Text;
-                    newProduct.ID = Convert.ToInt32(txtID.Text);
-                    newProduct.Price = price;
-                    newProduct.InStock = inStock;
-                    bl.Product.UpdateProduct(newProduct);
+                    //newProduct.Category = cat;
+                    //newProduct.Name = txtName.Text;
+                    //newProduct.ID = Convert.ToInt32(txtID.Text);
+                    //newProduct.Price = price;
+                    //newProduct.InStock = inStock;
+                    bl.Product.UpdateProduct(PlProduct!);
                     Close();
                 }
                 catch (BO.BlIdDoNotExistException ex)
@@ -318,18 +324,32 @@ namespace PL
         /// <param name="e"></param>
         private void mainGrid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            lblXInStock.Visibility = Visibility.Hidden;
-            lblXName.Visibility = Visibility.Hidden;
-            lblXPrice.Visibility = Visibility.Hidden;
-            txtID.BorderBrush = Background;
-            txtInStock.BorderBrush = Background;
-            txtName.BorderBrush = Background;
-            txtPrice.BorderBrush = Background;
+            //lblXInStock.Visibility = Visibility.Hidden;
+            //lblXName.Visibility = Visibility.Hidden;
+            //lblPrice.Visibility = Visibility.Hidden;
+            iDTextBox.BorderBrush = Background;
+            inStockTextBox.BorderBrush = Background;
+            nameTextBox.BorderBrush = Background;
+            priceTextBox.BorderBrush = Background;
         }
-
-        private void txtInStock_TextChanged(object sender, TextChangedEventArgs e)
+        private void ifError()
         {
-
+            string messageBoxText;
+            string caption;
+            MessageBoxImage icon;
+            MessageBoxResult result;
+            messageBoxText = "you insert invalid values\n please try again";
+            caption = "error";
+            icon = MessageBoxImage.Error;
+            result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+            if (result == MessageBoxResult.OK)
+            {
+                foreach (var item in texts)
+                {
+                    item.BorderBrush = new SolidColorBrush(Colors.Red);//brush the text border with red -to show were the error is
+                }
+            }
         }
     }
+   
 }

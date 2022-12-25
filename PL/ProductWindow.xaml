@@ -5,43 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
+        DataContext="{Binding PlProduct,RelativeSource={RelativeSource Self}}"
         Title="ProductWindow" Height="450" Width="800">
     <Grid  Name="mainGrid" Background="#FFF1CFE4" PreviewMouseLeftButtonDown="mainGrid_PreviewMouseLeftButtonDown">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
-
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Button x:Name="btnAdd" Content="Add"  Background="#FF32BBC4" Height="43" Width="94" FontFamily="Arial Black" FontSize="19" Click="btnAdd_Click" Visibility="Hidden" Grid.Column="0" Grid.Row="6" />
-        <TextBox x:Name="txtID"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120" BorderBrush="#FFF1CFE4" Foreground="#FF1C1313" BorderThickness="4,4,4,4" Grid.Column="2" Grid.Row="1" Margin="40,0,40,0" />
-        <ComboBox x:Name="cmbCategory"  VerticalAlignment="Center" Width="120" Grid.Column="2" Grid.Row="2" Margin="40,0,40,0"/>
-        <TextBox x:Name="txtName"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120" BorderThickness="4,4,4,4" BorderBrush="#FFF1CFE4" Grid.Column="2" Grid.Row="3" Margin="40,0,40,0"/>
-        <TextBox x:Name="txtInStock"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120" BorderThickness="4,4,4,4" BorderBrush="#FFF1CFE4" Grid.Column="2" Grid.Row="4" Margin="40,0,40,0" />
-        <TextBox x:Name="txtPrice"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120" BorderThickness="4,4,4,4" BorderBrush="#FFF1CFE4" Grid.Column="2" Grid.Row="5"  Text="" Margin="40,0,40,0"/>
-        <Label  VerticalAlignment="Center" FontSize="14" FontFamily="Aharoni" FontWeight="Bold" Grid.Column="1" Grid.Row="1" >
-            <Label x:Name="lblId" Content="product id:"  FontSize="20" FontFamily="Aharoni" FontWeight="Bold" Grid.Column="1" Grid.Row="1"/>
-        </Label>
-        <Label x:Name="lblCategory" Content="Category:" VerticalAlignment="Center"  Width="120" FontSize="20" FontFamily="Aharoni" FontWeight="Bold" Grid.Column="1" Grid.Row="2" />
-        <Label x:Name="lblName" Content="product name:"  VerticalAlignment="Center"  FontSize="20" FontFamily="Aharoni" FontWeight="Bold" Grid.Column="1" Grid.Row="3"/>
-        <Label x:Name="lblInStock" Content="amount in stock:"  VerticalAlignment="Center"  FontSize="20" FontFamily="Aharoni" FontWeight="Bold" Grid.Column="1" Grid.Row="4"/>
-        <Label x:Name="lblPrice" Content="price:"  VerticalAlignment="Center" FontFamily="Aharoni" FontSize="20" Grid.Column="1" Grid.Row="5"/>
-        <Button x:Name="btnUpdate" Content="Update"  VerticalAlignment="Center" Height="50" Width="169" Click="btnUpdate_Click" Background="#FF32BBC4" Visibility="Hidden" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="6"/>
-        <Label x:Name="lblXPrice" Content="*" HorizontalAlignment="Left" Margin="23,37,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFA1B1B" FontSize="25" FontFamily="Arial Black" Height="25" Width="20" Visibility="Hidden" Grid.Column="3" Grid.RowSpan="2" Grid.Row="3"/>
-        <Label x:Name="lblXName" Content="*" HorizontalAlignment="Left" Margin="23,39,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFA1B1B" FontSize="25" FontFamily="Arial Black" Height="25" Width="20" Visibility="Hidden" Grid.Column="3" Grid.RowSpan="2" Grid.Row="2"/>
-        <Label x:Name="lblXInStock" Content="*" HorizontalAlignment="Left" Margin="23,32,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFA1B1B" FontSize="25" FontFamily="Arial Black" Height="25" Width="20" RenderTransformOrigin="0.982,8.476" Visibility="Hidden" Grid.Column="3" Grid.RowSpan="2" Grid.Row="4"/>
-        <Label x:Name="lblXid" Content="*" HorizontalAlignment="Left" Margin="23,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.241,0.016" FontFamily="Arial Black" FontSize="25" Foreground="#FFF20D0D" Visibility="Hidden" Grid.Column="3" Grid.Row="1"/>
+
+        <Label Grid.Column="0" Content="ID:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+        <TextBox x:Name="iDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+        <Label Grid.Column="0" Content="Category:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+        <ComboBox x:Name="categoryComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="NaN"  Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120">
+
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel/>
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
+
+        <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+        <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="2" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+        <Label  Grid.Column="0" Content="Price:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+        <TextBox x:Name="priceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+        <Label Grid.Column="0" Content="In Stock:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+        <TextBox x:Name="inStockTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+
+        <Button x:Name="btnAdd" Content="Add"  Background="#FF32BBC4" Height="43" Width="94" FontFamily="Arial Black" FontSize="19" Click="btnAdd_Click" Visibility="Hidden" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" RenderTransformOrigin="0.388,5.877" Margin="0,223,8,-216" />
+        <Button x:Name="btnUpdate" Content="Update"   Height="50" Width="169" Click="btnUpdate_Click" Background="#FF32BBC4"  Grid.Column="1" Visibility="Hidden" Grid.Row="4" HorizontalAlignment="Right" Margin="0,216,-569,-216"/>
 
     </Grid>
 </Window>
+
