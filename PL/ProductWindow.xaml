@@ -8,27 +8,40 @@
         Title="ProductWindow" Height="450" Width="800">
     <Grid  Name="mainGrid" Background="#FFF1CFE4" PreviewMouseLeftButtonDown="mainGrid_PreviewMouseLeftButtonDown">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="49*"/>
-            <ColumnDefinition Width="751*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="257,349,0,0" VerticalAlignment="Top" Background="#FF32BBC4" Height="43" Width="94" FontFamily="Arial Black" FontSize="19" Click="btnAdd_Click" Visibility="Hidden" Grid.Column="1"/>
-        <TextBox x:Name="txtID" HorizontalAlignment="Left" Margin="293,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#FFF1CFE4" Foreground="#FF1C1313" BorderThickness="4,4,4,4" Grid.Column="1" />
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="293,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="4,4,4,4" BorderBrush="#FFF1CFE4" Grid.Column="1"  />
-        <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Margin="293,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" BorderThickness="4,4,4,4" BorderBrush="#FFF1CFE4" Grid.Column="1"/>
-        <TextBox x:Name="txtInStock" HorizontalAlignment="Left" Margin="291,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="4,4,4,4" BorderBrush="#FFF1CFE4" Grid.Column="1" />
-        <Label HorizontalAlignment="Left" Margin="175,62,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Aharoni" FontWeight="Bold" Grid.Column="1">
-            <Label x:Name="lblId" Content="product id:" RenderTransformOrigin="-0.602,-1.18" FontSize="14" FontFamily="Aharoni" FontWeight="Bold"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="btnAdd" Content="Add"  Background="#FF32BBC4" Height="43" Width="94" FontFamily="Arial Black" FontSize="19" Click="btnAdd_Click" Visibility="Hidden" Grid.Column="0" Grid.Row="6" />
+        <TextBox x:Name="txtID"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120" BorderBrush="#FFF1CFE4" Foreground="#FF1C1313" BorderThickness="4,4,4,4" Grid.Column="2" Grid.Row="1" Margin="40,0,40,0" />
+        <ComboBox x:Name="cmbCategory"  VerticalAlignment="Center" Width="120" Grid.Column="2" Grid.Row="2" Margin="40,0,40,0"/>
+        <TextBox x:Name="txtName"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120" BorderThickness="4,4,4,4" BorderBrush="#FFF1CFE4" Grid.Column="2" Grid.Row="3" Margin="40,0,40,0"/>
+        <TextBox x:Name="txtInStock"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120" BorderThickness="4,4,4,4" BorderBrush="#FFF1CFE4" Grid.Column="2" Grid.Row="4" Margin="40,0,40,0" />
+        <TextBox x:Name="txtPrice"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120" BorderThickness="4,4,4,4" BorderBrush="#FFF1CFE4" Grid.Column="2" Grid.Row="5"  Text="" Margin="40,0,40,0"/>
+        <Label  VerticalAlignment="Center" FontSize="14" FontFamily="Aharoni" FontWeight="Bold" Grid.Column="1" Grid.Row="1" >
+            <Label x:Name="lblId" Content="product id:"  FontSize="20" FontFamily="Aharoni" FontWeight="Bold" Grid.Column="1" Grid.Row="1"/>
         </Label>
-        <Label x:Name="lblCategory" Content="Category" HorizontalAlignment="Left" Margin="186,101,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.156,-0.718" FontSize="14" FontFamily="Aharoni" FontWeight="Bold" Grid.Column="1"/>
-        <Label x:Name="lblName" Content="product name:" HorizontalAlignment="Left" Margin="165,152,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.302,0.117" FontSize="14" FontFamily="Aharoni" FontWeight="Bold" Grid.Column="1"/>
-        <Label x:Name="lblInStock" Content="amount in stock" HorizontalAlignment="Left" Margin="151,253,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.277,0.117" FontSize="14" FontFamily="Aharoni" FontWeight="Bold" Grid.Column="1"/>
-        <Label x:Name="lblPrice" Content="price:" HorizontalAlignment="Left" Margin="186,208,0,0" VerticalAlignment="Top" FontFamily="Aharoni" FontSize="14" Grid.Column="1"/>
-        <ComboBox x:Name="cmbCategory" HorizontalAlignment="Left" Margin="291,109,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="434,347,0,0" VerticalAlignment="Top" Height="50" Width="169" Click="btnUpdate_Click" Background="#FF32BBC4" Visibility="Hidden" Grid.Column="1"/>
-        <Label x:Name="lblXPrice" Content="*" HorizontalAlignment="Left" Margin="423,207,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFA1B1B" FontSize="25" FontFamily="Arial Black" Height="25" Width="20" Visibility="Hidden" Grid.Column="1"/>
-        <Label x:Name="lblXName" Content="*" HorizontalAlignment="Left" Margin="423,159,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFA1B1B" FontSize="25" FontFamily="Arial Black" Height="25" Width="20" Visibility="Hidden" Grid.Column="1"/>
-        <Label x:Name="lblXInStock" Content="*" HorizontalAlignment="Left" Margin="423,252,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFA1B1B" FontSize="25" FontFamily="Arial Black" Height="25" Width="20" RenderTransformOrigin="0.982,8.476" Visibility="Hidden" Grid.Column="1"/>
-        <Label x:Name="lblXid" Content="*" HorizontalAlignment="Left" Margin="423,74,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.241,0.016" FontFamily="Arial Black" FontSize="25" Foreground="#FFF20D0D" Visibility="Hidden" Grid.Column="1"/>
+        <Label x:Name="lblCategory" Content="Category:" VerticalAlignment="Center"  Width="120" FontSize="20" FontFamily="Aharoni" FontWeight="Bold" Grid.Column="1" Grid.Row="2" />
+        <Label x:Name="lblName" Content="product name:"  VerticalAlignment="Center"  FontSize="20" FontFamily="Aharoni" FontWeight="Bold" Grid.Column="1" Grid.Row="3"/>
+        <Label x:Name="lblInStock" Content="amount in stock:"  VerticalAlignment="Center"  FontSize="20" FontFamily="Aharoni" FontWeight="Bold" Grid.Column="1" Grid.Row="4"/>
+        <Label x:Name="lblPrice" Content="price:"  VerticalAlignment="Center" FontFamily="Aharoni" FontSize="20" Grid.Column="1" Grid.Row="5"/>
+        <Button x:Name="btnUpdate" Content="Update"  VerticalAlignment="Center" Height="50" Width="169" Click="btnUpdate_Click" Background="#FF32BBC4" Visibility="Hidden" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="6"/>
+        <Label x:Name="lblXPrice" Content="*" HorizontalAlignment="Left" Margin="23,37,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFA1B1B" FontSize="25" FontFamily="Arial Black" Height="25" Width="20" Visibility="Hidden" Grid.Column="3" Grid.RowSpan="2" Grid.Row="3"/>
+        <Label x:Name="lblXName" Content="*" HorizontalAlignment="Left" Margin="23,39,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFA1B1B" FontSize="25" FontFamily="Arial Black" Height="25" Width="20" Visibility="Hidden" Grid.Column="3" Grid.RowSpan="2" Grid.Row="2"/>
+        <Label x:Name="lblXInStock" Content="*" HorizontalAlignment="Left" Margin="23,32,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFA1B1B" FontSize="25" FontFamily="Arial Black" Height="25" Width="20" RenderTransformOrigin="0.982,8.476" Visibility="Hidden" Grid.Column="3" Grid.RowSpan="2" Grid.Row="4"/>
+        <Label x:Name="lblXid" Content="*" HorizontalAlignment="Left" Margin="23,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.241,0.016" FontFamily="Arial Black" FontSize="25" Foreground="#FFF20D0D" Visibility="Hidden" Grid.Column="3" Grid.Row="1"/>
 
     </Grid>
 </Window>
