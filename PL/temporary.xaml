@@ -1,0 +1,16 @@
+﻿<Window x:Class="PL.temporary"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="temporary" Height="450" Width="800">
+    <Grid Margin="0,0,0,-159">
+        <Grid.Background>
+            <ImageBrush ImageSource="/3f456dd50885a6d2e8604434a6292965.jpg" TileMode="FlipX" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Button Content="PLAY" HorizontalAlignment="Left" Margin="156,34,0,0" VerticalAlignment="Top" Height="83" Width="244" Background="#FFED90C1" FontSize="80" Click="Button_Click"/>
+
+    </Grid>
+</Window>

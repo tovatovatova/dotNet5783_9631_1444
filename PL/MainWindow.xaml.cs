@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,6 +40,10 @@ namespace PL
         /// <param name="e"></param>
        private void btnAdmin_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
 
-       
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            temporary tm = new temporary();
+            tm.Show();
+        }
     }
 }
