@@ -91,8 +91,6 @@ namespace PL
             string caption;
             MessageBoxImage icon;
             MessageBoxResult result;
-            double price;
-            int inStock, id;
             if (categoryComboBox.SelectedItem == null)//check if the user choose category and show message if not
             {
                 messageBoxText = "choose category";
@@ -100,9 +98,8 @@ namespace PL
                 icon = MessageBoxImage.Error;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
                 if (result == MessageBoxResult.OK)
-                {
                     return;
-                }
+                
             }
                 try//try to add the product with call to a bl function  add
                 {
@@ -140,8 +137,7 @@ namespace PL
                     result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
                     if (result == MessageBoxResult.OK)
                         return;
-                }
-            //}
+                }         
         }
 
         /// <summary>
@@ -184,7 +180,6 @@ namespace PL
             }
         }
 
-
         /// <summary>
         /// event happens when user press left mouse button (no matter where)
         /// </summary>
@@ -192,32 +187,11 @@ namespace PL
         /// <param name="e"></param>
         private void mainGrid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //lblXInStock.Visibility = Visibility.Hidden;
-            //lblXName.Visibility = Visibility.Hidden;
-            //lblPrice.Visibility = Visibility.Hidden;
             iDTextBox.BorderBrush = Background;
             iDTextBox.BorderBrush = Background;
             inStockTextBox.BorderBrush = Background;
             nameTextBox.BorderBrush = Background;
             priceTextBox.BorderBrush = Background;
-        }
-        private void ifError()
-        {
-            string messageBoxText;
-            string caption;
-            MessageBoxImage icon;
-            MessageBoxResult result;
-            messageBoxText = "you insert invalid values\n please try again";
-            caption = "error";
-            icon = MessageBoxImage.Error;
-            result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-            if (result == MessageBoxResult.OK)
-            {
-                foreach (var item in texts)
-                {
-                    item.BorderBrush = new SolidColorBrush(Colors.Red);//brush the text border with red -to show were the error is
-                }
-            }
         }
     }
    
