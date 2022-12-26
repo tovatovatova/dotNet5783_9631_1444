@@ -39,7 +39,6 @@
                 </LinearGradientBrush>
             </Button.BorderBrush>
         </Button>
-        <Button Content="Happy Birthday" HorizontalAlignment="Center" Margin="0,176,0,0" VerticalAlignment="Top" Click="Button_Click" Height="69" Width="197"/>
 
 
 

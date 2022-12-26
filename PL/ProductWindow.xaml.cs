@@ -57,6 +57,7 @@ namespace PL
             texts.Add(nameTextBox);
             texts.Add(priceTextBox);
             texts.Add(inStockTextBox);
+            PlProduct = new BO.Product();
             
         }
 
@@ -283,7 +284,7 @@ namespace PL
                     //newProduct.Price = price;
                     //newProduct.InStock = inStock;
                     bl.Product.UpdateProduct(PlProduct!);
-                    Close();
+                   // Close();
                 }
                 catch (BO.BlIdDoNotExistException ex)
                 {

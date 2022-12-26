@@ -40,10 +40,6 @@ namespace PL
         /// <param name="e"></param>
        private void btnAdmin_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            temporary tm = new temporary();
-            tm.Show();
-        }
+        
     }
 }
