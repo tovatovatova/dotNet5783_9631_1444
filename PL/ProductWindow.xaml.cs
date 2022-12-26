@@ -27,9 +27,6 @@ namespace PL
     public partial class ProductWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
-        //private BO.Product newProduct = new BO.Product() { };
-        List<TextBox> texts = new List<TextBox>();
-
         Regex rg = new Regex("[0-9]+");
 
 
@@ -52,11 +49,6 @@ namespace PL
             InitializeComponent();
             categoryComboBox.ItemsSource = Enum.GetValues(typeof(BO.Category));
             btnAdd.Visibility = Visibility.Visible;//add button getting visible
-            //keeping list of textboxs
-            texts.Add(iDTextBox);
-            texts.Add(nameTextBox);
-            texts.Add(priceTextBox);
-            texts.Add(inStockTextBox);
             PlProduct = new BO.Product();
             
         }
@@ -86,15 +78,6 @@ namespace PL
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
             }
-
-            ////show details of product
-            //cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
-            //cmbCategory.SelectedItem = p.Category;
-            //txtID.Text = p.ID.ToString();
-            //txtID.IsEnabled = false;//cant change id
-            //txtPrice.Text = p.Price.ToString();
-            //txtInStock.Text = p.InStock.ToString();
-            //txtName.Text = p.Name;
             btnUpdate.Visibility = Visibility.Visible;
         }
         /// <summary>
@@ -108,7 +91,6 @@ namespace PL
             string caption;
             MessageBoxImage icon;
             MessageBoxResult result;
-            texts.Clear();
             double price;
             int inStock, id;
             if (categoryComboBox.SelectedItem == null)//check if the user choose category and show message if not
