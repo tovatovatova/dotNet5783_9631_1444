@@ -27,18 +27,30 @@ namespace PL
     public partial class ProductWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
-        private BO.Product newProduct = new BO.Product() { };
-
         Regex rg = new Regex("[0-9]+");
+
+
+        public BO.Product? PlProduct
+        {
+            get { return (BO.Product?)GetValue(PlProductProperty); }
+            set { SetValue(PlProductProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PlProduct.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PlProductProperty =
+            DependencyProperty.Register("PlProduct", typeof(BO.Product), typeof(Window), new PropertyMetadata(null));
+
+
         /// <summary>
         /// productWindow empty constructor provide the option to add new product
         /// </summary>
         public ProductWindow()
         {
             InitializeComponent();
-            cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            categoryComboBox.ItemsSource = Enum.GetValues(typeof(BO.Category));
             btnAdd.Visibility = Visibility.Visible;//add button getting visible
-
+            PlProduct = new BO.Product();
+            
         }
 
         //}
@@ -51,10 +63,12 @@ namespace PL
         public ProductWindow(object sender, EventArgs e, int id)
         {
             InitializeComponent();
-            BO.Product p = new BO.Product();
+            categoryComboBox.ItemsSource = Enum.GetValues(typeof(BO.Category));
+
+            //BO.Product p = new BO.Product();
             try
             {
-                p = bl.Product.GetProductDetails(id);//return product from BO 
+                PlProduct = bl.Product.GetProductDetails(id);//return product from BO 
             }
             catch (BO.BlIdDoNotExistException ex)//product doesnt exist
             {//throw an error message box 
@@ -64,15 +78,6 @@ namespace PL
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
             }
-
-            //show details of product
-            cmbCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
-            cmbCategory.SelectedItem = p.Category;
-            txtID.Text = p.ID.ToString();
-            txtID.IsEnabled = false;//cant change id
-            txtPrice.Text = p.Price.ToString();
-            txtInStock.Text = p.InStock.ToString();
-            txtName.Text = p.Name;
             btnUpdate.Visibility = Visibility.Visible;
         }
         /// <summary>
@@ -86,10 +91,9 @@ namespace PL
             string caption;
             MessageBoxImage icon;
             MessageBoxResult result;
-
             double price;
             int inStock, id;
-            if (cmbCategory.SelectedItem == null)//check if the user choose category and show message if not
+            if (categoryComboBox.SelectedItem == null)//check if the user choose category and show message if not
             {
                 messageBoxText = "choose category";
                 caption = "error";
@@ -100,88 +104,45 @@ namespace PL
                     return;
                 }
             }
-            if (!int.TryParse(txtID.Text.ToString(), out id))//id validation
-            {
-
-                lblXid.Visibility = Visibility;
-            }
-            //else if (id < 0)
-            //{
-            //    texts.Add(txtID);
-            //    lblXid.Visibility = Visibility;
+                try//try to add the product with call to a bl function  add
+                {
+                    bl.Product.AddProduct(PlProduct!);
+                    messageBoxText = "product added successfully";
+                    caption = "";
+                    icon = MessageBoxImage.Information;
+                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
+                    if (result == MessageBoxResult.OK)
+                        Close();
+                }
+                catch (BO.BlIdAlreadyExistException ex)
+                {
+                    messageBoxText = ex.Message + "\n" + "try again";
+                    caption = "";
+                    icon = MessageBoxImage.Information;
+                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
+                    if (result == MessageBoxResult.OK)
+                        return;
+                }
+                catch (BO.BlInvalidInputException ex)
+                {
+                    messageBoxText = ex.Message + "\n" + "check your input";
+                    caption = "";
+                    icon = MessageBoxImage.Information;
+                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
+                    if (result == MessageBoxResult.OK)
+                        return;
+                }
+                catch (BO.BlWrongCategoryException ex)
+                {
+                    messageBoxText = ex.Message + "\n" + "choose category again";
+                    caption = "";
+                    icon = MessageBoxImage.Information;
+                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
+                    if (result == MessageBoxResult.OK)
+                        return;
+                }
             //}
-            if (!double.TryParse(txtPrice.Text.ToString(), out price))//check price validation
-            {
-
-                lblXPrice.Visibility = Visibility;
-            }
-            //else if (price < 0)
-            //{
-            //    texts.Add(txtPrice);
-            //    lblXPrice.Visibility = Visibility;
-            //}
-            if (!int.TryParse(txtInStock.Text.ToString(), out inStock))//amount in stock validation
-            {
-
-                lblXInStock.Visibility = Visibility;
-
-            }
-           
-            if (txtName.Text == "")//check if name is written
-            {
-
-                lblXName.Visibility = Visibility;
-            }
-
-
-            try//try to add the product with call to a bl function od add
-            {
-
-                newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
-                newProduct.Name = txtName.Text.ToString();
-                newProduct.ID = id;
-                newProduct.Price = price;
-                newProduct.InStock = inStock;
-                bl.Product.AddProduct(newProduct);
-                messageBoxText = "product added successfully";
-                caption = "";
-                icon = MessageBoxImage.Information;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
-                if (result == MessageBoxResult.OK)
-                    Close();
-            }
-            catch (BO.BlIdAlreadyExistException ex)
-            {
-                messageBoxText = ex.Message + "\n" + "try again";
-                caption = "";
-                icon = MessageBoxImage.Information;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
-                if (result == MessageBoxResult.OK)
-                    return;
-            }
-            catch (BO.BlInvalidInputException ex)
-            {
-                messageBoxText = ex.Message + "\n" + "check your input";
-                caption = "";
-                icon = MessageBoxImage.Information;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
-                if (result == MessageBoxResult.OK)
-                    return;
-            }
-            catch (BO.BlWrongCategoryException ex)
-            {
-                messageBoxText = ex.Message + "\n" + "choose category again";
-                caption = "";
-                icon = MessageBoxImage.Information;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
-                if (result == MessageBoxResult.OK)
-                    return;
-            }
-
-
         }
-
-    
 
         /// <summary>
         /// when update button press- the function calls and responsible of meking the update of existin product
@@ -191,72 +152,37 @@ namespace PL
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-           
-           
 
-            BO.Category cat;
-            cat = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
-            //check validation of the inputs
-            if (!double.TryParse(txtPrice.Text.ToString(), out price))
-            {
-                
-                lblXPrice.Visibility = Visibility;
-            }
-           
-            if (!int.TryParse(txtInStock.Text.ToString(), out inStock))
-            {
-              
-                lblXInStock.Visibility = Visibility;
-
-            }
-           
-            if (txtName.Text == "")
-            {
-                
-                lblXName.Visibility = Visibility;
-            }
-            //if at least one of the texts went wrong
-         
             try//if all are valid -try to update them
+            {              
+                bl.Product.UpdateProduct(PlProduct!);
+                  Close();
+            }
+            catch (BO.BlIdDoNotExistException ex)
+            {
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                if (result == MessageBoxResult.OK)
                 {
-                    newProduct.Category = cat;
-                    newProduct.Name = txtName.Text;
-                    newProduct.ID = Convert.ToInt32(txtID.Text);
-                    newProduct.Price = price;
-                    newProduct.InStock = inStock;
-                    bl.Product.UpdateProduct(newProduct);
-                    Close();
+                    return;
                 }
-                catch (BO.BlIdDoNotExistException ex)
+            }
+            catch (BO.BlInvalidInputException ex)
+            {
+                string messageBoxText = ex.ToString() + "\ntry again";
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                if (result == MessageBoxResult.OK)
                 {
-                    string messageBoxText = ex.Message.ToString();
-                    string caption = "error";
-                    MessageBoxImage icon = MessageBoxImage.Error;
-                    MessageBoxResult result;
-                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                    if (result == MessageBoxResult.OK)
-                    {
-                        return;
-                    }
+                    return;
                 }
-                catch (BO.BlInvalidInputException ex)
-                {
-                    string messageBoxText = ex.ToString() + "\ntry again";
-                    string caption = "error";
-                    MessageBoxImage icon = MessageBoxImage.Error;
-                    MessageBoxResult result;
-                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                    if (result == MessageBoxResult.OK)
-                    {
-                        return;
-                    }
-                }
-
-
-
-
+            }
         }
-
 
 
         /// <summary>
@@ -266,18 +192,33 @@ namespace PL
         /// <param name="e"></param>
         private void mainGrid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            lblXInStock.Visibility = Visibility.Hidden;
-            lblXName.Visibility = Visibility.Hidden;
-            lblXPrice.Visibility = Visibility.Hidden;
-            txtID.BorderBrush = Background;
-            txtInStock.BorderBrush = Background;
-            txtName.BorderBrush = Background;
-            txtPrice.BorderBrush = Background;
+            //lblXInStock.Visibility = Visibility.Hidden;
+            //lblXName.Visibility = Visibility.Hidden;
+            //lblPrice.Visibility = Visibility.Hidden;
+            iDTextBox.BorderBrush = Background;
+            iDTextBox.BorderBrush = Background;
+            inStockTextBox.BorderBrush = Background;
+            nameTextBox.BorderBrush = Background;
+            priceTextBox.BorderBrush = Background;
         }
-
-        private void txtInStock_TextChanged(object sender, TextChangedEventArgs e)
+        private void ifError()
         {
-
+            string messageBoxText;
+            string caption;
+            MessageBoxImage icon;
+            MessageBoxResult result;
+            messageBoxText = "you insert invalid values\n please try again";
+            caption = "error";
+            icon = MessageBoxImage.Error;
+            result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+            if (result == MessageBoxResult.OK)
+            {
+                foreach (var item in texts)
+                {
+                    item.BorderBrush = new SolidColorBrush(Colors.Red);//brush the text border with red -to show were the error is
+                }
+            }
         }
     }
+   
 }
