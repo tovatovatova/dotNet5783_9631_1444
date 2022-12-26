@@ -104,64 +104,8 @@ namespace PL
                     return;
                 }
             }
-            if (PlProduct.ID<0)
-            {
-                ifError();
-            }
-            //if (!int.TryParse(PlProduct.ID, out id))//id validation
-            //{
-            //    ifError();
-            //}
-            //else if (id < 0)
-            //{
-            //    ifError();
-            //}
-            if (!double.TryParse(priceTextBox.Text.ToString(), out price))//check price validation
-            {
-                ifError();
-            }
-            else if (price < 0)
-            {
-                ifError();
-            }
-            if (!int.TryParse(inStockTextBox.Text.ToString(), out inStock))//amount in stock validation
-            {
-                ifError();
-            }
-            else if (inStock < 0)
-            {
-                ifError();
-            }
-            if (nameTextBox.Text == "")//check if name is written
-            {
-                ifError();
-            }
-
-            //if (texts.Count > 0)//there is at least one error with at least one input
-            //{
-            //    messageBoxText = "you insert invalid values\n please try again";
-            //    caption = "error";
-            //    icon = MessageBoxImage.Error;
-            //    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-            //    if (result == MessageBoxResult.OK)
-            //    {
-            //        foreach (var item in texts)
-            //        {
-            //            item.BorderBrush = new SolidColorBrush(Colors.Red);//brush the text border with red -to show were the error is
-            //        }
-            //    }
-
-            //}
-            //else
-            //{
-                try//try to add the product with call to a bl function od add
+                try//try to add the product with call to a bl function  add
                 {
-
-                    //newProduct.Category = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
-                    //newProduct.Name = txtName.Text.ToString();
-                    //newProduct.ID = id;
-                    //newProduct.Price = price;
-                    //newProduct.InStock = inStock;
                     bl.Product.AddProduct(PlProduct!);
                     messageBoxText = "product added successfully";
                     caption = "";
@@ -208,96 +152,37 @@ namespace PL
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            texts.Clear();
-            //double price;
-            //int inStock;
 
-            //BO.Category cat;
-            //cat = Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString());
-            ////check validation of the inputs
-            //if (!double.TryParse(txtPrice.Text.ToString(), out price))
-            //{
-            //    texts.Add(txtPrice);
-            //    lblXPrice.Visibility = Visibility;
-            //}
-            ////else if (price < 0)
-            ////{
-            ////    texts.Add(txtPrice);
-            ////    lblXPrice.Visibility = Visibility;
-            ////}
-            //if (!int.TryParse(txtInStock.Text.ToString(), out inStock))
-            //{
-            //    texts.Add(txtInStock);
-            //    lblXInStock.Visibility = Visibility;
-
-            //}
-            //else if (inStock < 0)
-            //{
-            //    texts.Add(txtInStock);
-            //    lblXInStock.Visibility = Visibility;
-            //}
-            //if (txtName.Text == "")
-            //{
-            //    texts.Add(txtName);
-            //    lblXName.Visibility = Visibility;
-            //}
-            //if at least one of the texts went wrong
-            if (texts.Count > 0)//there is at least one error with at least one input
+            try//if all are valid -try to update them
+            {              
+                bl.Product.UpdateProduct(PlProduct!);
+                  Close();
+            }
+            catch (BO.BlIdDoNotExistException ex)
             {
-                string messageBoxText = "you insert invalid values\n please try again";
+                string messageBoxText = ex.Message.ToString();
                 string caption = "error";
                 MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
                 if (result == MessageBoxResult.OK)
                 {
-                    foreach (var item in texts)
-                    {
-                        item.BorderBrush = new SolidColorBrush(Colors.Red);
-                    }
+                    return;
                 }
-
             }
-            else try//if all are valid -try to update them
+            catch (BO.BlInvalidInputException ex)
+            {
+                string messageBoxText = ex.ToString() + "\ntry again";
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                if (result == MessageBoxResult.OK)
                 {
-                    //newProduct.Category = cat;
-                    //newProduct.Name = txtName.Text;
-                    //newProduct.ID = Convert.ToInt32(txtID.Text);
-                    //newProduct.Price = price;
-                    //newProduct.InStock = inStock;
-                    bl.Product.UpdateProduct(PlProduct!);
-                   // Close();
+                    return;
                 }
-                catch (BO.BlIdDoNotExistException ex)
-                {
-                    string messageBoxText = ex.Message.ToString();
-                    string caption = "error";
-                    MessageBoxImage icon = MessageBoxImage.Error;
-                    MessageBoxResult result;
-                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                    if (result == MessageBoxResult.OK)
-                    {
-                        return;
-                    }
-                }
-                catch (BO.BlInvalidInputException ex)
-                {
-                    string messageBoxText = ex.ToString() + "\ntry again";
-                    string caption = "error";
-                    MessageBoxImage icon = MessageBoxImage.Error;
-                    MessageBoxResult result;
-                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                    if (result == MessageBoxResult.OK)
-                    {
-                        return;
-                    }
-                }
-
-
-
-
+            }
         }
-
 
 
         /// <summary>
@@ -310,6 +195,7 @@ namespace PL
             //lblXInStock.Visibility = Visibility.Hidden;
             //lblXName.Visibility = Visibility.Hidden;
             //lblPrice.Visibility = Visibility.Hidden;
+            iDTextBox.BorderBrush = Background;
             iDTextBox.BorderBrush = Background;
             inStockTextBox.BorderBrush = Background;
             nameTextBox.BorderBrush = Background;
