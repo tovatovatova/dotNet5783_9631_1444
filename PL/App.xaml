@@ -19,13 +19,13 @@
             <Setter Property="FontFamily" Value="Algerian"/>
 
         </Style>
-        <Style TargetType="Window">
+        <!--<Style TargetType="Window">
             <Setter Property="Icon" Value="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pic.jpg.png"/>
             <Setter Property="Background">
                 <Setter.Value>
                     <ImageBrush ImageSource="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pic.jpg.png" Stretch="Uniform"/>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
     </Application.Resources>
 </Application>
