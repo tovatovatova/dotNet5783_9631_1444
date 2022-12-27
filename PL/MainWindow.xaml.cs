@@ -1,4 +1,5 @@
 ﻿
+using PL.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,11 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-       private void btnAdmin_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
+       private void btnAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            ProductsListWindow products =new ProductsListWindow();
+            products.Show();
+        }
 
        
     }

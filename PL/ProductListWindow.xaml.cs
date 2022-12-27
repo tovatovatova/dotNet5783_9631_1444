@@ -23,6 +23,23 @@ namespace PL
     public partial class ProductListWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
+      //  List<BO.ProsuctForList?> myProd;
+        //public BO.Product? PlProduct
+        //{
+        //    get { return (BO.Product?)GetValue(PlProductProperty); }
+        //    set { SetValue(PlProductProperty, value); }
+        //}
+        public List<BO.ProsuctForList?> myProd
+        {
+            get { return (List<BO.ProsuctForList?>)GetValue(myProdProperty); }
+            set { SetValue(myProdProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PlProduct.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty myProdProperty =
+            DependencyProperty.Register("myProd", typeof(List<BO.ProsuctForList?>), typeof(Window), new PropertyMetadata(null));
+
+
         /// <summary>
         /// initialize product list window -combo box options and list view
         /// </summary>
@@ -30,6 +47,8 @@ namespace PL
         {
 
             InitializeComponent();
+            myProd = bl.Product.GetProductList().ToList();
+            // DataContext = myProd;
             // ProductListView.Items.Clear();
             ProductListView.ItemsSource = (bl.Product.GetProductList().ToList().OrderByDescending(x => x.Price));
             ;//see all products
