@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
+        DataContext="{Binding PlProduct, RelativeSource={RelativeSource Self}}"
         Title="ProductWindow" Height="450" Width="800">
     <Grid  Name="mainGrid" Background="#FFF1CFE4" PreviewMouseLeftButtonDown="mainGrid_PreviewMouseLeftButtonDown">
         <Grid.ColumnDefinitions>
@@ -23,8 +24,8 @@
         <TextBox x:Name="iDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
         <Label Grid.Column="0" Content="Category:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-        <ComboBox x:Name="categoryComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="NaN"  Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120" SelectedItem="{Binding Category}" >
-
+        <ComboBox x:Name="categoryComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="NaN"  Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120" SelectedItem="{Binding Category  } " >
+        
             <ComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel/>
