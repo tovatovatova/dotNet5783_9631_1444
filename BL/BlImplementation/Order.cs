@@ -258,6 +258,12 @@ namespace BlImplementation
                 boOrder.TotalPrice = boOrder.Items.Sum(item => item.TotalPrice);//the total price of the order
                 return boOrder;
         }
+        public IEnumerable<BO.OrderForList?> GetListedListByFilter(Func<BO.OrderForList?, bool>? filter = null)
+        {
+            return from BO.OrderForList p in GetOrderList()
+                   where filter(p)
+                   select p;
+        }
         //public BO.Order UpdateOrder<T>(int orderID,BO.UpdateOrder updateOrder,T value1,T value2)
         //{
         //    if (orderID < 0)//negative id

@@ -23,12 +23,6 @@ namespace PL
     public partial class ProductListWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
-      //  List<BO.ProsuctForList?> myProd;
-        //public BO.Product? PlProduct
-        //{
-        //    get { return (BO.Product?)GetValue(PlProductProperty); }
-        //    set { SetValue(PlProductProperty, value); }
-        //}
         public List<BO.ProsuctForList?> myProd
         {
             get { return (List<BO.ProsuctForList?>)GetValue(myProdProperty); }
@@ -51,7 +45,7 @@ namespace PL
             // DataContext = myProd;
             // ProductListView.Items.Clear();
             ProductListView.ItemsSource = (bl.Product.GetProductList().ToList().OrderByDescending(x => x.Price));
-            ;//see all products
+            //see all products
             ProductSelector.Items.Add("All products");//add option for combo box of seeing all the products
 
             ProductSelector.SelectedItem = ProductSelector.Items.GetItemAt(0);//all products
