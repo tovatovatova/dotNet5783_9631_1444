@@ -37,7 +37,7 @@
                     <Setter Property="FontSize" Value="30" />
                     <Setter Property="FontFamily" Value="Algerian"/>
         </Style>
-                <Style x:Key="basicWindow" TargetType="Window" >
+                <Style TargetType="Window" >
             <Setter Property="Icon" Value="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pic.jpg.png"/>
             <Setter Property="Background" Value="LightCyan">
             </Setter>
