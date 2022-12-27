@@ -35,7 +35,6 @@ namespace PL
             set { SetValue(PlProductProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for PlProduct.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PlProductProperty =
             DependencyProperty.Register("PlProduct", typeof(BO.Product), typeof(Window), new PropertyMetadata(null));
 

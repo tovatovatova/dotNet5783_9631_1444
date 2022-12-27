@@ -7,6 +7,26 @@
         mc:Ignorable="d"
         Title="OrderTrackingWindow" Height="450" Width="800">
     <Grid>
-        
+        <!-- <DataTemplate x:Key="MyDataTemplate" DataType="local:MyData">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="First Name: " />
+                <TextBlock Grid.Column="1" Text="{Binding Path=FirstName}" />
+                <TextBlock Grid.Column="2" Text="Last Name: " />
+                <TextBlock Grid.Column="3" Text="{Binding Path=LastName}" />
+                <CheckBox Grid.Column="4" Content="Is Lecturer?"
+IsEnabled="False"
+IsChecked="{Binding Path=IsLecturer}" />
+            </Grid>
+        </DataTemplate>-->
     </Grid>
 </Window>
