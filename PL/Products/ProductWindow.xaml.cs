@@ -50,6 +50,8 @@ namespace PL
             categoryComboBox.ItemsSource = Enum.GetValues(typeof(BO.Category));
             btnAdd.Visibility = Visibility.Visible;//add button getting visible
             PlProduct = new BO.Product();
+          
+
             
         }
 
@@ -69,6 +71,7 @@ namespace PL
             try
             {
                 PlProduct = bl.Product.GetProductDetails(id);//return product from BO 
+               // categoryComboBox.SelectedItem = PlProduct.Category;
             }
             catch (BO.BlIdDoNotExistException ex)//product doesnt exist
             {//throw an error message box 

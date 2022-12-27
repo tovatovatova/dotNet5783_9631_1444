@@ -12,20 +12,39 @@
             <Setter Property="FontWeight"
               Value="Bold" />
         </Style>-->
-        <Style  TargetType="Button">
-            <Setter Property="Background" Value="Aquamarine" />
-            <Setter Property="Foreground" Value="Black" />
-            <Setter Property="FontSize" Value="15" />
-            <Setter Property="FontFamily" Value="Algerian"/>
+        <LinearGradientBrush x:Key="colorInDataGrid">
+            <GradientStop Color="DeepPink"
+                    Offset="0" />
+            <GradientStop Color="HotPink"
+                    Offset="0.25" />
+            <GradientStop Color="Pink"
+                    Offset="0.5" />
+            <GradientStop Color="HotPink"
+                    Offset="0.75" />
+            <GradientStop Color="DeepPink"
+                    Offset="1" />
 
-        </Style>
-        <Style TargetType="Window">
+        </LinearGradientBrush>
+        <Style x:Key="fontInDataGridStyle" >
+            <Setter Property="TextElement.FontFamily" Value="Cascadia Mono SemiBold"/>
+            <Setter Property="TextElement.FontStyle" Value="Italic"/>
+            <Setter Property="TextBlock.Foreground" Value="{StaticResource colorInDataGrid }"/>
+         </Style>
+
+                <Style  TargetType="Button">
+                    <Setter Property="Background" Value="Aquamarine" />
+                    <Setter Property="Foreground" Value="Black" />
+                    <Setter Property="FontSize" Value="15" />
+                    <Setter Property="FontFamily" Value="Algerian"/>
+
+                </Style>
+                <!--<Style TargetType="Window">
             <Setter Property="Icon" Value="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pic.jpg.png"/>
             <Setter Property="Background">
                 <Setter.Value>
                     <ImageBrush ImageSource="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pic.jpg.png" Stretch="Uniform"/>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
     </Application.Resources>
 </Application>
