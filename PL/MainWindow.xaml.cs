@@ -45,6 +45,10 @@ namespace PL
             products.Show();
         }
 
-       
+        private void btnTracking_Click(object sender, RoutedEventArgs e)
+        {
+            OrderTrackingWindow orderTrackingWindow = new OrderTrackingWindow(sender,e,(txtOrderId.Text));
+            orderTrackingWindow.Show();
+        }
     }
 }

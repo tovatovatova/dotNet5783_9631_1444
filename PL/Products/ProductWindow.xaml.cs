@@ -29,7 +29,6 @@ namespace PL
         BlApi.IBl bl = BlApi.Factory.Get();
         Regex rg = new Regex("[0-9]+");
 
-
         public BO.Product? PlProduct
         {
             get { return (BO.Product?)GetValue(PlProductProperty); }
@@ -104,6 +103,7 @@ namespace PL
                     return;
                 
             }
+            
                 try//try to add the product with call to a bl function  add
                 {
                     bl.Product.AddProduct(PlProduct!);
