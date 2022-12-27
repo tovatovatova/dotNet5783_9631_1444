@@ -1,0 +1,56 @@
+﻿<Window x:Class="PL.OrderForListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        DataContext="{Binding PlOrder,RelativeSource={RelativeSource Self}}"
+        mc:Ignorable="d"
+        Title="OrderForListWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="orderForListView" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,54,0,90" MouseDoubleClick="orderForListView_MouseDoubleClick" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn x:Name="amountOfItemsColumn" Header="Amount Of Items" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding AmountOfItems}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="customerNameColumn" Header="Customer Name" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding CustomerName}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="iDColumn" Header="ID" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding ID}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="statusColumn" Header="Status" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox>
+                                <ComboBoxItem Content="{Binding Status}"/>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="totalPriceColumn" Header="Total Price" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding TotalPrice}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="lblOrder" Content="Orders:" HorizontalAlignment="Left" Margin="5,-1,0,0" VerticalAlignment="Top" Width="325" Height="51"/>
+        <ComboBox x:Name="cmbStatus" HorizontalAlignment="Left" Margin="445,-1,0,0" VerticalAlignment="Top" Width="355" Height="55" SelectionChanged="cmbStatus_SelectionChanged"/>
+        <Button x:Name="btnAddOrder" Content="Add" HorizontalAlignment="Left" Margin="40,369,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.044,-0.249" Width="115" Click="btnAddOrder_Click"/>
+    </Grid>
+</Window>

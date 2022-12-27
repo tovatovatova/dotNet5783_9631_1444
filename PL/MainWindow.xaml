@@ -11,7 +11,7 @@
         <Grid.FocusVisualStyle>
             <Style/>
         </Grid.FocusVisualStyle>
-        <Button x:Name="btnAdmin" Content="Admin" HorizontalAlignment="Left" Margin="24,275,0,0" VerticalAlignment="Top" Height="127" Width="249" Click="btnAdmin_Click" FontSize="29" FontFamily="Bodoni MT Black" FontWeight="Bold" Foreground="#FFEFF0F1" RenderTransformOrigin="0.5,0.5" FontStyle="Oblique" >
+        <Button x:Name="btnAdmin" Content="Admin" HorizontalAlignment="Left" Margin="33,209,0,0" VerticalAlignment="Top" Height="127" Width="249" Click="btnAdmin_Click" FontSize="29" FontFamily="Bodoni MT Black" FontWeight="Bold" Foreground="#FFEFF0F1" RenderTransformOrigin="0.5,0.5" FontStyle="Oblique"  >
             <Button.Background>
                 <ImageBrush ImageSource="/pic2.png" Stretch="Fill"/>
             </Button.Background>
@@ -42,6 +42,8 @@
         <Label x:Name="lblTracking" Content="Enter number of order for tracking:" HorizontalAlignment="Left" Margin="580,263,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtOrderId" HorizontalAlignment="Left" Margin="610,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" Height="25"/>
         <Button x:Name="btnTracking" Content="Track" HorizontalAlignment="Left" Margin="610,363,0,0" VerticalAlignment="Top" Height="39" Width="112" Click="btnTracking_Click"/>
+        <Button x:Name="btnProduct" Content="Products" HorizontalAlignment="Left" Margin="30,379,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.31,0.116" Visibility="{Binding ElementName=btnAdmin,Path=ClickMode}" Click="btnProduct_Click"/>
+        <Button x:Name="btnOrder" Content="Orders" HorizontalAlignment="Left" Margin="210,379,0,0" VerticalAlignment="Top" Visibility="{Binding ElementName=btnAdmin,Path=ClickMode}" Click="btnOrder_Click_1" />
 
 
 
