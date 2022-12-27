@@ -46,7 +46,7 @@ namespace PL
 
         private void btnTracking_Click(object sender, RoutedEventArgs e)
         {
-            OrderTrackingWindow orderTrackingWindow = new OrderTrackingWindow(sender,e,(txtOrderId.Text));
+            OrderTrackingWindow orderTrackingWindow = new OrderTrackingWindow(sender,e,Convert.ToInt32(txtOrderId.Text));
             orderTrackingWindow.Show();
         }
 
@@ -60,6 +60,12 @@ namespace PL
         {
             OrderForListWindow orders = new OrderForListWindow();
             orders.Show();
+        }
+
+        private void btnNewOrder_Click(object sender, RoutedEventArgs e)
+        {
+            ProductCatalogWindow productCatalog = new ProductCatalogWindow();
+            productCatalog.ShowDialog();
         }
     }
 }

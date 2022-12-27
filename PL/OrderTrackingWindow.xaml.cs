@@ -20,28 +20,43 @@ namespace PL
     /// </summary>
     public partial class OrderTrackingWindow : Window
     {
-        private ObservableCollection List<Tuple<DateTime, string>> tracking = new ObservableCollection List<Tuple<DateTime?, string>>>();
+       
+      //  private ObservableCollection List<Tuple<DateTime, string>> tracking = new ObservableCollection List<Tuple<DateTime?, string>>>();
 
 
 //add items to the collection …
-this.DataContext = _myCollection;
+//this.DataContext = _myCollection;
 
 
-        public BO.OrderTracking? PlOrderTracking
+       private BO.OrderTracking? OrderTracking
         {
-            get { return (BO.OrderTracking?)GetValue(PlOrderTrackingProperty); }
-            set { SetValue(PlOrderTrackingProperty, value); }
+            get { return (BO.OrderTracking?)GetValue(OrderTrackingProperty); }
+            set { SetValue(OrderTrackingProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for PlOrderTracking.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PlOrderTrackingProperty =
+        public static readonly DependencyProperty OrderTrackingProperty =
             DependencyProperty.Register("PlOrderTracking", typeof(BO.OrderTracking), typeof(Window), new PropertyMetadata(null));
+        private List<Tuple<DateTime?, string>> tacking = new List<Tuple<DateTime?, string>>();
+
+        public List<Tuple<DateTime?, string>> tracking
+        {
+            get { return (List<Tuple<DateTime?, string>>)GetValue(trackingProperty); }
+            set { SetValue(trackingProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty trackingProperty =
+            DependencyProperty.Register("tracking", typeof(List<Tuple<DateTime?, string>>), typeof(Window), new PropertyMetadata(0));
+        BlApi.IBl bl = BlApi.Factory.Get();
 
 
-        public OrderTrackingWindow(object sender, EventArgs e, string id)
+
+        public OrderTrackingWindow(object sender, EventArgs e, int id)
         {
             InitializeComponent();
-            PlOrderTracking = new BO.OrderTracking();
+            OrderTracking = bl.Order.OrderTracking(id);
+            tracking = OrderTracking.Tracking!;
 
         }
 

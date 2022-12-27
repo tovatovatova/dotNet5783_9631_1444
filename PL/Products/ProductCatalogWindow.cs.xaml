@@ -1,0 +1,23 @@
+﻿<Window x:Class="PL.Products.ProductCatalogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Products"
+        mc:Ignorable="d"
+            DataContext="{Binding myProd, RelativeSource={RelativeSource Self}}"
+
+    Title="ProductCatalogWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="productItemDataGrid" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="131,60,118,77">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="amountInCartColumn" Binding="{Binding AmountInCart}" Header="Amount In Cart" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="categoryColumn" Binding="{Binding Category}" Header="Category" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
+                <DataGridCheckBoxColumn x:Name="inStockColumn" Binding="{Binding InStock}" Header="In Stock" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Price" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

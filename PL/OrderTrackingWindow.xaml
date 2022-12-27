@@ -5,28 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="OrderTrackingWindow" Height="450" Width="800">
+    DataContext="{Binding tracking, RelativeSource={RelativeSource Self}}"
+    Title="OrderTrackingWindow" Height="312" Width="625">
+        <Window.Resources>           </Window.Resources>
     <Grid>
-        <!-- <DataTemplate x:Key="MyDataTemplate" DataType="local:MyData">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="First Name: " />
-                <TextBlock Grid.Column="1" Text="{Binding Path=FirstName}" />
-                <TextBlock Grid.Column="2" Text="Last Name: " />
-                <TextBlock Grid.Column="3" Text="{Binding Path=LastName}" />
-                <CheckBox Grid.Column="4" Content="Is Lecturer?"
-IsEnabled="False"
-IsChecked="{Binding Path=IsLecturer}" />
-            </Grid>
-        </DataTemplate>-->
+        <DataGrid x:Name="orderTrackingDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding orderTracking}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="200,89,200,145">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Status}" Header="Status" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="trackingColumn"  Width="*"  Header="tracking" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DataGrid x:Name="trackingcolumn" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="200,89,200,145">
+                                <!--<DatePicker SelectedDate="{Binding Path=item1}"/>
+                                <TextBox Text="{Binding Path=item2}"/>-->
+                            </DataGrid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+      
     </Grid>
 </Window>

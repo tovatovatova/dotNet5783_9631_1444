@@ -29,7 +29,7 @@ namespace PL
 
         // Using a DependencyProperty as the backing store for PlOrder.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PlOrderProperty =
-            DependencyProperty.Register("PlOrder", typeof(BO.OrderForList), typeof(Window), new PropertyMetadata(null));
+            DependencyProperty.Register("PlOrder", typeof(List<BO.OrderForList?>), typeof(Window), new PropertyMetadata(null));
         public OrderForListWindow()
         {
             InitializeComponent();

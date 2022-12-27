@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="OrderForListWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="orderForListView" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,54,0,90" MouseDoubleClick="orderForListView_MouseDoubleClick" >
+        <DataGrid x:Name="orderForListView" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,54,0,90" MouseDoubleClick="orderForListView_MouseDoubleClick" >
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="amountOfItemsColumn" Header="Amount Of Items" Width="SizeToHeader">
                     <DataGridTemplateColumn.CellTemplate>

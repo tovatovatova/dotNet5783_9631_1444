@@ -11,17 +11,17 @@
 
     <Grid>
         <ComboBox x:Name="cmbCategory" Height="36" VerticalAlignment="Bottom"  BorderBrush="#FF41CFA8" FontSize="16" FontFamily="Consolas" Background="{x:Null}" Margin="502,0,12,383" SelectionChanged="cmbCategory_SelectionChanged" />
-        <Button x:Name="btnAdd" Margin="34,310,651,20" BorderBrush="#FFEB2020" Content="ADD" FontSize="36" Click="btnAdd_Click">
-            <Button.Background>
-                <ImageBrush ImageSource="/Products/a7dd3c6751edf44e95823d051cba65eds.jpg" Stretch="Fill" TileMode="Tile"/>
-            </Button.Background>
+        <Button x:Name="btnAdd" Margin="38,266,608,34"  Content="ADD" Foreground="#FFACF1EE" FontSize="49" Click="btnAdd_Click" FontFamily="Bahnschrift SemiLight" FontStretch="Expanded" FontStyle="Italic" FontWeight="SemiBold" TextBlock.LineHeight="40">
+           
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Grid>
-                        <Ellipse Stroke="Black"
+                        <Ellipse Stroke="LightCyan"
                          StrokeThickness="2">
                             <Ellipse.Fill>
-                                <RadialGradientBrush>
+                                <ImageBrush ImageSource="/Products/d1aac7344c69b98c169j6b53feab9ebc5.jpg"/>
+
+                                <!--<RadialGradientBrush>
                                     <GradientStop Offset="0"
                                           Color="LightPink" />
                                     <GradientStop Offset="1"
@@ -33,11 +33,11 @@
                                             <ScaleTransform ScaleY="0.65" />
                                         </TransformGroup>
                                     </RadialGradientBrush.Transform>
-                                </RadialGradientBrush>
+                                </RadialGradientBrush>-->
                             </Ellipse.Fill>
                         </Ellipse>
                         <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"/>
+                                  VerticalAlignment="Center" OpacityMask="Black"/>
                     </Grid>
                 </ControlTemplate>
             </Button.Template>

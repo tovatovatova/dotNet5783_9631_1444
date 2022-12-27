@@ -19,7 +19,9 @@
     <None Remove="ff04f7b6288c87dc4517cf547046b69d.jpg" />
     <None Remove="pic.jpg.png" />
     <None Remove="pic2.png" />
+    <None Remove="Products\40b355fa80da5b9dab7cd19d78374263e.jpg" />
     <None Remove="Products\a7dd3c6751edf44e95823d051cba65eds.jpg" />
+    <None Remove="Products\d1aac7344c69b98c169j6b53feab9ebc5.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,7 +35,9 @@
     <Resource Include="ff04f7b6288c87dc4517cf547046b69d.jpg" />
     <Resource Include="pic.jpg.png" />
     <Resource Include="pic2.png" />
+    <Resource Include="Products\40b355fa80da5b9dab7cd19d78374263e.jpg" />
     <Resource Include="Products\a7dd3c6751edf44e95823d051cba65eds.jpg" />
+    <Resource Include="Products\d1aac7344c69b98c169j6b53feab9ebc5.jpg" />
   </ItemGroup>
 
 </Project>

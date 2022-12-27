@@ -41,7 +41,7 @@
             <Setter Property="Background" Value="LightCyan">
             </Setter>
         </Style>
-        <DataTemplate DataType="local:">
+        <!--<DataTemplate DataType="local:">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -53,6 +53,6 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock
+                <TextBlock-->
     </Application.Resources>
 </Application>
