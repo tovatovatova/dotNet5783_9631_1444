@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        DataContext="{Binding PlProduct,RelativeSource={RelativeSource Self}}"
         Title="ProductWindow" Height="450" Width="800">
     <Grid  Name="mainGrid" Background="#FFF1CFE4" PreviewMouseLeftButtonDown="mainGrid_PreviewMouseLeftButtonDown">
         <Grid.ColumnDefinitions>
