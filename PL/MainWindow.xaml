@@ -13,7 +13,10 @@
         </Grid.FocusVisualStyle>
         <Button x:Name="btnAdmin" Content="Admin" HorizontalAlignment="Left" Margin="33,209,0,0" VerticalAlignment="Top" Height="127" Width="249" Click="btnAdmin_Click" FontSize="29" FontFamily="Bodoni MT Black" FontWeight="Bold" Foreground="#FFEFF0F1" RenderTransformOrigin="0.5,0.5" FontStyle="Oblique"  >
             <Button.Background>
-                <ImageBrush ImageSource="/pic2.png" Stretch="Fill"/>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFFF81BA" Offset="1"/>
+                </LinearGradientBrush>
             </Button.Background>
             <Button.FocusVisualStyle>
                 <Style/>
@@ -39,12 +42,12 @@
                 </LinearGradientBrush>
             </Button.BorderBrush>
         </Button>
-        <Label x:Name="lblTracking" Content="Enter number of order for tracking:" HorizontalAlignment="Left" Margin="580,263,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblTracking" Content="Enter number of order for tracking:" HorizontalAlignment="Left" Margin="504,276,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="19"/>
         <TextBox x:Name="txtOrderId" HorizontalAlignment="Left" Margin="610,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" Height="25"/>
         <Button x:Name="btnTracking" Content="Track" HorizontalAlignment="Left" Margin="610,363,0,0" VerticalAlignment="Top" Height="39" Width="112" Click="btnTracking_Click"/>
         <Button x:Name="btnProduct" Content="Products" HorizontalAlignment="Left" Margin="30,379,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.31,0.116" Visibility="{Binding ElementName=btnAdmin,Path=ClickMode}" Click="btnProduct_Click"/>
         <Button x:Name="btnOrder" Content="Orders" HorizontalAlignment="Left" Margin="210,379,0,0" VerticalAlignment="Top" Visibility="{Binding ElementName=btnAdmin,Path=ClickMode}" Click="btnOrder_Click_1" />
-        <Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="389,370,0,0" VerticalAlignment="Top" Click="btnNewOrder_Click"/>
+        <Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="416,361,0,0" VerticalAlignment="Top" Click="btnNewOrder_Click"/>
 
 
 
