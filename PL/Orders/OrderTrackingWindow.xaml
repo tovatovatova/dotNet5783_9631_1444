@@ -1,0 +1,32 @@
+﻿<Window x:Class="PL.OrderTrackingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+    DataContext="{Binding tracking, RelativeSource={RelativeSource Self}}"
+    Title="OrderTrackingWindow" Height="312" Width="625">
+        <Window.Resources>           </Window.Resources>
+    <Grid>
+        <DataGrid x:Name="orderTrackingDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding orderTracking}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="200,89,200,145">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Status}" Header="Status" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="trackingColumn"  Width="*"  Header="tracking" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DataGrid x:Name="trackingcolumn" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="200,89,200,145">
+                                <!--<DatePicker SelectedDate="{Binding Path=item1}"/>
+                                <TextBox Text="{Binding Path=item2}"/>-->
+                            </DataGrid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+      
+    </Grid>
+</Window>

@@ -70,10 +70,10 @@ namespace PL
         {
             if (cmbStatus.SelectedIndex == -1)
                 return;
-            ProductWindow p = new ProductWindow(sender, e, ((BO.ProsuctForList)orderForListView.SelectedItem).ID);//send the selected product id
-            p.ShowDialog();
+            OrderWindow o = new OrderWindow(sender, e, ((BO.OrderForList)orderForListView.SelectedItem).ID);//send the selected product id
+            o.ShowDialog();
             cmbStatus.SelectedItem = cmbStatus.Items.GetItemAt(0);
-            cmbStatus.ItemsSource = bl.Product.GetProductList();//can show all the products back again-after updating
+            cmbStatus.ItemsSource = bl.Order.GetOrderList();//can show all the products back again-after updating
         }
     }
 }
