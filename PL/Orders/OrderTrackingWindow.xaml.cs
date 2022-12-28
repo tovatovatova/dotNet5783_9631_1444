@@ -20,15 +20,10 @@ namespace PL
     /// </summary>
     public partial class OrderTrackingWindow : Window
     {
-       
-      //  private ObservableCollection List<Tuple<DateTime, string>> tracking = new ObservableCollection List<Tuple<DateTime?, string>>>();
 
+        //  private ObservableCollection List<Tuple<DateTime, string>> tracking = new ObservableCollection List<Tuple<DateTime?, string>>>();
 
-//add items to the collection …
-//this.DataContext = _myCollection;
-
-
-       private BO.OrderTracking? OrderTracking
+        private BO.OrderTracking? OrderTracking
         {
             get { return (BO.OrderTracking?)GetValue(OrderTrackingProperty); }
             set { SetValue(OrderTrackingProperty, value); }
@@ -52,13 +47,13 @@ namespace PL
 
 
 
-        public OrderTrackingWindow(object sender, EventArgs e, int id)
-        {
-            InitializeComponent();
-            OrderTracking = bl.Order.OrderTracking(id);
-            tracking = OrderTracking.Tracking!;
+        //public OrderTrackingWindow(object sender, EventArgs e, int id)
+        //{
+        //    InitializeComponent();
+        //    OrderTracking = bl.Order.OrderTracking(id);
+        //    tracking = OrderTracking.Tracking!;
 
-        }
+        //}
 
     }
 }

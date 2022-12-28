@@ -33,25 +33,28 @@ namespace PL
 
 
 
-        public BO.OrderItem? PlOrderItem
+        public List<BO.OrderItem?> PlOrderItem
         {
-            get { return (BO.OrderItem?)GetValue(PlOrderItemProperty); }
-            set { SetValue(PlOrderItemProperty, value); }
+            get { return (List<BO.OrderItem?>)GetValue(MyPropertyProperty); }
+            set { SetValue(MyPropertyProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for PlOrderItem.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PlOrderItemProperty =
-            DependencyProperty.Register("PlOrderItem", typeof(BO.OrderItem), typeof(Window), new PropertyMetadata(null));
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MyPropertyProperty =
+            DependencyProperty.Register("MyProperty", typeof(List<BO.OrderItem?>), typeof(Window), new PropertyMetadata(null));
 
 
         public OrderWindow()
         {
             InitializeComponent();
             PlOrder=new BO.Order();
-            PlOrderItem = new BO.OrderItem();
+            PlOrderItem = new List<BO.OrderItem?>();
+            statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.OrderStatus));
+
         }
         public OrderWindow(object sender, EventArgs e, int id)
         {
+            statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.OrderStatus));
             InitializeComponent();
             try
             {
@@ -67,6 +70,7 @@ namespace PL
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
             }
+            PlOrderItem = PlOrder.Items.ToList();
         }
     }
 }
