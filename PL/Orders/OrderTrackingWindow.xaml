@@ -5,28 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-    DataContext="{Binding tracking, RelativeSource={RelativeSource Self}}"
+    DataContext="{Binding orderTracking, RelativeSource={RelativeSource Self}}"
     Title="OrderTrackingWindow" Height="312" Width="625">
-        <Window.Resources>           </Window.Resources>
+    <Window.Resources>    </Window.Resources>
     <Grid>
-        <DataGrid x:Name="orderTrackingDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding orderTracking}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="200,89,200,145">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Status}" Header="Status" Width="SizeToHeader"/>
-                <DataGridTemplateColumn x:Name="trackingColumn"  Width="*"  Header="tracking" >
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DataGrid x:Name="trackingcolumn" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="200,89,200,145">
-                                <!--<DatePicker SelectedDate="{Binding Path=item1}"/>
-                                <TextBox Text="{Binding Path=item2}"/>-->
-                            </DataGrid>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+        <Grid x:Name="grid1"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="83,44,0,0" Height="222" Width="470">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Content="ID:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="iDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
-            </DataGrid.Columns>
-        </DataGrid>
+            <Label Grid.Column="0" Content="Status:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="statusTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Grid.Column="0" Content="Tracking" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
 
-      
+            <DataGrid x:Name="trackingDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Tracking}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,0,-88,-50" Grid.Column="1" Grid.Row="2">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn x:Name="item1Column" Header="Item 1" IsReadOnly="True" Width="SizeToHeader">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding Item1, Mode=OneWay}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn x:Name="item2Column" Binding="{Binding Item2}" Header="Item 2" IsReadOnly="True" Width="SizeToHeader"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
     </Grid>
 </Window>

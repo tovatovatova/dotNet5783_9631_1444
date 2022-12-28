@@ -47,15 +47,16 @@ namespace PL
         public OrderWindow()
         {
             InitializeComponent();
-            PlOrder=new BO.Order();
+            PlOrder = new BO.Order();
             PlOrderItem = new List<BO.OrderItem?>();
             statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.OrderStatus));
 
         }
         public OrderWindow(object sender, EventArgs e, int id)
         {
-            statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.OrderStatus));
             InitializeComponent();
+            statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.OrderStatus));
+            
             try
             {
                 PlOrder = bl.Order.GetOrderByID(id);
