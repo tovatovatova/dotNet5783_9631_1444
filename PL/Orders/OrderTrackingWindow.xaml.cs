@@ -20,40 +20,45 @@ namespace PL
     /// </summary>
     public partial class OrderTrackingWindow : Window
     {
+       
+      //  private ObservableCollection List<Tuple<DateTime, string>> tracking = new ObservableCollection List<Tuple<DateTime?, string>>>();
 
-        //  private ObservableCollection List<Tuple<DateTime, string>> tracking = new ObservableCollection List<Tuple<DateTime?, string>>>();
 
-        private BO.OrderTracking? OrderTracking
+//add items to the collection …
+//this.DataContext = _myCollection;
+
+
+       private BO.OrderTracking? orderTracking
         {
-            get { return (BO.OrderTracking?)GetValue(OrderTrackingProperty); }
-            set { SetValue(OrderTrackingProperty, value); }
+            get { return (BO.OrderTracking?)GetValue(orderTrackingProperty); }
+            set { SetValue(orderTrackingProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for PlOrderTracking.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty OrderTrackingProperty =
-            DependencyProperty.Register("PlOrderTracking", typeof(BO.OrderTracking), typeof(Window), new PropertyMetadata(null));
-        private List<Tuple<DateTime?, string>> tacking = new List<Tuple<DateTime?, string>>();
+        public static readonly DependencyProperty orderTrackingProperty =
+            DependencyProperty.Register("orderTracking", typeof(BO.OrderTracking), typeof(Window), new PropertyMetadata(null));
+       // private List<Tuple<DateTime?, string>> tracking = new List<Tuple<DateTime?, string>>();
 
-        public List<Tuple<DateTime?, string>> tracking
-        {
-            get { return (List<Tuple<DateTime?, string>>)GetValue(trackingProperty); }
-            set { SetValue(trackingProperty, value); }
-        }
+        //public List<Tuple<DateTime?, string>> tracking
+        //{
+        //    get { return (List<Tuple<DateTime?, string>>)GetValue(trackingProperty); }
+        //    set { SetValue(trackingProperty, value); }
+        //}
 
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty trackingProperty =
-            DependencyProperty.Register("tracking", typeof(List<Tuple<DateTime?, string>>), typeof(Window), new PropertyMetadata(0));
+        //// Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty trackingProperty =
+        //    DependencyProperty.Register("tracking", typeof(List<Tuple<DateTime?, string>>), typeof(Window), new PropertyMetadata(0));
         BlApi.IBl bl = BlApi.Factory.Get();
 
 
 
-        //public OrderTrackingWindow(object sender, EventArgs e, int id)
-        //{
-        //    InitializeComponent();
-        //    OrderTracking = bl.Order.OrderTracking(id);
-        //    tracking = OrderTracking.Tracking!;
+        public OrderTrackingWindow(object sender, EventArgs e, int id)
+        {
+            InitializeComponent();
+            orderTracking = bl.Order.OrderTracking(id);
+       //     tracking = OrderTracking.Tracking!;
 
-        //}
+        }
 
     }
 }
