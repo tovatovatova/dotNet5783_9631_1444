@@ -65,7 +65,7 @@ namespace PL
         private void btnNewOrder_Click(object sender, RoutedEventArgs e)
         {
             ProductCatalogWindow productCatalog = new ProductCatalogWindow();
-            productCatalog.ShowDialog();
+            productCatalog.Show();
         }
 
         private void btnTracking_MouseDoubleClick(object sender, MouseButtonEventArgs e)

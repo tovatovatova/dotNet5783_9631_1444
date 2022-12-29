@@ -117,7 +117,7 @@ namespace BlImplementation
                 Category = (BO.Category)product.ProductCategoty,
                 AmountInCart = amount,//////what to do if the product is not in cart\ if the items in cart is null 
                 InStock = product.AmountInStock > 0,
-                ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\Products\pictures\" + product.Id + ".jpg"
+                ImagesSource = $@"pictures/" + product.Id + ".jpg"
 
             };
             return item;
@@ -147,7 +147,7 @@ namespace BlImplementation
                 Price = product.Price,
                 Category = (BO.Category)product.ProductCategoty,
                 InStock = product.AmountInStock,
-                ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\Products\pictures\" +product.Id + ".jpg"
+                ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\Products\pictures\" +product.Id+".jpg"
 
             };
         }

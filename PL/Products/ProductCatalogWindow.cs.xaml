@@ -3,71 +3,69 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PL.Products"
+        xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
             DataContext="{Binding myProd, RelativeSource={RelativeSource Self}}"
+Title="ProductCatalogWindow" Height="740" Width="1119">
+    
+    <Window.Resources>
+        <DataTemplate x:Key="ProductItemTemplate" DataType="local:ProductItem">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row= "0" Width="100" Height="100" CornerRadius="5" Margin="30,78,30,84">
+                <!--<Border Grid.Row= "0" Width="100" Height="100" CornerRadius="20" Margin="30,50,30,84">-->
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="1"/>
+                    </Border.Effect>
+                    <Border.Background>
+                        <!--<ImageBrush ImageSource="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\Products\pictures\100003.jpg"/>-->
+                        <ImageBrush ImageSource="{Binding ImagesSource}"/>
+                    </Border.Background>
 
-    Title="ProductCatalogWindow" Height="740" Width="1119">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="170"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.RowSpan="3"/>
-        <ScrollViewer Background="#FFF1F1F1" Grid.ColumnSpan="2" Margin="85,40,85,10" Grid.RowSpan="2">
-            <StackPanel x:Name="stackPanelProduct" >
-                <TextBlock Text="Items" Margin="10" FontSize="22" FontWeight="Medium"/>
-                <StackPanel Margin="20 0">
-                    <ItemsControl x:Name="ListViewProducts" ItemsSource="{Binding}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border Margin="10" Width="160" Height="190">
-                                    <StackPanel>
-                                        <Border Width="120" Height="120" CornerRadius="5" Margin="5">
-                                            <Border.Effect>
-                                                <DropShadowEffect ShadowDepth="1"/>
-                                            </Border.Effect>
-                                            <Border.Background>
-                                                <!--<ImageBrush ImageSource="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\Products\pictures\100003.jpg"/>-->
-                                                <ImageBrush ImageSource="{Binding ImagesSource}"/>
-                                            </Border.Background>
-                                        </Border>
-                                        <!--<TextBlock Margin="15 0" Text="{Binding Category, StringFormat={}{0:C}}" FontSize="17" FontFamily="Franklin Gothic Medium"/>-->
-                                        <TextBlock Margin="15 0" Text="{Binding Name}" FontSize="15" FontStretch="Normal"/>
-                                        <TextBlock Margin="18 0" Text="{Binding ID}" FontSize="15" FontStretch="Normal"/>
-                                        <TextBlock Margin="20 0"  FontSize="15" FontStretch="Normal">
+                </Border>
+                <TextBlock Grid.Row="1"   Text="{Binding Name}" FontSize="15" FontStretch="Normal "/>
+                <TextBlock Grid.Row="4" Text="{Binding Category}" FontSize="15" FontStretch="Normal"/>
+                <TextBlock Grid.Row="2" Text="{Binding ID}" FontSize="15" FontStretch="Normal" HorizontalAlignment="Center" Margin="5,0,0,0"/>
+                <TextBlock Grid.Row="3"  FontSize="15" FontStretch="Normal">
                                             <Run Text="{Binding Price}"/>
                                             <Run Text="$"/>
-                                        </TextBlock>
-                                    </StackPanel>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
+                </TextBlock>
+                <!--<Label  Content="{Binding InStock}" Grid.Row= "1" HorizontalAlignment="Center" Margin="5,0,0,0" FontSize="17" />
+                <TextBlock Text="{Binding Price, StringFormat={}{0:C}}"  Grid.Row= "2" HorizontalAlignment="Center" Margin="5,0,0,0" />
+                <Label Content="{Binding Categoty}" HorizontalAlignment="Center" Grid.Row= "3" Margin="5,0,0,0"/>-->
+                <!--<Label  Content="out of stock" HorizontalAlignment="Center" Grid.Row= "4" Margin="5,0,0,10" VerticalAlignment="Center" Grid.ColumnSpan="2" FontSize="20" Visibility="{Binding InStock, Mode=OneWay}" Background="#FFE9E7E7"/>
+                <Button  Content="add to cart" HorizontalAlignment="Center" Height="22" Grid.Row= "5" Margin="5,0,0,10" VerticalAlignment="Top" Width="73" RenderTransformOrigin="0.512,-0.03" IsEnabled="{Binding InStock ,Mode=OneWay}"/>-->
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Image HorizontalAlignment="Left" Height="81" Margin="24,23,0,0" VerticalAlignment="Top" Width="78" Source="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\cart.png.png" RenderTransformOrigin="0.007,0.23"/>
+        <ComboBox HorizontalAlignment="Left" Height="29" Margin="953,23,0,0" VerticalAlignment="Top" Width="142"/>
+        <!--<Grid Margin="170,174,470,66" RenderTransformOrigin="0.49,0.48">-->
+        <!--<Label Content="{Binding numOfItems}" HorizontalAlignment="Left" Height="32" Margin="63,61,0,0" VerticalAlignment="Top" Width="38" RenderTransformOrigin="-1.082,-0.471"/>-->
+        <ScrollViewer Background="#FFF1F1F1" Margin="0,113,0,0">
+
+            <StackPanel>
+                <TextBlock Text="Items" Margin="10" FontSize="22" FontWeight="Medium"/>
+                <StackPanel Margin="20 0">
+                    <ListView x:Name="listViewProducts"  ItemTemplate="{StaticResource myProd}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"   MouseDoubleClick="listViewProducts_MouseDoubleClick">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-                    </ItemsControl>
+                    </ListView>
+                    
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
+
     </Grid>
 </Window>
-<!--<Grid>
-        <DataGrid x:Name="productItemDataGrid" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="131,60,118,77">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="amountInCartColumn" Binding="{Binding AmountInCart}" Header="Amount In Cart" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="categoryColumn" Binding="{Binding Category}" Header="Category" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
-                <DataGridCheckBoxColumn x:Name="inStockColumn" Binding="{Binding InStock}" Header="In Stock" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Price" Width="SizeToHeader"/>
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
-</Window>-->

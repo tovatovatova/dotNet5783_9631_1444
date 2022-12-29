@@ -35,12 +35,34 @@ namespace PL.Products
         public static readonly DependencyProperty myProdProperty =
             DependencyProperty.Register("myProd", typeof(List<BO.ProductItem?>), typeof(Window), new PropertyMetadata(null));
 
+
+        //public BO.Cart myCart
+        //{
+        //    get { return (BO.Cart)GetValue(myCartProperty); }
+        //    set { SetValue(myCartProperty, value); }
+        //}
+
+        //// Using a DependencyProperty as the backing store for myCart.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty myCartProperty =
+        //    DependencyProperty.Register("myCart", typeof(BO.Cart), typeof(Window), new PropertyMetadata(null));
+
+
+
         public ProductCatalogWindow()
         {
             InitializeComponent();
-            myProd = bl.Product.GetCatalog().ToList();
+           listViewProducts.ItemsSource = bl.Product.GetCatalog().ToList();
+            
         }
 
-       
+        private void listViewProducts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            if (listViewProducts.SelectedIndex == -1)
+                return;
+            ProductWindow p = new ProductWindow(sender, e, ((BO.ProductItem)listViewProducts.SelectedItem).ID);//send the selected product id
+            p.ShowDialog();
+           
+        }
     }
 }
