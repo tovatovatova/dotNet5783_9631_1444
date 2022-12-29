@@ -41,7 +41,9 @@ namespace PL
         /// <param name="e"></param>
        private void btnAdmin_Click(object sender, RoutedEventArgs e)
         {
-           //need to see order and product buttuns
+            //need to see order and product buttuns
+            btnOrder.Visibility = Visibility.Visible;
+            btnProduct.Visibility = Visibility.Visible; 
         }
 
         private void btnTracking_Click(object sender, RoutedEventArgs e)

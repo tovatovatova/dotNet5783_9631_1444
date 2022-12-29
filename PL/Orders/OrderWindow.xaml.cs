@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,15 +22,19 @@ namespace PL
     {
 
         BlApi.IBl bl = BlApi.Factory.Get();
-        public BO.Order? PlOrder
+
+
+        public BO.Order? MyOrder
         {
-            get { return (BO.Order?)GetValue(PlOrderProperty); }
-            set { SetValue(PlOrderProperty, value); }
+            get { return (BO.Order?)GetValue(MyOrderProperty); }
+            set { SetValue(MyOrderProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for PlOrder.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PlOrderProperty =
-            DependencyProperty.Register("PlOrder", typeof(BO.Order), typeof(Window), new PropertyMetadata(null));
+        // Using a DependencyProperty as the backing store for MyOrder.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MyOrderProperty =
+            DependencyProperty.Register("MyOrder", typeof(BO.Order), typeof(Window), new PropertyMetadata(null));
+
+
 
 
 
@@ -47,7 +52,7 @@ namespace PL
         public OrderWindow()
         {
             InitializeComponent();
-            PlOrder = new BO.Order();
+            MyOrder = new BO.Order();
             PlOrderItem = new List<BO.OrderItem?>();
             statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.OrderStatus));
 
@@ -59,7 +64,7 @@ namespace PL
             
             try
             {
-                PlOrder = bl.Order.GetOrderByID(id);
+                MyOrder = bl.Order.GetOrderByID(id);
             }
             catch (BO.BlIdDoNotExistException ex)
             {
@@ -71,7 +76,7 @@ namespace PL
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
             }
-            PlOrderItem = PlOrder.Items.ToList();
+            PlOrderItem = MyOrder.Items.ToList();
         }
     }
 }

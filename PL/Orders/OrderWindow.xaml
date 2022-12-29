@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
+        DataContext="{Binding MyOrder,RelativeSource={RelativeSource Self}}"
         Title="OrderWindow" Height="500" Width="800">
     <Grid Margin="-15,6,20,-6">
         <Grid.RowDefinitions>
@@ -21,6 +22,8 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -31,7 +34,7 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Content="Id:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" IsReadOnly="True" Grid.Row="0" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
             <Label Grid.Column="0" Content="Customer Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="customerNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="{Binding CustomerName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
@@ -42,7 +45,8 @@
             <Label Grid.Column="0" Content="Customer Email:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             <TextBox x:Name="customerEmailTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="{Binding CustomerEmail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
-            <ListView x:Name="orderItemListView" ItemsSource="{Binding}" SelectionMode="Single" Margin="1,30,3,14" Grid.Row="3" Grid.ColumnSpan="2" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.RowSpan="2" RenderTransformOrigin="0.505,0.467">
+            <Label Grid.Column="0" Content="ITEMS:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <ListView x:Name="orderItemListView" ItemsSource="{Binding Items}"  SelectionMode="Single" Margin="5,4,1,8" Grid.Row="5" Grid.ColumnSpan="2" d:ItemsSource="{d:SampleData ItemCount=5}" RenderTransformOrigin="0.505,0.467">
                 <ListView.ItemContainerStyle>
                     <Style>
                         <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
@@ -54,42 +58,42 @@
                         <GridViewColumn x:Name="amountColumn" Header="Amount" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Margin="6,-1,-6,-1" Text="{Binding Amount, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    <TextBox Margin="6,-1,-6,-1" IsReadOnly="True" Text="{Binding Amount, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn x:Name="iDColumn" Header="ID" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Margin="-6,-1,-6,-1" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    <TextBox Margin="-6,-1,-6,-1" IsReadOnly="True" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn x:Name="nameColumn" Header="Name" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Margin="-6,-1,-6,-1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    <TextBox Margin="-6,-1,-6,-1" IsReadOnly="True" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn x:Name="priceColumn" Header="Price" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Margin="-6,-1,-6,-1" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    <TextBox Margin="-6,-1,-6,-1" IsReadOnly="True" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn x:Name="productIDColumn" Header="Product ID" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Margin="-6,-1,-6,-1" Text="{Binding ProductID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    <TextBox Margin="-6,-1,-6,-1" IsReadOnly="True" Text="{Binding ProductID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn x:Name="totalPriceColumn" Header="Total Price" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Margin="-6,-1,-6,-1" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    <TextBox Margin="-6,-1,-6,-1" IsReadOnly="True" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -97,17 +101,18 @@
                 </ListView.View>
             </ListView>
 
-            <Label Grid.Column="0" Content="Order Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-            <DatePicker x:Name="orderDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="5,2,0,0" Grid.Row="5" SelectedDate="{Binding OrderDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+            <Label Grid.Column="0" Content="Order Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+            <DatePicker x:Name="orderDateDatePicker" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="5,2,0,0" Grid.Row="6" SelectedDate="{Binding OrderDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
 
-            <Label Grid.Column="0" Content="Ship Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <DatePicker x:Name="shipDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="6" SelectedDate="{Binding ShipDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Grid.Column="0" Content="Ship Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+            <DatePicker x:Name="shipDateDatePicker"  Grid.Column="1" IsEnabled="False"  HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="7" SelectedDate="{Binding ShipDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.IsSharedSizeScope="True"/>
 
-            <Label Grid.Column="0" Content="Delivery Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
-            <DatePicker x:Name="deliveryDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="7" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
-            <Label Grid.Column="0" Content="Status:" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
-            <ComboBox x:Name="statusComboBox" Grid.Column="1" DisplayMemberPath="Status" HorizontalAlignment="Left" Height="NaN" SelectedItem="{Binding Category}" Margin="3" Grid.Row="8" VerticalAlignment="Center" Width="120">
+            <Label Grid.Column="0" Content="Delivery Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
+            <DatePicker x:Name="deliveryDateDatePicker" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="8" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+            <Label Grid.Column="0" Content="Status:"  HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
+            <ComboBox x:Name="statusComboBox" Grid.Column="1" DisplayMemberPath="Status" HorizontalAlignment="Left" Height="NaN"  Margin="3" Grid.Row="9" VerticalAlignment="Center" Width="120" SelectedItem="{Binding OrderStatus}">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
@@ -115,10 +120,11 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
 
-            <Label Grid.Column="0" Content="Total Price:" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
-            <TextBox x:Name="totalPriceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="9" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Grid.Column="0" Content="Total Price:" HorizontalAlignment="Left" Margin="3" Grid.Row="10" VerticalAlignment="Center"/>
+            <TextBox x:Name="totalPriceTextBox" Grid.Column="1" IsReadOnly="True" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="10" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
         </Grid>
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="32,379,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
 
 
 
