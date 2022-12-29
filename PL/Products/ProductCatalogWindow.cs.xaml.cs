@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,5 +40,7 @@ namespace PL.Products
             InitializeComponent();
             myProd = bl.Product.GetCatalog().ToList();
         }
+
+       
     }
 }

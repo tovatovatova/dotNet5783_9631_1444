@@ -32,6 +32,7 @@ namespace BO
         ///  Override function of the function ToString in object class-return string of produc details
         /// </summary>
         /// <returns></returns>
+        public string? ImagesSource { get; set; }      
         public override string ToString() => this.ToStringProperty();
 
 

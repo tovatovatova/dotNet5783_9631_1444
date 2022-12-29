@@ -246,6 +246,7 @@ namespace BlImplementation
                     boOrder.Status = BO.OrderStatus.Ordered;
                 boOrder.Items = from DO.OrderItem? items in dal.OrderItem.GetAll()//runs on list of order item from dal
                                 where items?.OrderId == doOrder?.OrderId//if order item has the same order id as the order
+
                                 select new BO.OrderItem//choose those who stood in the conditions and convert them to order in BO
                                 {
                                     ID = (items?.OrderItemId)??throw new BO.BlNullPropertyException("id"),
@@ -253,7 +254,9 @@ namespace BlImplementation
                                     ProductID = items?.ProductId??0,
                                     Price = items?.Price??0,
                                     Amount = items?.Amount??0,
-                                    TotalPrice = items?.Price * items?.Amount?? throw new BO.BlNullPropertyException("total price")
+                                    TotalPrice = items?.Price * items?.Amount?? throw new BO.BlNullPropertyException("total price"),
+                                    ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\Products\pictures\" + items?.ProductId ?? 0 + ".jpg"
+
                                 };
                 boOrder.TotalPrice = boOrder.Items.Sum(item => item.TotalPrice);//the total price of the order
                 return boOrder;

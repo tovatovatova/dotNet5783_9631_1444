@@ -36,6 +36,7 @@ namespace BO
         /// override of ToString-returns one string to describe item in order
         /// </summary>
         /// <returns></returns>
+        public string? ImagesSource { get; set; }
         public override string ToString() => this.ToStringProperty();
 
 
