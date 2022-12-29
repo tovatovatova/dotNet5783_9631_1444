@@ -7,8 +7,57 @@
         mc:Ignorable="d"
             DataContext="{Binding myProd, RelativeSource={RelativeSource Self}}"
 
-    Title="ProductCatalogWindow" Height="450" Width="800">
+    Title="ProductCatalogWindow" Height="740" Width="1119">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.RowSpan="3"/>
+        <ScrollViewer Background="#FFF1F1F1" Grid.ColumnSpan="2" Margin="85,40,85,10" Grid.RowSpan="2">
+            <StackPanel>
+                <TextBlock Text="Items" Margin="10" FontSize="22" FontWeight="Medium"/>
+                <StackPanel Margin="20 0">
+                    <ItemsControl x:Name="ListViewProducts" ItemsSource="{Binding}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="10" Width="160" Height="190">
+                                    <StackPanel>
+                                        <Border Width="120" Height="120" CornerRadius="5" Margin="5">
+                                            <Border.Effect>
+                                                <DropShadowEffect ShadowDepth="1"/>
+                                            </Border.Effect>
+                                            <Border.Background>
+                                                <ImageBrush ImageSource="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\Products\pictures\100003.jpg"/>
+                                            </Border.Background>
+                                        </Border>
+                                        <!--<TextBlock Margin="15 0" Text="{Binding Category, StringFormat={}{0:C}}" FontSize="17" FontFamily="Franklin Gothic Medium"/>-->
+                                        <TextBlock Margin="15 0" Text="{Binding Name}" FontSize="15" FontStretch="Normal"/>
+                                        <TextBlock Margin="18 0" Text="{Binding ID}" FontSize="15" FontStretch="Normal"/>
+                                        <TextBlock Margin="20 0"  FontSize="15" FontStretch="Normal">
+                                            <Run Text="{Binding Price}"/>
+                                            <Run Text="$"/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
+<!--<Grid>
         <DataGrid x:Name="productItemDataGrid" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="131,60,118,77">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="amountInCartColumn" Binding="{Binding AmountInCart}" Header="Amount In Cart" Width="SizeToHeader"/>
@@ -20,4 +69,4 @@
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
-</Window>
+</Window>-->
