@@ -23,7 +23,7 @@ namespace BlImplementation
             //input validation
             if (newProduct.ID <= 0)//negative id
                 throw new BO.BlInvalidInputException("product ID");
-            if(newProduct.InStock < 0)//negative amount
+            if (newProduct.InStock < 0)//negative amount
                 throw new BO.BlInvalidInputException("product amount");
             if (newProduct.Price < 0)//negative price
                 throw new BO.BlInvalidInputException("product price");
@@ -32,7 +32,7 @@ namespace BlImplementation
             try
             {
                 //create product of DO 
-               DO.Product p= new DO.Product
+                DO.Product p = new DO.Product
                 {
                     Id = newProduct.ID,
                     Name = newProduct.Name,
@@ -44,9 +44,9 @@ namespace BlImplementation
             }
             catch (DO.DalIdAlreadyExistException ex)//product already exist
             {
-                throw new BO.BlIdAlreadyExistException("this ID already exist",ex);
+                throw new BO.BlIdAlreadyExistException("this ID already exist", ex);
             }
-           
+
         }
         /// <summary>
         /// deletes product by the given id
@@ -62,7 +62,7 @@ namespace BlImplementation
             IEnumerable<DO.OrderItem>? idOfOrderItem = from DO.Order order in dal.Order.GetAll()//runs on list of order
                                                        from DO.OrderItem item in dal.OrderItem.GetAll()//runs on list of order item
                                                        where (order.OrderId == item.OrderId)
-                                                       where(item.ProductId == id)
+                                                       where (item.ProductId == id)
                                                        select item;
             //idOfOrderItem has  all the orderItem with the given productId
             if (idOfOrderItem.Count() == 0)// the given productId doesnt exist in orders-we can delete it
@@ -80,7 +80,7 @@ namespace BlImplementation
                 throw new BO.BlNullPropertyException("cant delete, exist in orders");////565#$%&^*&
 
         }
-        
+
         /// <summary>
         /// return product item in cart by the given id
         /// </summary>
@@ -88,16 +88,16 @@ namespace BlImplementation
         /// <param name="id"></param>
         /// <returns>item</returns>
         /// <exception cref="BO.BlIdDoNotExistException">throw if product doesnt exist</exception>
-        public BO.ProductItem GetProductByID(BO.Cart cart,int id)//client
+        public BO.ProductItem GetProductByID(BO.Cart cart, int id)//client
         {
             DO.Product product;
             try
             {
                 product = dal.Product.GetById(id);//return product
             }
-            catch(DO.DalIdDoNotExistException ex)//product doesnt exist
+            catch (DO.DalIdDoNotExistException ex)//product doesnt exist
             {
-                throw new BO.BlIdDoNotExistException("product",ex);
+                throw new BO.BlIdDoNotExistException("product", ex);
             }
             int amount = 0;
 
@@ -107,7 +107,7 @@ namespace BlImplementation
 
                 if (itemIn != null)
                     amount = itemIn.Amount;
-                
+
             }
             BO.ProductItem item = new BO.ProductItem()
             {//creates product item
@@ -116,10 +116,12 @@ namespace BlImplementation
                 Price = product.Price,
                 Category = (BO.Category)product.ProductCategoty,
                 AmountInCart = amount,//////what to do if the product is not in cart\ if the items in cart is null 
-                InStock = product.AmountInStock > 0
+                InStock = product.AmountInStock > 0,
+                ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\Products\pictures\" + product.Id + ".jpg"
+
             };
             return item;
-           
+
         }
         /// <summary>
         /// return product details of the given id
@@ -134,7 +136,7 @@ namespace BlImplementation
             {
                 product = dal.Product.GetById(id);//return product
             }
-            catch(DO.DalIdDoNotExistException ex)//doesnt exist
+            catch (DO.DalIdDoNotExistException ex)//doesnt exist
             {
                 throw new BO.BlIdDoNotExistException("product", ex);
             }
@@ -144,7 +146,9 @@ namespace BlImplementation
                 Name = product.Name,
                 Price = product.Price,
                 Category = (BO.Category)product.ProductCategoty,
-                InStock = product.AmountInStock
+                InStock = product.AmountInStock,
+                ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\Products\pictures\" +product.Id + ".jpg"
+
             };
         }
         /// <summary>
@@ -165,10 +169,10 @@ namespace BlImplementation
         }
         public IEnumerable<BO.ProsuctForList?> GetListedListByFilter(Func<BO.ProsuctForList?, bool>? filter = null)
         {
-   
+
             return from BO.ProsuctForList p in GetProductList()
                    where filter(p)
-                   select p;        
+                   select p;
         }
         /// <summary>
         /// update product
@@ -195,10 +199,10 @@ namespace BlImplementation
                     Name = product.Name,
                     Price = product.Price,
                     AmountInStock = product.InStock,
-                    ProductCategoty = (DO.Category)(BO.Category)product.Category
+                    ProductCategoty = (DO.Category)(BO.Category)product.Category,
                 });
             }
-            catch(DO.DalIdDoNotExistException ex)//prduct doesnt exist
+            catch (DO.DalIdDoNotExistException ex)//prduct doesnt exist
             {
                 throw new BO.BlIdDoNotExistException("product", ex);
 
@@ -220,7 +224,9 @@ namespace BlImplementation
                        Price = doProduct?.Price ?? throw new NullReferenceException("missing price"),
                        Category = (BO.Category)(doProduct?.ProductCategoty ?? throw new NullReferenceException("missing category")),
                        AmountInCart = 0,//we cant know here the amount in cart
-                       InStock = doProduct?.AmountInStock > 0
+                       InStock = doProduct?.AmountInStock > 0,
+                       ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\Products\pictures\" + doProduct?.Id + ".jpg"
+
                    };
         }
         //public IEnumerable<BO.ProsuctForList?> GetListedListByCategory(Func<BO.ProsuctForList?, bool>? filter = null)

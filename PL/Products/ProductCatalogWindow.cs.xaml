@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.RowSpan="3"/>
         <ScrollViewer Background="#FFF1F1F1" Grid.ColumnSpan="2" Margin="85,40,85,10" Grid.RowSpan="2">
-            <StackPanel>
+            <StackPanel x:Name="stackPanelProduct" >
                 <TextBlock Text="Items" Margin="10" FontSize="22" FontWeight="Medium"/>
                 <StackPanel Margin="20 0">
                     <ItemsControl x:Name="ListViewProducts" ItemsSource="{Binding}">
@@ -32,7 +32,8 @@
                                                 <DropShadowEffect ShadowDepth="1"/>
                                             </Border.Effect>
                                             <Border.Background>
-                                                <ImageBrush ImageSource="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\Products\pictures\100003.jpg"/>
+                                                <!--<ImageBrush ImageSource="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\Products\pictures\100003.jpg"/>-->
+                                                <ImageBrush ImageSource="{Binding ImagesSource}"/>
                                             </Border.Background>
                                         </Border>
                                         <!--<TextBlock Margin="15 0" Text="{Binding Category, StringFormat={}{0:C}}" FontSize="17" FontFamily="Franklin Gothic Medium"/>-->

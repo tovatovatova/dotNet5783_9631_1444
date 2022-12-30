@@ -37,7 +37,7 @@ namespace PL
 
         public static readonly DependencyProperty PlProductProperty =
             DependencyProperty.Register("PlProduct", typeof(BO.Product), typeof(Window), new PropertyMetadata(null));
-
+        List<TextBox> txtlst = new List<TextBox>();
 
         /// <summary>
         /// productWindow empty constructor provide the option to add new product
@@ -48,7 +48,10 @@ namespace PL
             categoryComboBox.ItemsSource = Enum.GetValues(typeof(BO.Category));
             btnAdd.Visibility = Visibility.Visible;//add button getting visible
             PlProduct = new BO.Product();
-          
+            txtlst.Add(nameTextBox);
+            txtlst.Add(priceTextBox);
+            txtlst.Add(inStockTextBox);
+            txtlst.Add(iDTextBox);
 
             
         }
@@ -150,9 +153,14 @@ namespace PL
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-
+            bool flag = false;
             try//if all are valid -try to update them
-            {              
+            {         
+               foreach(var item in txtlst)
+                {
+                    if (item.BorderBrush == Brushes.Red)
+                        flag = true;
+                }
                 bl.Product.UpdateProduct(PlProduct!);
                   Close();
             }
@@ -195,6 +203,7 @@ namespace PL
             nameTextBox.BorderBrush = Background;
             priceTextBox.BorderBrush = Background;
         }
+
     }
    
 }
