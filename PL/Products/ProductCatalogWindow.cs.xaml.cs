@@ -21,6 +21,8 @@ namespace PL.Products
     public partial class ProductCatalogWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
+        Cart cart = new Cart();
+
         //public List<BO.OrderForList?> PlOrder
         //{
         //    get { return (List<BO.OrderForList?>)GetValue(PlOrderProperty); }
@@ -36,22 +38,13 @@ namespace PL.Products
             DependencyProperty.Register("myProd", typeof(List<BO.ProductItem?>), typeof(Window), new PropertyMetadata(null));
 
 
-        //public BO.Cart myCart
-        //{
-        //    get { return (BO.Cart)GetValue(myCartProperty); }
-        //    set { SetValue(myCartProperty, value); }
-        //}
-
-        //// Using a DependencyProperty as the backing store for myCart.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty myCartProperty =
-        //    DependencyProperty.Register("myCart", typeof(BO.Cart), typeof(Window), new PropertyMetadata(null));
-
-
+       
 
         public ProductCatalogWindow()
         {
             InitializeComponent();
            listViewProducts.ItemsSource = bl.Product.GetCatalog().ToList();
+            
             
         }
 
