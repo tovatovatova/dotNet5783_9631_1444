@@ -23,6 +23,9 @@ namespace BlImplementation
         /// <exception cref="BO.BlNullPropertyException">throw if cant add to cart-there is not enough in stock</exception>
         public BO.Cart AddToCart(BO.Cart currentCart, int ProductID)
         {
+            if(currentCart.Items==null)
+                currentCart.Items=new List<BO.OrderItem>();
+            
             DO.Product product;
             try
             {
@@ -32,6 +35,7 @@ namespace BlImplementation
             {
                 throw new BO.BlIdDoNotExistException("product in cart", ex);
             }
+
             BO.OrderItem? itemInCart = currentCart.Items.FirstOrDefault(item => item.ID == ProductID);// check if product exists in cart-if so, return the first object
             if (itemInCart != null)//product exists
             {

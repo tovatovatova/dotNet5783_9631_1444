@@ -12,6 +12,7 @@
             <Setter Property="FontWeight"
               Value="Bold" />
         </Style>-->
+        
         <LinearGradientBrush x:Key="colorInDataGrid">
             <GradientStop Color="DeepPink"
                     Offset="0" />
@@ -25,10 +26,16 @@
                     Offset="1" />
 
         </LinearGradientBrush>
+        
         <Style x:Key="fontInDataGridStyle" >
             <Setter Property="TextElement.FontFamily" Value="Cascadia Mono SemiBold"/>
             <Setter Property="TextElement.FontStyle" Value="Italic"/>
             <Setter Property="TextBlock.Foreground" Value="{StaticResource colorInDataGrid }"/>
+         </Style>
+        <Style TargetType="Label" >
+            <Setter Property="TextElement.FontFamily" Value="Cascadia Mono SemiBold"/>
+            <Setter Property="TextElement.FontStyle" Value="Italic"/>
+            <Setter Property="TextBlock.Foreground" Value="Black"/>
          </Style>
 
                 <Style  TargetType="Button">
@@ -36,6 +43,7 @@
                     <Setter Property="Foreground" Value="Black" />
                     <Setter Property="FontSize" Value="30" />
                     <Setter Property="FontFamily" Value="Algerian"/>
+            <Setter Property="BorderThickness" Value="1"/>
         </Style>
                 <Style  TargetType="Window" >
             <Setter Property="Background" Value="LightCyan">

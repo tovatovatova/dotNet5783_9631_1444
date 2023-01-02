@@ -6,10 +6,13 @@
                 xmlns:local="clr-namespace:PL.Products"
 
         mc:Ignorable="d"
-            DataContext="{Binding myProd, RelativeSource={RelativeSource Self}}"
+            DataContext="{Binding myProductCat, RelativeSource={RelativeSource Self}}"
 Title="ProductCatalogWindow" Height="740" Width="1119">
 
     <Window.Resources>
+       
+            <local:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+     
         <DataTemplate x:Key="ProductItemTemplate" DataType="local:ProductItem">
             <Grid>
                 <Grid.RowDefinitions>
@@ -17,16 +20,23 @@ Title="ProductCatalogWindow" Height="740" Width="1119">
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Border Grid.Row= "0" Width="100" Height="79" CornerRadius="5" Margin="30,50,30,84">
+                <Border Grid.Row= "0" Width="140" Height="120" CornerRadius="5" Margin="30,50,30,84">
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="1"/>
                     </Border.Effect>
                     <Border.Background>
-                        <ImageBrush ImageSource="{Binding ImagesSource}"/>
+                            <ImageBrush ImageSource="{Binding ImagesSource}" />
                     </Border.Background>
                 </Border>
                 <!--<Image Grid.Row= "0" Height="60" Width="180" HorizontalAlignment="Center" Source="C:\Users\Shilat Sharon\source\repos\ShilatSharon\dotNet5783_1100_2921\PL\zarahome.png" />-->
                 <Label  Content="{Binding Name}" Grid.Row= "1" HorizontalAlignment="Center" Margin="5,0,0,0" FontSize="17" />
+
+                
+                <TextBlock Text="out of stock    " HorizontalAlignment="Stretch" Margin="0,5,5,5" VerticalAlignment="Center" Background="LightGray" Grid.ColumnSpan="2" FontFamily="Cooper Black" Foreground="Gray" FontSize="25" Visibility="{Binding InStock , Converter={StaticResource booleanToVisibilityConverter}}">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="45" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
                 <TextBlock Text="{Binding Price, StringFormat={}{0:C}}"  Grid.Row= "2" HorizontalAlignment="Center" Margin="5,0,0,0" />
             </Grid>
         </DataTemplate>

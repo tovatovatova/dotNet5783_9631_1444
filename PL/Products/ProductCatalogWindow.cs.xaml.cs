@@ -1,6 +1,7 @@
 ﻿using BO;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,14 +29,14 @@ namespace PL.Products
         //    get { return (List<BO.OrderForList?>)GetValue(PlOrderProperty); }
         //    set { SetValue(PlOrderProperty, value); }//@#$%^&*()_(*&UY^T%R$#$%^&*(
         //} 
-        public List<BO.ProductItem?> myProd
+        public List<BO.ProductItem?> myProductCat
         {
-            get { return (List<BO.ProductItem?>)GetValue(myProdProperty); }
-            set { SetValue(myProdProperty, value); }
+            get { return (List<BO.ProductItem?>)GetValue(myProductCatProperty); }
+            set { SetValue(myProductCatProperty, value); }
         }
         // Using a DependencyProperty as the backing store for PlProduct.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty myProdProperty =
-            DependencyProperty.Register("myProd", typeof(List<BO.ProductItem?>), typeof(Window), new PropertyMetadata(null));
+        public static readonly DependencyProperty myProductCatProperty =
+            DependencyProperty.Register("myProductCat", typeof(List<BO.ProductItem?>), typeof(Window), new PropertyMetadata(null));
 
 
        
@@ -43,8 +44,9 @@ namespace PL.Products
         public ProductCatalogWindow()
         {
             InitializeComponent();
-           listViewProducts.ItemsSource = bl.Product.GetCatalog().ToList();
-            
+          // listViewProducts.ItemsSource = bl.Product.GetCatalog().ToList();
+            myProductCat=new List<BO.ProductItem>();
+            myProductCat = bl.Product.GetCatalog().ToList();
             
         }
 
@@ -53,9 +55,20 @@ namespace PL.Products
 
             if (listViewProducts.SelectedIndex == -1)
                 return;
-            ProductWindow p = new ProductWindow(sender, e, ((BO.ProductItem)listViewProducts.SelectedItem).ID);//send the selected product id
+        ProductItemWindow p=new ProductItemWindow(cart, ((ProductItem)listViewProducts.SelectedItem).ID);
             p.ShowDialog();
-           
+        }
+    }
+    class BooleanToVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (bool)value ? Visibility.Hidden : Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return System.Convert.ToInt32(value) < 15 ? false : true;
         }
     }
 }
