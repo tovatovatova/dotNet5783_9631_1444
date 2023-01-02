@@ -77,6 +77,26 @@ namespace PL
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
             }
             PlOrderItem = MyOrder.Items.ToList();
+            statusComboBox.SelectedItem = MyOrder.Status;
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {//#$%^&*()_(*&^%
+            try
+            {
+                MyOrder=bl.Order.UpdateOrder(MyOrder);
+            }
+            catch (BO.BlIdDoNotExistException ex)
+            {
+
+                //throw an error message box 
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+            }
+            Close();
         }
     }
 }

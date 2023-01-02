@@ -1,4 +1,63 @@
-﻿<Window x:Name="MainWindow1" x:Class="PL.MainWindow"
+<Window x:Name="MainWindow1" x:Class="PL.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        WindowStartupLocation ="CenterScreen"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" >
+    <Grid Margin="0,-14,0,0" RenderTransformOrigin="0.5,0.5" Background="#FFB4F1F1" Grid.IsSharedSizeScope="True">
+        <Grid.FocusVisualStyle>
+            <Style/>
+        </Grid.FocusVisualStyle>
+        <Button x:Name="btnAdmin" Content="Admin" HorizontalAlignment="Left" Margin="33,209,0,0" VerticalAlignment="Top" Height="127" Width="249" Click="btnAdmin_Click" FontSize="29" FontFamily="Bodoni MT Black" FontWeight="Bold" Foreground="#FFEFF0F1" RenderTransformOrigin="0.5,0.5" FontStyle="Oblique"  >
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFFF81BA" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.FocusVisualStyle>
+                <Style/>
+            </Button.FocusVisualStyle>
+            <Button.Style>
+                <Style/>
+            </Button.Style>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="8" Y="4"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+            <Button.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFD6B0ED" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.BorderBrush>
+        </Button>
+        <Label x:Name="lblTracking" Content="Enter number of order for tracking:"  HorizontalAlignment="Left" Visibility="Hidden" Margin="465,265,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="19"/>
+        <!--<TextBox x:Name="txtOrderId" HorizontalAlignment="Left" Margin="610,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="125" Height="25" TextChanged="txtOrderId_TextChanged"/>-->
+        <Button x:Name="btnTracking" Content="Track" HorizontalAlignment="Left" Margin="458,213,0,0" VerticalAlignment="Top" Height="47" Width="285" Click="btnTracking_Click" MouseDoubleClick="btnTracking_MouseDoubleClick"/>
+        <Button x:Name="btnProduct" Content="Products" HorizontalAlignment="Left" Margin="30,379,0,0" VerticalAlignment="Top"   RenderTransformOrigin="0.31,0.116" Visibility="Hidden" Click="btnProduct_Click"/>
+        <Button x:Name="btnOrder" Content="Orders" HorizontalAlignment="Left" Margin="210,379,0,0" VerticalAlignment="Top" Visibility="Hidden" Click="btnOrder_Click_1" />
+        <Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="488,369,0,0" VerticalAlignment="Top" Click="btnNewOrder_Click" RenderTransformOrigin="0.596,-2.347" Width="225"/>
+        <TextBox x:Name="txtidd"  PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown" Visibility="Hidden" MaxLength="9" TextWrapping="Wrap"  KeyDown="OnKeyDownHandler" Text="" Width="285"
+FontSize="20" Margin="458,298,57,108"  />
+
+
+
+
+    </Grid>
+</Window>
+
+<!--﻿<Window x:Name="MainWindow1" x:Class="PL.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -42,16 +101,15 @@
                 </LinearGradientBrush>
             </Button.BorderBrush>
         </Button>
-        <Label x:Name="lblTracking" Content="Enter number of order for tracking:"  HorizontalAlignment="Left" Visibility="Hidden" Margin="465,265,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="19"/>
-        <!--<TextBox x:Name="txtOrderId" HorizontalAlignment="Left" Margin="610,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="125" Height="25" TextChanged="txtOrderId_TextChanged"/>-->
-        <Button x:Name="btnTracking" Content="Track" HorizontalAlignment="Left" Margin="458,213,0,0" VerticalAlignment="Top" Height="47" Width="285" Click="btnTracking_Click" MouseDoubleClick="btnTracking_MouseDoubleClick"/>
-        <Button x:Name="btnProduct" Content="Products" HorizontalAlignment="Left" Margin="30,379,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.31,0.116" Visibility="{Binding ElementName=btnAdmin,Path=ClickMode}" Click="btnProduct_Click"/>
-        <Button x:Name="btnOrder" Content="Orders" HorizontalAlignment="Left" Margin="210,379,0,0" VerticalAlignment="Top" Visibility="{Binding ElementName=btnAdmin,Path=ClickMode}" Click="btnOrder_Click_1" />
-        <Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="488,369,0,0" VerticalAlignment="Top" Click="btnNewOrder_Click" RenderTransformOrigin="0.596,-2.347" Width="225"/>
-        <TextBox x:Name="txtidd"  PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown" Visibility="Hidden" MaxLength="9" TextWrapping="Wrap"  KeyDown="OnKeyDownHandler" Text="" Width="285"
-FontSize="20" Margin="458,298,57,108"  />
+        <Label x:Name="lblTracking" Content="Enter number of order for tracking:" HorizontalAlignment="Left" Margin="504,276,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="19"/>
+        <TextBox x:Name="txtOrderId" HorizontalAlignment="Left" Margin="610,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" Height="25"/>
+        <Button x:Name="btnTracking" Content="Track" HorizontalAlignment="Left" Margin="610,363,0,0" VerticalAlignment="Top" Height="39" Width="112" Click="btnTracking_Click"/>
+        <Button x:Name="btnProduct" Content="Products" HorizontalAlignment="Left" Margin="30,379,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.31,0.116" Visibility="Hidden" Click="btnProduct_Click"/>
+        <Button x:Name="btnOrder" Content="Orders" HorizontalAlignment="Left" Margin="210,379,0,0" VerticalAlignment="Top" Visibility="Hidden" Click="btnOrder_Click_1"/>
+        <Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="416,361,0,0" VerticalAlignment="Top" Click="btnNewOrder_Click"/>
+
 
 
 
     </Grid>
-</Window>
+</Window>-->

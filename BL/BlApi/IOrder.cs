@@ -17,6 +17,7 @@ namespace BlApi
         public BO.Order UpdateDelivery(int orderID);//manager
        public BO.OrderTracking OrderTracking (int orderID);//manager
         public IEnumerable<BO.OrderForList?> GetListedListByFilter(Func<BO.OrderForList?, bool>? filter = null);
+        public BO.Order UpdateOrder(BO.Order order);
 
 
 

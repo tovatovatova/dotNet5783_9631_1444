@@ -13,7 +13,7 @@ namespace BO
     /// <summary>
     /// enum of stages in order status
     /// </summary>
-    public enum OrderStatus {Initiated,Ordered,Paid,Shipped,Delivered }
+    public enum OrderStatus {Ordered,Shipped,Delivered }
     public enum UpdateOrder { Address, AmountOfItem, DeleteItem }
 }
     

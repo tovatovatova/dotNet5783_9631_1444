@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Products"
         mc:Ignorable="d"
-            DataContext="{Binding myProd, RelativeSource={RelativeSource Self}}"
+        WindowStartupLocation ="CenterScreen"
+        DataContext="{Binding myProd, RelativeSource={RelativeSource Self}}"
 
     Title="ProductCatalogWindow" Height="740" Width="1119">
     <Grid>
@@ -33,7 +34,7 @@
                                             </Border.Effect>
                                             <Border.Background>
                                                 <!--<ImageBrush ImageSource="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\Products\pictures\100003.jpg"/>-->
-                                                <ImageBrush ImageSource="{Binding ImagesSource}"/>
+                                                <ImageBrush ImageSource="pictures/100008.jpg"/>
                                             </Border.Background>
                                         </Border>
                                         <!--<TextBlock Margin="15 0" Text="{Binding Category, StringFormat={}{0:C}}" FontSize="17" FontFamily="Franklin Gothic Medium"/>-->

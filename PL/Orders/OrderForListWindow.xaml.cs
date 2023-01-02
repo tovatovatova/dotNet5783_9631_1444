@@ -73,7 +73,7 @@ namespace PL
             OrderWindow o = new OrderWindow(sender, e, ((BO.OrderForList)orderForListView.SelectedItem).ID);//send the selected product id
             o.ShowDialog();
             cmbStatus.SelectedItem = cmbStatus.Items.GetItemAt(0);
-            cmbStatus.ItemsSource = bl.Order.GetOrderList();//can show all the products back again-after updating
+            PlOrder = bl.Order.GetOrderList().ToList();
         }
     }
 }

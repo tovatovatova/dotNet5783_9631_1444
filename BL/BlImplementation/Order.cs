@@ -267,6 +267,51 @@ namespace BlImplementation
                    where filter(p)
                    select p;
         }
+
+        public BO.Order UpdateOrder(BO.Order order)
+        {
+            if (order.Status==BO.OrderStatus.Ordered)
+            {//there is still option for changing the costumer details
+                DO.Order o = new DO.Order()
+                {
+                    OrderId = order.Id,
+                    CustomerName = order.CustomerName,
+                    CustomerAddress = order.CustomerAddress,
+                    CustomerEmail = order.CustomerEmail,
+                    DeliveryDate = order.DeliveryDate,
+                    ShipDate = order.ShipDate,
+                    OrderDate = order.OrderDate
+                };
+                try
+                {
+                    
+                    dal.Order.Update(o);
+                    //dal.Order.Update(new DO.Order()
+                    //{
+                    //    OrderId = order.Id,
+                    //    CustomerName = order.CustomerName,
+                    //    CustomerAddress = order.CustomerAddress,
+                    //    CustomerEmail = order.CustomerEmail,
+                    //    DeliveryDate = order.DeliveryDate,
+                    //    ShipDate = order.ShipDate,
+                    //    OrderDate = order.OrderDate
+                    //});
+                }
+                catch (DO.DalIdDoNotExistException ex)//couldnt find the order to update
+                {
+                    throw new BO.BlIdDoNotExistException("order",ex);
+                }
+                //update was successful
+                return ConvertOrderDoToBO(o);
+            }
+            return order;
+        }
+
+        
+
+
+
+
         //public BO.Order UpdateOrder<T>(int orderID,BO.UpdateOrder updateOrder,T value1,T value2)
         //{
         //    if (orderID < 0)//negative id

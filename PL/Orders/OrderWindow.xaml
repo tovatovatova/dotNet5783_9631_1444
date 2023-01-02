@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
+        WindowStartupLocation ="CenterScreen"
+
         mc:Ignorable="d"
         DataContext="{Binding MyOrder,RelativeSource={RelativeSource Self}}"
         Title="OrderWindow" Height="500" Width="800">
@@ -112,7 +114,8 @@
             <DatePicker x:Name="deliveryDateDatePicker" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="8" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
             <Label Grid.Column="0" Content="Status:"  HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
-            <ComboBox x:Name="statusComboBox" Grid.Column="1" DisplayMemberPath="Status" HorizontalAlignment="Left" Height="NaN"  Margin="3" Grid.Row="9" VerticalAlignment="Center" Width="120" SelectedItem="{Binding OrderStatus}">
+            <!--<TextBox x:Name="statusTextBox" Grid.Column="1" Grid.Row="9" IsReadOnly="True" HorizontalAlignment="Left" Height="NaN" Margin="3" VerticalAlignment="Center" Width="120" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>-->
+            <ComboBox x:Name="statusComboBox" Grid.Column="1" IsReadOnly="True" IsEnabled="False" HorizontalAlignment="Left" Height="NaN"  Margin="3" Grid.Row="9" VerticalAlignment="Center" Width="120" SelectedItem="{Binding Status}">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
@@ -124,7 +127,7 @@
             <TextBox x:Name="totalPriceTextBox" Grid.Column="1" IsReadOnly="True" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="10" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
         </Grid>
-        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="32,379,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="32,379,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="btnUpdate_Click"/>
 
 
 
