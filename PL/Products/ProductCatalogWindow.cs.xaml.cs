@@ -21,6 +21,8 @@ namespace PL.Products
     public partial class ProductCatalogWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
+        Cart cart = new Cart();
+
         //public List<BO.OrderForList?> PlOrder
         //{
         //    get { return (List<BO.OrderForList?>)GetValue(PlOrderProperty); }
@@ -35,12 +37,25 @@ namespace PL.Products
         public static readonly DependencyProperty myProdProperty =
             DependencyProperty.Register("myProd", typeof(List<BO.ProductItem?>), typeof(Window), new PropertyMetadata(null));
 
+
+       
+
         public ProductCatalogWindow()
         {
             InitializeComponent();
-            myProd = bl.Product.GetCatalog().ToList();
+           listViewProducts.ItemsSource = bl.Product.GetCatalog().ToList();
+            
+            
         }
 
-       
+        private void listViewProducts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            if (listViewProducts.SelectedIndex == -1)
+                return;
+            ProductWindow p = new ProductWindow(sender, e, ((BO.ProductItem)listViewProducts.SelectedItem).ID);//send the selected product id
+            p.ShowDialog();
+           
+        }
     }
 }

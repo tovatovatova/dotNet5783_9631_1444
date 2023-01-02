@@ -255,7 +255,7 @@ namespace BlImplementation
                                     Price = items?.Price??0,
                                     Amount = items?.Amount??0,
                                     TotalPrice = items?.Price * items?.Amount?? throw new BO.BlNullPropertyException("total price"),
-                                    ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\Products\pictures\" + items?.ProductId ?? 0 + ".jpg"
+                                    ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" + items?.ProductId ?? 0 + ".jpg"
 
                                 };
                 boOrder.TotalPrice = boOrder.Items.Sum(item => item.TotalPrice);//the total price of the order

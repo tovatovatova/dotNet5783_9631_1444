@@ -51,6 +51,7 @@
             </DataGrid.Columns>
 
         </DataGrid>
+        
         <Label x:Name="lblCat" Content="Select category:" HorizontalAlignment="Left" Margin="342,15,0,0" VerticalAlignment="Top" Foreground="#FF30ABBC" FontFamily="algerian" Background="{x:Null}" FontSize="16" Height="36" Width="176"/>
     </Grid>
 </Window>

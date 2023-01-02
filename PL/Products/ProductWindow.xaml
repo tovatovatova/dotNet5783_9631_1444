@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         DataContext="{Binding PlProduct, RelativeSource={RelativeSource Self}}"
         Title="ProductWindow" Height="450" Width="800">
-    <Grid  Name="mainGrid" Background="#FFF1CFE4" PreviewMouseLeftButtonDown="mainGrid_PreviewMouseLeftButtonDown">
+    <Grid  Name="mainGrid" Background="#FFE0FFFF" PreviewMouseLeftButtonDown="mainGrid_PreviewMouseLeftButtonDown">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
@@ -43,7 +43,7 @@
         <TextBox x:Name="inStockTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
 
-        <Button x:Name="btnAdd" Content="Add"  Background="#FF32BBC4" Height="43" Width="94" FontFamily="Arial Black" FontSize="19" Click="btnAdd_Click" Visibility="Hidden" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" RenderTransformOrigin="0.388,5.877" Margin="0,223,8,-216" />
+        <Button x:Name="btnAdd"  Content="Add"  Background="#FF32BBC4" Height="43" Width="94" FontFamily="Arial Black" FontSize="19" Click="btnAdd_Click" Visibility="Hidden" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" RenderTransformOrigin="0.388,5.877" Margin="0,223,8,-216" />
         <Button x:Name="btnUpdate" Content="Update"   Height="50" Width="169" Click="btnUpdate_Click" Background="#FF32BBC4"  Grid.Column="1" Visibility="Hidden" Grid.Row="4" HorizontalAlignment="Right" Margin="0,216,-569,-216"/>
 
     </Grid>

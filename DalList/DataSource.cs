@@ -11,6 +11,7 @@ internal static class DataSource
     internal static List<Product?> ProductList { get; } = new List<Product?>();
     internal static List<Order?> OrderList { get; } = new List<Order?>();
     internal static List<OrderItem?> OrderItemList { get; } = new List<OrderItem?>();
+    internal static List<User?> UserList { get; } = new List<User?>();
     internal static class Config
     {
         internal const int s_startOrderNumbr = 100000;//Initialization running number for order
@@ -32,6 +33,7 @@ internal static class DataSource
         createAndIinitProducts();
         createAndIinitOrders();
         createAndIinitOrderItems();
+        createAndIinitUsers();
     }
 
 
@@ -42,6 +44,21 @@ internal static class DataSource
         { "mix Desserts", "mini donats", "mix mini cupcakes" },
         { "vafel belgi", "crep", "frozen" }
     };
+    static string[] userNames = new string[] { "ortv", "tovatovatova" };//names of users to log in
+    static int[] userPasswords = new int[] { 617617,123456  };
+
+    private static void createAndIinitUsers()
+    {
+        for (int i= 0;  i< 2; i++)
+        {
+            User addUser = new User();
+
+            addUser.UserName = userNames[i];
+            addUser.Password= userPasswords[i];
+            addUser.Email = userNames[i] + "@gmail.com";
+            UserList.Add(addUser);
+        }
+    }
     private static void createAndIinitProducts()
     {
 

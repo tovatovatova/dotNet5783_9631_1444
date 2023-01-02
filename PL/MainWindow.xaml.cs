@@ -41,7 +41,9 @@ namespace PL
         /// <param name="e"></param>
         private void btnAdmin_Click(object sender, RoutedEventArgs e)
         {
-            //need to see order and product buttuns
+            LogInWindow l = new LogInWindow();
+            l.Show();
+            //need to see order and product buttuns-transfer to logIn!!
             btnOrder.Visibility = Visibility.Visible;
             btnProduct.Visibility = Visibility.Visible; 
         }
@@ -67,7 +69,7 @@ namespace PL
         private void btnNewOrder_Click(object sender, RoutedEventArgs e)
         {
             ProductCatalogWindow productCatalog = new ProductCatalogWindow();
-            productCatalog.ShowDialog();
+            productCatalog.Show();
         }
 
         private void btnTracking_MouseDoubleClick(object sender, MouseButtonEventArgs e)
