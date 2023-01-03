@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace BO;
 
-internal class User
+public class User
 {
 
     public string? UserName { get; set; }   
     public int Password { get; set; }
     //public string? Email { get; set; }
+    public LogIn Log { get; set; }
 
 }

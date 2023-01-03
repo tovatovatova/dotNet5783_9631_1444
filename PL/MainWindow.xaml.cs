@@ -41,9 +41,10 @@ namespace PL
         /// <param name="e"></param>
         private void btnAdmin_Click(object sender, RoutedEventArgs e)
         {
-            LogInWindow l = new LogInWindow();
-            l.Show();
+            //LogInWindow l = new LogInWindow();
+            //l.Show();
             //need to see order and product buttuns-transfer to logIn!!
+            
             btnOrder.Visibility = Visibility.Visible;
             btnProduct.Visibility = Visibility.Visible; 
         }
@@ -143,6 +144,12 @@ namespace PL
                         txtidd.Text = "";
                 }
             }
+        }
+
+        private void btnLogIn_Click(object sender, RoutedEventArgs e)
+        {
+            LogInWindow l = new LogInWindow();
+            l.Show();
         }
     }
 }

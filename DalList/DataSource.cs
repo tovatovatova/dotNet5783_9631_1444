@@ -44,18 +44,27 @@ internal static class DataSource
         { "mix Desserts", "mini donats", "mix mini cupcakes" },
         { "vafel belgi", "crep", "frozen" }
     };
-    static string[] userNames = new string[] { "ortv", "tovatovatova" };//names of users to log in
-    static int[] userPasswords = new int[] { 617617,123456  };
+    static string[] userNames = new string[] { "ortv", "tovatovatova","orokach","powerful", "warrior","hope" };//names of users to log in
+    static int[] userPasswords = new int[] { 617617,123456,258528,111111,222222,333333  };
 
     private static void createAndIinitUsers()
     {
-        for (int i= 0;  i< 2; i++)
+        for (int i= 0;  i< 3; i++) //initiate manegers
         {
             User addUser = new User();
-
             addUser.UserName = userNames[i];
             addUser.Password= userPasswords[i];
-            addUser.Email = userNames[i] + "@gmail.com";
+            // addUser.Email = userNames[i] + "@gmail.com";
+            addUser.Log = LogIn.Maneger;
+            UserList.Add(addUser);
+        }
+        for (int i = 0; i < 3; i++)//initiate customers
+        {
+            User addUser = new User();
+            addUser.UserName = userNames[i+3];
+            addUser.Password = userPasswords[i+3];
+            // addUser.Email = userNames[i] + "@gmail.com";
+            addUser.Log = LogIn.Customer;
             UserList.Add(addUser);
         }
     }

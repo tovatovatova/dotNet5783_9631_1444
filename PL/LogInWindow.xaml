@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
+        WindowStartupLocation ="CenterScreen"
         mc:Ignorable="d"
+        DataContext="{Binding PlUser,RelativeSource={RelativeSource Self}}"
         Title="LogInWindow" Height="450" Width="800">
     <Grid>
         <Grid x:Name="logInGrid"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="275,165,0,0" Height="109" Width="256">
@@ -18,9 +20,9 @@
                 <RowDefinition Height="31.96"/>
                 <RowDefinition Height="0"/>
             </Grid.RowDefinitions>
-            <Label Content="User Name:" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="71"/>
+            <Label Content="User Name:" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="101"/>
             <TextBox x:Name="userNameTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="18" Text="{Binding UserName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
-            <Label Grid.Column="0" Content="Password:" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="62"/>
+            <Label Grid.Column="0" Content="Password:" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="101"/>
             <TextBox x:Name="passwordTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="18" Grid.Row="1" Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
         <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="625,315,0,0" VerticalAlignment="Top" Click="btnSubmit_Click"/>

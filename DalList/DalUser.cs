@@ -5,7 +5,7 @@ using DalApi;
 
 namespace Dal;
 
-internal class DalUser : IUser
+public class DalUser : IUser
 {
     /// <summary>
     /// add new user into the system and return his password(?)

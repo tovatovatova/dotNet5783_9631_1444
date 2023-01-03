@@ -108,7 +108,7 @@ namespace PL
             
                 try//try to add the product with call to a bl function  add
                 {
-                    bl.Product.(PlProduct!);
+                bl.Product.AddProduct(PlProduct);
                     messageBoxText = "product added successfully";
                     caption = "";
                     icon = MessageBoxImage.Information;

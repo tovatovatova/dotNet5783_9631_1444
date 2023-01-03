@@ -56,13 +56,14 @@ namespace PL
         {
             if (cmbStatus.SelectedItem == cmbStatus.Items.GetItemAt(0))//all product option
             {
-                orderForListView.ItemsSource = bl.Order.GetOrderList();
+                PlOrder = bl.Order.GetOrderList().ToList();
+                //orderForListView.ItemsSource = bl.Order.GetOrderList();
                 return;
             }
 
             else
             {
-                orderForListView.ItemsSource = bl.Order.GetListedListByFilter(item => item.Status == Enum.Parse<BO.OrderStatus>(cmbStatus.SelectedItem.ToString()));//sort order list view by category
+                PlOrder = bl.Order.GetListedListByFilter(item => item.Status == Enum.Parse<BO.OrderStatus>(cmbStatus.SelectedItem.ToString())).ToList();//sort order list view by category
             }
         }
 

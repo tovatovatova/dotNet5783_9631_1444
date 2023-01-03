@@ -15,6 +15,8 @@ namespace BO
     /// </summary>
     public enum OrderStatus {Ordered,Shipped,Delivered }
     public enum UpdateOrder { Address, AmountOfItem, DeleteItem }
+    public enum LogIn { Customer, Maneger };
+
 }
-    
+
 
