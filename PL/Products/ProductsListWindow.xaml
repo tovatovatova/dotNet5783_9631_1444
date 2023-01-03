@@ -10,36 +10,23 @@
         Title="ProductsListWindow" Height="450" Width="800">
 
     <Grid>
-        <ComboBox x:Name="cmbCategory" Height="36" VerticalAlignment="Bottom"  BorderBrush="#FF41CFA8" FontSize="16" FontFamily="Consolas" Background="{x:Null}" Margin="502,0,12,383" SelectionChanged="cmbCategory_SelectionChanged" />
-        <Button x:Name="btnAdd" Margin="38,266,608,34"  Content="ADD" Foreground="#FFACF1EE" FontSize="49" Click="btnAdd_Click" FontFamily="Bahnschrift SemiLight" FontStretch="Expanded" FontStyle="Italic" FontWeight="SemiBold" TextBlock.LineHeight="40">
-            <Button.Template>
+        <ComboBox x:Name="cmbCategory"  Height="36" VerticalAlignment="Bottom"  BorderBrush="#FF41CFA8" FontSize="16" FontFamily="Consolas" Background="{x:Null}" Margin="502,0,12,383" SelectionChanged="cmbCategory_SelectionChanged" />
+        <Button x:Name="btnAdd" Margin="38,266,608,34"  Content="ADD" Foreground="#FFACF1EE" FontSize="49" Click="btnAdd_Click" FontFamily="Bahnschrift SemiLight" FontStretch="Expanded" FontStyle="Italic" FontWeight="SemiBold" TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
+            <!--<Button.Template>
+                
                 <ControlTemplate TargetType="Button">
                     <Grid>
                         <Ellipse Stroke="LightCyan"
                          StrokeThickness="2">
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Products/1f6739596327dd1b9736589e9fe34802.jpg"/>
-
-                                <!--<RadialGradientBrush>
-                                    <GradientStop Offset="0"
-                                          Color="LightPink" />
-                                    <GradientStop Offset="1"
-                                          Color="HotPink" />
-                                    <GradientStop Offset="2"
-                                          Color="HotPink" />
-                                    <RadialGradientBrush.Transform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleY="0.65" />
-                                        </TransformGroup>
-                                    </RadialGradientBrush.Transform>
-                                </RadialGradientBrush>-->
+                                <ImageBrush ImageSource=""/>
                             </Ellipse.Fill>
                         </Ellipse>
-                        <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center" OpacityMask="Black"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" OpacityMask="Black"/>
                     </Grid>
                 </ControlTemplate>
-            </Button.Template>
+            </Button.Template>-->
+        
         </Button>
         <DataGrid x:Name="prosuctForListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="215,51,10,34" FontFamily="Cascadia Mono SemiBold" Foreground="{DynamicResource colorInDataGrid}" FontWeight="Bold" FontSize="16" SelectionChanged="prosuctForListDataGrid_SelectionChanged" >
             <DataGrid.Columns>

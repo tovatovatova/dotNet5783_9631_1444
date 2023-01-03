@@ -11,7 +11,7 @@
 
     </Window.Resources>
     <Grid>
-        <Grid x:Name="grid1"   HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="83,44,0,0" Height="222" Width="470">
+        <Grid x:Name="grid1"   HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="83,44,0,0" Height="222" Width="470">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>

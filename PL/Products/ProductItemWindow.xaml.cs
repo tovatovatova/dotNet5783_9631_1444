@@ -1,4 +1,4 @@
-﻿using BO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.Products
+namespace PL
 {
     /// <summary>
     /// Interaction logic for ProductItemWindow.xaml
@@ -22,7 +22,7 @@ namespace PL.Products
     {
 
         BlApi.IBl bl = BlApi.Factory.Get();
-        Cart cart = new Cart();
+        BO.Cart myCart = new BO.Cart();
         public BO.ProductItem myProduct
         {
             get { return (BO.ProductItem)GetValue(myProductProperty); }
@@ -34,18 +34,20 @@ namespace PL.Products
             DependencyProperty.Register("myProduct", typeof(BO.ProductItem), typeof(Window), new PropertyMetadata(null));
 
 
-        public ProductItemWindow(Cart cart,int id)
+        public ProductItemWindow(BO.Cart cart1, int id)
         {
             InitializeComponent();
-            cart = cart;
-            myProduct = bl.Product.GetProductByID(cart,id);
-            
+            myCart = cart1;
+            myProduct = bl.Product.GetProductByID(myCart, id);
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-          
-                bl.Cart.AddToCart(cart, myProduct.ID);}
+            bl.Cart.AddToCart(myCart, myProduct.ID);
+
         }
     }
+}
 

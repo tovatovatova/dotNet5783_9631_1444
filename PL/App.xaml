@@ -1,7 +1,7 @@
-﻿<Application x:Class="Ex5_EventObject.App"
+﻿<Application x:Class="PL.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Ex5_EventObject"
+             xmlns:local="clr-namespace:PL"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <!--<Style x:Key="myButtonStyle"   TargetType="Button">
@@ -37,6 +37,11 @@
             <Setter Property="TextElement.FontStyle" Value="Italic"/>
             <Setter Property="TextBlock.Foreground" Value="Black"/>
          </Style>
+        <Style  x:Key="textOfItem" TargetType="TextBlock" >
+            <Setter Property="TextElement.FontFamily" Value="Cascadia Mono SemiBold"/>
+            <Setter Property="TextElement.FontStyle" Value="Italic"/>
+            <Setter Property="TextBlock.Foreground" Value="Black"/>
+         </Style>
 
                 <Style  TargetType="Button">
                     <Setter Property="Background" Value="{StaticResource colorInDataGrid}" />
@@ -62,5 +67,9 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock-->
+        <local:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+        <local:StringToBitmap x:Key="imageConverter"/>
+        <local:AmountToComboBox x:Key="amountTOcombo"/>
+
     </Application.Resources>
 </Application>
