@@ -87,16 +87,26 @@ namespace PL
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
             bl.Cart.UpdateProductInCart(allContext.cart, 0, ((BO.OrderItem)orderItemsListView.SelectedItem).ProductID);
-            
+            orderItemsListView.Items.Refresh();
         }
 
         private void btnAdd_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
-        myCart=bl.Cart.AddToCart(myCart, Convert.ToInt32((sender as Button).Tag.ToString()));
-            orderItemsListView.ItemsSource = myCart.Items;
+            myCart = bl.Cart.AddToCart(myCart, Convert.ToInt32((sender as Button).Tag.ToString()));
 
-           
+            orderItemsListView.ItemsSource = myCart.Items;
+            orderItemsListView.Items.Refresh();
+
+
+        }
+
+        private void btnLow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            myCart = bl.Cart.AddToCart(myCart, Convert.ToInt32((sender as Button).Tag.ToString()));
+
+            orderItemsListView.ItemsSource = myCart.Items;
+            orderItemsListView.Items.Refresh();
         }
     }
 }
