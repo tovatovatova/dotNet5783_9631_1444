@@ -178,7 +178,7 @@ namespace PL
             }
             catch (BO.BlInvalidInputException ex)
             {
-                string messageBoxText = ex.ToString() + "\ntry again";
+                string messageBoxText = ex.Entity/*ex.ToString()*/ + "\ntry again";
                 string caption = "error";
                 MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBoxResult result;

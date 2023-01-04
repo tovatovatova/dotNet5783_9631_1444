@@ -160,7 +160,7 @@ namespace BlImplementation
         public IEnumerable<BO.ProsuctForList?> GetProductList()
         {
             return dal.Product.GetAll().Select(item => new BO.ProsuctForList//runs on all the product and for each one of them create a product for list and return
-            {
+            {           
                 ID = item?.Id ?? throw new BO.BlNullPropertyException("missing id"),
                 Name = item?.Name ?? throw new BO.BlNullPropertyException("mising name"),
                 Category = (BO.Category?)item?.ProductCategoty ?? throw new BO.BlWrongCategoryException("worng category"),
@@ -171,6 +171,7 @@ namespace BlImplementation
         {
 
             return from BO.ProsuctForList p in GetProductList()
+                   orderby p?.Category,p?.ID
                    where filter(p)
                    select p;
         }

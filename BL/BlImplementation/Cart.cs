@@ -198,7 +198,7 @@ namespace BlImplementation
             };
             boOrder.Id = dal.Order.Add(newOrder);//add to order list in DO and gets an order id
             IEnumerable<DO.OrderItem> doOrderItems;
-            doOrderItems = from BO.OrderItem itemInOrder in boOrder.Items/*cart.Items*///runs on the items in order
+            doOrderItems = from BO.OrderItem itemInOrder in boOrder.Items/*cart.Items*///runs on the items in order                
                            select new DO.OrderItem()//for each order item creates an order item in DO
                            {
                                OrderId = boOrder.Id,
