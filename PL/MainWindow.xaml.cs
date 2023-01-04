@@ -32,8 +32,13 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+            imgLogIn.Source = new BitmapImage(new Uri(@"pictures/log-in.png", UriKind.Relative));
 
         }
+
+
+
+
         /// <summary>
         /// when pressing the admin buttum open the product list window file
         /// </summary>
@@ -152,10 +157,22 @@ namespace PL
             l.Show();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void imgLogIn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-           ProductCatalogWindow p=new ProductCatalogWindow();
-            p.ShowDialog();
+            LogInWindow l = new LogInWindow();
+            l.Show();
+        }
+
+        private void btnGuest_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow m = new MainWindow();
+            m.btnLogIn.Visibility = Visibility.Hidden;
+            m.btnNewOrder.Visibility = Visibility.Visible;
+            m.btnTracking.Visibility = Visibility.Visible;
+            m.btnProduct.Visibility = Visibility.Hidden;
+            m.btnOrder.Visibility = Visibility.Hidden;
+            m.btnGuest.Visibility = Visibility.Hidden;
+            m.Show();
         }
     }
 }

@@ -54,8 +54,9 @@
         <Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="488,369,0,0" VerticalAlignment="Top" Click="btnNewOrder_Click" RenderTransformOrigin="0.596,-2.347" Width="225" Visibility="Hidden"/>
         <TextBox x:Name="txtidd"  PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown" Visibility="Hidden" MaxLength="9" TextWrapping="Wrap"  KeyDown="OnKeyDownHandler" Text="" Width="285"
 FontSize="20" Margin="458,298,57,108"  />
-        <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="47,113,0,0" VerticalAlignment="Top" Click="btnLogIn_Click"/>
-        <Button  Content="no-One" Style="{StaticResource RoundButtonStyle}" HorizontalAlignment="Left" Margin="244,190,0,0" VerticalAlignment="Top" Height="91" Width="109" FontFamily="{Binding ElementName=btnLogIn,Path=FontFamily}" Click="Button_Click"/>
+        <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="25,104,0,0" VerticalAlignment="Top" Click="btnLogIn_Click"/>
+        <Image x:Name="imgLogIn" Stretch="Uniform" Source="pictures/log-in.png" Margin="12,13,677,340" MouseLeftButtonDown="imgLogIn_MouseLeftButtonDown" />
+        <Button x:Name="btnGuest" Content="Guest" HorizontalAlignment="Left" Margin="25,173,0,0" VerticalAlignment="Top" Click="btnGuest_Click"/>
     </Grid>
 </Window>
 
