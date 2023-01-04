@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         DataContext="{Binding myCart,RelativeSource={RelativeSource Self}}"
-        Title="CartWindow" Height="1142" Width="1506">
+        Title="CartWindow" Height="572" Width="681">
     <Window.Resources>
         <DataTemplate x:Key="OrderItemTemplate" DataType="local:OrderItem">
             <Grid  Margin="0 0 0 0" HorizontalAlignment="Left">
@@ -64,7 +64,7 @@
     </Window.Resources>
     <Grid>
         <Image x:Name="emptyCart"  Source="{Binding ElementName=emptyCart, Path=Name,Converter={StaticResource imageConverter}}" Visibility="{Binding ElementName=scroll,Path=Visibility,Converter={StaticResource Hiddentovisible },UpdateSourceTrigger=PropertyChanged}" Width="400" Height="400" Margin="30,30,30,30"/>
-        <ScrollViewer x:Name="scroll"  Background="LightCyan" Margin="484,1,10,10" Visibility="{Binding TotalPrice,Converter={StaticResource doubletoVisible},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" >
+        <ScrollViewer x:Name="scroll"  Background="LightCyan" Margin="252,1,10,78" Visibility="{Binding TotalPrice,Converter={StaticResource doubletoVisible},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" >
 
             <ListView x:Name="orderItemsListView" ItemsSource="{Binding Items}" ItemTemplate="{StaticResource OrderItemTemplate}"     Width="1852">
                 <!--<ItemsControl.ItemsPanel>
@@ -74,17 +74,11 @@
                 </ItemsControl.ItemsPanel>-->
             </ListView>
         </ScrollViewer>
-        <TextBlock x:Name="txtTotalPCart" HorizontalAlignment="Left" Margin="76,1606,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="1141" Height="352" FontSize="49" FontFamily="Arial Black" RenderTransformOrigin="0.5,0.5">
-            <TextBlock.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.858"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </TextBlock.RenderTransform>
-        <Run Text="total:"/>
-        <Run Text="{Binding TotalPrice, StringFormat={}{0:C}}" />
+        <TextBlock x:Name="txtTotalPCart"   HorizontalAlignment="Left" Margin="260,494,0,0"  FontSize="35" FontFamily="Arial Black" VerticalAlignment="Top" RenderTransformOrigin="-0.355,0.481">
+            <Run Text="total:"/>
+            <Run Text="{Binding TotalPrice, StringFormat={}{0:C}}" />
         </TextBlock>
+        <Button Content="CHECKOUT" HorizontalAlignment="Left" Margin="49,470,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.318,2.341" Height="44" Width="132"/>
+
     </Grid>
 </Window>
