@@ -36,20 +36,19 @@ namespace PL
             PlOrder = bl.Order.GetOrderList().ToList();
             orderForListView.ItemsSource = PlOrder.OrderByDescending(var => var.TotalPrice);
             cmbStatus.Items.Add("All Orders");
-            cmbStatus.SelectedItem=cmbStatus.Items.GetItemAt(0);//defult for all orders
+            cmbStatus.SelectedItem = cmbStatus.Items.GetItemAt(0);//defult for all orders
             foreach (var item in Enum.GetValues(typeof(BO.OrderStatus)))//add the order's status' category to combo box
             {
                 cmbStatus.Items.Add(item);
             }
-
-
         }
 
         private void btnAddOrder_Click(object sender, RoutedEventArgs e)
         {
             OrderWindow order = new OrderWindow();
             order.ShowDialog();
-            orderForListView.ItemsSource = bl.Order.GetOrderList();
+            //orderForListView.ItemsSource = bl.Order.GetOrderList();
+            PlOrder = bl.Order.GetOrderList().ToList();
         }
 
         private void cmbStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)//filterig list by the choosen category 
@@ -57,24 +56,29 @@ namespace PL
             if (cmbStatus.SelectedItem == cmbStatus.Items.GetItemAt(0))//all product option
             {
                 PlOrder = bl.Order.GetOrderList().ToList();
-                //orderForListView.ItemsSource = bl.Order.GetOrderList();
+                orderForListView.ItemsSource = bl.Order.GetOrderList();
                 return;
             }
 
             else
             {
                 PlOrder = bl.Order.GetListedListByFilter(item => item.Status == Enum.Parse<BO.OrderStatus>(cmbStatus.SelectedItem.ToString())).ToList();//sort order list view by category
+                orderForListView.ItemsSource = PlOrder;
             }
         }
 
-        private void orderForListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+
+
+        private void orderForListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cmbStatus.SelectedIndex == -1)
                 return;
-            OrderWindow o = new OrderWindow(sender, e, ((BO.OrderForList)orderForListView.SelectedItem).ID);//send the selected product id
+            OrderWindow o = new OrderWindow(sender, e, ((BO.OrderForList)orderForListView.SelectedItem).ID);
             o.ShowDialog();
             cmbStatus.SelectedItem = cmbStatus.Items.GetItemAt(0);
             PlOrder = bl.Order.GetOrderList().ToList();
+
         }
+
     }
 }

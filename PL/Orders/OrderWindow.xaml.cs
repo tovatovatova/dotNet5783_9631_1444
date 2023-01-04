@@ -34,10 +34,6 @@ namespace PL
         public static readonly DependencyProperty MyOrderProperty =
             DependencyProperty.Register("MyOrder", typeof(BO.Order), typeof(Window), new PropertyMetadata(null));
 
-
-
-
-
         public List<BO.OrderItem?> PlOrderItem
         {
             get { return (List<BO.OrderItem?>)GetValue(MyPropertyProperty); }
@@ -96,6 +92,7 @@ namespace PL
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
             }
+
             Close();
         }
     }

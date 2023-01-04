@@ -43,17 +43,22 @@ namespace PL
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             MainWindow m = new MainWindow();
-            //if (PlUser.UserName==" ")
-            //{
-
-            //       string messageBoxText = "invalid input check your input";/////////@#$%^&*(
-            //        string caption = "";
-            //      MessageBoxImage icon = MessageBoxImage.Information;
-            //    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
-            //        if (result == MessageBoxResult.OK)
-            //            return;
-
-            //}
+            if (PlUser.UserName==null)//empty name 
+            {
+                string messageBoxText = " invalid input";
+                string caption = " ";
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                Close();
+                // MainWindow m = new MainWindow();
+                m.btnLogIn.Visibility = Visibility.Visible;
+                m.btnGuest.Visibility = Visibility.Visible;
+                m.btnNewOrder.Visibility = Visibility.Hidden;
+                m.btnTracking.Visibility = Visibility.Hidden;
+                m.Show();
+                return;
+            }
 
             try
             {
@@ -69,6 +74,7 @@ namespace PL
                 Close();
                // MainWindow m = new MainWindow();
                 m.btnLogIn.Visibility = Visibility.Visible;
+                m.btnGuest.Visibility = Visibility.Visible;
                 m.btnNewOrder.Visibility = Visibility.Hidden;
                 m.btnTracking.Visibility = Visibility.Hidden;
                 m.Show();
@@ -82,6 +88,7 @@ namespace PL
                // m.btnAdmin.Visibility = Visibility.Hidden;//need to remove...
                 m.btnLogIn.Visibility = Visibility.Hidden;
                 m.btnNewOrder.Visibility = Visibility.Visible;
+                m.btnGuest.Visibility = Visibility.Hidden;
                 m.btnTracking.Visibility = Visibility.Visible;
                 m.Show();
             }
@@ -94,6 +101,7 @@ namespace PL
                 m.btnOrder.Visibility = Visibility.Visible;
                // m.btnAdmin.Visibility = Visibility.Hidden;
                 m.btnLogIn.Visibility = Visibility.Hidden;
+                m.btnGuest.Visibility = Visibility.Hidden;
                 m.btnNewOrder.Visibility = Visibility.Hidden;
                 m.btnTracking.Visibility = Visibility.Hidden;
                 m.Show();
