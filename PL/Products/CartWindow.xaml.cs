@@ -129,7 +129,9 @@ namespace PL
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            (sender as Button).Visibility = Visibility.Hidden;
             bl.Cart.OrderCreate(myCart);
+            Close();
         }
     }
 }
