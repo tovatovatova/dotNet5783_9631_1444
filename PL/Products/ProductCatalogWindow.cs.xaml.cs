@@ -44,16 +44,19 @@ namespace PL
         public ProductCatalogWindow()
         {
             InitializeComponent();
-            if (cart == null || cart.Items == null)
-                txtAmountInCart.Text = "0";
-            else
+            cart=new BO.Cart();
+            if (cart.Items == null)
+            {
+                cart.Items = new List<BO.OrderItem>();
+            }
                 txtAmountInCart.Text = cart.Items.Count().ToString();
-            // listViewProducts.ItemsSource = bl.Product.GetCatalog().ToList();
-            myProductCat =new List<BO.ProductItem>();
-            myProductCat = bl.Product.GetCatalog().ToList();
-            prodAndCart myDataC = new prodAndCart();
-            myDataC.products = myProductCat;
-            myDataC.cart = cart;
+                // listViewProducts.ItemsSource = bl.Product.GetCatalog().ToList();
+                myProductCat = new List<BO.ProductItem>();
+                myProductCat = bl.Product.GetCatalog().ToList();
+                prodAndCart myDataC = new prodAndCart();
+                myDataC.products = myProductCat;
+                myDataC.cart = cart;
+            
 
         }
 

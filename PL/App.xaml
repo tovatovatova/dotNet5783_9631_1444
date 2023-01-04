@@ -12,7 +12,7 @@
             <Setter Property="FontWeight"
               Value="Bold" />
         </Style>-->
-        
+
         <LinearGradientBrush x:Key="colorInDataGrid">
             <GradientStop Color="DeepPink"
                     Offset="0" />
@@ -26,21 +26,21 @@
                     Offset="1" />
 
         </LinearGradientBrush>
-        
+
         <Style x:Key="fontInDataGridStyle" >
             <Setter Property="TextElement.FontFamily" Value="Cascadia Mono SemiBold"/>
             <Setter Property="TextElement.FontStyle" Value="Italic"/>
             <Setter Property="TextBlock.Foreground" Value="{StaticResource colorInDataGrid }"/>
-         </Style>
+        </Style>
         <Style TargetType="Label" >
             <Setter Property="TextElement.FontFamily" Value="Cascadia Mono SemiBold"/>
             <Setter Property="TextElement.FontStyle" Value="Italic"/>
             <Setter Property="TextBlock.Foreground" Value="Black"/>
-         </Style>
+        </Style>
         <Style  x:Key="textOfItem" TargetType="TextBlock" >
             <Setter Property="TextElement.FontFamily" Value="Cascadia Mono SemiBold"/>
             <Setter Property="TextElement.FontStyle" Value="Italic"/>
-            
+
             <Setter Property="TextBlock.Foreground" Value="Black"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -51,14 +51,14 @@
 
         </Style>
 
-                <Style  TargetType="Button">
-                    <Setter Property="Background" Value="{StaticResource colorInDataGrid}" />
-                    <Setter Property="Foreground" Value="Black" />
-                    <Setter Property="FontSize" Value="30" />
-                    <Setter Property="FontFamily" Value="Algerian"/>
+        <Style  TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource colorInDataGrid}" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontFamily" Value="Algerian"/>
             <Setter Property="BorderThickness" Value="1"/>
         </Style>
-                <Style  TargetType="Window" >
+        <Style  TargetType="Window" >
             <Setter Property="Background" Value="LightCyan">
             </Setter>
         </Style>
@@ -111,14 +111,30 @@
                             <Border.Effect>
                                 <DropShadowEffect ShadowDepth="1"/>
                             </Border.Effect>
-                            
-                                <ContentPresenter
+
+                            <ContentPresenter
             HorizontalAlignment="Center"
             VerticalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+
+            <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+      
         </Style>
 
         <!--<DataTemplate DataType="local:">
@@ -137,6 +153,9 @@
         <local:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
         <local:StringToBitmap x:Key="imageConverter"/>
         <local:AmountToComboBox x:Key="amountTOcombo"/>
+        <local:DoubleToVisibilityConverter x:Key="doubletoVisible"/>
+        <local:NoBooleanToVisibilityConverter x:Key="notBoolToVis"/>
+        <local:HiddenTOVisible x:Key="Hiddentovisible"/>
 
     </Application.Resources>
 </Application>

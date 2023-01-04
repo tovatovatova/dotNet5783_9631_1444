@@ -66,7 +66,7 @@ namespace BlImplementation
                     currentCart.Items = currentCart.Items.Append(itemInCart);
                 }
                 else//there is not enough from the needed product 
-                    throw new BO.BlNullPropertyException("not enough in stock");
+                    throw new BO.BlOutOfStockException("out of stock");
             }
             return currentCart;//return cart after changes
         }
@@ -116,7 +116,10 @@ namespace BlImplementation
                         currentCart.Items.ToList().ElementAt(x).TotalPrice += product.Price * amountDifference;//add the exstra price after the change
                         currentCart.TotalPrice += amountDifference * product.Price; //add to the cart total price
                     }
-                    throw new BO.BlNullPropertyException("not enough in stock");
+                    else
+                        throw new BO.BlOutOfStockException("out of stock");
+
+
                 }
             }//doesnt exist in cart
             else
@@ -138,7 +141,7 @@ namespace BlImplementation
                         currentCart.TotalPrice = product.Price * newAmount;    //update total price of cart
                     }
                     else
-                        throw new BO.BlNullPropertyException("not enough products in stock");
+                    throw new BO.BlOutOfStockException("out of stock");
                 }
               
             }
