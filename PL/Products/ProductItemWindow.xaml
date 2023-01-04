@@ -37,7 +37,7 @@
             </TextBlock>
             <TextBlock  Text="{Binding Price, StringFormat={}{0:C}}" Style="{StaticResource textOfItem}" Grid.Row= "4" FontSize="21" HorizontalAlignment="Left" Margin="470,160,0,-15" />
         </Grid>
-        <Button x:Name="btnAdd" Margin="10,416,741,270"  Content="Add to Cart" Foreground="Black" FontSize="20" Click="btnAdd_Click" FontFamily="Arial Black" FontStretch="Expanded" FontStyle="Italic" FontWeight="Bold" TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
+        <Button x:Name="btnAdd" Margin="10,416,741,255"  Content="Add to Cart" Foreground="Black" FontSize="20" Click="btnAdd_Click" FontFamily="Arial Black" FontStretch="Expanded" FontStyle="Italic" FontWeight="Bold" TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
 
             <Button.Template>
 

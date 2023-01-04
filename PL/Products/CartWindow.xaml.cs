@@ -23,6 +23,19 @@ namespace PL
     {
 
 
+        BlApi.IBl bl = BlApi.Factory.Get();
+
+        public AllContext allContext
+        {
+            get { return (AllContext)GetValue(allContextProperty); }
+            set { SetValue(allContextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for allContext.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty allContextProperty =
+            DependencyProperty.Register("allContext", typeof(AllContext), typeof(Window), new PropertyMetadata(null));
+
+
         public List<BO.OrderItem?> myOrderItems
         {
             get { return (List<BO.OrderItem?>)GetValue(myOrderItemsProperty); }
@@ -45,7 +58,13 @@ namespace PL
         public CartWindow(Cart cart)
         {
             myCart = cart;
+           allContext= new AllContext();
+            allContext.cart = cart;
+            allContext.orderItems= new List<BO.OrderItem>();
+            allContext.orderItems = cart.Items.ToList();
             InitializeComponent();
+
+
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -55,16 +74,36 @@ namespace PL
 
         private void Button_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if ((sender as Button).Content == "+")
+            e.Handled = true;
+            if ((sender as Button).Content.ToString() == "+")
             {
-                ((OrderItem)orderItemsListView.SelectedItem).Amount++;
+                bl.Cart.AddToCart(allContext.cart,((BO.OrderItem)orderItemsListView.SelectedItem).ProductID);
+
+                //((OrderItem)orderItemsListView.SelectedItem).Amount++;
             }
+            
         }
 
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            bl.Cart.UpdateProductInCart(allContext.cart, 0, ((BO.OrderItem)orderItemsListView.SelectedItem).ProductID);
+            
+        }
+
+        private void btnAdd_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        myCart=bl.Cart.AddToCart(myCart, Convert.ToInt32((sender as Button).Tag.ToString()));
+            orderItemsListView.ItemsSource = myCart.Items;
+
+            bl.Cart.OrderCreate(myCart);
+            Close();
+        }
     }
 }
 public class AllContext
 {
     public List<BO.OrderItem> orderItems { get; set; }
     public BO.Cart cart { get; set; }
+  
 }
