@@ -7,9 +7,9 @@
         WindowStartupLocation ="CenterScreen"
         mc:Ignorable="d"
         DataContext="{Binding PlUser,RelativeSource={RelativeSource Self}}"
-        Title="LogInWindow" Height="450" Width="800">
+        Title="LogInWindow" Height="377" Width="719">
     <Grid>
-        <Grid x:Name="logInGrid"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="275,165,0,0" Height="109" Width="256">
+        <Grid x:Name="logInGrid"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="178,141,0,0" Height="109" Width="256">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -25,7 +25,16 @@
             <Label Grid.Column="0" Content="Password:" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="101"/>
             <TextBox x:Name="passwordTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="18" Grid.Row="1" Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="625,315,0,0" VerticalAlignment="Top" Click="btnSubmit_Click"/>
-        <Label Content="      LOG IN:" HorizontalAlignment="Left" Margin="235,49,0,0" VerticalAlignment="Top" FontStretch="Expanded" Foreground="#FF30ABBC" FontFamily="algerian" Background="{x:Null}" FontSize="40" Height="75" Width="301"/>
+        <Button x:Name="btnSubmit" Content="log in" HorizontalAlignment="Left" Margin="403,218,0,0" VerticalAlignment="Top" Click="btnSubmit_Click"/>
+        <Label Content="insert user name and pasword :" HorizontalAlignment="Center" Margin="0,101,0,0" VerticalAlignment="Top" FontStretch="Expanded" Foreground="#FF30ABBC" FontFamily="Bodoni MT Black" Background="{x:Null}" FontSize="20" Height="35" Width="363" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
     </Grid>
 </Window>
