@@ -69,6 +69,8 @@ namespace PL.Products
         {
             ProductWindow p = new ProductWindow();
             p.ShowDialog();
+            cmbCategory.SelectedItem = cmbCategory.Items.GetItemAt(0);
+            myProd = bl.Product.GetProductList().ToList();
         }
     }
 }
