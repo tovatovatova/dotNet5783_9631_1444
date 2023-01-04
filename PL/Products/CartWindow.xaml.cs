@@ -26,17 +26,9 @@ namespace PL
 
         BlApi.IBl bl = BlApi.Factory.Get();
 
-        public AllContext allContext
-        {
-            get { return (AllContext)GetValue(allContextProperty); }
-            set { SetValue(allContextProperty, value); }
-        }
+       
 
-        // Using a DependencyProperty as the backing store for allContext.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty allContextProperty =
-            DependencyProperty.Register("allContext", typeof(AllContext), typeof(Window), new PropertyMetadata(null));
-
-
+     
         public List<BO.OrderItem?> myOrderItems
         {
             get { return (List<BO.OrderItem?>)GetValue(myOrderItemsProperty); }
@@ -59,12 +51,8 @@ namespace PL
         public CartWindow(Cart cart)
         {
             myCart = cart;
-           allContext= new AllContext();
-            allContext.cart = cart;
-            allContext.orderItems= new List<BO.OrderItem>();
-            allContext.orderItems = cart.Items.ToList();
+          
             InitializeComponent();
-          //  if (myCart.TotalPrice == 0)  emptyCart.Visibility = Visibility.Visible : emptyCart.Visibility = Visibility.Hidden;
 
         }
 
@@ -78,8 +66,10 @@ namespace PL
 
                 orderItemsListView.ItemsSource = myCart.Items;
                 orderItemsListView.Items.Refresh();
+                txtTotalPCart.Text = "Total:" + myCart.TotalPrice.ToString() + "$";
+
             }
-            catch(BO.BlOutOfStockException ex)
+            catch (BO.BlOutOfStockException ex)
             {
                 (sender as Button).IsEnabled = false;
             }
@@ -101,36 +91,45 @@ namespace PL
 
         //}
 
-        private void btnLow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            myCart = bl.Cart.AddToCart(myCart, Convert.ToInt32((sender as Button).Tag.ToString()));
+        //private void btnLow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    myCart = bl.Cart.AddToCart(myCart, Convert.ToInt32((sender as Button).Tag.ToString()));
 
-            orderItemsListView.ItemsSource = myCart.Items;
-            orderItemsListView.Items.Refresh();
-        }
+        //    orderItemsListView.ItemsSource = myCart.Items;
+        //    orderItemsListView.Items.Refresh();
+        //    txtTotalPCart.Text = myCart.TotalPrice.ToString();
+        //}
 
         private void btnLow_Click(object sender, RoutedEventArgs e)
         {
 
             BO.OrderItem item = (BO.OrderItem)(sender as Button).DataContext;
-            bl.Cart.UpdateProductInCart(allContext.cart, item.Amount-1, item.ProductID);
+            bl.Cart.UpdateProductInCart(myCart, item.Amount-1, item.ProductID);
             orderItemsListView.ItemsSource = myCart.Items;
             orderItemsListView.Items.Refresh();
-            myCart.TotalPrice = 0;
-            
+            txtTotalPCart.Text = "Total:"+myCart.TotalPrice.ToString()+"$";
+
+
         }
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            bl.Cart.UpdateProductInCart(allContext.cart, 0, Convert.ToInt32((sender as TextBlock).Tag.ToString()));
+            bl.Cart.UpdateProductInCart(myCart , 0, Convert.ToInt32((sender as TextBlock).Tag.ToString()));
             orderItemsListView.ItemsSource = myCart.Items;
             orderItemsListView.Items.Refresh();
+            txtTotalPCart.Text = "Total:" + myCart.TotalPrice.ToString() + "$";
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            grid1.Visibility = Visibility.Visible ;
+            (sender as Button).Visibility = Visibility.Hidden;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            bl.Cart.OrderCreate(myCart);
         }
     }
-}
-public class AllContext
-{
-    public List<BO.OrderItem> orderItems { get; set; }
-    public BO.Cart cart { get; set; }
-  
 }
