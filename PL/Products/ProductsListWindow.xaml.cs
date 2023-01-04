@@ -44,7 +44,11 @@ namespace PL.Products
         private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cmbCategory.SelectedIndex == 0)
+            {
+                myProd = bl.Product.GetProductList().ToList();
                 return;
+            }
+               
             myProd = bl.Product.GetListedListByFilter(item => item.Category == Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString())).ToList();
 
            

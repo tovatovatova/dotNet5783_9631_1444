@@ -68,7 +68,7 @@ namespace PL
             InitializeComponent();
             categoryComboBox.ItemsSource = Enum.GetValues(typeof(BO.Category));
 
-            //BO.Product p = new BO.Product();
+            //BO.ProductAddProduct p = new BO.Product();
             try
             {
                 PlProduct = bl.Product.GetProductDetails(id);//return product from BO 
@@ -108,7 +108,7 @@ namespace PL
             
                 try//try to add the product with call to a bl function  add
                 {
-                    bl.Product.AddProduct(PlProduct!);
+                bl.Product.AddProduct(PlProduct);
                     messageBoxText = "product added successfully";
                     caption = "";
                     icon = MessageBoxImage.Information;

@@ -96,8 +96,7 @@ namespace PL
         myCart=bl.Cart.AddToCart(myCart, Convert.ToInt32((sender as Button).Tag.ToString()));
             orderItemsListView.ItemsSource = myCart.Items;
 
-            bl.Cart.OrderCreate(myCart);
-            Close();
+           
         }
     }
 }

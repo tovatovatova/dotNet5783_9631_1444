@@ -56,13 +56,14 @@ namespace PL
         {
             if (cmbStatus.SelectedItem == cmbStatus.Items.GetItemAt(0))//all product option
             {
-                orderForListView.ItemsSource = bl.Order.GetOrderList();
+                PlOrder = bl.Order.GetOrderList().ToList();
+                //orderForListView.ItemsSource = bl.Order.GetOrderList();
                 return;
             }
 
             else
             {
-                orderForListView.ItemsSource = bl.Order.GetListedListByFilter(item => item.Status == Enum.Parse<BO.OrderStatus>(cmbStatus.SelectedItem.ToString()));//sort order list view by category
+                PlOrder = bl.Order.GetListedListByFilter(item => item.Status == Enum.Parse<BO.OrderStatus>(cmbStatus.SelectedItem.ToString())).ToList();//sort order list view by category
             }
         }
 
@@ -73,7 +74,7 @@ namespace PL
             OrderWindow o = new OrderWindow(sender, e, ((BO.OrderForList)orderForListView.SelectedItem).ID);//send the selected product id
             o.ShowDialog();
             cmbStatus.SelectedItem = cmbStatus.Items.GetItemAt(0);
-            cmbStatus.ItemsSource = bl.Order.GetOrderList();//can show all the products back again-after updating
+            PlOrder = bl.Order.GetOrderList().ToList();
         }
     }
 }
