@@ -53,18 +53,16 @@ namespace PL
 
         private void cmbStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)//filterig list by the choosen category 
         {
-            if (cmbStatus.SelectedItem == cmbStatus.Items.GetItemAt(0))//all product option
+            if (cmbStatus.SelectedIndex == 0)//all product option
             {
                 PlOrder = bl.Order.GetOrderList().ToList();
-                orderForListView.ItemsSource = bl.Order.GetOrderList();
+                //orderForListView.ItemsSource = bl.Order.GetOrderList();
                 return;
             }
 
-            else
-            {
-                PlOrder = bl.Order.GetListedListByFilter(item => item.Status == Enum.Parse<BO.OrderStatus>(cmbStatus.SelectedItem.ToString())).ToList();//sort order list view by category
-                orderForListView.ItemsSource = PlOrder;
-            }
+            PlOrder = bl.Order.GetListedListByFilter(item => item.Status == Enum.Parse<BO.OrderStatus>(cmbStatus.SelectedItem.ToString())).ToList();//sort order list view by category
+            //orderForListView.ItemsSource = PlOrder;
+           
         }
 
 

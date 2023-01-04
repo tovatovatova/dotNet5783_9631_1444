@@ -74,7 +74,8 @@ namespace BlImplementation
                 throw new BO.BlNullPropertyException("", e);
             }
             boOrderList = from BO.Order item in boOrder//convert to order list(less details
-                          select (ConvertToOrderList(item));
+                          let it= ConvertToOrderList(item)
+                          select it;
             return boOrderList;//return list
         }
         /// <summary>
@@ -263,9 +264,10 @@ namespace BlImplementation
         }
         public IEnumerable<BO.OrderForList?> GetListedListByFilter(Func<BO.OrderForList?, bool>? filter = null)
         {
-            return from BO.OrderForList p in GetOrderList()
+            var listOfFillterdOrders= from BO.OrderForList p in GetOrderList()
                    where filter(p)
                    select p;
+            return listOfFillterdOrders;
         }
 
         public BO.Order UpdateOrder(BO.Order order)
@@ -275,9 +277,9 @@ namespace BlImplementation
                 DO.Order o = new DO.Order()
                 {
                     OrderId = order.Id,
-                    CustomerName = order.CustomerName,
-                    CustomerAddress = order.CustomerAddress,
-                    CustomerEmail = order.CustomerEmail,
+                    CustomerName = order.CustomerName??throw new BO.BlNullPropertyException("customer name"),
+                    CustomerAddress = order.CustomerAddress ??throw new BO.BlNullPropertyException("customer address"),
+                    CustomerEmail = order.CustomerEmail ?? throw new BO.BlNullPropertyException("customer address"),
                     DeliveryDate = order.DeliveryDate,
                     ShipDate = order.ShipDate,
                     OrderDate = order.OrderDate
