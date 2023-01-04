@@ -36,10 +36,8 @@
                 </TextBlock.LayoutTransform>-->
             </TextBlock>
             <TextBlock  Text="{Binding Price, StringFormat={}{0:C}}" Style="{StaticResource textOfItem}" Grid.Row= "4" FontSize="21" HorizontalAlignment="Left" Margin="470,160,0,-15" />
-            <ComboBox HorizontalAlignment="Left" Margin="730,125,0,0" ItemsSource="{Binding }" Grid.Row="4" VerticalAlignment="Top" Width="174" Height="23"/>
-            <Label Content="select quantity:" HorizontalAlignment="Left" Margin="730,73,0,0" Grid.Row="4" VerticalAlignment="Top" Height="52" Width="149" FontSize="16" FontWeight="Bold"/>
         </Grid>
-        <Button x:Name="btnAdd" Margin="10,500,689,90"  Content="Add to Cart" Foreground="Black" FontSize="49" Click="btnAdd_Click" FontFamily="Arial Black" FontStretch="Expanded" FontStyle="Italic" FontWeight="Bold" TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
+        <Button x:Name="btnAdd" Margin="10,416,741,270"  Content="Add to Cart" Foreground="Black" FontSize="20" Click="btnAdd_Click" FontFamily="Arial Black" FontStretch="Expanded" FontStyle="Italic" FontWeight="Bold" TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
 
             <Button.Template>
 
@@ -48,7 +46,7 @@
                         <Ellipse Stroke="LightCyan"
                          StrokeThickness="2">
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\Images\a7dd3c6751edf44e95823d051cba65ed.jpg" Opacity="0.7"/>
+                                <SolidColorBrush Color="White"/>
                             </Ellipse.Fill>
                         </Ellipse>
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" OpacityMask="Black"/>
@@ -56,7 +54,7 @@
                 </ControlTemplate>
             </Button.Template>
             <Button.Effect>
-                <DropShadowEffect ShadowDepth="1"/>
+                <DropShadowEffect ShadowDepth="2"/>
 
             </Button.Effect>
         </Button>

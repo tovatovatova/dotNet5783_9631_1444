@@ -50,7 +50,8 @@
         <Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="488,369,0,0" VerticalAlignment="Top" Click="btnNewOrder_Click" RenderTransformOrigin="0.596,-2.347" Width="225"/>
         <TextBox x:Name="txtidd"  PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown" Visibility="Hidden" MaxLength="9" TextWrapping="Wrap"  KeyDown="OnKeyDownHandler" Text="" Width="285"
 FontSize="20" Margin="450,298,65,91"  />
-
+        <Button   Style="{StaticResource RoundButtonStyle}" Content="+" HorizontalAlignment="Left" Margin="104,37,0,0" VerticalAlignment="Top" Width="16"/>
+        <!--<Button x:Name="btn"  Style="{StaticResource RoundButtonStyle}" Content="+"  HorizontalAlignment="Left" Margin="342,47,0,0" VerticalAlignment="Top" Height="47" Width="58" FontFamily="Arial Black" FontSize="19"/>-->
 
 
 

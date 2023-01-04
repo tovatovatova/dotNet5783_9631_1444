@@ -40,8 +40,16 @@
         <Style  x:Key="textOfItem" TargetType="TextBlock" >
             <Setter Property="TextElement.FontFamily" Value="Cascadia Mono SemiBold"/>
             <Setter Property="TextElement.FontStyle" Value="Italic"/>
+            
             <Setter Property="TextBlock.Foreground" Value="Black"/>
-         </Style>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="FontWeight" Value="ExtraBold" />
+                    <Setter Property="TextDecorations" Value="Underline" />
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
 
                 <Style  TargetType="Button">
                     <Setter Property="Background" Value="{StaticResource colorInDataGrid}" />
@@ -54,6 +62,65 @@
             <Setter Property="Background" Value="LightCyan">
             </Setter>
         </Style>
+        <!--the old +- button-->
+        <!--<Style x:Key="buttonCounter" TargetType="Button">
+            <Setter Property="Background" Value="#878382" />
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Template">
+                
+                <Setter.Value>
+                        <Border Grid.Row= "0" CornerRadius="5" Margin="189,0,212,-120" Grid.RowSpan="3">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="1"/>
+                            </Border.Effect>
+                        </Border>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#606060" />
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="#303030" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>-->
+        <Style x:Key="buttonDelete" TargetType="Button">
+            <Setter Property="Width" Value="50" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="#ECF0F1" BorderThickness="0" Padding="5">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--for round button-->
+        <Style x:Key="RoundButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border
+          Background="{TemplateBinding Background}"
+          BorderBrush="Gray"
+          BorderThickness="1"
+          CornerRadius="50">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="1"/>
+                            </Border.Effect>
+                            
+                                <ContentPresenter
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!--<DataTemplate DataType="local:">
             <Grid>
                 <Grid.RowDefinitions>

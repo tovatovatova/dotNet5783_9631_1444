@@ -5,8 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="CartWindow" Height="450" Width="800">
+        DataContext="{Binding myCart,RelativeSource={RelativeSource Self}}"
+        Title="CartWindow" Height="900" Width="1200">
+    <Window.Resources>
+        <DataTemplate x:Key="OrderItemTemplate" DataType="local:OrderItem">
+            <Grid Background="#E5E9EA" Margin="0 0 0 0" HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="27"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <Ellipse Height="80" Width="80" Margin="25 10 0 10" HorizontalAlignment="Left">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding ProductID,Converter={StaticResource imageConverter}}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <!--<TextBlock Grid.Column="1" Text="{Binding ID,Converter={}}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>-->
+                <!--<TextBlock Grid.Column="1" Text="{Binding Path=Ref,ElementName=item}" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0 38 0 0"/>-->
+
+                <TextBlock Grid.Column="2" Text="{Binding Amount}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+
+                <TextBlock Grid.Column="3" Text="{Binding ProductId}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+
+                <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                    <!--<Button   Style="{StaticResource RoundButtonStyle}" Content="+" HorizontalAlignment="Left" Margin="104,37,0,0" VerticalAlignment="Top" Width="16"/>-->
+                    <Button Style="{StaticResource RoundButtonStyle}" Content="+" Width="16" MouseDoubleClick="Button_MouseDoubleClick"/>
+
+                    <TextBlock Grid.Column="5" Text="{Binding Amount}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+
+
+                    <Button Style="{StaticResource RoundButtonStyle}" Content="-" Width="16" Margin="0 7 0 0"/>
+
+
+                </StackPanel>
+
+                <TextBlock Grid.Column="5" Text="{Binding Price, StringFormat={}{0:C}}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+                <TextBlock Grid.Column="6" Text="{Binding TotalPrice, StringFormat={}{0:C}}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+
+                <TextBlock Grid.Column="7" Style="{StaticResource textOfItem}" VerticalAlignment="Center"/>
+
+
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
-        
+
+        <ScrollViewer Background="LightCyan" Margin="122,1,0,0" >
+
+            <ListView x:Name="orderItemsListView" Grid.Column="0" ItemsSource="{Binding Items}" ItemTemplate="{StaticResource OrderItemTemplate}"     Width="2036">
+                <!--<ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>-->
+            </ListView>
+        </ScrollViewer>
     </Grid>
 </Window>

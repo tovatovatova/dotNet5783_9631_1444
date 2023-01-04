@@ -74,6 +74,12 @@ namespace PL
                 txtAmountInCart.Text = cart.Items.Count().ToString();
                
         }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            CartWindow c=new CartWindow(cart);
+            c.ShowDialog();
+        }
     }
     //class BooleanToVisibilityConverter : IValueConverter
     //{
