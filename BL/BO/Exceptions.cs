@@ -54,5 +54,12 @@ namespace BO
         public BlInvalidInputException(string ent) : base() { Entity = ent; }
         public BlInvalidInputException(string Entity, Exception innerException) : base(Entity, innerException) { }
         public override string ToString() => $"invalid {Entity}";
+    } 
+    public class BlOutOfStockException : Exception
+    {
+        public string? Entity;
+        public BlOutOfStockException(string ent) : base() { Entity = ent; }
+        public BlOutOfStockException(string Entity, Exception innerException) : base(Entity, innerException) { }
+        public override string ToString() => $" {Entity}";
     }
 }

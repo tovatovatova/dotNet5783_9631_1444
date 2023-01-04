@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -63,40 +64,67 @@ namespace PL
             allContext.orderItems= new List<BO.OrderItem>();
             allContext.orderItems = cart.Items.ToList();
             InitializeComponent();
-
+          //  if (myCart.TotalPrice == 0)  emptyCart.Visibility = Visibility.Visible : emptyCart.Visibility = Visibility.Hidden;
 
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            return;
+            
+            e.Handled= true;
+            try
+            {
+                myCart = bl.Cart.AddToCart(myCart, Convert.ToInt32((sender as Button).Tag.ToString()));
+
+                orderItemsListView.ItemsSource = myCart.Items;
+                orderItemsListView.Items.Refresh();
+            }
+            catch(BO.BlOutOfStockException ex)
+            {
+                (sender as Button).IsEnabled = false;
+            }
+            
         }
 
-        private void Button_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            e.Handled = true;
-            if ((sender as Button).Content.ToString() == "+")
-            {
-                bl.Cart.AddToCart(allContext.cart,((BO.OrderItem)orderItemsListView.SelectedItem).ProductID);
+        
 
-                //((OrderItem)orderItemsListView.SelectedItem).Amount++;
-            }
+       
+
+        //private void btnAdd_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+
+        //    myCart = bl.Cart.AddToCart(myCart, Convert.ToInt32((sender as Button).Tag.ToString()));
+
+        //    orderItemsListView.ItemsSource = myCart.Items;
+        //    orderItemsListView.Items.Refresh();
+
+
+        //}
+
+        private void btnLow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            myCart = bl.Cart.AddToCart(myCart, Convert.ToInt32((sender as Button).Tag.ToString()));
+
+            orderItemsListView.ItemsSource = myCart.Items;
+            orderItemsListView.Items.Refresh();
+        }
+
+        private void btnLow_Click(object sender, RoutedEventArgs e)
+        {
+
+            BO.OrderItem item = (BO.OrderItem)(sender as Button).DataContext;
+            bl.Cart.UpdateProductInCart(allContext.cart, item.Amount-1, item.ProductID);
+            orderItemsListView.ItemsSource = myCart.Items;
+            orderItemsListView.Items.Refresh();
+            myCart.TotalPrice = 0;
             
         }
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            bl.Cart.UpdateProductInCart(allContext.cart, 0, ((BO.OrderItem)orderItemsListView.SelectedItem).ProductID);
-            
-        }
-
-        private void btnAdd_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-        myCart=bl.Cart.AddToCart(myCart, Convert.ToInt32((sender as Button).Tag.ToString()));
+            bl.Cart.UpdateProductInCart(allContext.cart, 0, Convert.ToInt32((sender as TextBlock).Tag.ToString()));
             orderItemsListView.ItemsSource = myCart.Items;
-
-           
+            orderItemsListView.Items.Refresh();
         }
     }
 }
