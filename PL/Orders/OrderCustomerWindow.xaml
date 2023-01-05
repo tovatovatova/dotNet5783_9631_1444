@@ -1,13 +1,11 @@
-﻿<Window x:Class="PL.OrderWindow"
+﻿<Window x:Class="PL.Orders.OrderCustomerWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PL"
-        WindowStartupLocation ="CenterScreen"
+        xmlns:local="clr-namespace:PL.Orders"
         mc:Ignorable="d"
-        DataContext="{Binding MyOrder,RelativeSource={RelativeSource Self}}"
-        Title="OrderWindow" Height="500" Width="800">
+        Title="OrderCustomerWindow" Height="450" Width="800">
     <Grid Margin="-15,6,20,-6">
         <Grid.RowDefinitions>
             <RowDefinition Height="0*"/>
@@ -103,14 +101,14 @@
             </ListView>
 
             <Label Grid.Column="0" Content="Order Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <DatePicker x:Name="orderDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="5,2,0,0" Grid.Row="6" SelectedDate="{Binding OrderDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+            <DatePicker x:Name="orderDateDatePicker"  IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="5,2,0,0" Grid.Row="6" SelectedDate="{Binding OrderDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
 
             <Label Grid.Column="0" Content="Ship Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
-            <DatePicker x:Name="shipDateDatePicker"  Grid.Column="1"   HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="7" SelectedDate="{Binding ShipDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.IsSharedSizeScope="True"/>
+            <DatePicker x:Name="shipDateDatePicker"  Grid.Column="1" IsEnabled="False"  HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="7" SelectedDate="{Binding ShipDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.IsSharedSizeScope="True"/>
 
 
             <Label Grid.Column="0" Content="Delivery Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
-            <DatePicker x:Name="deliveryDateDatePicker"  Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="8" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <DatePicker x:Name="deliveryDateDatePicker"  Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="8" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
             <Label Grid.Column="0" Content="Status:"  HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
             <!--<TextBox x:Name="statusTextBox" Grid.Column="1" Grid.Row="9" IsReadOnly="True" HorizontalAlignment="Left" Height="NaN" Margin="3" VerticalAlignment="Center" Width="120" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>-->
@@ -126,9 +124,5 @@
             <TextBox x:Name="totalPriceTextBox" Grid.Column="1" IsReadOnly="True" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="10" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
         </Grid>
-        <Button x:Name="btnUpdateCustomer" Style="{StaticResource RoundButtonStyle}" Content="Update Customer Details" HorizontalAlignment="Left" Margin="600,412,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="btnUpdate_Click" Height="46" Width="140"/>
-        <Button x:Name="btnUpdateDelivary" Style="{StaticResource RoundButtonStyle}" Content="Update Delivary" HorizontalAlignment="Left" Margin="400,412,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="46" Width="120" Click="btnUpdateDelivary_Click"/>
-        <Button x:Name="btnUpdateShipping" Content="Update Shipping" Style="{StaticResource RoundButtonStyle}" HorizontalAlignment="Left" Margin="200,412,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="46" Width="120" Click="btnUpdateShipping_Click"/>
-        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="40,363,0,0" Grid.RowSpan="2" VerticalAlignment="Top" RenderTransformOrigin="0.221,2.41" Click="btnDelete_Click"/>
     </Grid>
 </Window>

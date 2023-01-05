@@ -74,7 +74,7 @@ namespace BlImplementation
                 throw new BO.BlNullPropertyException("", e);
             }
             boOrderList = from BO.Order item in boOrder//convert to order list(less details
-                          let it= ConvertToOrderList(item)
+                          let it = ConvertToOrderList(item)
                           select it;
             return boOrderList;//return list
         }
@@ -101,14 +101,14 @@ namespace BlImplementation
             BO.Order? boOrder;
             try
             {
-                 boOrder = ConvertOrderDoToBO(doOrder);//send to convert
+                boOrder = ConvertOrderDoToBO(doOrder);//send to convert
 
             }
             catch (BO.BlNullPropertyException e)//couldnt convert
             {
                 throw new BO.BlNullPropertyException("", e);
             }
-            
+
             BO.OrderTracking track = new BO.OrderTracking();
             track.ID = orderID;
             track.Status = boOrder.Status;//we assume that bo order is not empty becouse we made a check up
@@ -130,7 +130,7 @@ namespace BlImplementation
                 track.Tracking.Add(shipedT);
             }
             return track;//return list
-            
+
         }
         /// <summary>
         /// update dat eof deleivary of order
@@ -147,11 +147,11 @@ namespace BlImplementation
             DO.Order order;
             try
             {
-                 order= dal.Order.GetById(orderID);//return order by id from dal
+                order = dal.Order.GetById(orderID);//return order by id from dal
             }
             catch (DO.DalIdDoNotExistException ex)//order doesnt exist
-            { 
-                throw new BO.BlIdDoNotExistException("order",ex);
+            {
+                throw new BO.BlIdDoNotExistException("order", ex);
             }
             if (order.DeliveryDate == null)
                 order.DeliveryDate = DateTime.Now;//update delivary date
@@ -163,7 +163,7 @@ namespace BlImplementation
             }
             catch (BO.BlNullPropertyException ex)//couldnt convert
             {
-                throw new BO.BlNullPropertyException("cant convert to bo order",ex);
+                throw new BO.BlNullPropertyException("cant convert to bo order", ex);
             }
         }
         /// <summary>
@@ -181,15 +181,15 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("order id");
             try
             {
-                 order= dal.Order.GetById(orderID); //return order by the given id from dal
+                order = dal.Order.GetById(orderID); //return order by the given id from dal
             }
             catch (DO.DalIdDoNotExistException ex)//order doesnt exist
-            { 
-                throw new BO.BlIdDoNotExistException("order",ex); 
+            {
+                throw new BO.BlIdDoNotExistException("order", ex);
             }
             if (order.DeliveryDate == null && order.ShipDate == null)
                 order.DeliveryDate = DateTime.Now;//update delivary date
-            else 
+            else
                 throw new BO.BlIncorrectDateException("cant update shiped order");
             try
             {
@@ -225,60 +225,60 @@ namespace BlImplementation
         public BO.Order? ConvertOrderDoToBO(DO.Order? doOrder)
         {
             BO.Order boOrder;//what about rhe exeptions below (email)%$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-            //try
-            //{
-                boOrder = new BO.Order()//create bo order and put tb\he details from do order
-                {//if cant convert throw exception
-                    Id = doOrder?.OrderId ?? throw new BO.BlNullPropertyException("order id"),
-                    CustomerName = doOrder?.CustomerName ?? throw new BO.BlNullPropertyException("missing order customer name"),
-                    CustomerEmail = doOrder?.CustomerEmail ?? throw new BO.BlNullPropertyException("missing order customer email"),
-                    CustomerAddress = doOrder?.CustomerAddress ?? throw new BO.BlNullPropertyException("missing order customer email"),
-                    OrderDate = doOrder?.OrderDate ?? throw new BO.BlNullPropertyException("missing order date"),
-                    ShipDate = doOrder?.ShipDate,
-                    DeliveryDate = doOrder?.DeliveryDate,
-                };
-                if (doOrder?.ShipDate != null)//update status
-                {
-                    if (doOrder?.DeliveryDate != null && doOrder?.DeliveryDate < DateTime.Now)
-                        boOrder.Status = BO.OrderStatus.Delivered;
-                    else boOrder.Status = BO.OrderStatus.Shipped;
-                }
-                else
-                    boOrder.Status = BO.OrderStatus.Ordered;
-                boOrder.Items = from DO.OrderItem? items in dal.OrderItem.GetAll()//runs on list of order item from dal
-                                where items?.OrderId == doOrder?.OrderId//if order item has the same order id as the order
+                             //try
+                             //{
+            boOrder = new BO.Order()//create bo order and put tb\he details from do order
+            {//if cant convert throw exception
+                Id = doOrder?.OrderId ?? throw new BO.BlNullPropertyException("order id"),
+                CustomerName = doOrder?.CustomerName ?? throw new BO.BlNullPropertyException("missing order customer name"),
+                CustomerEmail = doOrder?.CustomerEmail ?? throw new BO.BlNullPropertyException("missing order customer email"),
+                CustomerAddress = doOrder?.CustomerAddress ?? throw new BO.BlNullPropertyException("missing order customer email"),
+                OrderDate = doOrder?.OrderDate ?? throw new BO.BlNullPropertyException("missing order date"),
+                ShipDate = doOrder?.ShipDate,
+                DeliveryDate = doOrder?.DeliveryDate,
+            };
+            if (doOrder?.ShipDate != null)//update status
+            {
+                if (doOrder?.DeliveryDate != null && doOrder?.DeliveryDate < DateTime.Now)
+                    boOrder.Status = BO.OrderStatus.Delivered;
+                else boOrder.Status = BO.OrderStatus.Shipped;
+            }
+            else
+                boOrder.Status = BO.OrderStatus.Ordered;
+            boOrder.Items = from DO.OrderItem? items in dal.OrderItem.GetAll()//runs on list of order item from dal
+                            where items?.OrderId == doOrder?.OrderId//if order item has the same order id as the order
 
-                                select new BO.OrderItem//choose those who stood in the conditions and convert them to order in BO
-                                {
-                                    ID = (items?.OrderItemId)??throw new BO.BlNullPropertyException("id"),
-                                    Name = dal.Product.GetById(items?.ProductId??-1).Name??throw new BO.BlNullPropertyException("price"),
-                                    ProductID = items?.ProductId??0,
-                                    Price = items?.Price??0,
-                                    Amount = items?.Amount??0,
-                                    TotalPrice = items?.Price * items?.Amount?? throw new BO.BlNullPropertyException("total price"),
-                                    ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" + items?.ProductId ?? 0 + ".jpg"
+                            select new BO.OrderItem//choose those who stood in the conditions and convert them to order in BO
+                            {
+                                ID = (items?.OrderItemId) ?? throw new BO.BlNullPropertyException("id"),
+                                Name = dal.Product.GetById(items?.ProductId ?? -1).Name ?? throw new BO.BlNullPropertyException("price"),
+                                ProductID = items?.ProductId ?? 0,
+                                Price = items?.Price ?? 0,
+                                Amount = items?.Amount ?? 0,
+                                TotalPrice = items?.Price * items?.Amount ?? throw new BO.BlNullPropertyException("total price"),
+                                ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" + items?.ProductId ?? 0 + ".jpg"
 
-                                };
-                boOrder.TotalPrice = boOrder.Items.Sum(item => item.TotalPrice);//the total price of the order
-                return boOrder;
+                            };
+            boOrder.TotalPrice = boOrder.Items.Sum(item => item.TotalPrice);//the total price of the order
+            return boOrder;
         }
         public IEnumerable<BO.OrderForList?> GetListedListByFilter(Func<BO.OrderForList?, bool>? filter = null)
         {
-            var listOfFillterdOrders= from BO.OrderForList p in GetOrderList()
-                   where filter(p)
-                   select p;
+            var listOfFillterdOrders = from BO.OrderForList p in GetOrderList()
+                                       where filter(p)
+                                       select p;
             return listOfFillterdOrders;
         }
 
         public BO.Order UpdateOrder(BO.Order order)
         {
-            if (order.Status==BO.OrderStatus.Ordered)
+            if (order.Status == BO.OrderStatus.Ordered)
             {//there is still option for changing the costumer details
                 DO.Order o = new DO.Order()
                 {
                     OrderId = order.Id,
-                    CustomerName = order.CustomerName??throw new BO.BlNullPropertyException("customer name"),
-                    CustomerAddress = order.CustomerAddress ??throw new BO.BlNullPropertyException("customer address"),
+                    CustomerName = order.CustomerName ?? throw new BO.BlNullPropertyException("customer name"),
+                    CustomerAddress = order.CustomerAddress ?? throw new BO.BlNullPropertyException("customer address"),
                     CustomerEmail = order.CustomerEmail ?? throw new BO.BlNullPropertyException("customer address"),
                     DeliveryDate = order.DeliveryDate,
                     ShipDate = order.ShipDate,
@@ -286,7 +286,7 @@ namespace BlImplementation
                 };
                 try
                 {
-                    
+
                     dal.Order.Update(o);
                     //dal.Order.Update(new DO.Order()
                     //{
@@ -301,7 +301,7 @@ namespace BlImplementation
                 }
                 catch (DO.DalIdDoNotExistException ex)//couldnt find the order to update
                 {
-                    throw new BO.BlIdDoNotExistException("order",ex);
+                    throw new BO.BlIdDoNotExistException("order", ex);
                 }
                 //update was successful
                 return ConvertOrderDoToBO(o);
@@ -309,7 +309,7 @@ namespace BlImplementation
             return order;
         }
 
-        
+
 
 
 
@@ -343,6 +343,19 @@ namespace BlImplementation
         //            break;      
         //    }
         //}
-    }
+        public void DeleteOrder(int orderID)
+        {
+            try
+            {
+                dal.Order.Delete(orderID);
+            }
+            catch (DO.DalIdDoNotExistException ex)//couldnt find the order to update
+            {
+                throw new BO.BlIdDoNotExistException("order", ex);
+            }
 
+
+        }
+    }
+   
 }
