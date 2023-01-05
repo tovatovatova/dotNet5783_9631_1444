@@ -75,6 +75,7 @@ namespace PL
             o.ShowDialog();
             cmbStatus.SelectedItem = cmbStatus.Items.GetItemAt(0);
             PlOrder = bl.Order.GetOrderList().ToList();
+            orderForListView.ItemsSource = PlOrder;
 
         }
 

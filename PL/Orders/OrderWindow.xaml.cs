@@ -219,6 +219,7 @@ namespace PL
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
                 Close();
             }
+            Close();
         }
     }
 }
