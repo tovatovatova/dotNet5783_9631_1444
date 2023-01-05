@@ -38,7 +38,35 @@ namespace PL
         {
             return 0;
         }
+    }  
+    public class DoubleToHiddenConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (double)value<=0 ? Visibility.Hidden : Visibility.Visible;
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return 0;
+        }
     }
+    //public class EmptyCollectionToHiddenConverter : IValueConverter
+    //{
+
+    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        return ((List<BO.OrderItem>)value).Count()>0 ? Visibility.Visible : Visibility.Hidden;
+
+    //    }
+
+    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        return null;
+    //    }
+    //}
     public class HiddenTOVisible : IValueConverter
     {
 
@@ -127,17 +155,3 @@ namespace PL
     }
 }
 
-//public class IdToProduct : IValueConverter
-//{
-//    BlApi.IBl bl = BlApi.Factory.Get();
-
-//    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-//    {
-//       return bl.Product.GetProductByID(Convert.ToInt32(value.ToString())
-//    }
-
-//    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-//    {
-//        throw new NotImplementedException();
-//    }
-//}

@@ -36,8 +36,9 @@ namespace PL
 
         public LogInWindow()
         {
-            InitializeComponent();
+           
             PlUser = new BO.User();
+            InitializeComponent();
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)

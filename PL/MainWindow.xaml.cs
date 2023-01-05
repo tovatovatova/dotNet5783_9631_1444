@@ -28,11 +28,20 @@ namespace PL
     {
 
         BlApi.IBl bl = BlApi.Factory.Get();
+        public BO.User? PlUser
+        {
+            get { return (BO.User?)GetValue(PlUserProperty); }
+            set { SetValue(PlUserProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PlUser.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PlUserProperty =
+            DependencyProperty.Register("PlUser", typeof(BO.User), typeof(Window), new PropertyMetadata(null));
 
         public MainWindow()
         {
+            PlUser= new BO.User();
             InitializeComponent();
-            imgLogIn.Source = new BitmapImage(new Uri(@"pictures/log-in.png", UriKind.Relative));
 
         }
 
@@ -150,11 +159,81 @@ namespace PL
                 }
             }
         }
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow m = new MainWindow();
+            if (PlUser.UserName == null)//empty name 
+            {
+                string messageBoxText = " invalid input";
+                string caption = " ";
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                Close();
+                // MainWindow m = new MainWindow();
+                m.btnLogIn.Visibility = Visibility.Visible;
+                m.btnGuest.Visibility = Visibility.Visible;
+                m.btnNewOrder.Visibility = Visibility.Hidden;
+                m.btnTracking.Visibility = Visibility.Hidden;
+                m.Show();
+                return;
+            }
+
+            try
+            {
+                bl.User.compare(PlUser);
+            }
+            catch (BO.BlIdDoNotExistException ex)//if user is not in the system
+            {
+
+                string messageBoxText = ex.Entity?.ToString() + " try again later";
+                string caption = " ";
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                Close();
+                // MainWindow m = new MainWindow();
+                m.btnLogIn.Visibility = Visibility.Visible;
+                m.btnGuest.Visibility = Visibility.Visible;
+                m.btnNewOrder.Visibility = Visibility.Hidden;
+                m.btnTracking.Visibility = Visibility.Hidden;
+                m.Show();
+                return;
+            }
+            //if customer
+            if (PlUser.Log == BO.LogIn.Customer)
+            {
+                Close();
+                //   MainWindow m = new MainWindow();
+                // m.btnAdmin.Visibility = Visibility.Hidden;//need to remove...
+                m.btnLogIn.Visibility = Visibility.Hidden;
+                m.btnNewOrder.Visibility = Visibility.Visible;
+                m.btnGuest.Visibility = Visibility.Hidden;
+                m.btnTracking.Visibility = Visibility.Visible;
+                m.Show();
+            }
+            //if maneger
+            if (PlUser.Log == BO.LogIn.Maneger)
+            {
+                Close();
+                //  MainWindow m = new MainWindow();
+                m.btnProduct.Visibility = Visibility.Visible;
+                m.btnOrder.Visibility = Visibility.Visible;
+                // m.btnAdmin.Visibility = Visibility.Hidden;
+                m.btnLogIn.Visibility = Visibility.Hidden;
+                m.btnGuest.Visibility = Visibility.Hidden;
+                m.btnNewOrder.Visibility = Visibility.Hidden;
+                m.btnTracking.Visibility = Visibility.Hidden;
+                m.Show();
+            }
+
+        }
 
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
-            LogInWindow l = new LogInWindow();
-            l.Show();
+            log.Visibility = Visibility.Visible;
+           // LogInWindow l = new LogInWindow();
+           // l.Show();
         }
 
         private void imgLogIn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

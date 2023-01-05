@@ -46,6 +46,7 @@ namespace PL
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             bl.Cart.AddToCart(myCart, myProduct.ID);
+            Close();
 
         }
     }

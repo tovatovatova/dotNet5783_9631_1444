@@ -57,6 +57,36 @@ FontSize="20" Margin="458,298,57,108"  />
         <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="25,104,0,0" VerticalAlignment="Top" Click="btnLogIn_Click"/>
         <Image x:Name="imgLogIn" Stretch="Uniform" Source="pictures/log-in.png" Margin="12,13,677,340" MouseLeftButtonDown="imgLogIn_MouseLeftButtonDown" />
         <Button x:Name="btnGuest" Content="Guest" HorizontalAlignment="Left" Margin="25,173,0,0" VerticalAlignment="Top" Click="btnGuest_Click"/>
+        <Grid x:Name="log"  Margin="155,62,70,132" Visibility="Hidden" >
+            <Grid x:Name="logInGrid"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="136,45,0,0" Height="109" Width="256" RenderTransformOrigin="0.422,-0.391">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="31.96"/>
+                    <RowDefinition Height="0"/>
+                </Grid.RowDefinitions>
+                <Label Content="User Name:" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="101"/>
+                <TextBox x:Name="userNameTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="18" Text="{Binding UserName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
+                <Label Grid.Column="0" Content="Password:" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="101"/>
+                <TextBox x:Name="passwordTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="18" Grid.Row="1" Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            </Grid>
+            <Button x:Name="btnSubmit" Content="log in"  HorizontalAlignment="Left" Margin="280,99,0,0" VerticalAlignment="Top" Click="btnSubmit_Click" Height="46" FontSize="22" FontFamily="Arial Black"/>
+            <Label   Content="insert user name and pasword :" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontStretch="Expanded" Foreground="#FF30ABBC" FontFamily="Bodoni MT Black" Background="{x:Null}" FontSize="20" Height="35" Width="364" RenderTransformOrigin="0.5,0.5">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0"/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
+            <Label  x:Name="lblWrong" Content="Wrong user name or password " Visibility="Hidden" HorizontalAlignment="Left" Margin="150,218,0,0" VerticalAlignment="Top" Height="28" Width="230" Background="{x:Null}" Foreground="#FFE91515"/>
+        </Grid>
     </Grid>
 </Window>
 

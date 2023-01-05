@@ -73,11 +73,11 @@
             </ListView>
         </ScrollViewer>
         <TextBlock x:Name="txtTotalPCart"   HorizontalAlignment="Left" Margin="18,433,0,0"  FontSize="25" FontFamily="Arial Black" VerticalAlignment="Top" >
-        <Run Text="total:"/>
+        <Run Text="Total:"/>
         <Run Text="{Binding TotalPrice,UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:C}}" />
         </TextBlock>
 
-        <Button Content="CHECKOUT" HorizontalAlignment="Left" Margin="18,527,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.318,2.341" Height="72" Width="195" Click="Button_Click">
+        <Button   Content="CHECKOUT" HorizontalAlignment="Left" Margin="18,527,0,0" Visibility="{Binding TotalPrice,Converter={StaticResource doubletoHidden},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Top" RenderTransformOrigin="-0.318,2.341" Height="72" Width="195" Click="Button_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="20"/>
