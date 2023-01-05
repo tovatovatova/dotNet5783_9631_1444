@@ -67,7 +67,7 @@ namespace PL
 
                 orderItemsListView.ItemsSource = myCart.Items;
                 orderItemsListView.Items.Refresh();
-               // txtTotalPCart.Text = "Total:" + myCart.TotalPrice.ToString() + "$";
+                txtTotalPCart.Text = "Total:" + myCart.TotalPrice.ToString() + "$";
 
             }
             catch (BO.BlOutOfStockException ex)
@@ -118,7 +118,7 @@ namespace PL
             bl.Cart.UpdateProductInCart(myCart , 0, Convert.ToInt32((sender as TextBlock).Tag.ToString()));
             orderItemsListView.ItemsSource = myCart.Items;
             orderItemsListView.Items.Refresh();
-          //  txtTotalPCart.Text = "Total:" + myCart.TotalPrice.ToString() + "$";
+           txtTotalPCart.Text = "Total:" + myCart.TotalPrice.ToString() + "$";
 
         }
 
@@ -135,6 +135,7 @@ namespace PL
         {
             (sender as Button).Visibility = Visibility.Hidden;
             bl.Cart.OrderCreate(myCart);
+
             Close();
         }
     }

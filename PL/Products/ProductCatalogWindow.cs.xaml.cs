@@ -36,15 +36,27 @@ namespace PL
         // Using a DependencyProperty as the backing store for PlProduct.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty myProductCatProperty =
             DependencyProperty.Register("myProductCat", typeof(List<BO.ProductItem?>), typeof(Window), new PropertyMetadata(null));
-        prodAndCart myDataC = new prodAndCart();
+       
+
+        public BO.User? user
+        {
+            get { return (BO.User?)GetValue(userProperty); }
+            set { SetValue(userProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for user.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty userProperty =
+            DependencyProperty.Register("user", typeof(BO.User), typeof(Window), new PropertyMetadata(null));
 
 
 
 
-        public ProductCatalogWindow()
+
+        public ProductCatalogWindow(BO.User user)
         {
             InitializeComponent();
             cart=new BO.Cart();
+            BO.User myUser= user;
             if (cart.Items == null)
             {
                 cart.Items = new List<BO.OrderItem>();
@@ -53,9 +65,7 @@ namespace PL
                 // listViewProducts.ItemsSource = bl.Product.GetCatalog().ToList();
                 myProductCat = new List<BO.ProductItem>();
                 myProductCat = bl.Product.GetCatalog().ToList();
-                prodAndCart myDataC = new prodAndCart();
-                myDataC.products = myProductCat;
-                myDataC.cart = cart;
+       
             
 
         }
@@ -84,21 +94,5 @@ namespace PL
             c.ShowDialog();
         }
     }
-    //class BooleanToVisibilityConverter : IValueConverter
-    //{
-    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        return (bool)value ? Visibility.Hidden : Visibility.Visible;
-    //    }
-
-    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        return System.Convert.ToInt32(value) < 15 ? false : true;
-    //    }
-    //}
-    public class prodAndCart
-    {
-        public List< BO.ProductItem> products { get; set; }
-        public BO.Cart cart { get; set; }
-    }
+    
 }
