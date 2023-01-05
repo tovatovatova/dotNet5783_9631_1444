@@ -29,6 +29,6 @@
             <TextBox x:Name="emailTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="2" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
         <Label x:Name="lblDetails" Content="Enter yoyr details:" HorizontalAlignment="Center" Margin="0,69,0,0" VerticalAlignment="Top"  FontStretch="Expanded" Foreground="#FF30ABBC" FontFamily="Bodoni MT Black" Background="{x:Null}" FontSize="20" Height="35" Width="363" RenderTransformOrigin="0.5,1.5"/>
-        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="542,255,0,0" VerticalAlignment="Top" Click="btnSubmit_Click"/>
+        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="312,217,0,0" VerticalAlignment="Top" Click="btnSubmit_Click"/>
     </Grid>
 </Window>

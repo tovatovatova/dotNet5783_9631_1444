@@ -28,19 +28,19 @@ namespace PL
     {
 
         BlApi.IBl bl = BlApi.Factory.Get();
-        public BO.User? PlUser
+        public BO.User? user
         {
-            get { return (BO.User?)GetValue(PlUserProperty); }
-            set { SetValue(PlUserProperty, value); }
+            get { return (BO.User?)GetValue(userProperty); }
+            set { SetValue(userProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for PlUser.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PlUserProperty =
-            DependencyProperty.Register("PlUser", typeof(BO.User), typeof(Window), new PropertyMetadata(null));
+        // Using a DependencyProperty as the backing store for user.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty userProperty =
+            DependencyProperty.Register("user", typeof(BO.User), typeof(Window), new PropertyMetadata(null));
 
         public MainWindow()
         {
-            PlUser= new BO.User();
+           user= new BO.User();
             InitializeComponent();
 
         }
@@ -83,7 +83,7 @@ namespace PL
 
         private void btnNewOrder_Click(object sender, RoutedEventArgs e)
         {
-            ProductCatalogWindow productCatalog = new ProductCatalogWindow();
+            ProductCatalogWindow productCatalog = new ProductCatalogWindow(user);
             productCatalog.Show();
         }
 
@@ -162,7 +162,7 @@ namespace PL
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             MainWindow m = new MainWindow();
-            if (PlUser.UserName == null)//empty name 
+            if (user.UserName == null)//empty name 
             {
                 string messageBoxText = " invalid input";
                 string caption = " ";
@@ -181,7 +181,7 @@ namespace PL
 
             try
             {
-                bl.User.compare(PlUser);
+                bl.User.compare(user);
             }
             catch (BO.BlIdDoNotExistException ex)//if user is not in the system
             {
@@ -201,7 +201,7 @@ namespace PL
                 return;
             }
             //if customer
-            if (PlUser.Log == BO.LogIn.Customer)
+            if (user.Log == BO.LogIn.Customer)
             {
                 Close();
                 //   MainWindow m = new MainWindow();
@@ -213,7 +213,7 @@ namespace PL
                 m.Show();
             }
             //if maneger
-            if (PlUser.Log == BO.LogIn.Maneger)
+            if (user.Log == BO.LogIn.Maneger)
             {
                 Close();
                 //  MainWindow m = new MainWindow();
