@@ -11,7 +11,7 @@
             <RowDefinition Height="0*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid x:Name="OrderDetails"  HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="195,-1,0,0" Width="514" Grid.RowSpan="2" Height="560">
+        <Grid x:Name="OrderDetails"  HorizontalAlignment="Left" IsEnabled="False" VerticalAlignment="Top" Margin="195,-1,0,0" Width="514" Grid.RowSpan="2" Height="560">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="125"/>
                 <ColumnDefinition Width="Auto"/>

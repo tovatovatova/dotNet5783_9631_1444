@@ -39,7 +39,7 @@ namespace PL.Products
             {
                 cmbCategory.Items.Add(item);
             }
-
+            cmbCategory.SelectedIndex = 0;
         }
 
         private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)

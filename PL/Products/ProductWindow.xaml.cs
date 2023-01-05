@@ -1,4 +1,5 @@
 ﻿
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -204,6 +205,38 @@ namespace PL
             priceTextBox.BorderBrush = Background;
         }
 
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.Product.DeleteProduct(PlProduct.ID);//try to delete product
+            }
+            catch (BO.BlInvalidInputException ex)//worng input
+            {
+                string messageBoxText = ex.Entity/*ex.ToString()*/ + "\ntry again";
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+            }
+            catch(BO.BlIdDoNotExistException ex)//product doesnt exist
+            {
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+            }
+            catch(BO.BlNullPropertyException ex)//product exists in order-cant delete
+            {
+                string messageBoxText = ex.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+            }
+            Close();
+        }
     }
    
 }

@@ -43,8 +43,13 @@ internal class DalOrder : IOrder
     /// <exception cref="Exception">throw exeption when the the order not found</exception>
     public void Delete(int orderId)
     {
-        Order? delOrder= DataSource.OrderList.FirstOrDefault(order => order?.OrderId == orderId) ?? throw new DalIdDoNotExistException(orderId, "order");
-        DataSource.OrderList.Remove(delOrder);
+        Order? o = DataSource.OrderList.FirstOrDefault(order => order?.OrderId == orderId) ?? throw new DalIdDoNotExistException(orderId, "order");
+        int orderIndex = DataSource.OrderList.FindIndex(order => order?.OrderId == orderId);
+        DataSource.OrderList.RemoveAt(orderIndex);
+
+
+        //Order? delOrder= DataSource.OrderList.FirstOrDefault(order => order?.OrderId == orderId) ?? throw new DalIdDoNotExistException(orderId, "order");
+        //DataSource.OrderList.Remove(delOrder);
     }
     /// <summary>
     /// update an order in its spesific index according to the given order
