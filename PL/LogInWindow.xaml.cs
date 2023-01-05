@@ -66,6 +66,7 @@ namespace PL
             }
             catch (BO.BlIdDoNotExistException ex)//if user is not in the system
             {
+                
                 string messageBoxText = ex.Entity?.ToString() + " try again later";
                 string caption = " ";
                 MessageBoxImage icon = MessageBoxImage.Information;
