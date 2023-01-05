@@ -24,7 +24,8 @@
                     <DropShadowEffect ShadowDepth="1"/>
                 </Border.Effect>
                 <Border.Background>
-                    <ImageBrush ImageSource="{Binding ImagesSource}" />
+                    <ImageBrush ImageSource="{Binding ID ,Converter={StaticResource imageConverter}}" />
+                    <!--<ImageBrush ImageSource="{Binding ID}" />-->
                 </Border.Background>
             </Border>
             <Label  Content="{Binding Name}" Grid.Row= "3" HorizontalAlignment="Left" Margin="470,125,0,-315" FontSize="21" Grid.RowSpan="3" />

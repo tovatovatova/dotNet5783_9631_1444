@@ -66,18 +66,19 @@ namespace PL
             }
             catch (BO.BlIdDoNotExistException ex)//if user is not in the system
             {
-                string messageBoxText = ex.Entity?.ToString() + " try again later";
+                string messageBoxText = ex.Entity?.ToString() + " try again ";
                 string caption = " ";
                 MessageBoxImage icon = MessageBoxImage.Information;
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                Close();
+               // Close();
                // MainWindow m = new MainWindow();
-                m.btnLogIn.Visibility = Visibility.Visible;
-                m.btnGuest.Visibility = Visibility.Visible;
-                m.btnNewOrder.Visibility = Visibility.Hidden;
-                m.btnTracking.Visibility = Visibility.Hidden;
-                m.Show();
+                //m.btnLogIn.Visibility = Visibility.Visible;
+                //m.btnGuest.Visibility = Visibility.Visible;
+                //m.btnNewOrder.Visibility = Visibility.Hidden;
+                //m.btnTracking.Visibility = Visibility.Hidden;
+                //m.Show();
+                
                 return;
             }
             //if customer
