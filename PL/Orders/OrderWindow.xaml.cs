@@ -104,5 +104,123 @@ namespace PL
             Close();
 
         }
+
+        private void btnUpdateDelivary_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MyOrder = bl.Order.UpdateDelivery(MyOrder.Id);//tries to update delivary
+            }
+            catch (BO.BlIdDoNotExistException ex)//order id doesnt exist 
+            {
+                //throw an error message box 
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                Close();
+            }
+            catch(BO.BlIncorrectDateException ex)//worng date
+            {
+                //throw an error message box 
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                Close();
+            }
+            catch(BO.BlNullPropertyException ex)
+            {
+                //throw an error message box 
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                Close();
+            }
+            catch(BO.BlInvalidInputException ex)
+            {
+                //throw an error message box 
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+            }
+            //could update 
+         //   MyOrder.Status = BO.OrderStatus.Delivered;
+            Close();
+        }
+
+        private void btnUpdateShipping_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MyOrder = bl.Order.UpdateShip(MyOrder.Id);
+            }
+            catch (BO.BlIdDoNotExistException ex)//order id doesnt exist 
+            {
+                //throw an error message box 
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                Close();
+            }
+            catch (BO.BlIncorrectDateException ex)//worng date
+            {
+                //throw an error message box 
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                Close();
+            }
+            catch (BO.BlNullPropertyException ex)
+            {
+                //throw an error message box 
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                Close();
+            }
+            catch (BO.BlInvalidInputException ex)
+            {
+                //throw an error message box 
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+            }
+            //could update 
+            Close();
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.Order.DeleteOrder(MyOrder.Id);
+            }
+            catch (BO.BlIdDoNotExistException ex)
+            {
+                //throw an error message box 
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                Close();
+            }
+            Close();
+        }
     }
 }

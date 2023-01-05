@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 namespace PL.Products
 {
+
     /// <summary>
     /// Interaction logic for ProductsListWindow.xaml
     /// </summary>
@@ -38,7 +39,7 @@ namespace PL.Products
             {
                 cmbCategory.Items.Add(item);
             }
-
+            cmbCategory.SelectedIndex = 0;
         }
 
         private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)

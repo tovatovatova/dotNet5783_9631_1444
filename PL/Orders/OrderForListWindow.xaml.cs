@@ -34,9 +34,9 @@ namespace PL
         {
             InitializeComponent();
             PlOrder = bl.Order.GetOrderList().ToList();
-            orderForListView.ItemsSource = PlOrder.OrderByDescending(var => var.TotalPrice);
+          //  orderForListView.ItemsSource = PlOrder.OrderByDescending(var => var.TotalPrice);
             cmbStatus.Items.Add("All Orders");
-            cmbStatus.SelectedItem = cmbStatus.Items.GetItemAt(0);//defult for all orders
+          //  cmbStatus.SelectedItem = cmbStatus.Items.GetItemAt(0);//defult for all orders
             foreach (var item in Enum.GetValues(typeof(BO.OrderStatus)))//add the order's status' category to combo box
             {
                 cmbStatus.Items.Add(item);
@@ -56,12 +56,12 @@ namespace PL
             if (cmbStatus.SelectedIndex == 0)//all product option
             {
                 PlOrder = bl.Order.GetOrderList().ToList();
-                orderForListView.ItemsSource = bl.Order.GetOrderList();
+                //orderForListView.ItemsSource = bl.Order.GetOrderList();
                 return;
             }
 
             PlOrder = bl.Order.GetListedListByFilter(item => item.Status == Enum.Parse<BO.OrderStatus>(cmbStatus.SelectedItem.ToString())).ToList();//sort order list view by category
-            orderForListView.ItemsSource = PlOrder;
+          //  orderForListView.ItemsSource = PlOrder;
            
         }
 
@@ -69,12 +69,13 @@ namespace PL
 
         private void orderForListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cmbStatus.SelectedIndex == -1)
+            if (orderForListView.SelectedIndex == -1)
                 return;
             OrderWindow o = new OrderWindow(sender, e, ((BO.OrderForList)orderForListView.SelectedItem).ID);
             o.ShowDialog();
             cmbStatus.SelectedItem = cmbStatus.Items.GetItemAt(0);
             PlOrder = bl.Order.GetOrderList().ToList();
+           // orderForListView.ItemsSource = PlOrder;
 
         }
 
