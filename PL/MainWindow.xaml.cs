@@ -159,9 +159,9 @@ namespace PL
                 }
             }
         }
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        private void btnLog_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow m = new MainWindow();
+            //MainWindow m = new MainWindow();
             if (PlUser.UserName == null)//empty name 
             {
                 string messageBoxText = " invalid input";
@@ -171,11 +171,12 @@ namespace PL
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
                 Close();
                 // MainWindow m = new MainWindow();
-                m.btnLogIn.Visibility = Visibility.Visible;
-                m.btnGuest.Visibility = Visibility.Visible;
-                m.btnNewOrder.Visibility = Visibility.Hidden;
-                m.btnTracking.Visibility = Visibility.Hidden;
-                m.Show();
+                this.btnLogIn.Visibility = Visibility.Visible;
+                this.btnGuest.Visibility = Visibility.Visible;
+                this.btnNewOrder.Visibility = Visibility.Hidden;
+                this.btnTracking.Visibility = Visibility.Hidden;
+                this.btnCreate.Visibility = Visibility.Visible;
+                this.Show();
                 return;
             }
 
@@ -186,45 +187,50 @@ namespace PL
             catch (BO.BlIdDoNotExistException ex)//if user is not in the system
             {
 
-                string messageBoxText = ex.Entity?.ToString() + " try again later";
+                string messageBoxText = ex.Entity?.ToString() + " try again ";
                 string caption = " ";
                 MessageBoxImage icon = MessageBoxImage.Information;
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                Close();
+                //Close();
                 // MainWindow m = new MainWindow();
-                m.btnLogIn.Visibility = Visibility.Visible;
-                m.btnGuest.Visibility = Visibility.Visible;
-                m.btnNewOrder.Visibility = Visibility.Hidden;
-                m.btnTracking.Visibility = Visibility.Hidden;
-                m.Show();
+                log.Visibility = Visibility.Hidden;
+                this.btnLogIn.Visibility = Visibility.Visible;
+                this.btnGuest.Visibility = Visibility.Visible;
+                this.btnNewOrder.Visibility = Visibility.Hidden;
+                this.btnTracking.Visibility = Visibility.Hidden;
+                this.Show();
                 return;
             }
             //if customer
             if (PlUser.Log == BO.LogIn.Customer)
             {
-                Close();
+               // Close();
                 //   MainWindow m = new MainWindow();
                 // m.btnAdmin.Visibility = Visibility.Hidden;//need to remove...
-                m.btnLogIn.Visibility = Visibility.Hidden;
-                m.btnNewOrder.Visibility = Visibility.Visible;
-                m.btnGuest.Visibility = Visibility.Hidden;
-                m.btnTracking.Visibility = Visibility.Visible;
-                m.Show();
+                this.btnLogIn.Visibility = Visibility.Hidden;
+                this.btnNewOrder.Visibility = Visibility.Visible;
+                this.btnGuest.Visibility = Visibility.Hidden;
+                this.btnTracking.Visibility = Visibility.Visible;
+                this.btnCreate.Visibility = Visibility.Hidden;
+                log.Visibility = Visibility.Hidden;
+                this.Show();
             }
             //if maneger
             if (PlUser.Log == BO.LogIn.Maneger)
             {
-                Close();
+                //Close();
                 //  MainWindow m = new MainWindow();
-                m.btnProduct.Visibility = Visibility.Visible;
-                m.btnOrder.Visibility = Visibility.Visible;
+                this.btnProduct.Visibility = Visibility.Visible;
+                this.btnOrder.Visibility = Visibility.Visible;
                 // m.btnAdmin.Visibility = Visibility.Hidden;
-                m.btnLogIn.Visibility = Visibility.Hidden;
-                m.btnGuest.Visibility = Visibility.Hidden;
-                m.btnNewOrder.Visibility = Visibility.Hidden;
-                m.btnTracking.Visibility = Visibility.Hidden;
-                m.Show();
+                this.btnLogIn.Visibility = Visibility.Hidden;
+                this.btnGuest.Visibility = Visibility.Hidden;
+                this.btnNewOrder.Visibility = Visibility.Hidden;
+                this.btnTracking.Visibility = Visibility.Hidden;
+                this.btnCreate.Visibility = Visibility.Hidden;
+                log.Visibility = Visibility.Hidden;
+                this.Show();
             }
 
         }
@@ -241,17 +247,70 @@ namespace PL
             LogInWindow l = new LogInWindow();
             l.Show();
         }
-
+        
         private void btnGuest_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow m = new MainWindow();
-            m.btnLogIn.Visibility = Visibility.Hidden;
-            m.btnNewOrder.Visibility = Visibility.Visible;
-            m.btnTracking.Visibility = Visibility.Visible;
-            m.btnProduct.Visibility = Visibility.Hidden;
-            m.btnOrder.Visibility = Visibility.Hidden;
-            m.btnGuest.Visibility = Visibility.Hidden;
-            m.Show();
+            //MainWindow m = new MainWindow();
+            this.btnLogIn.Visibility = Visibility.Hidden;
+            this.btnNewOrder.Visibility = Visibility.Visible;
+            this.btnTracking.Visibility = Visibility.Visible;
+            this.btnProduct.Visibility = Visibility.Hidden;
+            this.btnOrder.Visibility = Visibility.Hidden;
+            this.btnGuest.Visibility = Visibility.Hidden;
+            this.btnCreate.Visibility = Visibility.Hidden;
+            this.Show();
+        }
+
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
+            submit.Visibility = Visibility.Visible;
+        }
+
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            string messageBoxText, caption;
+            MessageBoxImage icon;
+            MessageBoxResult result;
+            try//tries to add a customer to the system
+            {
+                bl.User.addUser(PlUser);
+                messageBoxText = "product added successfully";
+                caption = "";
+                icon = MessageBoxImage.Information;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
+                
+            }
+            catch (BO.BlInvalidInputException ex)
+            {
+                //throw an error message box 
+                messageBoxText = ex.Message.ToString();
+                caption = "error";
+                icon = MessageBoxImage.Error;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                return;
+            }
+            catch (BO.BlIdAlreadyExistException ex)
+            {
+                //throw an error message box 
+                messageBoxText = ex.Message.ToString();
+                caption = "error";
+                icon = MessageBoxImage.Error;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                if (result == MessageBoxResult.OK)
+                {
+                    return;
+                }
+            }
+            //user added successfully
+            //its a customer
+            this.btnLogIn.Visibility = Visibility.Hidden;
+            this.btnNewOrder.Visibility = Visibility.Visible;
+            this.btnGuest.Visibility = Visibility.Hidden;
+            this.btnTracking.Visibility = Visibility.Visible;
+            this.btnCreate.Visibility = Visibility.Hidden;
+            submit.Visibility = Visibility.Hidden;
+            Show();
+
         }
     }
 }

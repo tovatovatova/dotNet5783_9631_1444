@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PL"
         WindowStartupLocation ="CenterScreen"
         mc:Ignorable="d"
+        DataContext="{Binding PlUser,RelativeSource={RelativeSource Self}}"
         Title="MainWindow" Height="450" Width="800" >
     <Grid Margin="0,-14,0,0" RenderTransformOrigin="0.5,0.5"  Grid.IsSharedSizeScope="True">
         <Grid.Background>
@@ -15,37 +16,7 @@
         <Grid.FocusVisualStyle>
             <Style/>
         </Grid.FocusVisualStyle>
-        <!--<Button x:Name="btnAdmin" Content="Admin" HorizontalAlignment="Left" Margin="33,209,0,0" VerticalAlignment="Top" Height="127" Width="249" Click="btnAdmin_Click" FontSize="29" FontFamily="Bodoni MT Black" FontWeight="Bold" Foreground="#FFEFF0F1" RenderTransformOrigin="0.5,0.5" FontStyle="Oblique"  >
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
-                    <GradientStop Color="#FFFF81BA" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-            <Button.FocusVisualStyle>
-                <Style/>
-            </Button.FocusVisualStyle>
-            <Button.Style>
-                <Style/>
-            </Button.Style>
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform X="8" Y="4"/>
-                </TransformGroup>
-            </Button.RenderTransform>
-            <Button.Effect>
-                <DropShadowEffect/>
-            </Button.Effect>
-            <Button.BorderBrush>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
-                    <GradientStop Color="#FFD6B0ED" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.BorderBrush>
-        </Button>-->
+
         <Label x:Name="lblTracking" Content="Enter number of order for tracking:"  HorizontalAlignment="Left" Visibility="Hidden" Margin="465,265,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="19"/>
         <!--<TextBox x:Name="txtOrderId" HorizontalAlignment="Left" Margin="610,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="125" Height="25" TextChanged="txtOrderId_TextChanged"/>-->
         <Button x:Name="btnTracking" Content="Track" HorizontalAlignment="Left" Margin="458,213,0,0" VerticalAlignment="Top" Height="47" Width="285" Click="btnTracking_Click" MouseDoubleClick="btnTracking_MouseDoubleClick" Visibility="Hidden"/>
@@ -57,7 +28,7 @@ FontSize="20" Margin="458,298,57,108"  />
         <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="25,104,0,0" VerticalAlignment="Top" Click="btnLogIn_Click"/>
         <Image x:Name="imgLogIn"   Margin="12,13,677,340" MouseLeftButtonDown="imgLogIn_MouseLeftButtonDown" />
         <Button x:Name="btnGuest" Content="Guest" HorizontalAlignment="Left" Margin="25,173,0,0" VerticalAlignment="Top" Click="btnGuest_Click"/>
-        <Grid x:Name="log"  Margin="155,62,70,132" Visibility="Hidden" >
+        <Grid x:Name="log"  Margin="155,62,70,132"  Visibility="Hidden" >
             <Grid x:Name="logInGrid"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="136,45,0,0" Height="109" Width="256" RenderTransformOrigin="0.422,-0.391">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -74,7 +45,6 @@ FontSize="20" Margin="458,298,57,108"  />
                 <Label Grid.Column="0" Content="Password:" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="101"/>
                 <TextBox x:Name="passwordTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="18" Grid.Row="1" Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             </Grid>
-            <Button x:Name="btnSubmit" Content="log in"  HorizontalAlignment="Left" Margin="280,99,0,0" VerticalAlignment="Top" Click="btnSubmit_Click" Height="46" FontSize="22" FontFamily="Arial Black"/>
             <Label   Content="insert user name and pasword :" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontStretch="Expanded" Foreground="#FF30ABBC" FontFamily="Bodoni MT Black" Background="{x:Null}" FontSize="20" Height="35" Width="364" RenderTransformOrigin="0.5,0.5">
                 <Label.RenderTransform>
                     <TransformGroup>
@@ -86,6 +56,32 @@ FontSize="20" Margin="458,298,57,108"  />
                 </Label.RenderTransform>
             </Label>
             <Label  x:Name="lblWrong" Content="Wrong user name or password " Visibility="Hidden" HorizontalAlignment="Left" Margin="150,218,0,0" VerticalAlignment="Top" Height="28" Width="230" Background="{x:Null}" Foreground="#FFE91515"/>
+            <Button x:Name="btnLog" Content="Log" HorizontalAlignment="Left" Margin="323,151,0,0" VerticalAlignment="Top" Click="btnLog_Click" Height="44" Width="107"/>
+        </Grid>
+        <Button x:Name="btnCreate" Content="new account" HorizontalAlignment="Left" Margin="22,239,0,0" VerticalAlignment="Top" Click="btnCreate_Click"/>
+        <Grid x:Name="submit" Visibility="Hidden"  >
+            <Grid x:Name="userGrid"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="230,53,0,0" Height="375" Width="375">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Content="User Name:" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Center" Height="24" Width="80"/>
+                <TextBox x:Name="userNametxb" Grid.Column="1" HorizontalAlignment="Left" Margin="37,0,0,0" Height="18" Text="{Binding UserName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+                <Label Grid.Column="0" Content="Password:"  HorizontalAlignment="Left" Margin="7,75,0,0" VerticalAlignment="Top" Height="24" Width="73"/>
+                <TextBox x:Name="passwordtxb" Grid.Column="1" HorizontalAlignment="Left" Margin="37,80,0,0" Height="18" Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"  />
+
+                <Label Content="Email:" HorizontalAlignment="Center" Margin="0,12,0,0" VerticalAlignment="Top" Height="23" Width="52" RenderTransformOrigin="0.423,-7.783" Grid.Row="1"/>
+                <TextBox x:Name="emailtxb" Grid.Column="1" HorizontalAlignment="Left" Height="17" Grid.Row="1" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" Margin="37,18,0,0"/>
+                <Label x:Name="lblDetails" Content="Enter yoyr details:" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Top" FontStretch="Expanded" Foreground="#FF30ABBC" FontFamily="Bodoni MT Black" Background="{x:Null}" FontSize="20" Height="35" Width="220" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
+                <Button x:Name="btnSub" Content="Submit" HorizontalAlignment="Left" Margin="90,90,0,0" VerticalAlignment="Top" Click="btnSubmit_Click" Grid.Column="1" Height="44" Grid.Row="1" Width="107"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

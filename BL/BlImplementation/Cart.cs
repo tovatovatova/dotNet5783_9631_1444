@@ -153,9 +153,9 @@ namespace BlImplementation
         /// <param name="cart"></param>
         /// <exception cref="BO.BlNullPropertyException">throw if cant convert to order-no items in cart</exception>
         /// <exception cref="BO.BlInvalidInputException">throw if entered a falese input</exception>
-        public void OrderCreate(BO.Cart cart)
+        public int OrderCreate(BO.Cart cart)
         {
-            //input validation
+            #region input validation
             if (cart.Items.Count() == 0)//no items in cart
                 throw new BO.BlNullPropertyException("no items in cart");
             if (cart.CustomerName == " ")//empty name
@@ -168,6 +168,7 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("items amount");
             if (cart.Items.All/*forEach?*/(item => Check(item.ProductID, item.Amount) == true) == false)//there is not enough in stock from the items in the cart
                 throw new BO.BlInvalidInputException("product amount in stock to execute an order");
+            #endregion
             //all details are correct
             BO.Order boOrder = new BO.Order()//cearte an order
             {
@@ -208,6 +209,7 @@ namespace BlImplementation
                            };
             doOrderItems.Select(x => dal.OrderItem.Add(x)).ToList();//add all order items to list of order item in DO
             boOrder.Items.ToList().ForEach(item => UpdateAmount(item.ProductID, item.Amount));//update the amount in stock of each product after reservation
+            return boOrder.Id;//return id of this order
         }
         /// <summary>
         /// check if there is enough in stock from specific product
