@@ -26,7 +26,7 @@
             <TextBox x:Name="passwordTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="18" Grid.Row="1" Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
         <Button x:Name="btnSubmit" Content="log in" HorizontalAlignment="Left" Margin="403,218,0,0" VerticalAlignment="Top" Click="btnSubmit_Click"/>
-        <Label Content="insert user name and pasword :" HorizontalAlignment="Center" Margin="0,101,0,0" VerticalAlignment="Top" FontStretch="Expanded" Foreground="#FF30ABBC" FontFamily="Bodoni MT Black" Background="{x:Null}" FontSize="20" Height="35" Width="363" RenderTransformOrigin="0.5,0.5">
+        <Label   Content="insert user name and pasword :" HorizontalAlignment="Center" Margin="0,101,0,0" VerticalAlignment="Top" FontStretch="Expanded" Foreground="#FF30ABBC" FontFamily="Bodoni MT Black" Background="{x:Null}" FontSize="20" Height="35" Width="363" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -36,5 +36,6 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
+        <Label  x:Name="lblWrong" Content="Wrong user name or password " Visibility="Hidden" HorizontalAlignment="Left" Margin="150,218,0,0" VerticalAlignment="Top" Height="28" Width="230" Background="{x:Null}" Foreground="#FFE91515"/>
     </Grid>
 </Window>

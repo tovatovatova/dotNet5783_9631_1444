@@ -6,20 +6,17 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         DataContext="{Binding myCart,RelativeSource={RelativeSource Self}}"
-        Title="CartWindow" Height="572" Width="681">
+        Title="CartWindow" Height="665" Width="908">
     <Window.Resources>
         <DataTemplate x:Key="OrderItemTemplate" DataType="local:OrderItem">
             <Grid  Margin="0 0 0 0" HorizontalAlignment="Left">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="27"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="110"/>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="50"/>
+
                 </Grid.ColumnDefinitions>
                 <Ellipse Height="80" Width="80" Margin="25 10 0 10" HorizontalAlignment="Left">
                     <Ellipse.Fill>
@@ -33,30 +30,31 @@
                 <!--<TextBlock Grid.Column="1" Text="{Binding Path=Ref,ElementName=item}" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0 38 0 0"/>-->
 
 
-                <TextBlock Grid.Column="2" Text="{Binding Name}"  FontWeight="SemiBold" FontSize="16"/>
+                <TextBlock Grid.Column="1" Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
 
-                <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Stretch">
                     <!--<Button   Style="{StaticResource RoundButtonStyle}" Content="+" HorizontalAlignment="Left" Margin="104,37,0,0" VerticalAlignment="Top" Width="16"/>-->
                     <Button x:Name="btnAdd" Tag="{Binding ProductID}" Style="{StaticResource RoundButtonStyle}" Content="+" Width="16" Click="btnAdd_Click" />
 
-                    <TextBlock x:Name="txtAmount"  HorizontalAlignment="Center" Grid.Column="4" Text="{Binding Amount}" Margin="10 0 0 0" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+                    <TextBlock x:Name="txtAmount"  HorizontalAlignment="Center" Grid.Column="2" Text="{Binding Amount}" Margin="10 0 0 0" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
                     <!--<Label x:Name="lblAmount" Content="{Binding Amount}" Visibility="Hidden"/>-->
 
                     <Button x:Name="btnLow" Tag="{Binding ElementName=txtAmount,Path=Text,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Style="{StaticResource RoundButtonStyle}" Content="-" Width="16" Margin="0 7 0 0" Click="btnLow_Click"/>
 
 
                 </StackPanel>
-                <StackPanel Grid.Column="5"  Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                <StackPanel Grid.Column="3"  Margin="0 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.ColumnSpan="2">
 
-                    <TextBlock Grid.Column="5"    Text="{Binding Price, StringFormat={}{0:C}}"  FontWeight="SemiBold" FontSize="16"/>
-                    <TextBlock Grid.Column="5"    FontWeight="SemiBold" FontSize="16">
-                    <Run Text="total:"/>
-                    <Run Text="{Binding TotalPrice, StringFormat={}{0:C}}" />
+                    <TextBlock Grid.Column="3" Text="{Binding Price, StringFormat={}{0:C}}"  FontWeight="SemiBold" FontSize="10"/>
+                    <TextBlock Grid.Column="3" Margin="0 5 0 0" FontWeight="SemiBold" FontSize="12">
+                        <Run Text="total:"/>
+                    <Run Text="{Binding TotalPrice}"/>
+                        <Run Text="$"/>
                     </TextBlock>
 
                 </StackPanel>
 
-                <TextBlock Grid.Column="7" Style="{StaticResource textOfItem}" Text="remove" Tag="{Binding ProductID}"  VerticalAlignment="Center" MouseDown="TextBlock_MouseDown"/>
+                <TextBlock Grid.Column="4" Style="{StaticResource textOfItem}" Margin="10 0 0 0"    Text="remove" Tag="{Binding ProductID}"  VerticalAlignment="Center" MouseDown="TextBlock_MouseDown"/>
 
 
             </Grid>
@@ -64,9 +62,9 @@
     </Window.Resources>
     <Grid>
         <Image x:Name="emptyCart"  Source="{Binding ElementName=emptyCart, Path=Name,Converter={StaticResource imageConverter}}" Visibility="{Binding ElementName=scroll,Path=Visibility,Converter={StaticResource Hiddentovisible },UpdateSourceTrigger=PropertyChanged}" Width="400" Height="400" Margin="30,30,30,30"/>
-        <ScrollViewer x:Name="scroll"  Background="LightCyan" Margin="252,1,10,78" Visibility="{Binding TotalPrice,Converter={StaticResource doubletoVisible},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" >
+        <ScrollViewer x:Name="scroll"  Background="LightCyan" Margin="218,1,10,10" Visibility="{Binding TotalPrice,Converter={StaticResource doubletoVisible},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" >
 
-            <ListView x:Name="orderItemsListView" ItemsSource="{Binding Items}" ItemTemplate="{StaticResource OrderItemTemplate}"     Width="1852">
+            <ListView x:Name="orderItemsListView" ItemsSource="{Binding Items}" ItemTemplate="{StaticResource OrderItemTemplate}"     Width="713">
                 <!--<ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -74,11 +72,43 @@
                 </ItemsControl.ItemsPanel>-->
             </ListView>
         </ScrollViewer>
-        <TextBlock x:Name="txtTotalPCart"   HorizontalAlignment="Left" Margin="260,494,0,0"  FontSize="35" FontFamily="Arial Black" VerticalAlignment="Top" RenderTransformOrigin="-0.355,0.481">
-            <Run Text="total:"/>
-            <Run Text="{Binding TotalPrice, StringFormat={}{0:C}}" />
+        <TextBlock x:Name="txtTotalPCart"   HorizontalAlignment="Left" Margin="18,433,0,0"  FontSize="25" FontFamily="Arial Black" VerticalAlignment="Top" >
+        <Run Text="total:"/>
+        <Run Text="{Binding TotalPrice,UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:C}}" />
         </TextBlock>
-        <Button Content="CHECKOUT" HorizontalAlignment="Left" Margin="49,470,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.318,2.341" Height="44" Width="132"/>
 
+        <Button Content="CHECKOUT" HorizontalAlignment="Left" Margin="18,527,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.318,2.341" Height="72" Width="195" Click="Button_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Grid  x:Name="grid1"    Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,24,0,0" Height="215" Width="185">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Content="Address for delivery:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="customerAddressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="5" Text="{Binding CustomerAddress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Grid.Column="0" Content=" Email address:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="customerEmailTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="{Binding CustomerEmail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="customerNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="{Binding CustomerName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Button Content="confirm" HorizontalAlignment="Left" Margin="18,16,0,0" Grid.Row="7" Click="Button_Click_1">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
     </Grid>
+
 </Window>

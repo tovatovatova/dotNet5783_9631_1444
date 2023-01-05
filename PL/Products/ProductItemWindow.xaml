@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         DataContext="{Binding myProduct,RelativeSource={RelativeSource Self}}"
-        Title="ProductItemWindow" Height="765" Width="1040">
+        Title="ProductItemWindow" Height="822" Width="1015">
     <Window.Resources>
         <local:BooleanToVisibilityConverter x:Key="myCon"/>
     </Window.Resources>
     <Grid OpacityMask="LightCyan" Background="LightCyan">
-        <Grid x:Name="oneItemGrid" Margin="-80,29,120,90" Width="1000" Background="LightCyan" >
+        <Grid x:Name="oneItemGrid" Margin="-80,29,10,239" Background="LightCyan" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="220" />
                 <RowDefinition Height="Auto"/>
@@ -31,32 +31,22 @@
             <Label  Content="{Binding Name}" Grid.Row= "3" HorizontalAlignment="Left" Margin="470,125,0,-315" FontSize="21" Grid.RowSpan="3" />
 
 
-            <TextBlock Text="             out of stock    " HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFA9C1C1" Grid.ColumnSpan="1" FontFamily="Cooper Black" Foreground="Gray" FontSize="59" Visibility="{Binding InStock , Converter={StaticResource myCon}}" Width="724">
+            <TextBlock x:Name="outof" Text="             out of stock    " HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFA9C1C1" Grid.ColumnSpan="1" FontFamily="Cooper Black" Foreground="Gray" FontSize="59" Visibility="{Binding InStock , Converter={StaticResource myCon}}" Width="724">
                 <!--<TextBlock.LayoutTransform>
                     <RotateTransform Angle="45" />
                 </TextBlock.LayoutTransform>-->
             </TextBlock>
             <TextBlock  Text="{Binding Price, StringFormat={}{0:C}}" Style="{StaticResource textOfItem}" Grid.Row= "4" FontSize="21" HorizontalAlignment="Left" Margin="470,160,0,-15" />
         </Grid>
-        <Button x:Name="btnAdd" Margin="10,416,741,255"  Content="Add to Cart" Foreground="Black" FontSize="20" Click="btnAdd_Click" FontFamily="Arial Black" FontStretch="Expanded" FontStyle="Italic" FontWeight="Bold" TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
+        <Button x:Name="btnAdd" Visibility="{Binding ElementName=outof,Path=Visibility,Converter={StaticResource Hiddentovisible} }"  Margin="288,471,463,200"  Content="Add to Cart" Foreground="Black" FontSize="20" Click="btnAdd_Click" FontFamily="Arial Black" FontStretch="Expanded" FontStyle="Italic" FontWeight="Bold" TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
 
-            <Button.Template>
-
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <Ellipse Stroke="LightCyan"
-                         StrokeThickness="2">
-                            <Ellipse.Fill>
-                                <SolidColorBrush Color="White"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" OpacityMask="Black"/>
-                    </Grid>
-                </ControlTemplate>
-            </Button.Template>
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="2"/>
-
             </Button.Effect>
         </Button>
     </Grid>

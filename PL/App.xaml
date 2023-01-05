@@ -57,6 +57,7 @@
             <Setter Property="FontSize" Value="30" />
             <Setter Property="FontFamily" Value="Algerian"/>
             <Setter Property="BorderThickness" Value="1"/>
+            
         </Style>
         <Style  TargetType="Window" >
             <Setter Property="Background" Value="LightCyan">
