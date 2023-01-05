@@ -105,8 +105,8 @@
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border
           Background="{TemplateBinding Background}"
-          BorderBrush="Gray"
-          BorderThickness="1"
+          BorderBrush="Green"
+          BorderThickness="2"
           CornerRadius="50">
                             <Border.Effect>
                                 <DropShadowEffect ShadowDepth="1"/>
@@ -136,6 +136,8 @@
                 </Style.Triggers>
       
         </Style>
+
+
 
         <!--<DataTemplate DataType="local:">
             <Grid>

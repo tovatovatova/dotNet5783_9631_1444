@@ -103,14 +103,14 @@
             </ListView>
 
             <Label Grid.Column="0" Content="Order Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <DatePicker x:Name="orderDateDatePicker" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="5,2,0,0" Grid.Row="6" SelectedDate="{Binding OrderDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+            <DatePicker x:Name="orderDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="5,2,0,0" Grid.Row="6" SelectedDate="{Binding OrderDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
 
             <Label Grid.Column="0" Content="Ship Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
-            <DatePicker x:Name="shipDateDatePicker"  Grid.Column="1" IsEnabled="False"  HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="7" SelectedDate="{Binding ShipDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.IsSharedSizeScope="True"/>
+            <DatePicker x:Name="shipDateDatePicker"  Grid.Column="1"   HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="7" SelectedDate="{Binding ShipDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.IsSharedSizeScope="True"/>
 
 
             <Label Grid.Column="0" Content="Delivery Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
-            <DatePicker x:Name="deliveryDateDatePicker" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="8" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <DatePicker x:Name="deliveryDateDatePicker"  Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="8" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
             <Label Grid.Column="0" Content="Status:"  HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
             <!--<TextBox x:Name="statusTextBox" Grid.Column="1" Grid.Row="9" IsReadOnly="True" HorizontalAlignment="Left" Height="NaN" Margin="3" VerticalAlignment="Center" Width="120" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>-->
@@ -126,6 +126,8 @@
             <TextBox x:Name="totalPriceTextBox" Grid.Column="1" IsReadOnly="True" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="10" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
         </Grid>
-        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="32,379,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="btnUpdate_Click"/>
+        <Button x:Name="btnUpdateCustomer" Style="{StaticResource RoundButtonStyle}" Content="Update Customer Details" HorizontalAlignment="Left" Margin="600,412,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="btnUpdate_Click" Height="46" Width="140"/>
+        <Button x:Name="btnUpdateDelivary" Style="{StaticResource RoundButtonStyle}" Content="Update Delivary" HorizontalAlignment="Left" Margin="400,412,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="46" Width="120" Click="btnUpdateDelivary_Click"/>
+        <Button x:Name="btnUpdateShipping" Content="Update Shipping" Style="{StaticResource RoundButtonStyle}" HorizontalAlignment="Left" Margin="200,412,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="46" Width="120" Click="btnUpdateShipping_Click"/>
     </Grid>
 </Window>
