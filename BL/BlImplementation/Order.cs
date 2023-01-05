@@ -159,6 +159,14 @@ namespace BlImplementation
                 throw new BO.BlIncorrectDateException("cant update delivered order");
             try
             {
+                dal.Order.Update(order);
+            }
+            catch (DO.DalIdDoNotExistException ex)
+            {
+                throw new BO.BlIdDoNotExistException("order", ex);
+            }
+            try
+            {
                 return ConvertOrderDoToBO(order);//convert and return
             }
             catch (BO.BlNullPropertyException ex)//couldnt convert
@@ -187,10 +195,18 @@ namespace BlImplementation
             {
                 throw new BO.BlIdDoNotExistException("order", ex);
             }
-            if (order.DeliveryDate == null && order.ShipDate == null)
-                order.DeliveryDate = DateTime.Now;//update delivary date
+            if (/*order.DeliveryDate == null && */order.ShipDate == null)
+                /*order.DeliveryDate*/ order.ShipDate= DateTime.Now;//update delivary date
             else
                 throw new BO.BlIncorrectDateException("cant update shiped order");
+            try
+            {
+                dal.Order.Update(order);
+            }
+            catch (DO.DalIdDoNotExistException ex)
+            {
+                throw new BO.BlIdDoNotExistException("order", ex);
+            }
             try
             {
                 return ConvertOrderDoToBO(order);//convert and return

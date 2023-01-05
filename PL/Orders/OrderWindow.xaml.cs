@@ -151,6 +151,7 @@ namespace PL
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
             }
             //could update 
+         //   MyOrder.Status = BO.OrderStatus.Delivered;
             Close();
         }
 

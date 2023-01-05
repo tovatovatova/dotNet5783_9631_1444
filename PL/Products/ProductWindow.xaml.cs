@@ -106,7 +106,7 @@ namespace PL
                 
             }
             
-                try//try to add the product with call to a bl function  add
+                try//try to add the product with `  call to a bl function  add
                 {
                 bl.Product.AddProduct(PlProduct);
                     messageBoxText = "product added successfully";

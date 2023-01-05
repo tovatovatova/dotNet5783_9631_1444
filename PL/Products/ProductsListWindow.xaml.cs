@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 namespace PL.Products
 {
+
     /// <summary>
     /// Interaction logic for ProductsListWindow.xaml
     /// </summary>
