@@ -54,7 +54,7 @@ internal static class DataSource
             User addUser = new User();
             addUser.UserName = userNames[i];
             addUser.Password= userPasswords[i];
-            // addUser.Email = userNames[i] + "@gmail.com";
+            addUser.Email = userNames[i] + "@gmail.com";
             addUser.Log = LogIn.Maneger;
             UserList.Add(addUser);
         }
@@ -63,7 +63,7 @@ internal static class DataSource
             User addUser = new User();
             addUser.UserName = userNames[i+3];
             addUser.Password = userPasswords[i+3];
-            // addUser.Email = userNames[i] + "@gmail.com";
+            addUser.Email = userNames[i+3] + "@gmail.com";
             addUser.Log = LogIn.Customer;
             UserList.Add(addUser);
         }
