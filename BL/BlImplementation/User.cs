@@ -28,7 +28,7 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("user name");
             try
             {
-                dal.User.Add(new DO.User() { UserName=user.UserName,Password=user.Password,Log=(DO.LogIn)(user.Log)});
+                dal.User.Add(new DO.User() { UserName=user.UserName,Password=user.Password, Email=user.Email});
             }
             catch (DO.DalIdAlreadyExistException ex)
             {
@@ -59,9 +59,10 @@ namespace BlImplementation
         {
             if (user.UserName == " ")
                 throw new BO.BlInvalidInputException("user name");
+            
             try
             {
-                dal.User.Update(new DO.User() { UserName = user.UserName, Password = user.Password, Log = (DO.LogIn)(user.Log) });
+                dal.User.Update(new DO.User() { UserName = user.UserName, Password = user.Password, Log = (DO.LogIn)(user.Log),Email=user.Email });
             }
             catch (DO.DalIdDoNotExistException ex)
             {

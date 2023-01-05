@@ -10,6 +10,6 @@ public struct User
 {
     public string? UserName { get; set; }
     public int Password { get; set; }
-   // public string? Email { get; set; }
-   public LogIn Log { get; set; }
+    public string? Email { get; set; }
+    public LogIn Log { get; set; }
 }

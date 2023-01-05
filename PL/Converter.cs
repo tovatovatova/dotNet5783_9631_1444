@@ -124,6 +124,31 @@ namespace PL
         {
             return 0;
         }
+
+    }
+    public class ConverPng : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                string startImage = value?.ToString() ?? throw new Exception();
+                string addDir = Environment.CurrentDirectory[..^4];
+                string final = addDir + @"\Images\" + startImage + ".png";
+                BitmapImage bitmap = new BitmapImage(new Uri(final));
+                return bitmap;
+            }
+            catch (Exception ex)
+            {
+                BitmapImage bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory + @"\Images\noPicture.jpg"));
+                return bitmap;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

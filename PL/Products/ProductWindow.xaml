@@ -43,10 +43,12 @@
         <Label Grid.Column="0" Content="In Stock:" HorizontalAlignment="Left" Margin="2,10,0,0" Grid.Row="4" VerticalAlignment="Top"/>
         <TextBox x:Name="inStockTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="1,14,0,0" Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.539,-0.264"/>
 
-
         <Button x:Name="btnAdd"  Content="Add"  Visibility="Hidden"  Background="#FF32BBC4" Height="50" Width="120"   Click="btnAdd_Click" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" RenderTransformOrigin="0.388,5.877" Margin="541,65,0,85" />
         <Button x:Name="btnUpdate" Content="Update"   Height="50" Width="120" Click="btnUpdate_Click" Background="#FF32BBC4"  Grid.Column="1"  Grid.Row="5" HorizontalAlignment="Right" Margin="0,135,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.873,1.206"/>
         <Button x:Name="btnDelete" Content="Delete" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Width="120" Height="50" Background="#FF32BBC4" Margin="546,205,0,-55" Click="btnDelete_Click"/>
+        <Image x:Name="imgProduct" Source="{Binding ElementName=imgProduct,Path=ImagesSource,Converter={StaticResource imageConverter}}"/>
+
     </Grid>
+    
 </Window>
 

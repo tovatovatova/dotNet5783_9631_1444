@@ -37,5 +37,6 @@
             </Label.RenderTransform>
         </Label>
         <Label  x:Name="lblWrong" Content="Wrong user name or password " Visibility="Hidden" HorizontalAlignment="Left" Margin="150,218,0,0" VerticalAlignment="Top" Height="28" Width="230" Background="{x:Null}" Foreground="#FFE91515"/>
+        <Button x:Name="btnAdd" Style="{StaticResource RoundButtonStyle}" Background="Beige" BorderBrush="LightPink" Content="Create an account" HorizontalAlignment="Left" Margin="150,230,0,0" VerticalAlignment="Top" Height="19" Width="160" Click="btnAdd_Click"/>
     </Grid>
 </Window>

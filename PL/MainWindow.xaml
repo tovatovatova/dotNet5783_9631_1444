@@ -55,12 +55,12 @@
         <TextBox x:Name="txtidd"  PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown" Visibility="Hidden" MaxLength="9" TextWrapping="Wrap"  KeyDown="OnKeyDownHandler" Text="" Width="285"
 FontSize="20" Margin="458,298,57,108"  />
         <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="25,104,0,0" VerticalAlignment="Top" Click="btnLogIn_Click"/>
-        <Image x:Name="imgLogIn" Stretch="Uniform" Source="pictures/log-in.png" Margin="12,13,677,340" MouseLeftButtonDown="imgLogIn_MouseLeftButtonDown" />
+        <Image x:Name="imgLogIn"   Margin="12,13,677,340" MouseLeftButtonDown="imgLogIn_MouseLeftButtonDown" />
         <Button x:Name="btnGuest" Content="Guest" HorizontalAlignment="Left" Margin="25,173,0,0" VerticalAlignment="Top" Click="btnGuest_Click"/>
     </Grid>
 </Window>
 
-
+<!--Source="{Binding ElementName=imgLogIn ,Converter={StaticResource converToPng}}"-->
 
 
 

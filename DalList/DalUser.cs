@@ -15,10 +15,11 @@ public class DalUser : IUser
     /// <exception cref="NotImplementedException"></exception>
     public int Add(User user)
     {
-        bool flag=DataSource.UserList.Any(use=>use?.Password==user.Password);
+        bool flag=DataSource.UserList.Any(use=>use?.Password==user.Password&&use?.UserName==user.UserName);
         if (flag)//if this password already exist-cant add this user
             throw new DalIdAlreadyExistException(user.Password, "user");
         //the new user doesnt exist
+        user.Log = LogIn.Customer;
         DataSource.UserList.Add(user);
         return user.Password;
     }

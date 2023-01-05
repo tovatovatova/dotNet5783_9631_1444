@@ -159,6 +159,6 @@
         <local:DoubleToVisibilityConverter x:Key="doubletoVisible"/>
         <local:NoBooleanToVisibilityConverter x:Key="notBoolToVis"/>
         <local:HiddenTOVisible x:Key="Hiddentovisible"/>
-
+        <!--<local:ConverPng x:Key="converToPng"/>-->
     </Application.Resources>
 </Application>

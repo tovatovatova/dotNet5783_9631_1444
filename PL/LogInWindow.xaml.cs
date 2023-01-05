@@ -109,6 +109,12 @@ namespace PL
             }
 
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            UserWindow u = new();
+            u.ShowDialog();
+        }
     }
   
 }
