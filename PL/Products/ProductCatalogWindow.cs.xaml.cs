@@ -65,8 +65,13 @@ namespace PL
                 // listViewProducts.ItemsSource = bl.Product.GetCatalog().ToList();
                 myProductCat = new List<BO.ProductItem>();
                 myProductCat = bl.Product.GetCatalog().ToList();
-       
-            
+            cmbCategory.Items.Add("All Products");
+            foreach (var item in Enum.GetValues(typeof(BO.Category)))//add the products' category to combo box
+            {
+                cmbCategory.Items.Add(item);
+            }
+            cmbCategory.SelectedIndex = 0;
+
 
         }
 
@@ -92,6 +97,17 @@ namespace PL
         {
             CartWindow c=new CartWindow(cart);
             c.ShowDialog();
+        }
+
+        private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbCategory.SelectedIndex == 0)
+            {
+                myProductCat = bl.Product.GetCatalog().ToList();
+                return;
+            }
+
+            myProductCat = bl.Product.GetListedListByFilterCategory(item => item.Category == Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString())).ToList();
         }
     }
     

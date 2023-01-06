@@ -21,7 +21,7 @@ namespace BlApi
 
         public IEnumerable<BO.ProsuctForList?> GetListedListByFilter(Func<BO.ProsuctForList?, bool>? filter = null);
 
-
+        public IEnumerable<BO.ProductItem?> GetListedListByFilterCategory(Func<BO.ProductItem?, bool>? filter = null);
 
 
 

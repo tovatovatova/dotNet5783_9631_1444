@@ -175,6 +175,18 @@ namespace BlImplementation
                    where filter(p)
                    select p;
         }
+
+        public IEnumerable<BO.ProductItem?> GetListedListByFilterCategory(Func<BO.ProductItem?, bool>? filter = null)
+        {
+            var listProductItem= from BO.ProductItem item in GetCatalog()//runs on list of catalog-product item
+                                 where filter(item)
+                                 select item;
+            return listProductItem;
+        }
+
+
+
+
         /// <summary>
         /// update product
         /// </summary>

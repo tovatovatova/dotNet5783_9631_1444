@@ -28,19 +28,23 @@ namespace PL
     {
 
         BlApi.IBl bl = BlApi.Factory.Get();
-        public BO.User? user
+
+
+        public BO.User? PlUser
         {
-            get { return (BO.User?)GetValue(userProperty); }
-            set { SetValue(userProperty, value); }
+            get { return (BO.User?)GetValue(PlUserProperty); }
+            set { SetValue(PlUserProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for user.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty userProperty =
-            DependencyProperty.Register("user", typeof(BO.User), typeof(Window), new PropertyMetadata(null));
+        // Using a DependencyProperty as the backing store for PlUser.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PlUserProperty =
+            DependencyProperty.Register("PlUser", typeof(BO.User), typeof(Window), new PropertyMetadata(null));
+
+
 
         public MainWindow()
         {
-           user= new BO.User();
+            PlUser = new BO.User();
             InitializeComponent();
 
         }
@@ -83,7 +87,7 @@ namespace PL
 
         private void btnNewOrder_Click(object sender, RoutedEventArgs e)
         {
-            ProductCatalogWindow productCatalog = new ProductCatalogWindow(user);
+            ProductCatalogWindow productCatalog = new ProductCatalogWindow(PlUser);
             productCatalog.Show();
         }
 
@@ -182,7 +186,7 @@ namespace PL
 
             try
             {
-                bl.User.compare(user);
+                bl.User.compare(PlUser);
             }
             catch (BO.BlIdDoNotExistException ex)//if user is not in the system
             {
@@ -203,7 +207,7 @@ namespace PL
                 return;
             }
             //if customer
-            if (user.Log == BO.LogIn.Customer)
+            if (PlUser.Log == BO.LogIn.Customer)
             {
                // Close();
                 //   MainWindow m = new MainWindow();
@@ -217,7 +221,7 @@ namespace PL
                 this.Show();
             }
             //if maneger
-            if (user.Log == BO.LogIn.Maneger)
+            if (PlUser.Log == BO.LogIn.Maneger)
             {
                 //Close();
                 //  MainWindow m = new MainWindow();
