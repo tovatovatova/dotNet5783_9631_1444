@@ -173,15 +173,20 @@ namespace PL
                 MessageBoxImage icon = MessageBoxImage.Information;
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                Close();
-                // MainWindow m = new MainWindow();
-                this.btnLogIn.Visibility = Visibility.Visible;
-                this.btnGuest.Visibility = Visibility.Visible;
-                this.btnNewOrder.Visibility = Visibility.Hidden;
-                this.btnTracking.Visibility = Visibility.Hidden;
-                this.btnCreate.Visibility = Visibility.Visible;
-                this.Show();
-                return;
+                if (result==MessageBoxResult.OK)
+                {
+                    this.Show();
+                    return;
+                }
+                //Close();
+                //// MainWindow m = new MainWindow();
+                //this.btnLogIn.Visibility = Visibility.Visible;
+                //this.btnGuest.Visibility = Visibility.Visible;
+                //this.btnNewOrder.Visibility = Visibility.Hidden;
+                //this.btnTracking.Visibility = Visibility.Hidden;
+                //this.btnCreate.Visibility = Visibility.Visible;
+                //this.Show();
+                //return;
             }
 
             try
@@ -198,13 +203,17 @@ namespace PL
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
                 //Close();
                 // MainWindow m = new MainWindow();
-                log.Visibility = Visibility.Hidden;
-                this.btnLogIn.Visibility = Visibility.Visible;
-                this.btnGuest.Visibility = Visibility.Visible;
-                this.btnNewOrder.Visibility = Visibility.Hidden;
-                this.btnTracking.Visibility = Visibility.Hidden;
-                this.Show();
-                return;
+                //log.Visibility = Visibility.Hidden;
+                //this.btnLogIn.Visibility = Visibility.Visible;
+                //this.btnGuest.Visibility = Visibility.Visible;
+                //this.btnNewOrder.Visibility = Visibility.Hidden;
+                //this.btnTracking.Visibility = Visibility.Hidden;
+                //this.Show();
+                if (result == MessageBoxResult.OK)
+                {
+                    this.Show();
+                    return;
+                }
             }
             //if customer
             if (PlUser.Log == BO.LogIn.Customer)
@@ -275,14 +284,40 @@ namespace PL
             string messageBoxText, caption;
             MessageBoxImage icon;
             MessageBoxResult result;
-            try//tries to add a customer to the system
+
+            if (PlUser.UserName == null)//empty name 
+            {
+                messageBoxText = " invalid input";
+                caption = " ";
+                icon = MessageBoxImage.Information;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                if (result == MessageBoxResult.OK)
+                {
+                    this.Show();
+                    return;
+                }
+            }
+
+                try//tries to add a customer to the system
             {
                 bl.User.addUser(PlUser);
                 messageBoxText = "product added successfully";
                 caption = "";
                 icon = MessageBoxImage.Information;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
-                
+                if (result==MessageBoxResult.OK)
+                {
+                    //user added successfully
+                    //its a customer
+                    this.btnLogIn.Visibility = Visibility.Visible;
+                    this.btnNewOrder.Visibility = Visibility.Hidden;
+                    this.btnGuest.Visibility = Visibility.Visible;
+                    this.btnTracking.Visibility = Visibility.Hidden;
+                    this.btnCreate.Visibility = Visibility.Visible;
+                    submit.Visibility = Visibility.Hidden;
+                    PlUser = new();
+                    Show();
+                }
             }
             catch (BO.BlInvalidInputException ex)
             {
@@ -291,7 +326,11 @@ namespace PL
                 caption = "error";
                 icon = MessageBoxImage.Error;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                return;
+                if (result == MessageBoxResult.OK)
+                {
+                    this.Show();
+                    return;
+                }
             }
             catch (BO.BlIdAlreadyExistException ex)
             {
@@ -302,18 +341,11 @@ namespace PL
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
                 if (result == MessageBoxResult.OK)
                 {
+                    this.Show();
                     return;
                 }
             }
-            //user added successfully
-            //its a customer
-            this.btnLogIn.Visibility = Visibility.Hidden;
-            this.btnNewOrder.Visibility = Visibility.Visible;
-            this.btnGuest.Visibility = Visibility.Hidden;
-            this.btnTracking.Visibility = Visibility.Visible;
-            this.btnCreate.Visibility = Visibility.Hidden;
-            submit.Visibility = Visibility.Hidden;
-            Show();
+            
 
         }
     }

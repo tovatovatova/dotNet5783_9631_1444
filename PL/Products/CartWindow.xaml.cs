@@ -70,13 +70,13 @@ namespace PL
             InitializeComponent();
 
         }
-        public CartWindow(Cart cart,User user)//showing cart of submited user
-        {
-            myCart= cart;
-            myUser = user;
-            InitializeComponent();
+        //public CartWindow(Cart cart,User user)//showing cart of submited user
+        //{
+        //    myCart= cart;
+        //    myUser = user;
+        //    InitializeComponent();
 
-        }
+        //}
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -159,8 +159,17 @@ namespace PL
             {
                 (sender as Button).Visibility = Visibility.Hidden;
                 checkuot.Visibility = Visibility.Hidden;
-                bl.Cart.OrderCreate(myCart);
-                Close();
+                int id= bl.Cart.OrderCreate(myCart);
+                string messegeBoxText = @"Your order has been successfully placed
+      Order Number: "+id;
+                string caption = " ";
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result;
+                result = MessageBox.Show(messegeBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                if (result == MessageBoxResult.OK)
+                {
+                    Close();
+                }
             }
             catch (Exception ex)
             {
@@ -171,7 +180,7 @@ namespace PL
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
                 if(result == MessageBoxResult.OK)
                 {
-
+                    Close();
                 }
             }
 

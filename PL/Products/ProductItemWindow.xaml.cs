@@ -45,8 +45,22 @@ namespace PL
         
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            bl.Cart.AddToCart(myCart, myProduct.ID);
-            Close();
+
+            try
+            {
+                 bl.Cart.AddToCart(myCart, myProduct.ID);
+                 Close();
+            }
+            catch (BO.BlOutOfStockException ex)
+            {
+                string messageBoxText = ex.Entity.ToString();
+                string caption = " ";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                Close();
+            }
+            
 
         }
     }
