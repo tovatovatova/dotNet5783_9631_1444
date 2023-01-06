@@ -84,7 +84,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Grid  x:Name="grid1"    Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,24,0,0" Height="215" Width="185">
+        <Grid  x:Name="grid1"   Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,24,0,0" Height="215" Width="185">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -96,9 +96,9 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Content="Address for delivery:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBox x:Name="customerAddressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="5" Text="{Binding CustomerAddress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="customerAddressTextBox" Grid.Column="1"   HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="5" Text="{Binding CustomerAddress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Grid.Column="0" Content=" Email address:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="customerEmailTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="{Binding CustomerEmail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="customerEmailTextBox" Grid.Column="1"  HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="{Binding CustomerEmail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBox x:Name="customerNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="{Binding CustomerName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Button Content="confirm" HorizontalAlignment="Left" Margin="18,16,0,0" Grid.Row="7" Click="Button_Click_1">

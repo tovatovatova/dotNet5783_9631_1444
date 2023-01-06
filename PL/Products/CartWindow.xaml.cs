@@ -45,7 +45,21 @@ namespace PL
         }
         public static readonly DependencyProperty myCartProperty =
             DependencyProperty.Register("myCartItems", typeof(BO.Cart), typeof(Window), new PropertyMetadata(null));
-       
+
+
+
+
+
+        public BO.User? myUser
+        {
+            get { return (BO.User?)GetValue(myUserProperty); }
+            set { SetValue(myUserProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for myUser.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty myUserProperty =
+            DependencyProperty.Register("myUser", typeof(BO.User), typeof(Window), new PropertyMetadata(null));
+
 
 
 
@@ -53,6 +67,13 @@ namespace PL
         {
             myCart = cart;
           
+            InitializeComponent();
+
+        }
+        public CartWindow(Cart cart,User user)//showing cart of submited user
+        {
+            myCart= cart;
+            myUser = user;
             InitializeComponent();
 
         }
@@ -126,6 +147,7 @@ namespace PL
         {
             if(myCart != null&&myCart.Items.Count()!=0) { }
             {
+                
                 grid1.Visibility = Visibility.Visible;
                 (sender as Button).Visibility = Visibility.Hidden;
             }

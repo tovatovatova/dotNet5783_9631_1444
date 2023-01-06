@@ -52,11 +52,11 @@ namespace PL
 
 
 
-        public ProductCatalogWindow(BO.User user)
+        public ProductCatalogWindow(BO.User u)
         {
             InitializeComponent();
             cart=new BO.Cart();
-            BO.User myUser= user;
+            user = u;
             if (cart.Items == null)
             {
                 cart.Items = new List<BO.OrderItem>();
@@ -95,8 +95,17 @@ namespace PL
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            CartWindow c=new CartWindow(cart);
-            c.ShowDialog();
+            if (user!=null)//user in system
+            {
+                CartWindow c = new CartWindow(cart, user);
+                c.ShowDialog();
+            }
+            else
+            {
+                CartWindow c=new CartWindow(cart);
+                c.ShowDialog();
+            }
+            
         }
 
         private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)

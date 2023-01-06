@@ -19,9 +19,24 @@ namespace PL
     /// </summary>
     public partial class CheckoutWindow : Window
     {
+
+
+        public BO.User? MyUser
+        {
+            get { return (BO.User?)GetValue(MyUserProperty); }
+            set { SetValue(MyUserProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyUser.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MyUserProperty =
+            DependencyProperty.Register("MyUser", typeof(BO.User), typeof(Window), new PropertyMetadata(null));
+
+
+
         public CheckoutWindow()
         {
             InitializeComponent();
         }
+
     }
 }
