@@ -18,6 +18,7 @@
     <None Remove="d598fd1b535788b6612ea3d59bc0adaf.jpg" />
     <None Remove="pic.jpg.png" />
     <None Remove="pic2.png" />
+    <None Remove="Products\addToCart.jpg" />
     <None Remove="Products\backgroundButt.jpg" />
     <None Remove="Products\d1aac7344c69b98c1696b53feab9ebc5.jpg" />
     <None Remove="Products\d1aac7344c69b98c169j6b53feab9ebc5.jpg" />
@@ -33,6 +34,7 @@
     <Resource Include="d598fd1b535788b6612ea3d59bc0adaf.jpg" />
     <Resource Include="pic.jpg.png" />
     <Resource Include="pic2.png" />
+    <Resource Include="Products\addToCart.jpg" />
     <Resource Include="Products\backgroundButt.jpg" />
     <Resource Include="Products\d1aac7344c69b98c1696b53feab9ebc5.jpg" />
     <Resource Include="Products\d1aac7344c69b98c169j6b53feab9ebc5.jpg" />
