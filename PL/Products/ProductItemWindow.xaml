@@ -38,13 +38,28 @@
             </TextBlock>
             <TextBlock  Text="{Binding Price, StringFormat={}{0:C}}" Style="{StaticResource textOfItem}" Grid.Row= "4" FontSize="21" HorizontalAlignment="Left" Margin="470,160,0,-15" />
         </Grid>
-        <Button x:Name="btnAdd" Visibility="{Binding ElementName=outof,Path=Visibility,Converter={StaticResource Hiddentovisible} }"  Margin="288,471,463,200"  Content="Add to Cart" Foreground="Black" FontSize="20" Click="btnAdd_Click" FontFamily="Arial Black" FontStretch="Expanded" FontStyle="Italic" FontWeight="Bold" TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
+        <Button x:Name="addToCart" Visibility="Visible"  Margin="10,460,687,125"    Click="btnAdd_Click"   TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"/>
                 </Style>
             </Button.Resources>
+            <Button.Background>
+                <ImageBrush ImageSource="{Binding ElementName=addToCart,Path=Name,Converter={StaticResource imageConverter}}" Stretch="None" TileMode="FlipX">
+                    <ImageBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="2"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform X="0" Y="2"/>
+                        </TransformGroup>
+                    </ImageBrush.RelativeTransform>
+                </ImageBrush>
+            </Button.Background>
 
+            <!--<Button.Background>
+                <ImageBrush ImageSource="{Binding ElementName=addToCart,Path=Name,Converter={StaticResource imageConverter}}"/>
+            </Button.Background>-->
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="2"/>
             </Button.Effect>
