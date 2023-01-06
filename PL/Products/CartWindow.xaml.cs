@@ -149,7 +149,7 @@ namespace PL
             {
                 
                 grid1.Visibility = Visibility.Visible;
-                (sender as Button).Visibility = Visibility.Hidden;
+                (sender as Button).IsEnabled = false;
             }
         }
 
@@ -157,7 +157,8 @@ namespace PL
         {
             try
             {
-                //(sender as Button).Visibility = Visibility.Hidden;
+                (sender as Button).Visibility = Visibility.Hidden;
+                checkuot.Visibility = Visibility.Hidden;
                 bl.Cart.OrderCreate(myCart);
                 Close();
             }
