@@ -133,10 +133,25 @@ namespace PL
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            (sender as Button).Visibility = Visibility.Hidden;
-            bl.Cart.OrderCreate(myCart);
+            try
+            {
+                //(sender as Button).Visibility = Visibility.Hidden;
+                bl.Cart.OrderCreate(myCart);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                string messageBoxText = "wrong details try again";
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                if(result == MessageBoxResult.OK)
+                {
 
-            Close();
+                }
+            }
+
         }
     }
 }
