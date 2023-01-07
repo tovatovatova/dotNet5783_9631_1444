@@ -51,7 +51,7 @@ namespace PL
             MyOrder = new BO.Order();
             PlOrderItem = new List<BO.OrderItem?>();
             statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.OrderStatus));
-
+            //statusComboBox.SelectedItem = "All Orders";
         }
         public OrderWindow(object sender, EventArgs e, int id)
         {
@@ -81,6 +81,7 @@ namespace PL
             try
             {
                 MyOrder=bl.Order.UpdateOrder(MyOrder);
+               // PlOrderItem = MyOrder.Items.ToList();
             }
             catch (BO.BlIdDoNotExistException ex)
             {

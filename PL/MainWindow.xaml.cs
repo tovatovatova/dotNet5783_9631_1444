@@ -153,7 +153,7 @@ namespace PL
                 }
                 catch (BO.BlIdDoNotExistException ex)//product doesnt exist
                 {//throw an error message box 
-                    string messageBoxText = ex.Message.ToString();
+                    string messageBoxText = "This "+ex.Message.ToString()+" doesnt exist";
                     string caption = "error";
                     MessageBoxImage icon = MessageBoxImage.Error;
                     MessageBoxResult result;
@@ -301,7 +301,7 @@ namespace PL
                 try//tries to add a customer to the system
             {
                 bl.User.addUser(PlUser);
-                messageBoxText = "product added successfully";
+                messageBoxText = "user added successfully";
                 caption = "";
                 icon = MessageBoxImage.Information;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
@@ -309,14 +309,14 @@ namespace PL
                 {
                     //user added successfully
                     //its a customer
-                    this.btnLogIn.Visibility = Visibility.Visible;
-                    this.btnNewOrder.Visibility = Visibility.Hidden;
-                    this.btnGuest.Visibility = Visibility.Visible;
-                    this.btnTracking.Visibility = Visibility.Hidden;
-                    this.btnCreate.Visibility = Visibility.Visible;
+                    this.btnLogIn.Visibility = Visibility.Hidden;
+                    this.btnNewOrder.Visibility = Visibility.Visible;
+                    this.btnGuest.Visibility = Visibility.Hidden;
+                    this.btnTracking.Visibility = Visibility.Visible;
+                    this.btnCreate.Visibility = Visibility.Hidden;
                     submit.Visibility = Visibility.Hidden;
-                    PlUser = new();
-                    Show();
+                    //PlUser = new();
+                    this.Show();
                 }
             }
             catch (BO.BlInvalidInputException ex)

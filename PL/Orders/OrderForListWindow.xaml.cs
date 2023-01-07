@@ -41,6 +41,7 @@ namespace PL
             {
                 cmbStatus.Items.Add(item);
             }
+            cmbStatus.SelectedIndex = 0;
         }
 
         private void btnAddOrder_Click(object sender, RoutedEventArgs e)
@@ -75,7 +76,7 @@ namespace PL
             o.ShowDialog();
             cmbStatus.SelectedItem = cmbStatus.Items.GetItemAt(0);
             PlOrder = bl.Order.GetOrderList().ToList();
-           // orderForListView.ItemsSource = PlOrder;
+            orderForListView.ItemsSource = PlOrder;
 
         }
 
