@@ -185,5 +185,10 @@ namespace PL
             }
 
         }
+
+        private void btnBack_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
