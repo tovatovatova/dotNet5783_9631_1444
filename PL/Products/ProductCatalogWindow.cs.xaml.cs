@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -52,10 +53,19 @@ namespace PL
 
 
 
-        public ProductCatalogWindow(BO.User u)
+        public ProductCatalogWindow(BO.User u, BO.Cart Oldcart = null)
         {
             InitializeComponent();
-            cart=new BO.Cart();
+            if (Oldcart == null)
+
+            {
+                cart = new BO.Cart();
+            }
+            else
+            {
+                cart = Oldcart;
+            }
+
             user = u;
             if (cart.Items == null)
             {
