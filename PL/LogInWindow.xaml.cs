@@ -54,7 +54,7 @@ namespace PL
                 Close();
                 // MainWindow m = new MainWindow();
                 m.btnLogIn.Visibility = Visibility.Visible;
-                m.btnGuest.Visibility = Visibility.Visible;
+              //  m.btnGuest.Visibility = Visibility.Visible;
                 m.btnNewOrder.Visibility = Visibility.Hidden;
                 m.btnTracking.Visibility = Visibility.Hidden;
                 m.Show();
@@ -90,7 +90,7 @@ namespace PL
                // m.btnAdmin.Visibility = Visibility.Hidden;//need to remove...
                 m.btnLogIn.Visibility = Visibility.Hidden;
                 m.btnNewOrder.Visibility = Visibility.Visible;
-                m.btnGuest.Visibility = Visibility.Hidden;
+              //  m.btnGuest.Visibility = Visibility.Hidden;
                 m.btnTracking.Visibility = Visibility.Visible;
                 m.Show();
             }
@@ -103,7 +103,7 @@ namespace PL
                 m.btnOrder.Visibility = Visibility.Visible;
                // m.btnAdmin.Visibility = Visibility.Hidden;
                 m.btnLogIn.Visibility = Visibility.Hidden;
-                m.btnGuest.Visibility = Visibility.Hidden;
+                //m.btnGuest.Visibility = Visibility.Hidden;
                 m.btnNewOrder.Visibility = Visibility.Hidden;
                 m.btnTracking.Visibility = Visibility.Hidden;
                 m.Show();

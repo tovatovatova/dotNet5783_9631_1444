@@ -25,9 +25,8 @@
         <Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="488,369,0,0" VerticalAlignment="Top" Click="btnNewOrder_Click" RenderTransformOrigin="0.596,-2.347" Width="225" Visibility="Hidden"/>
         <TextBox x:Name="txtidd"  PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown" Visibility="Hidden" MaxLength="9" TextWrapping="Wrap"  KeyDown="OnKeyDownHandler" Text="" Width="285"
 FontSize="20" Margin="458,298,57,108"  />
-        <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="25,104,0,0" VerticalAlignment="Top" Click="btnLogIn_Click"/>
+        <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="21,129,0,0" VerticalAlignment="Top" Click="btnLogIn_Click"/>
         <Image x:Name="imgLogIn"   Margin="12,13,677,340" MouseLeftButtonDown="imgLogIn_MouseLeftButtonDown" />
-        <Button x:Name="btnGuest" Content="Guest" HorizontalAlignment="Left" Margin="25,173,0,0" VerticalAlignment="Top" Click="btnGuest_Click"/>
         <Grid x:Name="log"  Margin="155,62,70,132"  Visibility="Hidden" >
             <Grid x:Name="logInGrid"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="136,45,0,0" Height="109" Width="256" RenderTransformOrigin="0.422,-0.391">
                 <Grid.ColumnDefinitions>
@@ -58,7 +57,7 @@ FontSize="20" Margin="458,298,57,108"  />
             <Label  x:Name="lblWrong" Content="Wrong user name or password " Visibility="Hidden" HorizontalAlignment="Left" Margin="150,218,0,0" VerticalAlignment="Top" Height="28" Width="230" Background="{x:Null}" Foreground="#FFE91515"/>
             <Button x:Name="btnLog" Content="Log" HorizontalAlignment="Left" Margin="323,151,0,0" VerticalAlignment="Top" Click="btnLog_Click" Height="44" Width="107"/>
         </Grid>
-        <Button x:Name="btnCreate" Content="new account" HorizontalAlignment="Left" Margin="22,239,0,0" VerticalAlignment="Top" Click="btnCreate_Click"/>
+        <Button x:Name="btnCreate" Content="new account" HorizontalAlignment="Left" Margin="18,199,0,0" VerticalAlignment="Top" Click="btnCreate_Click"/>
         <Grid x:Name="submit" Visibility="Hidden"  >
             <Grid x:Name="userGrid"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="230,53,0,0" Height="375" Width="375">
                 <Grid.ColumnDefinitions>

@@ -223,7 +223,7 @@ namespace PL
                 // m.btnAdmin.Visibility = Visibility.Hidden;//need to remove...
                 this.btnLogIn.Visibility = Visibility.Hidden;
                 this.btnNewOrder.Visibility = Visibility.Visible;
-                this.btnGuest.Visibility = Visibility.Hidden;
+               // this.btnGuest.Visibility = Visibility.Hidden;
                 this.btnTracking.Visibility = Visibility.Visible;
                 this.btnCreate.Visibility = Visibility.Hidden;
                 log.Visibility = Visibility.Hidden;
@@ -238,7 +238,7 @@ namespace PL
                 this.btnOrder.Visibility = Visibility.Visible;
                 // m.btnAdmin.Visibility = Visibility.Hidden;
                 this.btnLogIn.Visibility = Visibility.Hidden;
-                this.btnGuest.Visibility = Visibility.Hidden;
+                //this.btnGuest.Visibility = Visibility.Hidden;
                 this.btnNewOrder.Visibility = Visibility.Hidden;
                 this.btnTracking.Visibility = Visibility.Hidden;
                 this.btnCreate.Visibility = Visibility.Hidden;
@@ -261,18 +261,18 @@ namespace PL
             l.Show();
         }
         
-        private void btnGuest_Click(object sender, RoutedEventArgs e)
-        {
-            //MainWindow m = new MainWindow();
-            this.btnLogIn.Visibility = Visibility.Hidden;
-            this.btnNewOrder.Visibility = Visibility.Visible;
-            this.btnTracking.Visibility = Visibility.Visible;
-            this.btnProduct.Visibility = Visibility.Hidden;
-            this.btnOrder.Visibility = Visibility.Hidden;
-            this.btnGuest.Visibility = Visibility.Hidden;
-            this.btnCreate.Visibility = Visibility.Hidden;
-            this.Show();
-        }
+        //private void btnGuest_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //MainWindow m = new MainWindow();
+        //    this.btnLogIn.Visibility = Visibility.Hidden;
+        //    this.btnNewOrder.Visibility = Visibility.Visible;
+        //    this.btnTracking.Visibility = Visibility.Visible;
+        //    this.btnProduct.Visibility = Visibility.Hidden;
+        //    this.btnOrder.Visibility = Visibility.Hidden;
+        //  //  this.btnGuest.Visibility = Visibility.Hidden;
+        //    this.btnCreate.Visibility = Visibility.Hidden;
+        //    this.Show();
+        //}
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
@@ -311,7 +311,7 @@ namespace PL
                     //its a customer
                     this.btnLogIn.Visibility = Visibility.Hidden;
                     this.btnNewOrder.Visibility = Visibility.Visible;
-                    this.btnGuest.Visibility = Visibility.Hidden;
+                    //this.btnGuest.Visibility = Visibility.Hidden;
                     this.btnTracking.Visibility = Visibility.Visible;
                     this.btnCreate.Visibility = Visibility.Hidden;
                     submit.Visibility = Visibility.Hidden;
