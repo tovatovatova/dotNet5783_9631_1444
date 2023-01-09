@@ -68,8 +68,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{DE4398
 		Images\afa1b77e9beeb3cf65bd8ac8343e7055.jpg = Images\afa1b77e9beeb3cf65bd8ac8343e7055.jpg
 		Images\b08584521b32269d365a58b25a4c3e4c.jpg = Images\b08584521b32269d365a58b25a4c3e4c.jpg
 		Images\backgroundButt.jpg = Images\backgroundButt.jpg
-		Images\cakee.jpg.jpg = Images\cakee.jpg.jpg
 		Images\btnBack.jpg = Images\btnBack.jpg
+		Images\cakee.jpg.jpg = Images\cakee.jpg.jpg
 		Images\cartIm.jpg = Images\cartIm.jpg
 		Images\d1aac7344c69b98c1696b53feab9ebc5.jpg = Images\d1aac7344c69b98c1696b53feab9ebc5.jpg
 		Images\d1aac7344c69b98c169j6b53feab9ebc5.jpg = Images\d1aac7344c69b98c169j6b53feab9ebc5.jpg
@@ -91,6 +91,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{DE4398
 		Images\צילום מסך 2022-12-06 002011.png = Images\צילום מסך 2022-12-06 002011.png
 		Images\צילום מסך 2022-12-06 002023.png = Images\צילום מסך 2022-12-06 002023.png
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalXml", "DalXml\DalXml.csproj", "{3D0E7AFA-2317-4187-BF09-DCD639F762EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -126,6 +128,10 @@ Global
 		{7D169CAB-D1E8-49AD-8928-109298FDF023}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D169CAB-D1E8-49AD-8928-109298FDF023}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D169CAB-D1E8-49AD-8928-109298FDF023}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D0E7AFA-2317-4187-BF09-DCD639F762EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D0E7AFA-2317-4187-BF09-DCD639F762EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D0E7AFA-2317-4187-BF09-DCD639F762EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D0E7AFA-2317-4187-BF09-DCD639F762EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
