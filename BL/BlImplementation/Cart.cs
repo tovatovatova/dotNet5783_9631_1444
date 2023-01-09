@@ -210,7 +210,7 @@ namespace BlImplementation
             doOrderItems.Select(x => dal.OrderItem.Add(x)).ToList();//add all order items to list of order item in DO
             boOrder.Items.ToList().ForEach(item => UpdateAmount(item.ProductID, item.Amount));//update the amount in stock of each product after reservation
             //needs to delete all the items from the cart-cart needs to be empty and total price should be reset
-            
+            //boOrder.Items = new List<BO.OrderItem>();
             return boOrder.Id;//return id of this order
         }
         /// <summary>

@@ -29,7 +29,7 @@ namespace BlImplementation
             try
             {
                 dal.User.Add(new DO.User() { UserName=user.UserName,Password=user.Password, Email=user.Email});
-            }
+            }//func return password...
             catch (DO.DalIdAlreadyExistException ex)
             {
                 throw new BO.BlIdAlreadyExistException(" this user already exists", ex);

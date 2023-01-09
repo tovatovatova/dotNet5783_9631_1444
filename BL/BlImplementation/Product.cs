@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
-
+using BO;
 
 namespace BlImplementation
 {
@@ -242,6 +242,38 @@ namespace BlImplementation
 
                    };
         }
+
+        public IEnumerable<BO.ProductItem?> getByGrouping()
+        {
+            var result = from DO.Product? doProduct in dal.Product.GetAll()
+                         select new BO.ProductItem
+                         {
+                             ID = doProduct?.Id ?? throw new NullReferenceException("missing id"),
+                             Name = doProduct?.Name ?? throw new NullReferenceException("missing name"),
+                             Price = doProduct?.Price ?? throw new NullReferenceException("missing price"),
+                             Category = (BO.Category)(doProduct?.ProductCategoty ?? throw new NullReferenceException("missing category")),
+                             AmountInCart = 0,//we cant know here the amount in cart
+                             InStock = doProduct?.AmountInStock > 0,
+                             ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" + doProduct?.Id + ".jpg"
+
+                         } into product
+                         group product by product.Category;
+           List<BO.ProductItem> items = new List<BO.ProductItem>();
+            foreach(var p in result)
+            {
+                foreach(var item in p)
+                    items.Add(item);
+            }
+            return items;
+        }
+
+
+
+
+
+
+
+
         //public IEnumerable<BO.ProsuctForList?> GetListedListByCategory(Func<BO.ProsuctForList?, bool>? filter = null)
         //{
         //    return from BO.ProsuctForList p in GetProductList()

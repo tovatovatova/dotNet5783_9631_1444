@@ -1,4 +1,5 @@
-﻿using BO;
+﻿using BlApi;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -63,20 +64,20 @@ namespace PL
 
 
 
-        public CartWindow(Cart cart)
+        public CartWindow(ref Cart cart)
         {
             myCart = cart;
           
             InitializeComponent();
 
         }
-        //public CartWindow(Cart cart,User user)//showing cart of submited user
-        //{
-        //    myCart= cart;
-        //    myUser = user;
-        //    InitializeComponent();
+        public CartWindow(ref Cart cart, User user)//showing cart of submited user
+        {
+            myCart = cart;
+            myUser = user;
+            InitializeComponent();
 
-        //}
+        }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -168,6 +169,7 @@ namespace PL
                 result = MessageBox.Show(messegeBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
                 if (result == MessageBoxResult.OK)
                 {
+                    myCart.Items = new List<BO.OrderItem>();
                     Close();
                 }
             }
@@ -178,10 +180,10 @@ namespace PL
                 MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                if(result == MessageBoxResult.OK)
-                {
-                    Close();
-                }
+                //if(result == MessageBoxResult.OK)
+                //{
+                //    Close();
+                //}
             }
 
         }

@@ -57,7 +57,6 @@ namespace PL
         {
             InitializeComponent();
             if (Oldcart == null)
-
             {
                 cart = new BO.Cart();
             }
@@ -75,12 +74,12 @@ namespace PL
                 // listViewProducts.ItemsSource = bl.Product.GetCatalog().ToList();
                 myProductCat = new List<BO.ProductItem>();
                 myProductCat = bl.Product.GetCatalog().ToList();
-            cmbCategory.Items.Add("All Products");
-            foreach (var item in Enum.GetValues(typeof(BO.Category)))//add the products' category to combo box
-            {
-                cmbCategory.Items.Add(item);
-            }
-            cmbCategory.SelectedIndex = 0;
+            //cmbCategory.Items.Add("All Products");
+            //foreach (var item in Enum.GetValues(typeof(BO.Category)))//add the products' category to combo box
+            //{
+            //    cmbCategory.Items.Add(item);
+            //}
+            //cmbCategory.SelectedIndex = 0;
 
 
         }
@@ -96,7 +95,7 @@ namespace PL
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            if (cart==null||cart.Items == null)
+            if (cart==null||cart.Items.Count()==0/*cart.Items == null*/)
                 txtAmountInCart.Text = "0";
             else
                 txtAmountInCart.Text = cart.Items.Count().ToString();
@@ -105,28 +104,41 @@ namespace PL
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //if (user!=null)//user in system
-            //{
-            //    CartWindow c = new CartWindow(cart, user);
-            //    c.ShowDialog();
-            //}
-           
-                CartWindow c=new CartWindow(cart);
-                c.ShowDialog();
-            
-            
-        }
-
-        private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cmbCategory.SelectedIndex == 0)
+            if (user != null)//user in system
             {
-                myProductCat = bl.Product.GetCatalog().ToList();
-                return;
+                CartWindow c = new CartWindow(ref cart, user);
+                c.ShowDialog();
             }
-
-            myProductCat = bl.Product.GetListedListByFilterCategory(item => item.Category == Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString())).ToList();
+            else
+            {
+                CartWindow c=new CartWindow(ref cart);
+                c.ShowDialog();
+            }
+            
+            
+            
         }
+
+        private void cxbSortByCategory_Checked(object sender, RoutedEventArgs e)
+        {
+            myProductCat = bl.Product.getByGrouping().ToList();
+        }
+
+        private void cxbSortByCategory_Unchecked(object sender, RoutedEventArgs e)
+        {
+            myProductCat=bl.Product.GetCatalog().ToList();
+        }
+
+        //private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (cmbCategory.SelectedIndex == 0)
+        //    {
+        //        myProductCat = bl.Product.GetCatalog().ToList();
+        //        return;
+        //    }
+
+        //    myProductCat = bl.Product.GetListedListByFilterCategory(item => item.Category == Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString())).ToList();
+        //}
     }
     
 }

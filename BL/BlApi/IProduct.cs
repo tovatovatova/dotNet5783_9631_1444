@@ -23,7 +23,7 @@ namespace BlApi
 
         public IEnumerable<BO.ProductItem?> GetListedListByFilterCategory(Func<BO.ProductItem?, bool>? filter = null);
 
-
+        public IEnumerable<BO.ProductItem?> getByGrouping();
 
 
     }
