@@ -138,33 +138,51 @@ namespace PL
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                (sender as Button).Visibility = Visibility.Hidden;
-                checkuot.Visibility = Visibility.Hidden;
-                int id= bl.Cart.OrderCreate(myCart);
-                string messegeBoxText = @"Your order has been successfully placed
-      Order Number: "+id;
-                string caption = " ";
-                MessageBoxImage icon = MessageBoxImage.Information;
-                MessageBoxResult result;
-                result = MessageBox.Show(messegeBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                if (result == MessageBoxResult.OK)
-                {
-                    myCart.Items.ToList().Clear();
-                    Close();
-                }
-            }
-            catch (Exception ex)
+            if (myCart.CustomerAddress == null || myCart.CustomerEmail == null || myCart.CustomerName == null)
             {
                 string messageBoxText = "wrong details try again";
                 string caption = "error";
                 MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-               if (result == MessageBoxResult.OK)
+                if (result == MessageBoxResult.OK)
                 {
                     return;
+                }
+            }
+            else
+            {
+                try
+                {
+                    (sender as Button).Visibility = Visibility.Hidden;
+                    checkuot.Visibility = Visibility.Hidden;
+                    int id = bl.Cart.OrderCreate(myCart);
+                    string messegeBoxText = @"Your order has been successfully placed
+      Order Number: " + id;
+                    string caption = " ";
+                    MessageBoxImage icon = MessageBoxImage.Information;
+                    MessageBoxResult result;
+                    result = MessageBox.Show(messegeBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        myCart.Items = null;
+
+                        ProductCatalogWindow p = new ProductCatalogWindow(myUser,myCart);
+                       p.ShowDialog();
+                        Close();
+                    }
+                }
+                catch (BO.BlIdDoNotExistException)
+                {
+                    string messageBoxText = "something went wrong";
+                    string caption = "error";
+                    MessageBoxImage icon = MessageBoxImage.Error;
+                    MessageBoxResult result;
+                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        return;
+                    }
                 }
             }
 

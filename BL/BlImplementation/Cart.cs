@@ -185,8 +185,7 @@ namespace BlImplementation
 
             //boOrder.Items = cart.Items.Where(item => dal.Product.GetById(item.ProductID).AmountInStock >= item.Amount);
             boOrder.Items = cart.Items.Select(item=>item);//add all items to the the new order(validation was already checked)
-            //if (boOrder.Items.Count() != cart.Items.Count())
-                //throw new Exception("you need to update your cart!");
+          
 
             DO.Order newOrder = new DO.Order()//create order in DO
             {
@@ -199,7 +198,7 @@ namespace BlImplementation
             };
             boOrder.Id = dal.Order.Add(newOrder);//add to order list in DO and gets an order id
             IEnumerable<DO.OrderItem> doOrderItems;
-            doOrderItems = from BO.OrderItem itemInOrder in boOrder.Items/*cart.Items*///runs on the items in order                
+            doOrderItems = from BO.OrderItem itemInOrder in boOrder.Items//runs on the items in order                
                            select new DO.OrderItem()//for each order item creates an order item in DO
                            {
                                OrderId = boOrder.Id,
@@ -210,7 +209,7 @@ namespace BlImplementation
             doOrderItems.Select(x => dal.OrderItem.Add(x)).ToList();//add all order items to list of order item in DO
             boOrder.Items.ToList().ForEach(item => UpdateAmount(item.ProductID, item.Amount));//update the amount in stock of each product after reservation
             //needs to delete all the items from the cart-cart needs to be empty and total price should be reset
-            //boOrder.Items = new List<BO.OrderItem>();
+            
             return boOrder.Id;//return id of this order
         }
         /// <summary>

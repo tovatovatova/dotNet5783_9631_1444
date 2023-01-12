@@ -70,10 +70,11 @@ namespace PL
             {
                 cart.Items = new List<BO.OrderItem>();
             }
-                txtAmountInCart.Text = cart.Items.Count().ToString();
+            InitializeComponent();
+            txtAmountInCart.Text = cart.Items.Count().ToString();
                 myProductCat = new List<BO.ProductItem>();
                 myProductCat = bl.Product.GetCatalog().ToList();
-            InitializeComponent();
+           
 
 
         }
@@ -106,6 +107,7 @@ namespace PL
             else
             {
                 CartWindow c=new CartWindow( cart);
+                Close();
                 c.ShowDialog();
             }
             
