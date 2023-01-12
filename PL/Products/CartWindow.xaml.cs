@@ -64,7 +64,7 @@ namespace PL
 
 
 
-        public CartWindow( Cart cart)
+        public CartWindow(Cart cart)
         {
             myCart = cart;
           
@@ -103,25 +103,7 @@ namespace PL
 
        
 
-        //private void btnAdd_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-
-        //    myCart = bl.Cart.AddToCart(myCart, Convert.ToInt32((sender as Button).Tag.ToString()));
-
-        //    orderItemsListView.ItemsSource = myCart.Items;
-        //    orderItemsListView.Items.Refresh();
-
-
-        //}
-
-        //private void btnLow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    myCart = bl.Cart.AddToCart(myCart, Convert.ToInt32((sender as Button).Tag.ToString()));
-
-        //    orderItemsListView.ItemsSource = myCart.Items;
-        //    orderItemsListView.Items.Refresh();
-        //    txtTotalPCart.Text = myCart.TotalPrice.ToString();
-        //}
+       
 
         private void btnLow_Click(object sender, RoutedEventArgs e)
         {
@@ -169,7 +151,7 @@ namespace PL
                 result = MessageBox.Show(messegeBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
                 if (result == MessageBoxResult.OK)
                 {
-                    myCart.Items = new List<BO.OrderItem>();
+                    myCart.Items.ToList().Clear();
                     Close();
                 }
             }
@@ -180,17 +162,14 @@ namespace PL
                 MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                //if(result == MessageBoxResult.OK)
-                //{
-                //    Close();
-                //}
+               if (result == MessageBoxResult.OK)
+                {
+                    return;
+                }
             }
 
         }
 
-        private void btnBack_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
+       
     }
 }

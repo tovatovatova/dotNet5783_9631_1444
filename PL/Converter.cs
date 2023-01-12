@@ -128,7 +128,7 @@ namespace PL
             }
             catch (Exception ex)
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory + @"\Images\noPicture.jpg"));
+                BitmapImage bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory[..^4] + @"\Images\noPicture.jpg"));
                 return bitmap;
             }
         }
