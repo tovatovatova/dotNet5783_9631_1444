@@ -32,7 +32,7 @@
     <Id>100004</Id>
     <Name>crep</Name>
     <Price>51</Price>
-    <AmountInStock>5</AmountInStock>
+    <AmountInStock>4</AmountInStock>
     <ProductCategoty>Specials</ProductCategoty>
   </Product>
   <Product>
@@ -46,7 +46,7 @@
     <Id>100006</Id>
     <Name>mini donats</Name>
     <Price>46</Price>
-    <AmountInStock>1</AmountInStock>
+    <AmountInStock>0</AmountInStock>
     <ProductCategoty>Desserts</ProductCategoty>
   </Product>
   <Product>
