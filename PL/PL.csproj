@@ -13,7 +13,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="3f456dd50885a6d2e8604434a6292965.jpg" />
     <None Remove="beeDonat.jpg.jpg" />
     <None Remove="d598fd1b535788b6612ea3d59bc0adaf.jpg" />
     <None Remove="pic.jpg.png" />
@@ -30,7 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="3f456dd50885a6d2e8604434a6292965.jpg" />
     <Resource Include="beeDonat.jpg.jpg" />
     <Resource Include="d598fd1b535788b6612ea3d59bc0adaf.jpg" />
     <Resource Include="pic.jpg.png" />
