@@ -30,18 +30,18 @@ internal class DalOrderItem : IOrderItem
     public int Add(OrderItem item)
     {
         XElement elementItem = XMLTools.LoadListFromXMLElement(s_orderItems);
-        XElement? oItem = (from o in elementItem.Elements()
-                           where (o.ToIntNullable("OrderItemId") == item.OrderItemId)
-                           select o).FirstOrDefault();
-        if (oItem != null)//already exist
-            throw new DalIdAlreadyExistException(item.OrderItemId, "order item");
+        //XElement? oItem = (from o in elementItem.Elements()
+        //                   where (o.ToIntNullable("OrderItemId") == item.OrderItemId)
+        //                   select o).FirstOrDefault();
+        //if (oItem != null)//already exist
+        //    throw new DalIdAlreadyExistException(item.OrderItemId, "order item");
+        item.OrderItemId = Config.NextOrderItemNumber();
         XElement xOrderItem = new XElement("OrderItem",
                                         new XElement("OrderItemId", item.OrderItemId),
                                         new XElement("ProductId", item.ProductId),
                                         new XElement("OrderId", item.OrderId),
                                         new XElement("Price", item.Price),
                                         new XElement("Amount", item.Amount));
-        item.OrderItemId = Config.NextOrderItemNumber();
         elementItem.Add(xOrderItem);
         XMLTools.SaveListToXMLElement(elementItem, s_orderItems);
         Config.SaveNextOrderItemNumber(item.OrderItemId+1);
