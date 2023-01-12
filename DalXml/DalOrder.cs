@@ -16,9 +16,10 @@ internal class DalOrder : IOrder
     public int Add(Order item)
     {
         List<Order?> lstOrd = XMLTools.LoadListFromXMLSerializer<DO.Order>(s_orders);
-       // newOrder.OrderId = DataSource.Config.NextOrderNumber;
+        item.OrderId = Config.NextOrderNumber();
         lstOrd.Add(item);
         XMLTools.SaveListToXMLSerializer<DO.Order>(lstOrd, s_orders);
+        Config.SaveNextOrderNumber(item.OrderId+1);
         return item.OrderId;
     }
 
