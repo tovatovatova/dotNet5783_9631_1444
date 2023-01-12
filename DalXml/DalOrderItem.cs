@@ -41,8 +41,10 @@ internal class DalOrderItem : IOrderItem
                                         new XElement("OrderId", item.OrderId),
                                         new XElement("Price", item.Price),
                                         new XElement("Amount", item.Amount));
+        item.OrderItemId = Config.NextOrderItemNumber();
         elementItem.Add(xOrderItem);
         XMLTools.SaveListToXMLElement(elementItem, s_orderItems);
+        Config.SaveNextOrderItemNumber(item.OrderItemId+1);
         return item.OrderItemId;
 
         //running number???//newOrderItem.OrderItemId = DataSource.Config.NextOrderItemNumber;

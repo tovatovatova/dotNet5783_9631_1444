@@ -8,6 +8,7 @@ namespace Dal;
 internal static class DataSource
 {
     static readonly Random randNumbers = new Random();
+
     internal static List<Product?> ProductList { get; } = new List<Product?>();
     internal static List<Order?> OrderList { get; } = new List<Order?>();
     internal static List<OrderItem?> OrderItemList { get; } = new List<OrderItem?>();
@@ -23,6 +24,16 @@ internal static class DataSource
     }
 
 
+   
+
+
+
+
+
+
+
+
+
 
     static DataSource()
     {
@@ -34,6 +45,12 @@ internal static class DataSource
         createAndIinitOrders();
         createAndIinitOrderItems();
         createAndIinitUsers();
+        //initialize files-temporary
+        //XMLTools.SaveListToXMLSerializer(ProductList, "products");
+        //XMLTools.SaveListToXMLSerializer(OrderList, "order");
+        //XMLTools.SaveListToXMLSerializer(OrderItemList, "orderItems");
+        //XMLTools.SaveListToXMLSerializer(UserList, "users");
+
     }
 
 

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<User>
+		<UserName>ortv</UserName>
+		<Password>617617</Password>
+		<Email>ortv@gmail.com</Email>
+		<Log>Maneger</Log>
+	</User>
+	<User>
+		<UserName>tovatovatova</UserName>
+		<Password>123456</Password>
+		<Email>tovatovatova@gmail.com</Email>
+		<Log>Maneger</Log>
+	</User>
+	<User>
+		<UserName>orokach</UserName>
+		<Password>258528</Password>
+		<Email>orokach@gmail.com</Email>
+		<Log>Maneger</Log>
+	</User>
+	<User>
+		<UserName>powerful</UserName>
+		<Password>111111</Password>
+		<Email>powerful@gmail.com</Email>
+		<Log>Customer</Log>
+	</User>
+	<User>
+		<UserName>warrior</UserName>
+		<Password>222222</Password>
+		<Email>warrior@gmail.com</Email>
+		<Log>Customer</Log>
+	</User>
+	<User>
+		<UserName>hope</UserName>
+		<Password>333333</Password>
+		<Email>hope@gmail.com</Email>
+		<Log>Customer</Log>
+	</User>
+</ArrayOfUser>

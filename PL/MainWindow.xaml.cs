@@ -174,15 +174,7 @@ namespace PL
                     this.Show();
                     return;
                 }
-                //Close();
-                //// MainWindow m = new MainWindow();
-                //this.btnLogIn.Visibility = Visibility.Visible;
-                //this.btnGuest.Visibility = Visibility.Visible;
-                //this.btnNewOrder.Visibility = Visibility.Hidden;
-                //this.btnTracking.Visibility = Visibility.Hidden;
-                //this.btnCreate.Visibility = Visibility.Visible;
-                //this.Show();
-                //return;
+                
             }
 
             try
@@ -197,14 +189,7 @@ namespace PL
                 MessageBoxImage icon = MessageBoxImage.Information;
                 MessageBoxResult result;
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                //Close();
-                // MainWindow m = new MainWindow();
-                //log.Visibility = Visibility.Hidden;
-                //this.btnLogIn.Visibility = Visibility.Visible;
-                //this.btnGuest.Visibility = Visibility.Visible;
-                //this.btnNewOrder.Visibility = Visibility.Hidden;
-                //this.btnTracking.Visibility = Visibility.Hidden;
-                //this.Show();
+               
                 if (result == MessageBoxResult.OK)
                 {
                     this.Show();
@@ -248,7 +233,6 @@ namespace PL
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
             btnCreate.Visibility = Visibility.Hidden;
-
             log.Visibility = Visibility.Visible;
            // LogInWindow l = new LogInWindow();
            // l.Show();

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Product>
+    <Id>100000</Id>
+    <Name>vafel belgi</Name>
+    <Price>65</Price>
+    <AmountInStock>0</AmountInStock>
+    <ProductCategoty>Specials</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>100001</Id>
+    <Name>high cream cake</Name>
+    <Price>61</Price>
+    <AmountInStock>4</AmountInStock>
+    <ProductCategoty>Cakes</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>100002</Id>
+    <Name>crep</Name>
+    <Price>30</Price>
+    <AmountInStock>4</AmountInStock>
+    <ProductCategoty>Specials</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>100003</Id>
+    <Name>chokolate ice Cream</Name>
+    <Price>48</Price>
+    <AmountInStock>3</AmountInStock>
+    <ProductCategoty>GiftBoxes</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>100004</Id>
+    <Name>crep</Name>
+    <Price>51</Price>
+    <AmountInStock>6</AmountInStock>
+    <ProductCategoty>Specials</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>100005</Id>
+    <Name>mix Desserts</Name>
+    <Price>61</Price>
+    <AmountInStock>5</AmountInStock>
+    <ProductCategoty>Desserts</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>100006</Id>
+    <Name>mini donats</Name>
+    <Price>46</Price>
+    <AmountInStock>1</AmountInStock>
+    <ProductCategoty>Desserts</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>100007</Id>
+    <Name>chokolate ice Cream</Name>
+    <Price>30</Price>
+    <AmountInStock>4</AmountInStock>
+    <ProductCategoty>GiftBoxes</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>100008</Id>
+    <Name>vafel belgi</Name>
+    <Price>48</Price>
+    <AmountInStock>6</AmountInStock>
+    <ProductCategoty>Specials</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>100009</Id>
+    <Name>crepjhgfghj</Name>
+    <Price>50</Price>
+    <AmountInStock>8</AmountInStock>
+    <ProductCategoty>Specials</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>100010</Id>
+    <Name>vanile ice cream</Name>
+    <Price>33</Price>
+    <AmountInStock>8</AmountInStock>
+    <ProductCategoty>GiftBoxes</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>100011</Id>
+    <Name>chokolate ice Cream</Name>
+    <Price>48</Price>
+    <AmountInStock>8</AmountInStock>
+    <ProductCategoty>GiftBoxes</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>100012</Id>
+    <Name>mix Desserts</Name>
+    <Price>54</Price>
+    <AmountInStock>5</AmountInStock>
+    <ProductCategoty>Desserts</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>100013</Id>
+    <Name>high cream cake</Name>
+    <Price>60</Price>
+    <AmountInStock>6</AmountInStock>
+    <ProductCategoty>Cakes</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>100014</Id>
+    <Name>birthday cake</Name>
+    <Price>29</Price>
+    <AmountInStock>2</AmountInStock>
+    <ProductCategoty>Cakes</ProductCategoty>
+  </Product>
+  <Product>
+    <Id>222</Id>
+    <Name>cake</Name>
+    <Price>50</Price>
+    <AmountInStock>5</AmountInStock>
+    <ProductCategoty>Cakes</ProductCategoty>
+  </Product>
+</ArrayOfProduct>
