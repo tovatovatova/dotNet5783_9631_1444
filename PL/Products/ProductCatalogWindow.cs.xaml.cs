@@ -55,7 +55,7 @@ namespace PL
 
         public ProductCatalogWindow(BO.User u, BO.Cart Oldcart = null)
         {
-            InitializeComponent();
+           
             if (Oldcart == null)
             {
                 cart = new BO.Cart();
@@ -64,22 +64,16 @@ namespace PL
             {
                 cart = Oldcart;
             }
-
+           
             user = u;
             if (cart.Items == null)
             {
                 cart.Items = new List<BO.OrderItem>();
             }
                 txtAmountInCart.Text = cart.Items.Count().ToString();
-                // listViewProducts.ItemsSource = bl.Product.GetCatalog().ToList();
                 myProductCat = new List<BO.ProductItem>();
                 myProductCat = bl.Product.GetCatalog().ToList();
-            //cmbCategory.Items.Add("All Products");
-            //foreach (var item in Enum.GetValues(typeof(BO.Category)))//add the products' category to combo box
-            //{
-            //    cmbCategory.Items.Add(item);
-            //}
-            //cmbCategory.SelectedIndex = 0;
+            InitializeComponent();
 
 
         }
@@ -95,7 +89,7 @@ namespace PL
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            if (cart==null||cart.Items.Count()==0/*cart.Items == null*/)
+            if (cart==null||cart.Items.Count()==0||cart.Items == null)
                 txtAmountInCart.Text = "0";
             else
                 txtAmountInCart.Text = cart.Items.Count().ToString();
