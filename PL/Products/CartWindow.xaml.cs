@@ -64,14 +64,14 @@ namespace PL
 
 
 
-        public CartWindow(ref Cart cart)
+        public CartWindow( Cart cart)
         {
             myCart = cart;
           
             InitializeComponent();
 
         }
-        public CartWindow(ref Cart cart, User user)//showing cart of submited user
+        public CartWindow( Cart cart, User user)//showing cart of submited user
         {
             myCart = cart;
             myUser = user;

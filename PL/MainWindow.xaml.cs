@@ -124,11 +124,7 @@ namespace PL
 
         }
 
-        private void txtidd_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
+       
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -234,6 +230,7 @@ namespace PL
             {
                 //Close();
                 //  MainWindow m = new MainWindow();
+
                 this.btnProduct.Visibility = Visibility.Visible;
                 this.btnOrder.Visibility = Visibility.Visible;
                 // m.btnAdmin.Visibility = Visibility.Hidden;
@@ -250,6 +247,8 @@ namespace PL
 
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
+            btnCreate.Visibility = Visibility.Hidden;
+
             log.Visibility = Visibility.Visible;
            // LogInWindow l = new LogInWindow();
            // l.Show();
@@ -277,6 +276,8 @@ namespace PL
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
             submit.Visibility = Visibility.Visible;
+            btnLogIn.Visibility = Visibility.Hidden;
+
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)

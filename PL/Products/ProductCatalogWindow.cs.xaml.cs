@@ -106,12 +106,12 @@ namespace PL
         {
             if (user != null)//user in system
             {
-                CartWindow c = new CartWindow(ref cart, user);
+                CartWindow c = new CartWindow(cart, user);
                 c.ShowDialog();
             }
             else
             {
-                CartWindow c=new CartWindow(ref cart);
+                CartWindow c=new CartWindow( cart);
                 c.ShowDialog();
             }
             

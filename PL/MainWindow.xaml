@@ -57,7 +57,7 @@ FontSize="20" Margin="458,298,57,108"  />
             <Label  x:Name="lblWrong" Content="Wrong user name or password " Visibility="Hidden" HorizontalAlignment="Left" Margin="150,218,0,0" VerticalAlignment="Top" Height="28" Width="230" Background="{x:Null}" Foreground="#FFE91515"/>
             <Button x:Name="btnLog" Content="Log" HorizontalAlignment="Left" Margin="323,151,0,0" VerticalAlignment="Top" Click="btnLog_Click" Height="44" Width="107"/>
         </Grid>
-        <Button x:Name="btnCreate" Content="new account" HorizontalAlignment="Left" Margin="18,199,0,0" VerticalAlignment="Top" Click="btnCreate_Click"/>
+        <Button x:Name="btnCreate" Content="SUBMIT" HorizontalAlignment="Left" Margin="18,199,0,0" VerticalAlignment="Top" Click="btnCreate_Click"/>
         <Grid x:Name="submit" Visibility="Hidden"  >
             <Grid x:Name="userGrid"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="230,53,0,0" Height="375" Width="375">
                 <Grid.ColumnDefinitions>
