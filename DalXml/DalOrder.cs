@@ -16,6 +16,8 @@ internal class DalOrder : IOrder
     public int Add(Order item)
     {
         List<Order?> lstOrd = XMLTools.LoadListFromXMLSerializer<DO.Order>(s_orders);
+        //Order? o = lstOrd.FirstOrDefault(order => order?.OrderId == item.OrderId)??throw new DalIdAlreadyExistException(item.OrderId,"order");
+        //order doesnt exist-need to add
         item.OrderId = Config.NextOrderNumber();
         lstOrd.Add(item);
         XMLTools.SaveListToXMLSerializer<DO.Order>(lstOrd, s_orders);

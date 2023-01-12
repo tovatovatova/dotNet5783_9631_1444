@@ -196,4 +196,18 @@
     <Price>61</Price>
     <Amount>1</Amount>
   </OrderItem>
+  <OrderItem>
+    <OrderItemId>100029</OrderItemId>
+    <ProductId>100005</ProductId>
+    <OrderId>100027</OrderId>
+    <Price>61</Price>
+    <Amount>1</Amount>
+  </OrderItem>
+  <OrderItem>
+    <OrderItemId>100030</OrderItemId>
+    <ProductId>100004</ProductId>
+    <OrderId>100027</OrderId>
+    <Price>51</Price>
+    <Amount>1</Amount>
+  </OrderItem>
 </ArrayOfOrderItem>

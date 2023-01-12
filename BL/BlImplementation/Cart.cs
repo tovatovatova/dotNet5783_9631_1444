@@ -185,9 +185,9 @@ namespace BlImplementation
 
             //boOrder.Items = cart.Items.Where(item => dal.Product.GetById(item.ProductID).AmountInStock >= item.Amount);
             boOrder.Items = cart.Items.Select(item=>item);//add all items to the the new order(validation was already checked)
-            //if (boOrder.Items.Count() != cart.Items.Count())
-                //throw new Exception("you need to update your cart!");
-
+                                                          //if (boOrder.Items.Count() != cart.Items.Count())
+                                                          //throw new Exception("you need to update your cart!");
+            //int x=boOrder.Items.Count();
             DO.Order newOrder = new DO.Order()//create order in DO
             {
                 CustomerName = boOrder.CustomerName,

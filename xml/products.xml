@@ -32,14 +32,14 @@
     <Id>100004</Id>
     <Name>crep</Name>
     <Price>51</Price>
-    <AmountInStock>6</AmountInStock>
+    <AmountInStock>5</AmountInStock>
     <ProductCategoty>Specials</ProductCategoty>
   </Product>
   <Product>
     <Id>100005</Id>
     <Name>mix Desserts</Name>
     <Price>61</Price>
-    <AmountInStock>5</AmountInStock>
+    <AmountInStock>4</AmountInStock>
     <ProductCategoty>Desserts</ProductCategoty>
   </Product>
   <Product>
