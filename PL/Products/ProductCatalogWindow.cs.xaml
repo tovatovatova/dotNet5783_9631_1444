@@ -11,7 +11,7 @@ Title="ProductCatalogWindow" Height="686" Width="1212" Activated="Window_Activat
 
     <Window.Resources>
 
-        <local:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+     
 
         <DataTemplate x:Key="ProductItemTemplate" DataType="local:ProductItem">
             <Grid>
@@ -19,9 +19,10 @@ Title="ProductCatalogWindow" Height="686" Width="1212" Activated="Window_Activat
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                  
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row= "0" Width="140" Height="120" CornerRadius="5" Margin="30,50,30,84">
+                <Border Grid.Row= "0" Width="130" Height="120" CornerRadius="5" Margin="15,15,15,15">
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="1"/>
                     </Border.Effect>
@@ -29,7 +30,7 @@ Title="ProductCatalogWindow" Height="686" Width="1212" Activated="Window_Activat
                         <ImageBrush ImageSource="{Binding ID ,Converter={StaticResource imageConverter}}" />
                     </Border.Background>
                 </Border>
-                <Label  Content="{Binding Name}" Grid.Row= "1" HorizontalAlignment="Center" Margin="5,0,0,0" FontSize="17" />
+                <Label  Content="{Binding Name}" Grid.Row= "1" HorizontalAlignment="Center" Height="auto" Width="auto"  Margin="0,0,0,0" FontSize="17" />
 
 
                 <TextBlock Text="out of stock    " HorizontalAlignment="Stretch" Margin="0,5,5,5" VerticalAlignment="Center" Background="LightGray" Grid.ColumnSpan="2" FontFamily="Cooper Black" Foreground="Gray" FontSize="25" Visibility="{Binding InStock , Converter={StaticResource booleanToVisibilityConverter}}">
@@ -37,7 +38,7 @@ Title="ProductCatalogWindow" Height="686" Width="1212" Activated="Window_Activat
                         <RotateTransform Angle="45" />
                     </TextBlock.LayoutTransform>
                 </TextBlock>
-                <TextBlock Text="{Binding Price, StringFormat={}{0:C}}"  Grid.Row= "2" HorizontalAlignment="Center" Margin="5,0,0,0" />
+                <TextBlock Text="{Binding Price, StringFormat={}{0:C}}" Grid.Row= "2" FontSize="17" HorizontalAlignment="Center" Margin="5,0,0,0" FontWeight="Bold" FontFamily="Arial Black" />
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -60,14 +61,9 @@ Title="ProductCatalogWindow" Height="686" Width="1212" Activated="Window_Activat
             </ListView>
         </ScrollViewer>
         <Image x:Name="cartIm"  HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="261" Source="{Binding ElementName=cartIm,Path=Name,Converter={StaticResource imageConverter }}" MouseDown="Image_MouseDown" Grid.Row="1"/>
-        <TextBox x:Name="txtAmountInCart"  HorizontalAlignment="Left" Margin="45,0,0,0" TextWrapping="Wrap" IsReadOnly="True" Text="1" VerticalAlignment="Top" Width="25" Height="22" Background="White" FontFamily="Arial Rounded MT Bold" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.325,0.652" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.RowSpan="2"/>
+        <TextBox x:Name="txtAmountInCart"  HorizontalAlignment="Left" Margin="45,0,0,0" TextWrapping="Wrap" IsReadOnly="True" Text="0" VerticalAlignment="Top" Width="25" Height="22" Background="White" FontFamily="Arial Rounded MT Bold" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.325,0.652" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.RowSpan="2"/>
         <CheckBox x:Name="cxbSortByCategory" Style="{StaticResource fontInDataGridStyle}" Content="Sort By Category" HorizontalAlignment="Left" Margin="935,19,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="35" Width="235" FontSize="20" Checked="cxbSortByCategory_Checked" Unchecked="cxbSortByCategory_Unchecked"/>
-        <!--<ComboBox x:Name="cmbCategory"   HorizontalAlignment="Left" Margin="880,24,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="310" Height="55" RenderTransformOrigin="0.424,0.455" BorderBrush="#FF41CFA8" FontSize="16" FontFamily="Consolas" Background="{x:Null}" SelectionChanged="cmbCategory_SelectionChanged" />-->
-        <!--<Image HorizontalAlignment="Left" Height="78" VerticalAlignment="Top" Width="116" Source="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\Images\cartIm.jpg" MouseDown="Image_MouseDown" Margin="0,0,0,0" Grid.RowSpan="2"/>
-        <TextBox x:Name="txtAmountInCart"  HorizontalAlignment="Left" Margin="48,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Height="22" Background="White" FontFamily="Arial Rounded MT Bold" FontSize="20" FontWeight="Bold" />-->
-        <!--<Image x:Name="cartIm" HorizontalAlignment="Left" Height="78" VerticalAlignment="Top" Width="116" Source="C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\Images\cartIm.jpg" MouseDown="Image_MouseDown" Margin="0,0,0,0" Grid.RowSpan="2"  />
-        <TextBox x:Name="txtAmountInCart"  HorizontalAlignment="Left" Margin="48,1,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="30" Height="22" Background="White" FontFamily="Arial Rounded MT Bold" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.325,0.652" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.RowSpan="2"/>-->
-
+      
 
     </Grid>
 </Window>
