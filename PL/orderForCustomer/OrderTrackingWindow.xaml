@@ -44,6 +44,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
+        <Button Content="order details" HorizontalAlignment="Left" Margin="20,248,0,0" VerticalAlignment="Top" FontSize="16" Click="Button_Click"/>
 
     </Grid>
 </Window>

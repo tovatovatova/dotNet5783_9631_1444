@@ -26,18 +26,14 @@
                         <DropShadowEffect ShadowDepth="1"/>
                     </Ellipse.Effect>
                 </Ellipse>
-                <!--<TextBlock Grid.Column="1" Text="{Binding ID,Converter={}}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>-->
-                <!--<TextBlock Grid.Column="1" Text="{Binding Path=Ref,ElementName=item}" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0 38 0 0"/>-->
-
+               
 
                 <TextBlock Grid.Column="1" Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
 
                 <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                    <!--<Button   Style="{StaticResource RoundButtonStyle}" Content="+" HorizontalAlignment="Left" Margin="104,37,0,0" VerticalAlignment="Top" Width="16"/>-->
                     <Button x:Name="btnAdd" Tag="{Binding ProductID}" Style="{StaticResource RoundButtonStyle}" Content="+" Width="16" Click="btnAdd_Click" />
 
                     <TextBlock x:Name="txtAmount"  HorizontalAlignment="Center" Grid.Column="2" Text="{Binding Amount}" Margin="10 0 0 0" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
-                    <!--<Label x:Name="lblAmount" Content="{Binding Amount}" Visibility="Hidden"/>-->
 
                     <Button x:Name="btnLow" Tag="{Binding ElementName=txtAmount,Path=Text,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Style="{StaticResource RoundButtonStyle}" Content="-" Width="16" Margin="0 7 0 0" Click="btnLow_Click"/>
 
@@ -65,11 +61,7 @@
         <ScrollViewer x:Name="scroll"  Background="LightCyan" Margin="218,44,10,0" Visibility="{Binding TotalPrice,Converter={StaticResource doubletoVisible},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Height="585" VerticalAlignment="Top" >
 
             <ListView x:Name="orderItemsListView" ItemsSource="{Binding Items}" ItemTemplate="{StaticResource OrderItemTemplate}"   Width="690" Height="600">
-                <!--<ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>-->
+               
             </ListView>
         </ScrollViewer>
         <TextBlock x:Name="txtTotalPCart"   HorizontalAlignment="Left" Margin="18,433,0,0"  FontSize="25" FontFamily="Arial Black" VerticalAlignment="Top" >

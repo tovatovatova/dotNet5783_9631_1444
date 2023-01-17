@@ -39,14 +39,17 @@ namespace PL
         // Using a DependencyProperty as the backing store for PlUser.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PlUserProperty =
             DependencyProperty.Register("PlUser", typeof(BO.User), typeof(Window), new PropertyMetadata(null));
-
+        bool isAdmin = false;
+        bool isCustomer = false;
 
 
         public MainWindow()
         {
+         
             PlUser = new BO.User();
             InitializeComponent();
-
+           
+           
         }
 
 
@@ -57,15 +60,12 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAdmin_Click(object sender, RoutedEventArgs e)
-        {
-            //LogInWindow l = new LogInWindow();
-            //l.Show();
-            //need to see order and product buttuns-transfer to logIn!!
+        //private void btnAdmin_Click(object sender, RoutedEventArgs e)
+        //{
             
-            btnOrder.Visibility = Visibility.Visible;
-            btnProduct.Visibility = Visibility.Visible; 
-        }
+        //    btnOrder.Visibility = Visibility.Visible;
+        //    btnProduct.Visibility = Visibility.Visible; 
+        //}
 
         private void btnTracking_Click(object sender, RoutedEventArgs e)
         {
@@ -90,13 +90,149 @@ namespace PL
             ProductCatalogWindow productCatalog = new ProductCatalogWindow(PlUser);
             productCatalog.Show();
         }
+     
 
-        private void btnTracking_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        
+       
+     
+        private void btnLog_Click(object sender, RoutedEventArgs e)
         {
-            txtidd.Visibility = Visibility.Visible;
-            lblTracking.Visibility = Visibility.Visible;
+            if (PlUser.UserName == null)//empty name 
+            {
+                string messageBoxText = "invalid input 😒";
+                string caption = " ";
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                if (result==MessageBoxResult.OK)
+                {
+                    
+                    return;
+                }
+            }
+
+            try
+            {
+                bl.User.compare(PlUser);
+            }
+            catch (BO.BlIdDoNotExistException ex)//if user is not in the system
+            {
+
+                string messageBoxText = ex.Entity?.ToString() + " try again ";
+                string caption = " ";
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+               
+                if (result == MessageBoxResult.OK)
+                {
+                
+                    return;
+                }
+            }
+            //if customer
+            if (PlUser.Log == BO.LogIn.Customer)
+            {
+               
+                btnLogIn.Visibility = Visibility.Hidden;
+                btnNewOrder.Visibility = Visibility.Visible;
+                btnTracking.Visibility = Visibility.Visible;
+                btnCreate.Visibility = Visibility.Hidden;
+                log.Visibility = Visibility.Hidden;
+               // this.Show();
+            }
+            if (PlUser.Log == BO.LogIn.Maneger)
+            {
+              
+
+                btnProduct.Visibility = Visibility.Visible;
+                btnOrder.Visibility = Visibility.Visible;
+                btnLogIn.Visibility = Visibility.Hidden;
+                btnNewOrder.Visibility = Visibility.Hidden;
+                btnTracking.Visibility = Visibility.Hidden;
+                btnCreate.Visibility = Visibility.Hidden;
+                log.Visibility = Visibility.Hidden;
+          
+            }
+
         }
 
+        private void btnLogIn_Click(object sender, RoutedEventArgs e)
+        {
+            btnCreate.Visibility = Visibility.Hidden;
+            log.Visibility = Visibility.Visible;
+         
+        }
+
+     
+       
+
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
+            submit.Visibility = Visibility.Visible;
+            btnLogIn.Visibility = Visibility.Hidden;
+
+        }
+
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            string messageBoxText, caption;
+            MessageBoxImage icon;
+            MessageBoxResult result;
+
+            if (PlUser.UserName == null)//empty name 
+            {
+                messageBoxText = "you didnt write name";
+                caption = " ";
+                icon = MessageBoxImage.Information;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                if (result == MessageBoxResult.OK)
+                {
+                    return;
+                }
+            }
+
+                try//tries to add a customer to the system
+            {
+                bl.User.addUser(PlUser);
+                result = MessageBox.Show("user added successfully", " ", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.None);
+                if (result==MessageBoxResult.OK)
+                {
+                    isCustomer = true;
+                    btnLogIn.Visibility = Visibility.Hidden;
+                   btnCreate.Visibility = Visibility.Hidden;
+                    submit.Visibility = Visibility.Hidden;
+                    btnNewOrder.Visibility = Visibility.Visible;
+                    btnTracking.Visibility = Visibility.Visible;
+                }
+            }
+            catch (BO.BlInvalidInputException ex)
+            {
+                //throw an error message box 
+                messageBoxText = ex.Message.ToString();
+                caption = "error";
+                icon = MessageBoxImage.Error;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                if (result == MessageBoxResult.OK)
+                {
+                    return;
+                }
+            }
+            catch (BO.BlIdAlreadyExistException ex)
+            {
+                //throw an error message box 
+                messageBoxText = ex.Message.ToString();
+                caption = "error";
+                icon = MessageBoxImage.Error;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                if (result == MessageBoxResult.OK)
+                {
+                    return;
+                }
+            }
+            
+
+        }
         private void TextBox_OnlyNumbers_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             TextBox text = sender as TextBox;
@@ -123,8 +259,6 @@ namespace PL
             return;
 
         }
-
-       
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -137,7 +271,7 @@ namespace PL
 
 
                 }
-                catch(BO.BlInvalidInputException ex)
+                catch (BO.BlInvalidInputException ex)
                 {
                     string messageBoxText = ex.Message.ToString();
                     string caption = "error";
@@ -149,7 +283,7 @@ namespace PL
                 }
                 catch (BO.BlIdDoNotExistException ex)//product doesnt exist
                 {//throw an error message box 
-                    string messageBoxText = "This "+ex.Message.ToString()+" doesnt exist";
+                    string messageBoxText = "This " + ex.Message.ToString() + " doesnt exist";
                     string caption = "error";
                     MessageBoxImage icon = MessageBoxImage.Error;
                     MessageBoxResult result;
@@ -159,179 +293,11 @@ namespace PL
                 }
             }
         }
-        private void btnLog_Click(object sender, RoutedEventArgs e)
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //MainWindow m = new MainWindow();
-            if (PlUser.UserName == null)//empty name 
-            {
-                string messageBoxText = " invalid input";
-                string caption = " ";
-                MessageBoxImage icon = MessageBoxImage.Information;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                if (result==MessageBoxResult.OK)
-                {
-                    this.Show();
-                    return;
-                }
-                
-            }
-
-            try
-            {
-                bl.User.compare(PlUser);
-            }
-            catch (BO.BlIdDoNotExistException ex)//if user is not in the system
-            {
-
-                string messageBoxText = ex.Entity?.ToString() + " try again ";
-                string caption = " ";
-                MessageBoxImage icon = MessageBoxImage.Information;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-               
-                if (result == MessageBoxResult.OK)
-                {
-                    this.Show();
-                    return;
-                }
-            }
-            //if customer
-            if (PlUser.Log == BO.LogIn.Customer)
-            {
-               // Close();
-                //   MainWindow m = new MainWindow();
-                // m.btnAdmin.Visibility = Visibility.Hidden;//need to remove...
-                this.btnLogIn.Visibility = Visibility.Hidden;
-                this.btnNewOrder.Visibility = Visibility.Visible;
-               // this.btnGuest.Visibility = Visibility.Hidden;
-                this.btnTracking.Visibility = Visibility.Visible;
-                this.btnCreate.Visibility = Visibility.Hidden;
-                log.Visibility = Visibility.Hidden;
-                this.Show();
-            }
-            //if maneger
-            if (PlUser.Log == BO.LogIn.Maneger)
-            {
-                //Close();
-                //  MainWindow m = new MainWindow();
-
-                this.btnProduct.Visibility = Visibility.Visible;
-                this.btnOrder.Visibility = Visibility.Visible;
-                // m.btnAdmin.Visibility = Visibility.Hidden;
-                this.btnLogIn.Visibility = Visibility.Hidden;
-                //this.btnGuest.Visibility = Visibility.Hidden;
-                this.btnNewOrder.Visibility = Visibility.Hidden;
-                this.btnTracking.Visibility = Visibility.Hidden;
-                this.btnCreate.Visibility = Visibility.Hidden;
-                log.Visibility = Visibility.Hidden;
-                this.Show();
-            }
-
-        }
-
-        private void btnLogIn_Click(object sender, RoutedEventArgs e)
-        {
-            btnCreate.Visibility = Visibility.Hidden;
-            log.Visibility = Visibility.Visible;
-           // LogInWindow l = new LogInWindow();
-           // l.Show();
-        }
-
-        private void imgLogIn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            LogInWindow l = new LogInWindow();
-            l.Show();
-        }
-        
-        //private void btnGuest_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //MainWindow m = new MainWindow();
-        //    this.btnLogIn.Visibility = Visibility.Hidden;
-        //    this.btnNewOrder.Visibility = Visibility.Visible;
-        //    this.btnTracking.Visibility = Visibility.Visible;
-        //    this.btnProduct.Visibility = Visibility.Hidden;
-        //    this.btnOrder.Visibility = Visibility.Hidden;
-        //  //  this.btnGuest.Visibility = Visibility.Hidden;
-        //    this.btnCreate.Visibility = Visibility.Hidden;
-        //    this.Show();
-        //}
-
-        private void btnCreate_Click(object sender, RoutedEventArgs e)
-        {
-            submit.Visibility = Visibility.Visible;
-            btnLogIn.Visibility = Visibility.Hidden;
-
-        }
-
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
-        {
-            string messageBoxText, caption;
-            MessageBoxImage icon;
-            MessageBoxResult result;
-
-            if (PlUser.UserName == null)//empty name 
-            {
-                messageBoxText = " invalid input";
-                caption = " ";
-                icon = MessageBoxImage.Information;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                if (result == MessageBoxResult.OK)
-                {
-                    this.Show();
-                    return;
-                }
-            }
-
-                try//tries to add a customer to the system
-            {
-                bl.User.addUser(PlUser);
-                messageBoxText = "user added successfully";
-                caption = "";
-                icon = MessageBoxImage.Information;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
-                if (result==MessageBoxResult.OK)
-                {
-                    //user added successfully
-                    //its a customer
-                    this.btnLogIn.Visibility = Visibility.Hidden;
-                    this.btnNewOrder.Visibility = Visibility.Visible;
-                    //this.btnGuest.Visibility = Visibility.Hidden;
-                    this.btnTracking.Visibility = Visibility.Visible;
-                    this.btnCreate.Visibility = Visibility.Hidden;
-                    submit.Visibility = Visibility.Hidden;
-                    //PlUser = new();
-                    this.Show();
-                }
-            }
-            catch (BO.BlInvalidInputException ex)
-            {
-                //throw an error message box 
-                messageBoxText = ex.Message.ToString();
-                caption = "error";
-                icon = MessageBoxImage.Error;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                if (result == MessageBoxResult.OK)
-                {
-                    this.Show();
-                    return;
-                }
-            }
-            catch (BO.BlIdAlreadyExistException ex)
-            {
-                //throw an error message box 
-                messageBoxText = ex.Message.ToString();
-                caption = "error";
-                icon = MessageBoxImage.Error;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                if (result == MessageBoxResult.OK)
-                {
-                    this.Show();
-                    return;
-                }
-            }
-            
-
+            SimulationWindow o = new SimulationWindow();
+            o.Show();
         }
     }
 }

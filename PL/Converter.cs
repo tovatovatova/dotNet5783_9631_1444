@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using DalApi;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace PL
 {
@@ -112,6 +113,44 @@ namespace PL
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return System.Convert.ToInt32(value) < 15 ? false : true;
+        }
+    } 
+    public class StatusToColor : IValueConverter
+    {
+
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((BO.OrderStatus)value == BO.OrderStatus.Ordered)
+                return Brushes.LightGreen;
+            else if ((BO.OrderStatus)value == BO.OrderStatus.Shipped)
+                return Brushes.LightSkyBlue;
+            else
+                return Brushes.LightPink;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return BO.OrderStatus.Delivered;
+        }
+    }
+    public class StatusToInt : IValueConverter
+    {
+
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((BO.OrderStatus)value == BO.OrderStatus.Ordered)
+                return 20;
+            else if ((BO.OrderStatus)value == BO.OrderStatus.Shipped)
+                return 40;
+            else
+                return 60;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return BO.OrderStatus.Delivered;
         }
     }
     public class StringToBitmap : IValueConverter

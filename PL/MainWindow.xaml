@@ -19,14 +19,14 @@
 
         <Label x:Name="lblTracking" Content="Enter number of order for tracking:"  HorizontalAlignment="Left" Visibility="Hidden" Margin="465,265,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="19"/>
         <!--<TextBox x:Name="txtOrderId" HorizontalAlignment="Left" Margin="610,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="125" Height="25" TextChanged="txtOrderId_TextChanged"/>-->
-        <Button x:Name="btnTracking" Content="Track" HorizontalAlignment="Left" Margin="458,213,0,0" VerticalAlignment="Top" Height="47" Width="285" Click="btnTracking_Click" MouseDoubleClick="btnTracking_MouseDoubleClick" Visibility="Hidden"/>
+        <Button x:Name="btnTracking" Content="Track" HorizontalAlignment="Left" Margin="458,213,0,0" VerticalAlignment="Top" Height="47" Width="285" Click="btnTracking_Click"  Visibility="Hidden"/>
         <Button x:Name="btnProduct" Content="Products" HorizontalAlignment="Left" Margin="30,379,0,0" VerticalAlignment="Top"   RenderTransformOrigin="0.31,0.116" Visibility="Hidden" Click="btnProduct_Click"/>
         <Button x:Name="btnOrder" Content="Orders" HorizontalAlignment="Left" Margin="210,379,0,0" VerticalAlignment="Top" Visibility="Hidden" Click="btnOrder_Click_1" />
         <Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="488,369,0,0" VerticalAlignment="Top" Click="btnNewOrder_Click" RenderTransformOrigin="0.596,-2.347" Width="225" Visibility="Hidden"/>
         <TextBox x:Name="txtidd"  PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown" Visibility="Hidden" MaxLength="9" TextWrapping="Wrap"  KeyDown="OnKeyDownHandler" Text="" Width="285"
 FontSize="20" Margin="458,298,57,108"  />
         <Button x:Name="btnLogIn" Content="Log In" HorizontalAlignment="Left" Margin="21,129,0,0" VerticalAlignment="Top" Click="btnLogIn_Click"/>
-        <Image x:Name="imgLogIn"   Margin="12,13,677,340" MouseLeftButtonDown="imgLogIn_MouseLeftButtonDown" />
+       
         <Grid x:Name="log"  Margin="155,62,70,132"  Visibility="Hidden" >
             <Grid x:Name="logInGrid"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="136,45,0,0" Height="109" Width="256" RenderTransformOrigin="0.422,-0.391">
                 <Grid.ColumnDefinitions>
@@ -78,10 +78,11 @@ FontSize="20" Margin="458,298,57,108"  />
 
                 <Label Content="Email:" HorizontalAlignment="Center" Margin="0,12,0,0" VerticalAlignment="Top" Height="23" Width="52" RenderTransformOrigin="0.423,-7.783" Grid.Row="1"/>
                 <TextBox x:Name="emailtxb" Grid.Column="1" HorizontalAlignment="Left" Height="17" Grid.Row="1" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" Margin="37,18,0,0"/>
-                <Label x:Name="lblDetails" Content="Enter yoyr details:" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Top" FontStretch="Expanded" Foreground="#FF30ABBC" FontFamily="Bodoni MT Black" Background="{x:Null}" FontSize="20" Height="35" Width="220" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
+                <Label x:Name="lblDetails" Content="Enter your details:" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Top" FontStretch="Expanded" Foreground="#FF30ABBC" FontFamily="Bodoni MT Black" Background="{x:Null}" FontSize="20" Height="35" Width="220" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
                 <Button x:Name="btnSub" Content="Submit" HorizontalAlignment="Left" Margin="90,90,0,0" VerticalAlignment="Top" Click="btnSubmit_Click" Grid.Column="1" Height="44" Grid.Row="1" Width="107"/>
             </Grid>
         </Grid>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="68,319,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 </Window>
 
