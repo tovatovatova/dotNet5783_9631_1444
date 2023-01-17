@@ -42,4 +42,10 @@
     <Email>@gmail.com</Email>
     <Log>Customer</Log>
   </User>
+  <User>
+    <UserName>ooo</UserName>
+    <Password>111</Password>
+    <Email>ooo@gmail.com</Email>
+    <Log>Customer</Log>
+  </User>
 </ArrayOfUser>
