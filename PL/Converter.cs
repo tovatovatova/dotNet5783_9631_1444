@@ -82,25 +82,6 @@ namespace PL
             return Visibility.Collapsed;
         }
     }
-
-    //public class ConvertCustomer : IValueConverter
-    //{
-    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-
-    //    }
-
-    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
-
-
-    //public Visibility DoubleToVisibilityConverter(double value)
-    //{
-    //    return value > 0 ? Visibility.Visible : Visibility.Collapsed;
-    //}
     public class NoBooleanToVisibilityConverter : IValueConverter
     {
 
@@ -141,7 +122,7 @@ namespace PL
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if ((BO.OrderStatus)value == BO.OrderStatus.Ordered)
-                return 20;
+                return ra;
             else if ((BO.OrderStatus)value == BO.OrderStatus.Shipped)
                 return 40;
             else
@@ -157,7 +138,7 @@ namespace PL
     public class StringToBitmap : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
+        {//gets an id of product and create a path to picture
             try
             {
                 string startImage = value?.ToString() ?? throw new Exception();
@@ -169,7 +150,7 @@ namespace PL
             catch (Exception ex)
             {
                 BitmapImage bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory[..^4] + @"\Images\noPicture.jpg"));
-                return bitmap;
+                return bitmap;//return defult picture
             }
         }
 
@@ -179,6 +160,75 @@ namespace PL
 
         }
     }
+
+
+
+    public class StringToBitmapFromSource : IValueConverter
+    {//gets a image source name and return a path to the picture
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string final;
+            BitmapImage bitmap;
+            try
+            {
+                
+                string strImage = value?.ToString() ?? throw new Exception();//name of picture                                                            
+                try
+                {
+                        final = Environment.CurrentDirectory[..^4] + strImage ;
+                        bitmap= new BitmapImage(new Uri(final));
+                        return bitmap;
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        final = Environment.CurrentDirectory[..^4] + strImage;
+                        bitmap = new BitmapImage(new Uri(final));
+                        return bitmap;
+                    }
+                    catch (Exception ex)
+                    {
+                         bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory[..^4] + @"\Images\noPicture.jpg"));
+                        return bitmap;//return defult picture
+                    }
+                }
+               
+            }
+            
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value.ToString();
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public class AmountToComboBox : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -208,6 +258,23 @@ namespace PL
         }
 
     }
+
+    //public class ConverBtnToVisibile : IValueConverter
+    //{
+    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        return (Button)value
+    //    }
+
+    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
+
+
+
+
     public class ConverPng : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -229,6 +296,30 @@ namespace PL
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            throw new NotImplementedException();
+
+        }
+    }
+    public class ConvLogInToVisible : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            BO.User user = value as BO.User;
+            if (user.Log == BO.LogIn.Customer)//if customer
+            {
+                return (Visibility)value == Visibility.Visible;
+
+            }
+            else /*(user.Log == BO.LogIn.Maneger)*/ //if maneger
+            {
+                return (Visibility)value == Visibility.Hidden;
+
+            }
+        }
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+
             throw new NotImplementedException();
         }
     }

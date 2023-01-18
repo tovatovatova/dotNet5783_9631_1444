@@ -1,6 +1,7 @@
 ﻿using BlApi;
 using BO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -24,13 +25,7 @@ namespace PL
    
     public partial class CartWindow : Window
     {
-
-
-        BlApi.IBl bl = BlApi.Factory.Get();
-
-       
-
-     
+        BlApi.IBl bl = BlApi.Factory.Get();     
         public ObservableCollection<BO.OrderItem?> myOrderItems
         {
             get { return (ObservableCollection<BO.OrderItem?>)GetValue(myOrderItemsProperty); }
@@ -46,9 +41,6 @@ namespace PL
         }
         public static readonly DependencyProperty myCartProperty =
             DependencyProperty.Register("myCartItems", typeof(BO.Cart), typeof(Window), new PropertyMetadata(null));
-
-
-
 
 
         public BO.User? myUser
@@ -67,7 +59,8 @@ namespace PL
         public CartWindow(Cart cart)
         {
             myCart = cart;
-          
+
+
             InitializeComponent();
 
         }
@@ -188,6 +181,6 @@ namespace PL
 
         }
 
-       
+      
     }
 }

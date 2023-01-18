@@ -55,10 +55,12 @@ namespace PL
             if (cmbStatus.SelectedIndex == 0)//all product option
             {
                 PlOrder = bl.Order.GetOrderList().ToList();
+                orderForListView.ItemsSource = bl.Order.GetOrderList();
                 return;
             }
 
             PlOrder = bl.Order.GetListedListByFilter(item => item.Status == Enum.Parse<BO.OrderStatus>(cmbStatus.SelectedItem.ToString())).ToList();//sort order list view by category
+            orderForListView.ItemsSource = PlOrder;
            
         }
 

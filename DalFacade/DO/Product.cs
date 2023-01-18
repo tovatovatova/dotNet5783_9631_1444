@@ -27,6 +27,7 @@ public struct Product
     /// </summary>
    public string? pictureSource { get; set; }
     public Category ProductCategoty { get; set; }
+    public string? ImagesSource { get; set; }
 
     /// <summary>
     /// return a string for product's details

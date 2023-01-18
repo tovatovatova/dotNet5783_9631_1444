@@ -12,21 +12,6 @@
     <Grid>
         <ComboBox x:Name="cmbCategory"  Height="36" VerticalAlignment="Bottom"  BorderBrush="#FF41CFA8" FontSize="16" FontFamily="Consolas" Background="{x:Null}" Margin="502,0,12,383" SelectionChanged="cmbCategory_SelectionChanged" />
         <Button x:Name="btnAdd" Margin="38,297,608,34"  Content="ADD" Foreground="#FFACF1EE" FontSize="49" Click="btnAdd_Click" FontFamily="Bahnschrift SemiLight" FontStretch="Expanded" FontStyle="Italic" FontWeight="SemiBold" TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
-            <!--<Button.Template>
-                
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <Ellipse Stroke="LightCyan"
-                         StrokeThickness="2">
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource=""/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" OpacityMask="Black"/>
-                    </Grid>
-                </ControlTemplate>
-            </Button.Template>-->
-        
         </Button>
         <DataGrid x:Name="prosuctForListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="215,51,10,34" FontFamily="Cascadia Mono SemiBold" Foreground="{DynamicResource colorInDataGrid}" FontWeight="Bold" FontSize="16" SelectionChanged="prosuctForListDataGrid_SelectionChanged" >
             <DataGrid.Columns>
@@ -41,12 +26,3 @@
         <Label x:Name="lblCat" Content="Select category:" HorizontalAlignment="Left" Margin="342,15,0,0" VerticalAlignment="Top" Foreground="#FF30ABBC" FontFamily="algerian" Background="{x:Null}" FontSize="16" Height="36" Width="176"/>
     </Grid>
 </Window>
-<!--<DataGrid x:Name="productforlistDataGrid" IsReadOnly="True" FontFamily="Franklin Gothic Heavy" FontSize="20" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="35,43,32,33" Grid.ColumnSpan="3" Grid.RowSpan="2" AutomationProperties.IsRequiredForForm="True">
-    <DataGrid.Columns>
-        <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="0.3*"  Foreground="DarkSlateGray" />
-        <DataGridTextColumn x:Name="categoryColumn" Binding="{Binding Category}" Header="Category" Width="0.4*" Foreground="DarkSlateGray"/>
-        <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="0.3*" Foreground="DarkSlateGray"/>
-        <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Price" Width="0.2*" Foreground="DarkSlateGray" />
-    </DataGrid.Columns>
-    <TextBlock Foreground="{StaticResource colorInDataGrid}"/>
-    </DataGrid>-->

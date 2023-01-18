@@ -18,9 +18,9 @@
                     <ColumnDefinition Width="80"/>
 
                 </Grid.ColumnDefinitions>
-                <Ellipse Height="80" Width="80" Margin="25 10 0 10" HorizontalAlignment="Left">
+                <Ellipse Height="80" Width="80" Margin="25 10 0 10" HorizontalAlignment="Left" >
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding ProductID,Converter={StaticResource imageConverter}}"/>
+                        <ImageBrush ImageSource="{Binding ImagesSource ,Converter={StaticResource stringToBitmapWithSource}}"/>
                     </Ellipse.Fill>
                     <Ellipse.Effect>
                         <DropShadowEffect ShadowDepth="1"/>
@@ -56,7 +56,7 @@
             </Grid>
         </DataTemplate>
     </Window.Resources>
-    <Grid>
+    <Grid >
         <Image x:Name="emptyCart"  Source="{Binding ElementName=emptyCart, Path=Name,Converter={StaticResource imageConverter}}" Visibility="{Binding ElementName=scroll,Path=Visibility,Converter={StaticResource Hiddentovisible },UpdateSourceTrigger=PropertyChanged}" Width="400" Height="400" Margin="30,30,30,30"/>
         <ScrollViewer x:Name="scroll"  Background="LightCyan" Margin="218,44,10,0" Visibility="{Binding TotalPrice,Converter={StaticResource doubletoVisible},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Height="585" VerticalAlignment="Top" >
 

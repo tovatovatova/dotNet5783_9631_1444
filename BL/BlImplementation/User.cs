@@ -14,6 +14,7 @@ namespace BlImplementation
         public delegate TOutput Converter<in TInput, out TOutput>(TInput input);
         public void compare(BO.User user)
         {
+            if (user.UserName==null) throw new BO.BlInvalidInputException("user name");
           IEnumerable<DO.User> use=from DO.User u in dal.User.GetAll()
                   where (u.UserName==user.UserName)&&(u.Password==user.Password)/*&&((BO.LogIn)(u.Log)==user.Log)*//*&&(u.Email==user.Email)*/
                   select u;
@@ -24,8 +25,8 @@ namespace BlImplementation
         }
         public void addUser(BO.User user)
         {
-            if (user.UserName==" ")
-                throw new BO.BlInvalidInputException("user name");
+            if (user.UserName == null||user.Email==null||user.Password==null||user.Email.Contains("@gmail.com")==false) 
+                throw new BO.BlInvalidInputException("user");
             try
             {
                 dal.User.Add(new DO.User() { UserName=user.UserName,Password=user.Password, Email=user.Email});

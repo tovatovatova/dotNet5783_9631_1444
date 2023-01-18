@@ -23,6 +23,7 @@ internal class DalOrderItem : IOrderItem
             OrderId = item.ToIntNullable("OrderId") ?? throw new FormatException("OrderId"),
             Price = item.ToDoubleNullable("Price") ?? throw new FormatException("Price"),
             Amount = item.ToIntNullable("Amount") ?? throw new FormatException("Amount"),
+            ImagesSource=item.Element("ImagesSource").ToString()??throw new FormatException("ImagesSource")
         };
     }
 
@@ -31,19 +32,18 @@ internal class DalOrderItem : IOrderItem
     {
         XElement elementItem = XMLTools.LoadListFromXMLElement(s_orderItems);
         item.OrderItemId = Config.NextOrderItemNumber();
+        item.ImagesSource= "\\" + item.ImagesSource;
         XElement xOrderItem = new XElement("OrderItem",
                                         new XElement("OrderItemId", item.OrderItemId),
                                         new XElement("ProductId", item.ProductId),
                                         new XElement("OrderId", item.OrderId),
                                         new XElement("Price", item.Price),
-                                        new XElement("Amount", item.Amount));
+                                        new XElement("Amount", item.Amount),
+                                        new XElement("ImagesSource",item.ImagesSource));
         elementItem.Add(xOrderItem);
         XMLTools.SaveListToXMLElement(elementItem, s_orderItems);
         Config.SaveNextOrderItemNumber(item.OrderItemId+1);
         return item.OrderItemId;
-
-        //running number???//newOrderItem.OrderItemId = DataSource.Config.NextOrderItemNumber;
-
     }
 
     public void Delete(int id)

@@ -2,114 +2,234 @@
 <ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Product>
     <Id>100000</Id>
-    <Name>vafel belgi</Name>
+    <Name>oreo cake</Name>
     <Price>65</Price>
     <AmountInStock>0</AmountInStock>
-    <ProductCategoty>Specials</ProductCategoty>
+    <ProductCategoty>Cakes</ProductCategoty>
+    <ImagesSource>\Images\100000</ImagesSource>
   </Product>
   <Product>
     <Id>100001</Id>
-    <Name>high cream cake</Name>
+    <Name> colorful Alfajores</Name>
     <Price>61</Price>
     <AmountInStock>4</AmountInStock>
-    <ProductCategoty>Cakes</ProductCategoty>
+    <ProductCategoty>Desserts</ProductCategoty>
+    <ImagesSource>\Images\100001</ImagesSource>
   </Product>
   <Product>
     <Id>100002</Id>
     <Name>crep</Name>
     <Price>30</Price>
     <AmountInStock>4</AmountInStock>
-    <ProductCategoty>Specials</ProductCategoty>
+    <ProductCategoty>Desserts</ProductCategoty>
+    <ImagesSource>\Images\100002</ImagesSource>
   </Product>
   <Product>
     <Id>100003</Id>
-    <Name>chokolate ice Cream</Name>
+    <Name>colorful donats</Name>
     <Price>48</Price>
     <AmountInStock>3</AmountInStock>
-    <ProductCategoty>GiftBoxes</ProductCategoty>
+    <ProductCategoty>Donats</ProductCategoty>
+    <ImagesSource>\Images\100003</ImagesSource>
   </Product>
   <Product>
     <Id>100004</Id>
-    <Name>crep</Name>
+    <Name>black and white donats</Name>
     <Price>51</Price>
     <AmountInStock>4</AmountInStock>
-    <ProductCategoty>Specials</ProductCategoty>
+    <ProductCategoty>GiftBoxes</ProductCategoty>
+    <ImagesSource>\Images\100004</ImagesSource>
   </Product>
   <Product>
     <Id>100005</Id>
-    <Name>mix Desserts</Name>
+    <Name>chocolate chip cookies</Name>
     <Price>61</Price>
     <AmountInStock>4</AmountInStock>
     <ProductCategoty>Desserts</ProductCategoty>
+    <ImagesSource>\Images\100005</ImagesSource>
   </Product>
   <Product>
     <Id>100006</Id>
-    <Name>mini donats</Name>
+    <Name>heart donats</Name>
     <Price>46</Price>
     <AmountInStock>0</AmountInStock>
-    <ProductCategoty>Desserts</ProductCategoty>
+    <ProductCategoty>Donats</ProductCategoty>
+    <ImagesSource>\Images\100006</ImagesSource>
   </Product>
   <Product>
     <Id>100007</Id>
-    <Name>chokolate ice Cream</Name>
+    <Name>Colorful donuts case</Name>
     <Price>30</Price>
     <AmountInStock>4</AmountInStock>
     <ProductCategoty>GiftBoxes</ProductCategoty>
+    <ImagesSource>\Images\100007</ImagesSource>
   </Product>
   <Product>
     <Id>100008</Id>
-    <Name>vafel belgi</Name>
+    <Name>pink Alfajores</Name>
     <Price>48</Price>
     <AmountInStock>6</AmountInStock>
-    <ProductCategoty>Specials</ProductCategoty>
+    <ProductCategoty>Desserts</ProductCategoty>
+    <ImagesSource>\Images\100008</ImagesSource>
   </Product>
   <Product>
     <Id>100009</Id>
-    <Name>crepjhgfghj</Name>
+    <Name>pink donats</Name>
     <Price>50</Price>
     <AmountInStock>8</AmountInStock>
-    <ProductCategoty>Specials</ProductCategoty>
+    <ProductCategoty>Donats</ProductCategoty>
+    <ImagesSource>\Images\100009</ImagesSource>
   </Product>
   <Product>
     <Id>100010</Id>
-    <Name>vanile ice cream</Name>
+    <Name>blue donats</Name>
     <Price>33</Price>
     <AmountInStock>8</AmountInStock>
-    <ProductCategoty>GiftBoxes</ProductCategoty>
-  </Product>
-  <Product>
-    <Id>100011</Id>
-    <Name>chokolate ice Cream</Name>
-    <Price>48</Price>
-    <AmountInStock>8</AmountInStock>
-    <ProductCategoty>GiftBoxes</ProductCategoty>
+    <ProductCategoty>Donats</ProductCategoty>
+    <ImagesSource>\Images\100010</ImagesSource>
   </Product>
   <Product>
     <Id>100012</Id>
-    <Name>mix Desserts</Name>
+    <Name>mini donats</Name>
     <Price>54</Price>
     <AmountInStock>5</AmountInStock>
-    <ProductCategoty>Desserts</ProductCategoty>
+    <ProductCategoty>Donats</ProductCategoty>
+    <ImagesSource>\Images\100012</ImagesSource>
   </Product>
   <Product>
     <Id>100013</Id>
-    <Name>high cream cake</Name>
+    <Name>mixed donats</Name>
     <Price>60</Price>
     <AmountInStock>6</AmountInStock>
-    <ProductCategoty>Cakes</ProductCategoty>
+    <ProductCategoty>Donats</ProductCategoty>
+    <ImagesSource>\Images\100013</ImagesSource>
   </Product>
   <Product>
     <Id>100014</Id>
-    <Name>birthday cake</Name>
+    <Name>pink sprinkle donats</Name>
     <Price>29</Price>
     <AmountInStock>2</AmountInStock>
-    <ProductCategoty>Cakes</ProductCategoty>
+    <ProductCategoty>Donats</ProductCategoty>
+    <ImagesSource>\Images\100014</ImagesSource>
   </Product>
   <Product>
-    <Id>222</Id>
-    <Name>cake</Name>
-    <Price>50</Price>
+    <Id>100015</Id>
+    <Name>white notela donats</Name>
+    <Price>19</Price>
+    <AmountInStock>3</AmountInStock>
+    <ProductCategoty>Donats</ProductCategoty>
+    <ImagesSource>\Images\100015</ImagesSource>
+  </Product>
+  <Product>
+    <Id>100016</Id>
+    <Name>colorful alfahors</Name>
+    <Price>15</Price>
+    <AmountInStock>4</AmountInStock>
+    <ProductCategoty>Desserts</ProductCategoty>
+    <ImagesSource>\Images\100016</ImagesSource>
+  </Product>
+  <Product>
+    <Id>100017</Id>
+    <Name>Valentine's Day cake</Name>
+    <Price>70</Price>
+    <AmountInStock>3</AmountInStock>
+    <ProductCategoty>Cakes</ProductCategoty>
+    <ImagesSource>\Images\100017</ImagesSource>
+  </Product>
+  <Product>
+    <Id>100018</Id>
+    <Name>book's lovers cake</Name>
+    <Price>119</Price>
+    <AmountInStock>2</AmountInStock>
+    <ProductCategoty>Cakes</ProductCategoty>
+    <ImagesSource>\Images\100018</ImagesSource>
+  </Product>
+  <Product>
+    <Id>100019</Id>
+    <Name>notela cake</Name>
+    <Price>159</Price>
     <AmountInStock>5</AmountInStock>
     <ProductCategoty>Cakes</ProductCategoty>
+    <ImagesSource>\Images\100019</ImagesSource>
+  </Product>
+  <Product>
+    <Id>100020</Id>
+    <Name>monster cupcake</Name>
+    <Price>15</Price>
+    <AmountInStock>10</AmountInStock>
+    <ProductCategoty>Specials</ProductCategoty>
+    <ImagesSource>\Images\100020</ImagesSource>
+  </Product>
+  <Product>
+    <Id>100021</Id>
+    <Name>Valentine's Day cupcake</Name>
+    <Price>29</Price>
+    <AmountInStock>20</AmountInStock>
+    <ProductCategoty>Specials</ProductCategoty>
+    <ImagesSource>\Images\100021</ImagesSource>
+  </Product>
+  <Product>
+    <Id>100022</Id>
+    <Name>olaf cupcake</Name>
+    <Price>29</Price>
+    <AmountInStock>20</AmountInStock>
+    <ProductCategoty>Specials</ProductCategoty>
+    <ImagesSource>\Images\100022</ImagesSource>
+  </Product>
+  <Product>
+    <Id>100023</Id>
+    <Name>gluten free lemon cake</Name>
+    <Price>29</Price>
+    <AmountInStock>20</AmountInStock>
+    <ProductCategoty>Specials</ProductCategoty>
+    <ImagesSource>\Images\100023</ImagesSource>
+  </Product>
+  <Product>
+    <Id>100024</Id>
+    <Name>gluten free mini donats</Name>
+    <Price>49</Price>
+    <AmountInStock>19</AmountInStock>
+    <ProductCategoty>Specials</ProductCategoty>
+    <ImagesSource>\Images\100024</ImagesSource>
+  </Product>
+  <Product>
+    <Id>100025</Id>
+    <Name>sugar free fruits cupcake</Name>
+    <Price>49</Price>
+    <AmountInStock>2</AmountInStock>
+    <ProductCategoty>Specials</ProductCategoty>
+    <ImagesSource>\Images\100025</ImagesSource>
+  </Product>
+  <Product>
+    <Id>100026</Id>
+    <Name>Valentine's Day cookies</Name>
+    <Price>49</Price>
+    <AmountInStock>19</AmountInStock>
+    <ProductCategoty>GiftBoxes</ProductCategoty>
+    <ImagesSource>\Images\100026</ImagesSource>
+  </Product>
+  <Product>
+    <Id>100027</Id>
+    <Name>holiday cookies</Name>
+    <Price>69</Price>
+    <AmountInStock>30</AmountInStock>
+    <ProductCategoty>GiftBoxes</ProductCategoty>
+    <ImagesSource>\Images\100027</ImagesSource>
+  </Product>
+  <Product>
+    <Id>123456</Id>
+    <Name>try</Name>
+    <Price>20</Price>
+    <AmountInStock>20</AmountInStock>
+    <ProductCategoty>Cakes</ProductCategoty>
+    <ImagesSource>\Images\1.2.2.PNG</ImagesSource>
+  </Product>
+  <Product>
+    <Id>45</Id>
+    <Name>ooo</Name>
+    <Price>5</Price>
+    <AmountInStock>4</AmountInStock>
+    <ProductCategoty>Cakes</ProductCategoty>
+    <ImagesSource>\Images\1.1.PNG</ImagesSource>
   </Product>
 </ArrayOfProduct>

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BlImplementation
@@ -162,7 +163,9 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("customer name");
             if (cart.CustomerAddress == " ")//empty address
                 throw new BO.BlInvalidInputException("customer address");
-            if (cart.CustomerEmail == null||cart.CustomerEmail.Contains("@gmail.com")==false)//empty email or worng email
+            string strRegex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+            Regex re = new Regex(strRegex, RegexOptions.IgnoreCase);
+            if (!re.IsMatch(cart.CustomerEmail)||cart.CustomerEmail==null)
                 throw new BO.BlInvalidInputException("customer email");
             if (cart.Items.All(item => item.Amount < 0))//negative amounts of items
                 throw new BO.BlInvalidInputException("items amount");

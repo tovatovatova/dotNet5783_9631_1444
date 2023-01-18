@@ -20,7 +20,7 @@ namespace BO
     {
         public BlIdAlreadyExistException(string message, Exception innerException) : base(message, innerException) { }
 
-        public override string ToString() => base.ToString() + $" already exist";
+        public override string ToString() => base.ToString() ;
     }
     [Serializable]
     public class BlNullPropertyException:Exception

@@ -72,8 +72,8 @@ namespace PL
             }
             InitializeComponent();
             txtAmountInCart.Text = cart.Items.Count().ToString();
-                myProductCat = new List<BO.ProductItem>();
-                myProductCat = bl.Product.GetCatalog().ToList();
+            myProductCat = new List<BO.ProductItem>();
+            myProductCat = bl.Product.GetCatalog().ToList();
            
 
 
@@ -123,11 +123,6 @@ namespace PL
         private void cxbSortByCategory_Unchecked(object sender, RoutedEventArgs e)
         {
             myProductCat=bl.Product.GetCatalog().ToList();
-        }
-
-        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            myProductCat = bl.Product.GetCatalog().ToList().Where(item=> item.Category== Enum.Parse<BO.Category>((sender as TextBlock).Text.ToString())).ToList();
         }
     }
     

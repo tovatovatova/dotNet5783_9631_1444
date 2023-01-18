@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BlApi;
 
@@ -153,6 +154,8 @@ namespace BlImplementation
             {
                 throw new BO.BlIdDoNotExistException("order", ex);
             }
+            if (order.ShipDate==null)//cant update delivary if hasnt shipped yet!!
+                throw new BO.BlIncorrectDateException("cant update delivered order");
             if (order.DeliveryDate == null)
                 order.DeliveryDate = DateTime.Now;//update delivary date
             else //cant update-there a date in there already
@@ -195,8 +198,8 @@ namespace BlImplementation
             {
                 throw new BO.BlIdDoNotExistException("order", ex);
             }
-            if (/*order.DeliveryDate == null && */order.ShipDate == null)
-                /*order.DeliveryDate*/ order.ShipDate= DateTime.Now;//update delivary date
+            if (order.ShipDate == null)
+                 order.ShipDate= DateTime.Now;//update delivary date
             else
                 throw new BO.BlIncorrectDateException("cant update shiped order");
             try
@@ -288,6 +291,16 @@ namespace BlImplementation
 
         public BO.Order UpdateOrder(BO.Order order)
         {
+            if (order.CustomerName==null|| !Regex.IsMatch(order.CustomerName, @"^[a-zA-Z]+$"))
+                throw new BO.BlInvalidInputException("customer name");
+            if (order.CustomerAddress == null)
+                throw new BO.BlInvalidInputException("customer address");
+            string strRegex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+
+            Regex re = new Regex(strRegex, RegexOptions.IgnoreCase);
+
+            if (!re.IsMatch(order.CustomerEmail))
+                throw new BO.BlInvalidInputException("customer email");
             if (order.Status == BO.OrderStatus.Ordered)
             {//there is still option for changing the costumer details
                 DO.Order o = new DO.Order()
@@ -304,16 +317,6 @@ namespace BlImplementation
                 {
 
                     dal.Order.Update(o);
-                    //dal.Order.Update(new DO.Order()
-                    //{
-                    //    OrderId = order.Id,
-                    //    CustomerName = order.CustomerName,
-                    //    CustomerAddress = order.CustomerAddress,
-                    //    CustomerEmail = order.CustomerEmail,
-                    //    DeliveryDate = order.DeliveryDate,
-                    //    ShipDate = order.ShipDate,
-                    //    OrderDate = order.OrderDate
-                    //});
                 }
                 catch (DO.DalIdDoNotExistException ex)//couldnt find the order to update
                 {
@@ -322,43 +325,10 @@ namespace BlImplementation
                 //update was successful
                 return ConvertOrderDoToBO(o);
             }
+            else
+                throw new BO.BlNullPropertyException("cant update delails-order was already shipped");
             return order;
         }
-
-
-
-
-
-
-        //public BO.Order UpdateOrder<T>(int orderID,BO.UpdateOrder updateOrder,T value1,T value2)
-        //{
-        //    if (orderID < 0)//negative id
-        //        throw new BO.BlInvalidInputException("order id");
-        //    DO.Order doorder;
-        //    try
-        //    {
-        //        doorder = dal.Order.GetById(orderID);//return order by id from dal
-        //    }
-        //    catch (DO.DalIdDoNotExistException ex)//order doesnt exist
-        //    {
-        //        throw new BO.BlIdDoNotExistException("order", ex);
-        //    }
-        //    switch (updateOrder)
-        //    {
-        //        case BO.UpdateOrder.Address:
-
-        //            doorder.CustomerAddress = Convert.ToString(value1)??throw new BO.BlInvalidInputException("address");
-        //            dal.Order.Update(doorder);
-        //            break;
-        //        case BO.UpdateOrder.AmountOfItem:
-        //            DO.OrderItem item = dal.OrderItem.GetById(Convert.ToInt32( value1));
-        //            break;
-        //        case BO.UpdateOrder.DeleteItem:
-        //            break;
-        //        default:
-        //            break;      
-        //    }
-        //}
         public void DeleteOrder(int orderID)
         {
             try

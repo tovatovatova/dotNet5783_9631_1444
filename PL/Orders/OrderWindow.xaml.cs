@@ -64,13 +64,8 @@ namespace PL
             }
             catch (BO.BlIdDoNotExistException ex)
             {
-
-                //throw an error message box 
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+               MessageBox.Show(ex.Message.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                return;
             }
             PlOrderItem = MyOrder.Items.ToList();
             statusComboBox.SelectedItem = MyOrder.Status;
@@ -85,22 +80,15 @@ namespace PL
             }
             catch (BO.BlIdDoNotExistException ex)
             {
-
-                //throw an error message box 
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                 MessageBox.Show(ex.Message.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
             }
-            catch(BO.BlNullPropertyException ex)
+            catch(BO.BlInvalidInputException ex)
             {
-                //throw an error message box 
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                MessageBox.Show(ex.ToString() + " \n check your input", "", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+            }
+            catch (BO.BlNullPropertyException ex)
+            {
+                MessageBox.Show(ex.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
             }
             Close();
 
@@ -114,45 +102,20 @@ namespace PL
             }
             catch (BO.BlIdDoNotExistException ex)//order id doesnt exist 
             {
-                //throw an error message box 
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                Close();
+                MessageBox.Show(ex.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
             }
-            catch(BO.BlIncorrectDateException ex)//worng date
+            catch (BO.BlIncorrectDateException ex)//worng date
             {
-                //throw an error message box 
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                Close();
+                MessageBox.Show(ex.message.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
             }
-            catch(BO.BlNullPropertyException ex)
+            catch (BO.BlNullPropertyException ex)
             {
-                //throw an error message box 
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                Close();
+                MessageBox.Show(ex.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
             }
-            catch(BO.BlInvalidInputException ex)
+            catch (BO.BlInvalidInputException ex)
             {
-                //throw an error message box 
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                MessageBox.Show(ex.ToString() + " \n check your input", "", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
             }
-            //could update 
-         //   MyOrder.Status = BO.OrderStatus.Delivered;
             Close();
         }
 
@@ -164,64 +127,22 @@ namespace PL
             }
             catch (BO.BlIdDoNotExistException ex)//order id doesnt exist 
             {
-                //throw an error message box 
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                Close();
+                MessageBox.Show(ex.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
             }
             catch (BO.BlIncorrectDateException ex)//worng date
             {
-                //throw an error message box 
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                Close();
+                MessageBox.Show(ex.message.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
             }
             catch (BO.BlNullPropertyException ex)
             {
-                //throw an error message box 
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                Close();
+                MessageBox.Show(ex.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
             }
             catch (BO.BlInvalidInputException ex)
             {
-                //throw an error message box 
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                MessageBox.Show(ex.ToString() + " \n check your input", "", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
             }
             //could update 
             Close();
         }
-
-        //private void btnDelete_Click(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        bl.Order.DeleteOrder(MyOrder.Id);
-        //    }
-        //    catch (BO.BlIdDoNotExistException ex)
-        //    {
-        //        //throw an error message box 
-        //        string messageBoxText = ex.Message.ToString();
-        //        string caption = "error";
-        //        MessageBoxImage icon = MessageBoxImage.Error;
-        //        MessageBoxResult result;
-        //        result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-        //        Close();
-        //    }
-        //    Close();
-        //}
     }
 }
