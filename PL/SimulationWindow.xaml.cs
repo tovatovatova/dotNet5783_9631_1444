@@ -40,7 +40,6 @@ namespace PL
         {
             InitializeComponent();
             SimulationOrders = new(bl.Order.GetOrderList());
-
             updateStatus = new BackgroundWorker();
             updateStatus.DoWork += UpdateStatus_DoWork;
             updateStatus.ProgressChanged += UpdateStatus_ProgressChanged;
@@ -64,10 +63,10 @@ namespace PL
                     fakeTime = fakeTime.AddHours(3);
                     if(updateStatus.WorkerReportsProgress== true)
                     {
-                        updateStatus.ReportProgress(10000);
+                        updateStatus.ReportProgress(111);
                     }
                 }
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
             }
         }
        
@@ -93,19 +92,13 @@ namespace PL
             foreach (var item in SimulationOrders)
             {
                 BO.Order order = bl.Order.GetOrderByID(item?.ID ?? throw new NullReferenceException());
-                if (fakeTime - order.OrderDate >= new TimeSpan(2, 0, 0, 0) && order.Status == BO.OrderStatus.Ordered)
+                if (fakeTime - order.OrderDate >= new TimeSpan(1, 0, 0, 0) && order.Status == BO.OrderStatus.Ordered)
                     bl.Order.UpdateShip(order.Id);
-                if (fakeTime - order.OrderDate >= new TimeSpan(5, 0, 0, 0) && order.Status == BO.OrderStatus.Shipped)
+                if (fakeTime - order.OrderDate >= new TimeSpan(3, 0, 0, 0) && order.Status == BO.OrderStatus.Shipped)
                     bl.Order.UpdateDelivery(order.Id);
-                Thread.Sleep(100);
                 SimulationOrders = new (bl.Order.GetOrderList());
             }
-            //if (SimulationOrders.All(x => x?.Status == BO.OrderStatus.Delivered))
-            //{
-            //    if (updateStatus.WorkerSupportsCancellation == true)
-            //        updateStatus.CancelAsync(); // Cancel the asynchronous operation.
-            //    flag = false;
-            //}
+         
             
 
         }
