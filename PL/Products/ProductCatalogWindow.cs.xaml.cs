@@ -124,17 +124,6 @@ namespace PL
         {
             myProductCat=bl.Product.GetCatalog().ToList();
         }
-
-        //private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    if (cmbCategory.SelectedIndex == 0)
-        //    {
-        //        myProductCat = bl.Product.GetCatalog().ToList();
-        //        return;
-        //    }
-
-        //    myProductCat = bl.Product.GetListedListByFilterCategory(item => item.Category == Enum.Parse<BO.Category>(cmbCategory.SelectedItem.ToString())).ToList();
-        //}
     }
     
 }

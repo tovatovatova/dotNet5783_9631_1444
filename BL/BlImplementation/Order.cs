@@ -324,41 +324,6 @@ namespace BlImplementation
             }
             return order;
         }
-
-
-
-
-
-
-        //public BO.Order UpdateOrder<T>(int orderID,BO.UpdateOrder updateOrder,T value1,T value2)
-        //{
-        //    if (orderID < 0)//negative id
-        //        throw new BO.BlInvalidInputException("order id");
-        //    DO.Order doorder;
-        //    try
-        //    {
-        //        doorder = dal.Order.GetById(orderID);//return order by id from dal
-        //    }
-        //    catch (DO.DalIdDoNotExistException ex)//order doesnt exist
-        //    {
-        //        throw new BO.BlIdDoNotExistException("order", ex);
-        //    }
-        //    switch (updateOrder)
-        //    {
-        //        case BO.UpdateOrder.Address:
-
-        //            doorder.CustomerAddress = Convert.ToString(value1)??throw new BO.BlInvalidInputException("address");
-        //            dal.Order.Update(doorder);
-        //            break;
-        //        case BO.UpdateOrder.AmountOfItem:
-        //            DO.OrderItem item = dal.OrderItem.GetById(Convert.ToInt32( value1));
-        //            break;
-        //        case BO.UpdateOrder.DeleteItem:
-        //            break;
-        //        default:
-        //            break;      
-        //    }
-        //}
         public void DeleteOrder(int orderID)
         {
             try
