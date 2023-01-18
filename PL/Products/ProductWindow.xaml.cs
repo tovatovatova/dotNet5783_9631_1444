@@ -1,10 +1,12 @@
 ﻿
 using BO;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -191,19 +193,19 @@ namespace PL
             }
         }
 
-        /// <summary>
-        /// event happens when user press left mouse button (no matter where)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mainGrid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            iDTextBox.BorderBrush = Background;
-            iDTextBox.BorderBrush = Background;
-            inStockTextBox.BorderBrush = Background;
-            nameTextBox.BorderBrush = Background;
-            priceTextBox.BorderBrush = Background;
-        }
+        ///// <summary>
+        ///// event happens when user press left mouse button (no matter where)
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void mainGrid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    iDTextBox.BorderBrush = Background;
+        //    iDTextBox.BorderBrush = Background;
+        //    inStockTextBox.BorderBrush = Background;
+        //    nameTextBox.BorderBrush = Background;
+        //    priceTextBox.BorderBrush = Background;
+        //}
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -236,6 +238,29 @@ namespace PL
                 result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
             }
             Close();
+        }
+
+        private void btnAddPic_Click(object sender, RoutedEventArgs e)
+        {
+           OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog()==true)
+            {
+                picImgBox.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+                PlProduct.ImagesSource = openFileDialog.FileName;
+            }
+        }
+
+        private void okBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (PlProduct.ImagesSource!=null)//has picture
+            {
+                string imName = PlProduct.ImagesSource.Substring(PlProduct.ImagesSource.LastIndexOf("\\")); 
+                if (!File.Exists(Environment.CurrentDirectory[..^4]+ @"\Images"+imName))//check if there is anything in the path
+                {//if not
+                    File.Copy(PlProduct.ImagesSource, Environment.CurrentDirectory[..^4] + @"\Images" + imName);//creates a path
+                }
+                PlProduct.ImagesSource = @"Images" + imName;
+            }
         }
     }
    

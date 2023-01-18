@@ -24,7 +24,7 @@
                     <DropShadowEffect ShadowDepth="1"/>
                 </Border.Effect>
                 <Border.Background>
-                    <ImageBrush ImageSource="{Binding ID ,Converter={StaticResource imageConverter}}" />
+                    <ImageBrush ImageSource="{Binding ImagesSource ,Converter={StaticResource stringToBitmapWithSource}}" />
                     <!--<ImageBrush ImageSource="{Binding ID}" />-->
                 </Border.Background>
             </Border>

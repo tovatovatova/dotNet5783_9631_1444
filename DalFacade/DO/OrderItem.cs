@@ -27,6 +27,8 @@ public struct OrderItem
     /// Quantity of this item in order
     /// </summary>
     public int Amount { get; set; }
+    public string? ImagesSource { get; set; }
+
 
     /// <summary>
     /// return a string for order item's details

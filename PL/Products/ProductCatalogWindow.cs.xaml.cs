@@ -72,8 +72,8 @@ namespace PL
             }
             InitializeComponent();
             txtAmountInCart.Text = cart.Items.Count().ToString();
-                myProductCat = new List<BO.ProductItem>();
-                myProductCat = bl.Product.GetCatalog().ToList();
+            myProductCat = new List<BO.ProductItem>();
+            myProductCat = bl.Product.GetCatalog().ToList();
            
 
 

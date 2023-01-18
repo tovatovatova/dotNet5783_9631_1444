@@ -38,7 +38,8 @@ namespace BlImplementation
                     Name = newProduct.Name,
                     Price = newProduct.Price,
                     AmountInStock = newProduct.InStock,
-                    ProductCategoty = (DO.Category)newProduct.Category
+                    ProductCategoty = (DO.Category)newProduct.Category,
+                    ImagesSource=newProduct.ImagesSource/*@#$%^&*/
                 };
                 dal.Product.Add(p);//add to list of product
             }
@@ -117,7 +118,8 @@ namespace BlImplementation
                 Category = (BO.Category)product.ProductCategoty,
                 AmountInCart = amount,//////what to do if the product is not in cart\ if the items in cart is null 
                 InStock = product.AmountInStock > 0,
-                ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" + product.Id + ".jpg"
+                ImagesSource= product.ImagesSource,
+                //ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" + product.Id + ".jpg"
 
             };
             return item;
@@ -147,7 +149,8 @@ namespace BlImplementation
                 Price = product.Price,
                 Category = (BO.Category)product.ProductCategoty,
                 InStock = product.AmountInStock,
-                ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" +product.Id+".jpg"
+                ImagesSource= product.ImagesSource,
+                //ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" +product.Id+".jpg"
 
             };
         }
@@ -213,6 +216,7 @@ namespace BlImplementation
                     Price = product.Price,
                     AmountInStock = product.InStock,
                     ProductCategoty = (DO.Category)(BO.Category)product.Category,
+                    ImagesSource= "\\"+product.ImagesSource,
                 });
             }
             catch (DO.DalIdDoNotExistException ex)//prduct doesnt exist
@@ -238,7 +242,8 @@ namespace BlImplementation
                        Category = (BO.Category)(doProduct?.ProductCategoty ?? throw new NullReferenceException("missing category")),
                        AmountInCart = 0,//we cant know here the amount in cart
                        InStock = doProduct?.AmountInStock > 0,
-                       ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" + doProduct?.Id + ".jpg"
+                       ImagesSource= doProduct?.ImagesSource /*?? @"\Images"*//*#$%^&*/
+                       //ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" + doProduct?.Id + ".jpg"
 
                    };
         }
@@ -254,7 +259,8 @@ namespace BlImplementation
                              Category = (BO.Category)(doProduct?.ProductCategoty ?? throw new NullReferenceException("missing category")),
                              AmountInCart = 0,//we cant know here the amount in cart
                              InStock = doProduct?.AmountInStock > 0,
-                             ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" + doProduct?.Id + ".jpg"
+                             ImagesSource=doProduct?.ImagesSource
+                             //ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" + doProduct?.Id + ".jpg"
 
                          } into product
                          group product by product.Category;
@@ -266,33 +272,6 @@ namespace BlImplementation
             }
             return items;
         }
-
-
-
-
-
-
-
-
-        //public IEnumerable<BO.ProsuctForList?> GetListedListByCategory(Func<BO.ProsuctForList?, bool>? filter = null)
-        //{
-        //    return from BO.ProsuctForList p in GetProductList()
-        //           where filter(p)
-        //           select p;
-        //}
-        //public IEnumerable<BO.ProductItem> GetProductListByCategory(Func<BO.Product?, bool>? filter)
-        //{
-        //   return from DO.Product? prod in dal.Product.GetAll(item => filter(item))//runs on all the products
-        //          select new BO.ProductItem
-        //          {
-        //              ID = prod?.Id ?? throw new NullReferenceException("missing id"),
-        //              Name = prod?.Name ?? throw new NullReferenceException("missing name"),
-        //              Price = prod?.Price ?? throw new NullReferenceException("missing price"),
-        //              Category = (BO.Category)(prod?.ProductCategoty ?? throw new NullReferenceException("missing category")),
-        //              AmountInCart = 0,//we cant know here the amount in cart
-        //              InStock = prod?.AmountInStock > 0
-        //          };
-        //}
     }
 }
 

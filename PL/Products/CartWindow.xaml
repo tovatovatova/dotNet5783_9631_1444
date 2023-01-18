@@ -18,7 +18,7 @@
                     <ColumnDefinition Width="80"/>
 
                 </Grid.ColumnDefinitions>
-                <Ellipse Height="80" Width="80" Margin="25 10 0 10" HorizontalAlignment="Left">
+                <Ellipse Height="80" Width="80" Margin="25 10 0 10" HorizontalAlignment="Left" >
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="{Binding ProductID,Converter={StaticResource imageConverter}}"/>
                     </Ellipse.Fill>

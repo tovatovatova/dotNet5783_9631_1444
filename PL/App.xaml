@@ -173,7 +173,11 @@
         <local:DoubleToHiddenConverter x:Key="doubletoHidden"/>
         <local:NoBooleanToVisibilityConverter x:Key="notBoolToVis"/>
         <local:HiddenTOVisible x:Key="Hiddentovisible"/>
-        <!--<local:EmptyCollectionToHiddenConverter x:Key="emptyToHidden"/>-->
+        <local:StringToBitmapFromSource x:Key="stringToBitmapWithSource"/>
+
+
+            <!--<local:ConvLogInToVisible x:Key="ConverLogIn"/>-->
+            <!--<local:EmptyCollectionToHiddenConverter x:Key="emptyToHidden"/>-->
 
     </Application.Resources>
 </Application>

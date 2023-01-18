@@ -26,6 +26,7 @@ public struct Product
     /// Product Category from the categoies in the enum
     /// </summary>
     public Category ProductCategoty { get; set; }
+    public string? ImagesSource { get; set; }
 
     /// <summary>
     /// return a string for product's details
