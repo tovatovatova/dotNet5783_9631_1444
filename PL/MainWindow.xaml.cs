@@ -297,7 +297,7 @@ namespace PL
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             SimulationWindow o = new SimulationWindow();
-            o.Show();
+            o.ShowDialog();
         }
     }
 }

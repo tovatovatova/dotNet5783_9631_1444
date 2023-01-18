@@ -174,6 +174,8 @@
         <local:NoBooleanToVisibilityConverter x:Key="notBoolToVis"/>
         <local:HiddenTOVisible x:Key="Hiddentovisible"/>
         <local:StatusToColor x:Key="statusToBackColor"/>
+        
+      
         <local:StatusToInt x:Key="statusToProgressValue"/>
         <!--<local:EmptyCollectionToHiddenConverter x:Key="emptyToHidden"/>-->
 

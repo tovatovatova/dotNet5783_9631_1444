@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -12,7 +14,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.ComponentModel;
 
 namespace PL
 {
@@ -21,7 +22,7 @@ namespace PL
     /// </summary>
     public partial class SimulationWindow : Window
     {
-        BlApi.IBl bl = BlApi.Factory.Get();
+       private BlApi.IBl bl = BlApi.Factory.Get();
         BackgroundWorker updateStatus;
         bool flag = true;
     DateTime fakeTime= DateTime.Now;
@@ -37,9 +38,8 @@ namespace PL
 
         public SimulationWindow()
         {
-           
-            SimulationOrders = new List<BO.OrderForList?>();
-                     SimulationOrders=bl.Order.GetOrderList().ToList();
+            SimulationOrders =bl.Order.GetOrderList().ToList();
+
             InitializeComponent();
             updateStatus= new BackgroundWorker();
             updateStatus.DoWork += UpdateStatus_DoWork;
@@ -47,6 +47,7 @@ namespace PL
             updateStatus.RunWorkerCompleted += UpdateStatus_RunWorkerCompleted;
             updateStatus.WorkerReportsProgress = true;
             updateStatus.WorkerSupportsCancellation = true;
+
         }
         private void UpdateStatus_DoWork(object? sender, DoWorkEventArgs e)
         {
@@ -59,37 +60,36 @@ namespace PL
                 }
                 else
                 {
-                    Thread.Sleep(2000);
+                    
                     fakeTime = fakeTime.AddHours(3);
                     if(updateStatus.WorkerReportsProgress== true)
                     {
-                        updateStatus.ReportProgress(11);
+                        updateStatus.ReportProgress(20);
                     }
                 }
+                Thread.Sleep(1000);
             }
         }
-        //foreach (var item in ordListTemp)
-        //    {
-        //        BO.Order orderSimulator = bl.Order.RequestOrderDeta(item?.ID ?? throw new NullReferenceException());
-        //        if (timeSim - orderSimulator.OrderDate >= new TimeSpan(3, 0, 0, 0) && orderSimulator.Status == BO.OrderStatus.Ordered)
-        //            bl.Order.UpdateSendOrder(orderSimulator.ID);//, timeSim);
-        //        if (timeSim - orderSimulator.OrderDate >= new TimeSpan(10, 0, 0, 0) && orderSimulator.Status == BO.OrderStatus.Shipped)
-        //            bl.Order.UpdateSupplyOrder(orderSimulator.ID);//, timeSim);
-
-        //    }
-
+       
 
 
         private void UpdateStatus_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
         {
-            
-            MessageBoxResult result = MessageBox.Show(" 😍", "nbb", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-          
+
+            if (flag == true)
+            {
+                MessageBox.Show("finish");
+            }
+            else if (e.Cancelled == true)
+            {
+                MessageBox.Show("cancled");
+            }
+            this.Cursor = Cursors.Arrow;
         }
 
         private void UpdateStatus_ProgressChanged(object? sender, ProgressChangedEventArgs e)
         {
-
+            
             foreach (var item in SimulationOrders)
             {
                 BO.Order order = bl.Order.GetOrderByID(item?.ID ?? throw new NullReferenceException());
@@ -97,7 +97,16 @@ namespace PL
                     bl.Order.UpdateShip(order.Id);
                 if (fakeTime - order.OrderDate >= new TimeSpan(5, 0, 0, 0) && order.Status == BO.OrderStatus.Shipped)
                     bl.Order.UpdateDelivery(order.Id);
+
             }
+            if (SimulationOrders.All(x => x?.Status == BO.OrderStatus.Delivered))
+            {
+                if (updateStatus.WorkerSupportsCancellation == true)
+                    updateStatus.CancelAsync(); // Cancel the asynchronous operation.
+                flag = true;
+            }
+            SimulationOrders = bl.Order.GetOrderList().ToList();
+
         }
 
         private void start_Click(object sender, RoutedEventArgs e)
@@ -105,8 +114,14 @@ namespace PL
             if (updateStatus.IsBusy != true)
             {
                 this.Cursor = Cursors.Wait;
-               updateStatus.RunWorkerAsync(11);
+               updateStatus.RunWorkerAsync();
             }
+        }
+
+        private void stop_Click(object sender, RoutedEventArgs e)
+        {
+            if (updateStatus.WorkerSupportsCancellation == true)
+                updateStatus.CancelAsync(); 
         }
     }
 }

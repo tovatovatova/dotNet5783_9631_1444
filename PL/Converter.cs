@@ -31,7 +31,7 @@ namespace PL
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (double)value>0 ? Visibility.Visible : Visibility.Hidden;
+            return (double)value > 0 ? Visibility.Visible : Visibility.Hidden;
 
         }
 
@@ -39,13 +39,13 @@ namespace PL
         {
             return 0;
         }
-    }  
+    }
     public class DoubleToHiddenConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (double)value<=0 ? Visibility.Hidden : Visibility.Visible;
+            return (double)value <= 0 ? Visibility.Hidden : Visibility.Visible;
 
         }
 
@@ -114,7 +114,7 @@ namespace PL
         {
             return System.Convert.ToInt32(value) < 15 ? false : true;
         }
-    } 
+    }
     public class StatusToColor : IValueConverter
     {
 
@@ -153,6 +153,7 @@ namespace PL
             return BO.OrderStatus.Delivered;
         }
     }
+
     public class StringToBitmap : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -231,5 +232,26 @@ namespace PL
             throw new NotImplementedException();
         }
     }
+
+    //public class StatusToColor2 : IValueConverter
+    //{
+    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        BO.OrderStatus status = (BO.OrderStatus)value;
+    //        if (status == BO.OrderStatus.Delivered)
+    //            return Brushes.DeepPink;
+    //        if (status == BO.OrderStatus.Shipped)
+    //            return Brushes.LightPink;
+    //        else
+    //            return Brushes.Salmon;
+    //    }
+
+    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+
+
+    //}
 }
 
