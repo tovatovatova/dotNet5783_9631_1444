@@ -29,7 +29,7 @@ namespace PL
         public List<BO.OrderForList?> SimulationOrders
         {
             get { return (List<BO.OrderForList?>)GetValue(SimulationOrdersProperty); }
-            set { SetValue(SimulationOrdersProperty, value); }//@#$%^&*()_(*&UY^T%R$#$%^&*(
+            set { SetValue(SimulationOrdersProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for PlOrder.  This enables animation, styling, binding, etc...
@@ -38,7 +38,7 @@ namespace PL
 
         public SimulationWindow()
         {
-            SimulationOrders =bl.Order.GetOrderList().ToList();
+            SimulationOrders = bl.Order.GetOrderList().ToList();
 
             InitializeComponent();
             updateStatus= new BackgroundWorker();
@@ -78,7 +78,7 @@ namespace PL
 
             if (flag == true)
             {
-                MessageBox.Show("finish");
+                MessageBox.Show("finish😍");
             }
             else if (e.Cancelled == true)
             {
@@ -89,7 +89,7 @@ namespace PL
 
         private void UpdateStatus_ProgressChanged(object? sender, ProgressChangedEventArgs e)
         {
-            
+            List<BO.OrderForList> temp = bl.Order.GetOrderList().ToList();
             foreach (var item in SimulationOrders)
             {
                 BO.Order order = bl.Order.GetOrderByID(item?.ID ?? throw new NullReferenceException());
@@ -97,13 +97,13 @@ namespace PL
                     bl.Order.UpdateShip(order.Id);
                 if (fakeTime - order.OrderDate >= new TimeSpan(5, 0, 0, 0) && order.Status == BO.OrderStatus.Shipped)
                     bl.Order.UpdateDelivery(order.Id);
-
+                SimulationOrders = bl.Order.GetOrderList().ToList();
             }
             if (SimulationOrders.All(x => x?.Status == BO.OrderStatus.Delivered))
             {
                 if (updateStatus.WorkerSupportsCancellation == true)
                     updateStatus.CancelAsync(); // Cancel the asynchronous operation.
-                flag = true;
+                flag = false;
             }
             SimulationOrders = bl.Order.GetOrderList().ToList();
 
@@ -113,8 +113,9 @@ namespace PL
         {
             if (updateStatus.IsBusy != true)
             {
+                flag = true;
                 this.Cursor = Cursors.Wait;
-               updateStatus.RunWorkerAsync();
+                updateStatus.RunWorkerAsync();
             }
         }
 

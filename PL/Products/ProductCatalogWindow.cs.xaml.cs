@@ -125,7 +125,10 @@ namespace PL
             myProductCat=bl.Product.GetCatalog().ToList();
         }
 
-       
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            myProductCat = bl.Product.GetCatalog().ToList().Where(item=> item.Category== Enum.Parse<BO.Category>((sender as TextBlock).Text.ToString())).ToList();
+        }
     }
     
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using DalApi;
+
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -233,25 +233,6 @@ namespace PL
         }
     }
 
-    //public class StatusToColor2 : IValueConverter
-    //{
-    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        BO.OrderStatus status = (BO.OrderStatus)value;
-    //        if (status == BO.OrderStatus.Delivered)
-    //            return Brushes.DeepPink;
-    //        if (status == BO.OrderStatus.Shipped)
-    //            return Brushes.LightPink;
-    //        else
-    //            return Brushes.Salmon;
-    //    }
-
-    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-
-    //}
+    
 }
 
