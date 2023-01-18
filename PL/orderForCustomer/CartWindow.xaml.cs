@@ -160,8 +160,8 @@ namespace PL
                     {
                         myCart.Items = null;
 
-                        ProductCatalogWindow p = new ProductCatalogWindow(myUser,myCart);
-                       p.ShowDialog();
+                        ProductCatalogWindow p = new ProductCatalogWindow(myUser, myCart);
+                        p.ShowDialog();
                         Close();
                     }
                 }

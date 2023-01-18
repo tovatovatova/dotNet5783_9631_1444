@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using DalApi;
+
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace PL
 {
@@ -30,7 +31,7 @@ namespace PL
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (double)value>0 ? Visibility.Visible : Visibility.Hidden;
+            return (double)value > 0 ? Visibility.Visible : Visibility.Hidden;
 
         }
 
@@ -38,13 +39,13 @@ namespace PL
         {
             return 0;
         }
-    }  
+    }
     public class DoubleToHiddenConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (double)value<=0 ? Visibility.Hidden : Visibility.Visible;
+            return (double)value <= 0 ? Visibility.Hidden : Visibility.Visible;
 
         }
 
@@ -95,6 +96,45 @@ namespace PL
             return System.Convert.ToInt32(value) < 15 ? false : true;
         }
     }
+    public class StatusToColor : IValueConverter
+    {
+
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((BO.OrderStatus)value == BO.OrderStatus.Ordered)
+                return Brushes.LightGreen;
+            else if ((BO.OrderStatus)value == BO.OrderStatus.Shipped)
+                return Brushes.LightSkyBlue;
+            else
+                return Brushes.LightPink;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return BO.OrderStatus.Delivered;
+        }
+    }
+    public class StatusToInt : IValueConverter
+    {
+
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((BO.OrderStatus)value == BO.OrderStatus.Ordered)
+                return 20;
+            else if ((BO.OrderStatus)value == BO.OrderStatus.Shipped)
+                return 40;
+            else
+                return 60;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return BO.OrderStatus.Delivered;
+        }
+    }
+
     public class StringToBitmap : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -283,5 +323,7 @@ namespace PL
             throw new NotImplementedException();
         }
     }
+
+    
 }
 

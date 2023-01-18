@@ -67,9 +67,11 @@
                     <Setter Property="RenderTransform">
                         <Setter.Value>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
-                        </Setter.Value>
+                        </Setter.Value> 
                     </Setter>
+                    
                 </Trigger>
+                
             </Style.Triggers>
         </Style>
         <Style  TargetType="Window" >

@@ -205,23 +205,23 @@ namespace PL
             Close();
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                bl.Order.DeleteOrder(MyOrder.Id);
-            }
-            catch (BO.BlIdDoNotExistException ex)
-            {
-                //throw an error message box 
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                Close();
-            }
-            Close();
-        }
+        //private void btnDelete_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        bl.Order.DeleteOrder(MyOrder.Id);
+        //    }
+        //    catch (BO.BlIdDoNotExistException ex)
+        //    {
+        //        //throw an error message box 
+        //        string messageBoxText = ex.Message.ToString();
+        //        string caption = "error";
+        //        MessageBoxImage icon = MessageBoxImage.Error;
+        //        MessageBoxResult result;
+        //        result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+        //        Close();
+        //    }
+        //    Close();
+        //}
     }
 }

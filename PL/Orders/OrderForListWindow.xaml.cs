@@ -34,9 +34,7 @@ namespace PL
         {
             InitializeComponent();
             PlOrder = bl.Order.GetOrderList().ToList();
-          //  orderForListView.ItemsSource = PlOrder.OrderByDescending(var => var.TotalPrice);
             cmbStatus.Items.Add("All Orders");
-          //  cmbStatus.SelectedItem = cmbStatus.Items.GetItemAt(0);//defult for all orders
             foreach (var item in Enum.GetValues(typeof(BO.OrderStatus)))//add the order's status' category to combo box
             {
                 cmbStatus.Items.Add(item);

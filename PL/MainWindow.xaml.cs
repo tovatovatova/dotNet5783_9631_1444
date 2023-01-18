@@ -39,14 +39,17 @@ namespace PL
         // Using a DependencyProperty as the backing store for PlUser.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PlUserProperty =
             DependencyProperty.Register("PlUser", typeof(BO.User), typeof(Window), new PropertyMetadata(null));
-
+        bool isAdmin = false;
+        bool isCustomer = false;
 
 
         public MainWindow()
         {
+         
             PlUser = new BO.User();
             InitializeComponent();
-
+           
+           
         }
 
 
@@ -59,6 +62,10 @@ namespace PL
         /// <param name="e"></param>
         private void btnAdmin_Click(object sender, RoutedEventArgs e)
         {
+            //LogInWindow l = new LogInWindow();
+            //l.Show();
+            //need to see order and product buttuns-transfer to logIn!!
+            
             btnOrder.Visibility = Visibility.Visible;
             btnProduct.Visibility = Visibility.Visible; 
         }
@@ -86,75 +93,11 @@ namespace PL
             ProductCatalogWindow productCatalog = new ProductCatalogWindow(PlUser);
             productCatalog.Show();
         }
+     
 
-        private void btnTracking_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            txtidd.Visibility = Visibility.Visible;
-            lblTracking.Visibility = Visibility.Visible;
-        }
-
-        private void TextBox_OnlyNumbers_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            TextBox text = sender as TextBox;
-            if (text == null) return;
-            if (e == null) return;
-            //allow get out of the text box
-            if (e.Key == Key.Enter || e.Key == Key.Return || e.Key == Key.Tab)
-                return;
-            //allow list of system keys (add other key here if you want to allow)
-            if (e.Key == Key.Escape || e.Key == Key.Back || e.Key == Key.Delete ||
-            e.Key == Key.CapsLock || e.Key == Key.LeftShift || e.Key == Key.Home
-            || e.Key == Key.End || e.Key == Key.Insert || e.Key == Key.Down || e.Key == Key.Right)
-                return;
-            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
-            //allow control system keys
-            if (Char.IsControl(c)) return;
-            //allow digits (without Shift or Alt)
-            if (Char.IsDigit(c))
-                if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
-                    return; //let this key be written inside the textbox
-                            //forbid letters and signs (#,$, %, ...)
-            e.Handled = true; //ignore this key. mark event as handled, will not be routed to other 
-
-            return;
-
-        }
-
+        
        
-        private void OnKeyDownHandler(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                try
-                {
-                    BO.Order o = bl.Order.GetOrderByID(Convert.ToInt32(txtidd.Text));
-                    OrderTrackingWindow orderTrackingWindow = new OrderTrackingWindow(sender, e, Convert.ToInt32(txtidd.Text));
-                    orderTrackingWindow.Show();
-
-
-                }
-                catch(BO.BlInvalidInputException ex)
-                {
-                    string messageBoxText = ex.Message.ToString();
-                    string caption = "error";
-                    MessageBoxImage icon = MessageBoxImage.Error;
-                    MessageBoxResult result;
-                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                    if (result == MessageBoxResult.OK)
-                        txtidd.Text = "";
-                }
-                catch (BO.BlIdDoNotExistException ex)//product doesnt exist
-                {//throw an error message box 
-                    string messageBoxText = "This "+ex.Message.ToString()+" doesnt exist";
-                    string caption = "error";
-                    MessageBoxImage icon = MessageBoxImage.Error;
-                    MessageBoxResult result;
-                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                    if (result == MessageBoxResult.OK)
-                        txtidd.Text = "";
-                }
-            }
-        }
+     
         private void btnLog_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -179,9 +122,8 @@ namespace PL
                 this.btnTracking.Visibility = Visibility.Visible;
                 this.btnCreate.Visibility = Visibility.Hidden;
                 log.Visibility = Visibility.Hidden;
-                this.Show();
+               // this.Show();
             }
-            //if maneger
             if (PlUser.Log == BO.LogIn.Maneger)
             {
                 this.btnProduct.Visibility = Visibility.Visible;
@@ -191,7 +133,7 @@ namespace PL
                 this.btnTracking.Visibility = Visibility.Hidden;
                 this.btnCreate.Visibility = Visibility.Hidden;
                 log.Visibility = Visibility.Hidden;
-                this.Show();
+          
             }
         }
 
@@ -224,8 +166,9 @@ namespace PL
                     this.btnTracking.Visibility = Visibility.Visible;
                     this.btnCreate.Visibility = Visibility.Hidden;
                     submit.Visibility = Visibility.Hidden;
-                    return;
-              //  }
+                    //PlUser = new();
+                    this.Show();
+                }
             }
             catch (BO.BlInvalidInputException ex)
             {
@@ -236,9 +179,83 @@ namespace PL
             catch (BO.BlIdAlreadyExistException ex)
             {
                 //throw an error message box 
-                MessageBox.Show(ex.Message.ToString()," ", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;               
+                messageBoxText = ex.Message.ToString();
+                caption = "error";
+                icon = MessageBoxImage.Error;
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                if (result == MessageBoxResult.OK)
+                {
+                    return;
+                }
             }
+            
+
+        }
+        private void TextBox_OnlyNumbers_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox text = sender as TextBox;
+            if (text == null) return;
+            if (e == null) return;
+            //allow get out of the text box
+            if (e.Key == Key.Enter || e.Key == Key.Return || e.Key == Key.Tab)
+                return;
+            //allow list of system keys (add other key here if you want to allow)
+            if (e.Key == Key.Escape || e.Key == Key.Back || e.Key == Key.Delete ||
+            e.Key == Key.CapsLock || e.Key == Key.LeftShift || e.Key == Key.Home
+            || e.Key == Key.End || e.Key == Key.Insert || e.Key == Key.Down || e.Key == Key.Right)
+                return;
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            //allow control system keys
+            if (Char.IsControl(c)) return;
+            //allow digits (without Shift or Alt)
+            if (Char.IsDigit(c))
+                if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
+                    return; //let this key be written inside the textbox
+                            //forbid letters and signs (#,$, %, ...)
+            e.Handled = true; //ignore this key. mark event as handled, will not be routed to other 
+
+            return;
+
+        }
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                try
+                {
+                    BO.Order o = bl.Order.GetOrderByID(Convert.ToInt32(txtidd.Text));
+                    OrderTrackingWindow orderTrackingWindow = new OrderTrackingWindow(sender, e, Convert.ToInt32(txtidd.Text));
+                    orderTrackingWindow.Show();
+
+
+                }
+                catch (BO.BlInvalidInputException ex)
+                {
+                    string messageBoxText = ex.Message.ToString();
+                    string caption = "error";
+                    MessageBoxImage icon = MessageBoxImage.Error;
+                    MessageBoxResult result;
+                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                    if (result == MessageBoxResult.OK)
+                        txtidd.Text = "";
+                }
+                catch (BO.BlIdDoNotExistException ex)//product doesnt exist
+                {//throw an error message box 
+                    string messageBoxText = "This " + ex.Message.ToString() + " doesnt exist";
+                    string caption = "error";
+                    MessageBoxImage icon = MessageBoxImage.Error;
+                    MessageBoxResult result;
+                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                    if (result == MessageBoxResult.OK)
+                        txtidd.Text = "";
+                }
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SimulationWindow o = new SimulationWindow();
+            o.Show();
         }
     }
 }
