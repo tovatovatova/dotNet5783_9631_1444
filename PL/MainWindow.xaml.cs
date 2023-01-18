@@ -45,11 +45,11 @@ namespace PL
 
         public MainWindow()
         {
-         
+
             PlUser = new BO.User();
             InitializeComponent();
-           
-           
+
+
         }
 
 
@@ -65,9 +65,9 @@ namespace PL
             //LogInWindow l = new LogInWindow();
             //l.Show();
             //need to see order and product buttuns-transfer to logIn!!
-            
+
             btnOrder.Visibility = Visibility.Visible;
-            btnProduct.Visibility = Visibility.Visible; 
+            btnProduct.Visibility = Visibility.Visible;
         }
 
         private void btnTracking_Click(object sender, RoutedEventArgs e)
@@ -93,11 +93,11 @@ namespace PL
             ProductCatalogWindow productCatalog = new ProductCatalogWindow(PlUser);
             productCatalog.Show();
         }
-     
 
-        
-       
-     
+
+
+
+
         private void btnLog_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -106,12 +106,12 @@ namespace PL
             }
             catch (BO.BlIdDoNotExistException ex)//if user is not in the system
             {
-                MessageBox.Show(ex.Entity?.ToString()+" try again.", " ", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Entity?.ToString() + " try again.", " ", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            catch(BO.BlInvalidInputException ex)
+            catch (BO.BlInvalidInputException ex)
             {
-                MessageBox.Show("invalid "+ex.Entity?.ToString(), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("invalid " + ex.Entity?.ToString(), "", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             //if customer
@@ -122,7 +122,7 @@ namespace PL
                 this.btnTracking.Visibility = Visibility.Visible;
                 this.btnCreate.Visibility = Visibility.Hidden;
                 log.Visibility = Visibility.Hidden;
-               // this.Show();
+                // this.Show();
             }
             if (PlUser.Log == BO.LogIn.Maneger)
             {
@@ -133,7 +133,7 @@ namespace PL
                 this.btnTracking.Visibility = Visibility.Hidden;
                 this.btnCreate.Visibility = Visibility.Hidden;
                 log.Visibility = Visibility.Hidden;
-          
+
             }
         }
 
@@ -145,8 +145,8 @@ namespace PL
 
         private void imgLogIn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            LogInWindow l = new LogInWindow();
-            l.Show();
+           // LogInWindow l = new LogInWindow();
+            //l.Show();
         }
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
@@ -156,39 +156,39 @@ namespace PL
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-                try//tries to add a customer to the system
+            try//tries to add a customer to the system
             {
                 bl.User.addUser(PlUser);
-                MessageBox.Show("user added successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);   
-                    //its a customer
-                    this.btnLogIn.Visibility = Visibility.Hidden;
-                    this.btnNewOrder.Visibility = Visibility.Visible;
-                    this.btnTracking.Visibility = Visibility.Visible;
-                    this.btnCreate.Visibility = Visibility.Hidden;
-                    submit.Visibility = Visibility.Hidden;
-                    //PlUser = new();
-                    this.Show();
-                }
+                MessageBox.Show("user added successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                //its a customer
+                this.btnLogIn.Visibility = Visibility.Hidden;
+                this.btnNewOrder.Visibility = Visibility.Visible;
+                this.btnTracking.Visibility = Visibility.Visible;
+                this.btnCreate.Visibility = Visibility.Hidden;
+                submit.Visibility = Visibility.Hidden;
+                //PlUser = new();
+                this.Show();
             }
+
             catch (BO.BlInvalidInputException ex)
             {
                 //throw an error message box 
-                MessageBox.Show("invalid "+ex.Entity?.ToString()+" details", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("invalid " + ex.Entity?.ToString() + " details", "", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             catch (BO.BlIdAlreadyExistException ex)
             {
                 //throw an error message box 
-                messageBoxText = ex.Message.ToString();
-                caption = "error";
-                icon = MessageBoxImage.Error;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                string messageBoxText = ex.Message.ToString();
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
                 if (result == MessageBoxResult.OK)
                 {
                     return;
                 }
             }
-            
+
 
         }
         private void TextBox_OnlyNumbers_PreviewKeyDown(object sender, KeyEventArgs e)

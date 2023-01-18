@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BlApi;
 using BO;
+using DO;
 
 namespace BlImplementation
 {
@@ -25,9 +27,9 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("product ID");
             if (newProduct.InStock < 0)//negative amount
                 throw new BO.BlInvalidInputException("product amount");
-            if (newProduct.Price < 0)//negative price
+            if (newProduct.Price <= 0)//negative price
                 throw new BO.BlInvalidInputException("product price");
-            if (newProduct.Name == "")//empty string
+            if (newProduct.Name == null || !Regex.IsMatch(newProduct.Name, @"^[a-zA-Z]+$"))//empty string or not letters
                 throw new BO.BlInvalidInputException("product name");
             try
             {
@@ -205,8 +207,10 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("product amount");
             if (product.Price < 0)//negative price
                 throw new BO.BlInvalidInputException("product price");
-            if (product.Name == "")//empty string
+            if (product.Name == "" || !Regex.IsMatch(product.Name, @"^[a-zA-Z]+$"))//empty string or entered digits
                 throw new BO.BlInvalidInputException("product name");
+           
+
             try
             {
                 dal.Product.Update(new DO.Product()//send to update in DO

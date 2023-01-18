@@ -56,7 +56,7 @@ namespace PL
             txtlst.Add(inStockTextBox);
             txtlst.Add(iDTextBox);
 
-            
+
         }
 
         //}
@@ -75,15 +75,12 @@ namespace PL
             try
             {
                 PlProduct = bl.Product.GetProductDetails(id);//return product from BO 
-               // categoryComboBox.SelectedItem = PlProduct.Category;
+                                                             // categoryComboBox.SelectedItem = PlProduct.Category;
             }
             catch (BO.BlIdDoNotExistException ex)//product doesnt exist
             {//throw an error message box 
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                MessageBox.Show(ex.Message.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                return;
             }
             btnUpdate.Visibility = Visibility.Visible;
         }
@@ -94,58 +91,33 @@ namespace PL
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            string messageBoxText;
-            string caption;
-            MessageBoxImage icon;
-            MessageBoxResult result;
             if (categoryComboBox.SelectedItem == null)//check if the user choose category and show message if not
             {
-                messageBoxText = "choose category";
-                caption = "error";
-                icon = MessageBoxImage.Error;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                if (result == MessageBoxResult.OK)
-                    return;
-                
+                MessageBox.Show("choose category", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                return;
             }
-            
-                try//try to add the product with `  call to a bl function  add
-                {
+
+            try//try to add the product - call to a bl function  add
+            {
                 bl.Product.AddProduct(PlProduct);
-                    messageBoxText = "product added successfully";
-                    caption = "";
-                    icon = MessageBoxImage.Information;
-                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
-                    if (result == MessageBoxResult.OK)
-                        Close();
-                }
-                catch (BO.BlIdAlreadyExistException ex)
-                {
-                    messageBoxText = ex.Message + "\n" + "try again";
-                    caption = "";
-                    icon = MessageBoxImage.Information;
-                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
-                    if (result == MessageBoxResult.OK)
-                        return;
-                }
-                catch (BO.BlInvalidInputException ex)
-                {
-                    messageBoxText = ex.Message + "\n" + "check your input";
-                    caption = "";
-                    icon = MessageBoxImage.Information;
-                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
-                    if (result == MessageBoxResult.OK)
-                        return;
-                }
-                catch (BO.BlWrongCategoryException ex)
-                {
-                    messageBoxText = ex.Message + "\n" + "choose category again";
-                    caption = "";
-                    icon = MessageBoxImage.Information;
-                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.None);
-                    if (result == MessageBoxResult.OK)
-                        return;
-                }         
+                MessageBox.Show("product added successfully", " ", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
+                Close();
+            }
+            catch (BO.BlIdAlreadyExistException ex)
+            {
+                MessageBox.Show(ex.Message.ToString() + "\n try again", "", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                return;
+            }
+            catch (BO.BlInvalidInputException ex)
+            {
+                MessageBox.Show(ex.ToString() + " \n check your input", "", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                return;
+            }
+            catch (BO.BlWrongCategoryException ex)
+            {
+                MessageBox.Show(ex.ToString() + "\n" + "choose category again", "", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                return;
+            }
         }
 
         /// <summary>
@@ -158,55 +130,26 @@ namespace PL
         {
             bool flag = false;
             try//if all are valid -try to update them
-            {         
-               foreach(var item in txtlst)
+            {
+                foreach (var item in txtlst)
                 {
                     if (item.BorderBrush == Brushes.Red)
                         flag = true;
                 }
                 bl.Product.UpdateProduct(PlProduct!);
-                  Close();
+                Close();
             }
             catch (BO.BlIdDoNotExistException ex)
             {
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                if (result == MessageBoxResult.OK)
-                {
-                    return;
-                }
+                MessageBox.Show(ex.Message.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                return;
             }
             catch (BO.BlInvalidInputException ex)
             {
-                string messageBoxText = ex.Entity/*ex.ToString()*/ + "\ntry again";
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                if (result == MessageBoxResult.OK)
-                {
-                    return;
-                }
+                MessageBox.Show(ex.ToString() + "\ntry again", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                  return;
             }
         }
-
-        ///// <summary>
-        ///// event happens when user press left mouse button (no matter where)
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void mainGrid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    iDTextBox.BorderBrush = Background;
-        //    iDTextBox.BorderBrush = Background;
-        //    inStockTextBox.BorderBrush = Background;
-        //    nameTextBox.BorderBrush = Background;
-        //    priceTextBox.BorderBrush = Background;
-        //}
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -215,35 +158,27 @@ namespace PL
             }
             catch (BO.BlInvalidInputException ex)//worng input
             {
-                string messageBoxText = ex.Entity/*ex.ToString()*/ + "\ntry again";
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+
+                MessageBox.Show(ex.Entity+ "\ntry again", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                return;
             }
-            catch(BO.BlIdDoNotExistException ex)//product doesnt exist
+            catch (BO.BlIdDoNotExistException ex)//product doesnt exist
             {
-                string messageBoxText = ex.Message.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                MessageBox.Show(ex.Message.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                return;
             }
-            catch(BO.BlNullPropertyException ex)//product exists in order-cant delete
+            catch (BO.BlNullPropertyException ex)//product exists in order-cant delete
             {
-                string messageBoxText = ex.ToString();
-                string caption = "error";
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                MessageBox.Show(ex.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                return;
             }
             Close();
         }
 
         private void btnAddPic_Click(object sender, RoutedEventArgs e)
         {
-           OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog()==true)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
             {
                 picImgBox.Source = new BitmapImage(new Uri(openFileDialog.FileName));
                 PlProduct.ImagesSource = openFileDialog.FileName;
@@ -252,10 +187,10 @@ namespace PL
 
         private void okBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (PlProduct.ImagesSource!=null)//has picture
+            if (PlProduct.ImagesSource != null)//has picture
             {
-                string imName = PlProduct.ImagesSource.Substring(PlProduct.ImagesSource.LastIndexOf("\\")); 
-                if (!File.Exists(Environment.CurrentDirectory[..^4]+ @"\Images"+imName))//check if there is anything in the path
+                string imName = PlProduct.ImagesSource.Substring(PlProduct.ImagesSource.LastIndexOf("\\"));
+                if (!File.Exists(Environment.CurrentDirectory[..^4] + @"\Images" + imName))//check if there is anything in the path
                 {//if not
                     File.Copy(PlProduct.ImagesSource, Environment.CurrentDirectory[..^4] + @"\Images" + imName);//creates a path
                 }
@@ -263,5 +198,5 @@ namespace PL
             }
         }
     }
-   
+
 }

@@ -224,4 +224,12 @@
     <ProductCategoty>Cakes</ProductCategoty>
     <ImagesSource>\Images\1.2.2.PNG</ImagesSource>
   </Product>
+  <Product>
+    <Id>45</Id>
+    <Name>ooo</Name>
+    <Price>5</Price>
+    <AmountInStock>4</AmountInStock>
+    <ProductCategoty>Cakes</ProductCategoty>
+    <ImagesSource>\Images\1.1.PNG</ImagesSource>
+  </Product>
 </ArrayOfProduct>
