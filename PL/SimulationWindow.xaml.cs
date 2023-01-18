@@ -26,22 +26,22 @@ namespace PL
         BackgroundWorker updateStatus;
         bool flag = true;
     DateTime fakeTime= DateTime.Now;
-        public List<BO.OrderForList?> SimulationOrders
+        public ObservableCollection<BO.OrderForList?> SimulationOrders
         {
-            get { return (List<BO.OrderForList?>)GetValue(SimulationOrdersProperty); }
+            get { return (ObservableCollection<BO.OrderForList?>)GetValue(SimulationOrdersProperty); }
             set { SetValue(SimulationOrdersProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for PlOrder.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SimulationOrdersProperty =
-            DependencyProperty.Register(" SimulationOrders", typeof(List<BO.OrderForList?>), typeof(Window), new PropertyMetadata(null));
+            DependencyProperty.Register("SimulationOrders", typeof(ObservableCollection<BO.OrderForList?>), typeof(Window), new PropertyMetadata(null));
 
         public SimulationWindow()
         {
-            SimulationOrders = bl.Order.GetOrderList().ToList();
-
             InitializeComponent();
-            updateStatus= new BackgroundWorker();
+            SimulationOrders = new(bl.Order.GetOrderList());
+
+            updateStatus = new BackgroundWorker();
             updateStatus.DoWork += UpdateStatus_DoWork;
             updateStatus.ProgressChanged += UpdateStatus_ProgressChanged;
             updateStatus.RunWorkerCompleted += UpdateStatus_RunWorkerCompleted;
@@ -64,10 +64,10 @@ namespace PL
                     fakeTime = fakeTime.AddHours(3);
                     if(updateStatus.WorkerReportsProgress== true)
                     {
-                        updateStatus.ReportProgress(20);
+                        updateStatus.ReportProgress(10000);
                     }
                 }
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
             }
         }
        
@@ -89,7 +89,7 @@ namespace PL
 
         private void UpdateStatus_ProgressChanged(object? sender, ProgressChangedEventArgs e)
         {
-            List<BO.OrderForList> temp = bl.Order.GetOrderList().ToList();
+            List<BO.OrderForList?> temp = bl.Order.GetOrderList().ToList();
             foreach (var item in SimulationOrders)
             {
                 BO.Order order = bl.Order.GetOrderByID(item?.ID ?? throw new NullReferenceException());
@@ -97,15 +97,16 @@ namespace PL
                     bl.Order.UpdateShip(order.Id);
                 if (fakeTime - order.OrderDate >= new TimeSpan(5, 0, 0, 0) && order.Status == BO.OrderStatus.Shipped)
                     bl.Order.UpdateDelivery(order.Id);
-                SimulationOrders = bl.Order.GetOrderList().ToList();
+                Thread.Sleep(100);
+                SimulationOrders = new (bl.Order.GetOrderList());
             }
-            if (SimulationOrders.All(x => x?.Status == BO.OrderStatus.Delivered))
-            {
-                if (updateStatus.WorkerSupportsCancellation == true)
-                    updateStatus.CancelAsync(); // Cancel the asynchronous operation.
-                flag = false;
-            }
-            SimulationOrders = bl.Order.GetOrderList().ToList();
+            //if (SimulationOrders.All(x => x?.Status == BO.OrderStatus.Delivered))
+            //{
+            //    if (updateStatus.WorkerSupportsCancellation == true)
+            //        updateStatus.CancelAsync(); // Cancel the asynchronous operation.
+            //    flag = false;
+            //}
+            
 
         }
 

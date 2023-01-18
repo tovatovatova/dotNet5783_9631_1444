@@ -11,16 +11,16 @@
         <DataTemplate x:Key="SimulationTemplate" DataType="local:OrderForList">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="20" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="10" />
 
 
 
@@ -32,20 +32,20 @@
                     </Border.Effect>
 
                 </Border>
-                <TextBlock  Grid.Row= "0" FontSize="10" HorizontalAlignment="Left" Margin="5,0,0,0"  FontFamily="Arial Black" >
+                <TextBlock  Grid.Row= "0" FontSize="6" HorizontalAlignment="Left" Margin="5,0,0,0"  FontFamily="Arial Black" >
                   <Run Text="order id: "/>  
                   <Run Text="{Binding ID}"/>
                 </TextBlock>
-                <TextBlock  Grid.Row= "1" FontSize="10" HorizontalAlignment="Left" Margin="5,0,0,0" FontFamily="Arial Black" >
+                <TextBlock  Grid.Row= "1" FontSize="6" HorizontalAlignment="Left" Margin="5,0,0,0" FontFamily="Arial Black" >
                   <Run Text="custome name: "/>  
                   <Run Text="{Binding CustomerName}"/>
                 </TextBlock>
-                <TextBlock  Grid.Row= "2" FontSize="10" HorizontalAlignment="Left" Margin="5,0,0,0"  FontFamily="Arial Black" >
+                <TextBlock  Grid.Row= "2" FontSize="6" HorizontalAlignment="Left" Margin="5,0,0,0"  FontFamily="Arial Black" >
                   <Run Text=" Amount Of Items: "/>  
                   <Run Text="{Binding AmountOfItems}"/>
                 </TextBlock>
-                <TextBlock Text="{Binding TotalPrice, StringFormat={}{0:C}}" Grid.Row= "3" FontSize="10" HorizontalAlignment="Left" Margin="5,0,0,0" FontWeight="Bold" FontFamily="Arial Black" />
-                <Button Content="{Binding Status}" Grid.Row= "4" FontSize="10"  Background="{Binding Status,Converter={StaticResource statusToBackColor}}" HorizontalAlignment="Center" Margin="5,0,0,0" FontWeight="Bold" FontFamily="Arial Black" />
+                <TextBlock Text="{Binding TotalPrice, StringFormat={}{0:C}}" Grid.Row= "3" FontSize="6" HorizontalAlignment="Left" Margin="5,0,0,0" FontWeight="Bold" FontFamily="Arial Black" />
+                <Button Content="{Binding Status}" Grid.Row= "4" FontSize="6"  Background="{Binding Status,Converter={StaticResource statusToBackColor}}" HorizontalAlignment="Center" Margin="5,0,0,0" FontWeight="Bold" FontFamily="Arial Black" />
                 <ProgressBar x:Name="progBarTime"  Grid.Row= "6" Margin="10,0,15,0" HorizontalAlignment="Left" Value="{Binding Status,Converter={StaticResource statusToProgressValue}}" Grid.RowSpan="2" Height="29"  VerticalAlignment="Top" Width="209" Background="#FFC9C1C1" Foreground="#FF1D1111"/>
 
             </Grid>
