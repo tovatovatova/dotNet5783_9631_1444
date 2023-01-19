@@ -18,6 +18,7 @@ public class DalProduct : IProduct
        bool x= DataSource.ProductList.Any(prod => prod?.Id == newProduct.Id);
             if(x)
               throw new DalIdAlreadyExistException(newProduct.Id, "product");
+        newProduct.ImagesSource = "\\" + newProduct.ImagesSource;
         DataSource.ProductList.Add(newProduct);
         return newProduct.Id;
     }
