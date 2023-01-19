@@ -126,8 +126,8 @@
             <TextBox x:Name="totalPriceTextBox" Grid.Column="1" IsReadOnly="True" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="10" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
         </Grid>
-        <Button x:Name="btnUpdateCustomer" Style="{StaticResource RoundButtonStyle}" Content="Update Customer Details" HorizontalAlignment="Left" Margin="600,410,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="btnUpdate_Click" Height="46" Width="140"/>
-        <Button x:Name="btnUpdateDelivary" Style="{StaticResource RoundButtonStyle}" Content="Update Delivary" HorizontalAlignment="Left" Margin="400,410,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="46" Width="120" Click="btnUpdateDelivary_Click"/>
-        <Button x:Name="btnUpdateShipping" Content="Update Shipping" Style="{StaticResource RoundButtonStyle}" HorizontalAlignment="Left" Margin="200,410,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="46" Width="120" Click="btnUpdateShipping_Click"/>
+        <Button x:Name="btnUpdateCustomer" Style="{StaticResource RoundButtonStyle}" Content="Update Customer Details" HorizontalAlignment="Left" Margin="35,127,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="btnUpdate_Click" Height="46" Width="140"/>
+        <Button x:Name="btnUpdateDelivary" Style="{StaticResource RoundButtonStyle}" Content="Update Delivary" HorizontalAlignment="Left" Margin="35,197,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="46" Width="120" Click="btnUpdateDelivary_Click" RenderTransformOrigin="-2.542,-1.782"/>
+        <Button x:Name="btnUpdateShipping" Content="Update Shipping" Style="{StaticResource RoundButtonStyle}" HorizontalAlignment="Left" Margin="35,267,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="46" Width="120" Click="btnUpdateShipping_Click"/>
     </Grid>
 </Window>

@@ -11,7 +11,7 @@
 
     <Grid>
         <ComboBox x:Name="cmbCategory"  Height="36" VerticalAlignment="Bottom"  BorderBrush="#FF41CFA8" FontSize="16" FontFamily="Consolas" Background="{x:Null}" Margin="502,0,12,383" SelectionChanged="cmbCategory_SelectionChanged" />
-        <Button x:Name="btnAdd" Margin="38,297,608,34"  Content="ADD" Foreground="#FFACF1EE" FontSize="49" Click="btnAdd_Click" FontFamily="Bahnschrift SemiLight" FontStretch="Expanded" FontStyle="Italic" FontWeight="SemiBold" TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
+        <Button x:Name="btnAdd" Margin="28,284,672,85"  Content="ADD"   Click="btnAdd_Click"  FontStretch="Expanded"   TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
         </Button>
         <DataGrid x:Name="prosuctForListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="215,51,10,34" FontFamily="Cascadia Mono SemiBold" Foreground="{DynamicResource colorInDataGrid}" FontWeight="Bold" FontSize="16" SelectionChanged="prosuctForListDataGrid_SelectionChanged" >
             <DataGrid.Columns>
