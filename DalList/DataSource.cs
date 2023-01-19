@@ -56,7 +56,7 @@ internal static class DataSource
         { "mix Desserts", "mini donats", "mix mini cupcakes" },
         { "vafel belgi", "crep", "frozen" }
     };
-    static string[] userNames = new string[] { "ortv", "tovatovatova","orokach","powerful", "warrior","hope" };//names of users to log in
+    static string[] userNames = new string[] { "ortv", "tovatovatova","orokach", "tovaRot", "warrior","hope" };//names of users to log in
     static int[] userPasswords = new int[] { 617617,123456,258528,111111,222222,333333  };
 
     private static void createAndIinitUsers()
