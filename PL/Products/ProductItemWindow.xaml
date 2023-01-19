@@ -7,9 +7,7 @@
         mc:Ignorable="d"
         DataContext="{Binding myProduct,RelativeSource={RelativeSource Self}}"
         Title="ProductItemWindow" Height="822" Width="1015">
-    <Window.Resources>
-        <local:BooleanToVisibilityConverter x:Key="myCon"/>
-    </Window.Resources>
+   
     <Grid OpacityMask="LightCyan" Background="LightCyan">
         <Grid x:Name="oneItemGrid" Margin="-80,29,10,239" Background="LightCyan" >
             <Grid.RowDefinitions>
@@ -24,21 +22,18 @@
                     <DropShadowEffect ShadowDepth="1"/>
                 </Border.Effect>
                 <Border.Background>
-                    <ImageBrush ImageSource="{Binding ImagesSource ,Converter={StaticResource stringToBitmapWithSource}}" />
-                    <!--<ImageBrush ImageSource="{Binding ID}" />-->
+                    <ImageBrush ImageSource="{Binding ImagesSource ,Converter={StaticResource imageConverter}}" />
                 </Border.Background>
             </Border>
             <Label  Content="{Binding Name}" Grid.Row= "3" HorizontalAlignment="Left" Margin="470,125,0,-315" FontSize="21" Grid.RowSpan="3" />
 
 
-            <TextBlock x:Name="outof" Text="             out of stock    " HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFA9C1C1" Grid.ColumnSpan="1" FontFamily="Cooper Black" Foreground="Gray" FontSize="59" Visibility="{Binding InStock , Converter={StaticResource myCon}}" Width="724">
-                <!--<TextBlock.LayoutTransform>
-                    <RotateTransform Angle="45" />
-                </TextBlock.LayoutTransform>-->
+            <TextBlock x:Name="outof" Text="             out of stock    " HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFA9C1C1" Grid.ColumnSpan="1" FontFamily="Cooper Black" Foreground="Gray" FontSize="59" Visibility="{Binding InStock , Converter={StaticResource notBoolToVis}}" Width="724">
+               
             </TextBlock>
             <TextBlock  Text="{Binding Price, StringFormat={}{0:C}}" Style="{StaticResource textOfItem}" Grid.Row= "4" FontSize="21" HorizontalAlignment="Left" Margin="470,160,0,-15" />
         </Grid>
-        <Button x:Name="addToCart" Style="{StaticResource ButtonStyle}" Visibility="Visible"  Margin="10,460,687,125"    Click="btnAdd_Click"   TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
+        <Button x:Name="addToCart" Visibility="{Binding InStock,Converter={StaticResource booleanToVisibilityConverter}}"  Margin="10,460,687,125"    Click="btnAdd_Click"   TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"/>
@@ -56,6 +51,7 @@
                     </ImageBrush.RelativeTransform>
                 </ImageBrush>
             </Button.Background>
+
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="2"/>
             </Button.Effect>

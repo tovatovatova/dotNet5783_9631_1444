@@ -197,7 +197,7 @@
         <local:DoubleToHiddenConverter x:Key="doubletoHidden"/>
         <local:NoBooleanToVisibilityConverter x:Key="notBoolToVis"/>
         <local:HiddenTOVisible x:Key="Hiddentovisible"/>
-        <local:StringToBitmapFromSource x:Key="stringToBitmapWithSource"/>
+        <!--<local:StringToBitmapFromSource x:Key="stringToBitmapWithSource"/>-->
         <local:StatusToColor x:Key="statusToBackColor"/>
 
 
