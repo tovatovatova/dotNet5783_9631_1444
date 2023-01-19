@@ -106,8 +106,8 @@ namespace PL
             }
             else
             {
+                this.Close();
                 CartWindow c=new CartWindow( cart);
-               this.Close();
                 c.Show();
             }
             

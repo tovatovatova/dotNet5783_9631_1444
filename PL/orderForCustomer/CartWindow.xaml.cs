@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using BO;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -131,7 +133,9 @@ namespace PL
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (myCart.CustomerAddress == null || myCart.CustomerEmail == null || myCart.CustomerName == null)
+            string strRegex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+            Regex re = new Regex(strRegex, RegexOptions.IgnoreCase);
+                if (myCart.CustomerAddress == null || myCart.CustomerEmail == null || myCart.CustomerName == null||!re.IsMatch(myCart.CustomerEmail))
             {
                 string messageBoxText = "wrong details try again";
                 string caption = "error";

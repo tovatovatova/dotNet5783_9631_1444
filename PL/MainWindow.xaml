@@ -11,7 +11,7 @@
 
     <Grid Margin="0,-14,0,0" RenderTransformOrigin="0.5,0.5"  Grid.IsSharedSizeScope="True" >
         <Grid.Background >
-            <ImageBrush ImageSource="{Binding ElementName=MainWindow1,Path=Title,Converter={StaticResource imageConverter} }"  Opacity="0.7"/>
+            <ImageBrush ImageSource="{Binding ElementName=MainWindow1,Path=Title,Converter={StaticResource imageConverter} }" />
               
         </Grid.Background>
 

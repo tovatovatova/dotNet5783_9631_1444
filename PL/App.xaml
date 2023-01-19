@@ -6,35 +6,25 @@
     <Application.Resources>
 
 
-        <Style x:Key="blurBackground" TargetType="Window">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <VisualBrush>
-                        <VisualBrush.Visual>
-                            <Image>
-                                <Image.Effect>
-                                    <BlurEffect Radius="20"/>
-                                </Image.Effect>
-                            </Image>
-                        </VisualBrush.Visual>
-                    </VisualBrush>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        
 
 
 
 
         <LinearGradientBrush x:Key="colorInDataGrid">
-            <GradientStop Color="DeepPink"
+            <GradientStop Color="Coral"
                     Offset="0" />
-            <GradientStop Color="HotPink"
-                    Offset="0.25" />
             <GradientStop Color="Pink"
+                    Offset="0.15" />
+            <GradientStop Color="MistyRose"
+                    Offset="0.34" />
+            <GradientStop Color="White"
                     Offset="0.5" />
-            <GradientStop Color="HotPink"
-                    Offset="0.75" />
-            <GradientStop Color="DeepPink"
+            <GradientStop Color="LightPink"
+                    Offset="0.70" />
+            <GradientStop Color="MistyRose"
+                    Offset="0.90" />
+            <GradientStop Color="LightCoral"
                     Offset="1" />
 
         </LinearGradientBrush>
@@ -44,6 +34,7 @@
             <Setter Property="TextElement.FontStyle" Value="Italic"/>
             <Setter Property="TextBlock.Foreground" Value="{StaticResource colorInDataGrid }"/>
         </Style>
+        
         <Style TargetType="Label" >
             <Setter Property="TextElement.FontFamily" Value="Cascadia Mono SemiBold"/>
             <Setter Property="TextElement.FontStyle" Value="Italic"/>
@@ -127,7 +118,7 @@
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border
           Background="{TemplateBinding Background}"
-          BorderBrush="Green"
+          BorderBrush="DarkBlue"
           BorderThickness="2"
           CornerRadius="50">
                             <Border.Effect>
@@ -159,7 +150,7 @@
         </Style>
 
 
-        <Style  x:Key="RoundedEdes" TargetType="{x:Type Button}">
+        <Style x:Key="RoundedEdes" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -179,9 +170,23 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
- 
-        
-        
+
+
+        <Style x:Key="blurBackground" TargetType="Window">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <Image>
+                                <Image.Effect>
+                                    <BlurEffect Radius="20"/>
+                                </Image.Effect>
+                            </Image>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
 
 
