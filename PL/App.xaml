@@ -192,7 +192,6 @@
 
         <local:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
         <local:StringToBitmap x:Key="imageConverter"/>
-        <local:AmountToComboBox x:Key="amountTOcombo"/>
         <local:DoubleToVisibilityConverter x:Key="doubletoVisible"/>
         <local:DoubleToHiddenConverter x:Key="doubletoHidden"/>
         <local:NoBooleanToVisibilityConverter x:Key="notBoolToVis"/>
