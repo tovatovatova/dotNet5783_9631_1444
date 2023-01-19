@@ -18,7 +18,7 @@ namespace PL
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? Visibility.Hidden : Visibility.Visible;
+            return (bool)value ? Visibility.Visible : Visibility.Hidden;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -71,11 +71,9 @@ namespace PL
     }
     public class NoBooleanToVisibilityConverter : IValueConverter
     {
-
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (double)value > 0 ? Visibility.Hidden : Visibility.Visible;
+            return (bool)value ? Visibility.Hidden : Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -126,19 +124,32 @@ namespace PL
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {//gets an id of product and create a path to picture
+            BitmapImage bitmap;
             try
             {
                 string startImage = value?.ToString() ?? throw new Exception();
                 string addDir = Environment.CurrentDirectory[..^4];
                 string final = addDir + @"\Images\" + startImage + ".jpg";
-                BitmapImage bitmap = new BitmapImage(new Uri(final));
+                bitmap = new BitmapImage(new Uri(final));
                 return bitmap;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory[..^4] + @"\Images\noPicture.jpg"));
-                return bitmap;//return defult picture
+                try
+                {
+                    string startImage = value?.ToString() ?? throw new Exception();
+                    string addDir = Environment.CurrentDirectory[..^3];
+                    string final = addDir + startImage + ".jpg";
+             bitmap = new BitmapImage(new Uri(final));
+                    return bitmap;
+                }
+                catch (Exception )
+                {
+                   bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory[..^4] + @"\Images\noPicture.jpg"));
+                    return bitmap;//return defult picture
+                }
             }
+          
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -150,45 +161,45 @@ namespace PL
 
 
 
-    public class StringToBitmapFromSource : IValueConverter
-    {//gets string name and return a path to the picture
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            string final;
-            BitmapImage bitmap;
-            try
-            {
+    //public class StringToBitmapFromSource : IValueConverter
+    //{//gets string name and return a path to the picture
+    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        string final;
+    //        BitmapImage bitmap;
+    //        try
+    //        {
 
-                string strImage = value?.ToString() ?? throw new Exception();                                                            
-                try
-                {
+    //            string strImage = value?.ToString() ?? throw new Exception();                                                            
+    //            try
+    //            {
 
-                    final = Environment.CurrentDirectory[..^4] + strImage;
-                    bitmap = new BitmapImage(new Uri(final));
-                    return bitmap;
+    //                final = Environment.CurrentDirectory[..^4] + strImage;
+    //                bitmap = new BitmapImage(new Uri(final));
+    //                return bitmap;
 
-                }
-                catch (Exception)
-                {
-                    final = Environment.CurrentDirectory[..^4] + strImage;
-                    bitmap = new BitmapImage(new Uri(final));
-                    return bitmap;
-                }
+    //            }
+    //            catch (Exception)
+    //            {
+    //                final = Environment.CurrentDirectory[..^4] + strImage;
+    //                bitmap = new BitmapImage(new Uri(final));
+    //                return bitmap;
+    //            }
 
-            }
+    //        }
 
-            catch (Exception ex)
-            {
-                bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory[..^4] + @"\Images\noPicture.jpg"));
-                return bitmap;//return defult picture
-            }
-        }
-            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            {
-                return value.ToString();
+    //        catch (Exception ex)
+    //        {
+    //            bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory[..^4] + @"\Images\noPicture.jpg"));
+    //            return bitmap;//return defult picture
+    //        }
+    //    }
+    //        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    //        {
+    //            return value.ToString();
 
-            }
-        }
+    //        }
+    //    }
 
 
 

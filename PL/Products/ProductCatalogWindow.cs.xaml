@@ -27,13 +27,13 @@ Title="ProductCatalogWindow" Height="634" Width="1172" Activated="Window_Activat
                         <DropShadowEffect ShadowDepth="1"/>
                     </Border.Effect>
                     <Border.Background>
-                        <ImageBrush ImageSource="{Binding ImagesSource ,Converter={StaticResource stringToBitmapWithSource}}" />
+                        <ImageBrush ImageSource="{Binding ImagesSource ,Converter={StaticResource imageConverter}}" />
                     </Border.Background>
                 </Border>
                 <Label  Content="{Binding Name}" Grid.Row= "1" HorizontalAlignment="Center" Height="auto" Width="auto"  Margin="0,0,0,0" FontSize="17" />
 
 
-                <TextBlock Text="out of stock    " HorizontalAlignment="Stretch" Margin="0,5,5,5" VerticalAlignment="Center" Background="LightGray" Grid.ColumnSpan="2" FontFamily="Cooper Black" Foreground="Gray" FontSize="25" Visibility="{Binding InStock , Converter={StaticResource booleanToVisibilityConverter}}">
+                <TextBlock Text="out of stock    " HorizontalAlignment="Stretch" Margin="0,5,5,5" VerticalAlignment="Center" Background="LightGray" Grid.ColumnSpan="2" FontFamily="Cooper Black" Foreground="Gray" FontSize="25" Visibility="{Binding InStock , Converter={StaticResource notBoolToVis}}">
                     <TextBlock.LayoutTransform>
                         <RotateTransform Angle="45" />
                     </TextBlock.LayoutTransform>
