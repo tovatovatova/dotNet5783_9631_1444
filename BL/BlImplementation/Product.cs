@@ -29,7 +29,7 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("product amount");
             if (newProduct.Price <= 0)//negative price
                 throw new BO.BlInvalidInputException("product price");
-            if (newProduct.Name == null || !Regex.IsMatch(newProduct.Name, @"^[a-zA-Z]+$"))//empty string or not letters
+            if (newProduct.Name == null )//empty string 
                 throw new BO.BlInvalidInputException("product name");
             try
             {
@@ -207,7 +207,7 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("product amount");
             if (product.Price < 0)//negative price
                 throw new BO.BlInvalidInputException("product price");
-            if (product.Name == "" || !Regex.IsMatch(product.Name, @"^[a-zA-Z]+$"))//empty string or entered digits
+            if (product.Name == "" )//empty string 
                 throw new BO.BlInvalidInputException("product name");
            
 
@@ -247,8 +247,6 @@ namespace BlImplementation
                        AmountInCart = 0,//we cant know here the amount in cart
                        InStock = doProduct?.AmountInStock > 0,
                        ImagesSource= doProduct?.ImagesSource /*?? @"\Images"*//*#$%^&*/
-                       //ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" + doProduct?.Id + ".jpg"
-
                    };
         }
 
@@ -264,8 +262,6 @@ namespace BlImplementation
                              AmountInCart = 0,//we cant know here the amount in cart
                              InStock = doProduct?.AmountInStock > 0,
                              ImagesSource=doProduct?.ImagesSource
-                             //ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" + doProduct?.Id + ".jpg"
-
                          } into product
                          group product by product.Category;
            List<BO.ProductItem> items = new List<BO.ProductItem>();

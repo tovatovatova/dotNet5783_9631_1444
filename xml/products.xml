@@ -35,10 +35,10 @@
   <Product>
     <Id>100004</Id>
     <Name>black and white donats</Name>
-    <Price>51</Price>
-    <AmountInStock>4</AmountInStock>
+    <Price>50</Price>
+    <AmountInStock>9</AmountInStock>
     <ProductCategoty>GiftBoxes</ProductCategoty>
-    <ImagesSource>\Images\100004</ImagesSource>
+    <ImagesSource>\\\\Images\100004</ImagesSource>
   </Product>
   <Product>
     <Id>100005</Id>
@@ -215,21 +215,5 @@
     <AmountInStock>30</AmountInStock>
     <ProductCategoty>GiftBoxes</ProductCategoty>
     <ImagesSource>\Images\100027</ImagesSource>
-  </Product>
-  <Product>
-    <Id>123456</Id>
-    <Name>try</Name>
-    <Price>20</Price>
-    <AmountInStock>20</AmountInStock>
-    <ProductCategoty>Cakes</ProductCategoty>
-    <ImagesSource>\Images\1.2.2.PNG</ImagesSource>
-  </Product>
-  <Product>
-    <Id>45</Id>
-    <Name>ooo</Name>
-    <Price>5</Price>
-    <AmountInStock>4</AmountInStock>
-    <ProductCategoty>Cakes</ProductCategoty>
-    <ImagesSource>\Images\1.1.PNG</ImagesSource>
   </Product>
 </ArrayOfProduct>

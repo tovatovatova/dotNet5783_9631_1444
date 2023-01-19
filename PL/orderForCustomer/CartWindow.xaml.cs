@@ -154,7 +154,6 @@ namespace PL
             catch (BO.BlIdDoNotExistException)
             {
                 MessageBox.Show("something went wrong", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-                return;
             }
             catch (BO.BlInvalidInputException ex)
             {
@@ -163,7 +162,6 @@ namespace PL
             catch(BO.BlNullPropertyException ex) 
             {
                 MessageBox.Show(ex.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-                return;
             }
         }
 

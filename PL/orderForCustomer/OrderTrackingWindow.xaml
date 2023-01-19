@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        WindowStartupLocation ="CenterScreen"
     DataContext="{Binding orderTracking, RelativeSource={RelativeSource Self}}"
     Title="OrderTrackingWindow" Height="312" Width="625">
     <Window.Resources>

@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
-        WindowStartupLocation ="CenterScreen"
         mc:Ignorable="d"
         DataContext="{Binding MyOrder,RelativeSource={RelativeSource Self}}"
         Title="OrderWindow" Height="500" Width="800">
@@ -13,7 +12,7 @@
             <RowDefinition Height="0*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid x:Name="OrderDetails"  HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="195,-1,0,0" Width="514" Grid.RowSpan="2" Height="560">
+        <Grid x:Name="OrderDetails"  HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="195,-1,0,0" Width="514" Grid.RowSpan="2" Height="469">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="125"/>
                 <ColumnDefinition Width="Auto"/>
@@ -103,14 +102,14 @@
             </ListView>
 
             <Label Grid.Column="0" Content="Order Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <DatePicker x:Name="orderDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="5,2,0,0" Grid.Row="6" SelectedDate="{Binding OrderDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+            <DatePicker x:Name="orderDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="5,2,0,0" Grid.Row="6" SelectedDate="{Binding OrderDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
 
             <Label Grid.Column="0" Content="Ship Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
-            <DatePicker x:Name="shipDateDatePicker"  Grid.Column="1"   HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="7" SelectedDate="{Binding ShipDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.IsSharedSizeScope="True"/>
+            <DatePicker x:Name="shipDateDatePicker"  Grid.Column="1"   HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="7" SelectedDate="{Binding ShipDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" IsEnabled="False"/>
 
 
             <Label Grid.Column="0" Content="Delivery Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
-            <DatePicker x:Name="deliveryDateDatePicker"  Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="8" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <DatePicker x:Name="deliveryDateDatePicker"  Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="8" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" IsEnabled="False"/>
 
             <Label Grid.Column="0" Content="Status:"  HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
             <!--<TextBox x:Name="statusTextBox" Grid.Column="1" Grid.Row="9" IsReadOnly="True" HorizontalAlignment="Left" Height="NaN" Margin="3" VerticalAlignment="Center" Width="120" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>-->

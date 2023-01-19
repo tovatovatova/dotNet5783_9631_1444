@@ -150,7 +150,7 @@
     <CustomerEmail>shimon@gmail.com</CustomerEmail>
     <CustomerAddress>ben guryon</CustomerAddress>
     <OrderDate>2022-05-12T18:50:57</OrderDate>
-    <ShipDate xsi:nil="true" />
+    <ShipDate>2023-01-19T12:13:25.1522339+02:00</ShipDate>
     <DeliveryDate xsi:nil="true" />
   </Order>
   <Order>
