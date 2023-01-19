@@ -38,8 +38,15 @@ namespace PL
         {
             InitializeComponent();
             myCart = cart1;
-            myProduct = bl.Product.GetProductByID(myCart, id);
-
+            try
+            {
+                myProduct = bl.Product.GetProductByID(myCart, id);
+            }
+            catch (BO.BlIdDoNotExistException ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                return;
+            }
         }
 
         
