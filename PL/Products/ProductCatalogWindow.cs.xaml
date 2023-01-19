@@ -70,11 +70,11 @@ Title="ProductCatalogWindow" Height="634" Width="1172" Activated="Window_Activat
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="130"/>
-                <ColumnDefinition Width="130"/>
-                <ColumnDefinition Width="130"/>
-                <ColumnDefinition Width="130"/>
-                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
             <TextBlock  Text="Cakes" Grid.Row="0" Grid.Column="0" FontSize="17" HorizontalAlignment="Left" Style="{StaticResource textOfItem}" Grid.RowSpan="2" VerticalAlignment="Top" MouseDown="TextBlock_MouseDown"/>
             <TextBlock  Text="Donats" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" FontSize="17"  Grid.RowSpan="2" Style="{StaticResource textOfItem}" VerticalAlignment="Top" MouseDown="TextBlock_MouseDown"/>
