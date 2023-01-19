@@ -28,7 +28,7 @@ namespace BlImplementation
         public void addUser(BO.User user)
         {
 
-            if (user.UserName == null) 
+            if (user.UserName == null||user.UserName=="") 
                 throw new BO.BlInvalidInputException("user name");
             string strRegex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
             Regex re = new Regex(strRegex, RegexOptions.IgnoreCase);
