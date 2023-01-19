@@ -150,8 +150,19 @@ namespace PL
                 }
                 catch (Exception)
                 {
-                    bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory[..^4] + @"\Images\noPicture.jpg"));
-                    return bitmap;//return defult picture
+                    try
+                    {
+                        string startImage = value?.ToString() ?? throw new Exception();
+                        string addDir = Environment.CurrentDirectory[..^4];
+                        string final = addDir + startImage;
+                        bitmap = new BitmapImage(new Uri(final));
+                        return bitmap;
+                    }
+                    catch (Exception)
+                    {
+                        bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory[..^4] + @"\Images\noPicture.jpg"));
+                        return bitmap;//return defult picture
+                    }                   
                 }
             }
 
