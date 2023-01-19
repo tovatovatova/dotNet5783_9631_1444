@@ -4,7 +4,26 @@
              xmlns:local="clr-namespace:PL"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-      
+
+
+        <Style x:Key="blurBackground" TargetType="Window">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <Image>
+                                <Image.Effect>
+                                    <BlurEffect Radius="20"/>
+                                </Image.Effect>
+                            </Image>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
 
         <LinearGradientBrush x:Key="colorInDataGrid">
             <GradientStop Color="DeepPink"
@@ -46,10 +65,28 @@
 
         <Style  TargetType="Button">
             <Setter Property="Background" Value="{StaticResource colorInDataGrid}" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="20"/>
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="FontFamily" Value="Algerian"/>
             <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10"
+                            Background="{StaticResource colorInDataGrid}"
+                            BorderThickness="1">
+                            <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="{TemplateBinding Padding}" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Setter Property="RenderTransform">
                 <Setter.Value>
                     <ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -142,6 +179,9 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
+ 
+        
+        
 
 
 
