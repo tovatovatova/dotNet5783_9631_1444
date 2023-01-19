@@ -99,15 +99,17 @@ namespace PL
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            CartWindow c;
             if (user != null)//user in system
             {
-                CartWindow c = new CartWindow(cart, user);
-                c.ShowDialog();
+                c = new CartWindow(cart, user);
+                Close();
+                c.Show();
             }
             else
             {
-                this.Close();
-                CartWindow c=new CartWindow( cart);
+             c=new CartWindow( cart);
+                Close();
                 c.Show();
             }
             

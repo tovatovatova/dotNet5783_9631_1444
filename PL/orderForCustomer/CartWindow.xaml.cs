@@ -165,8 +165,9 @@ namespace PL
                         myCart.Items = null;
 
                         ProductCatalogWindow p = new ProductCatalogWindow(myUser, myCart);
-                        p.ShowDialog();
                         Close();
+                        p.Show();
+
                     }
                 }
 
@@ -184,6 +185,13 @@ namespace PL
                 }
             }
 
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            ProductCatalogWindow p = new ProductCatalogWindow(myUser, myCart);
+            Close();
+            p.Show();
         }
 
 
