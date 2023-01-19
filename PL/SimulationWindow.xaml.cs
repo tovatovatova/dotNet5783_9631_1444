@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -26,15 +27,15 @@ namespace PL
         BackgroundWorker updateStatus;
         bool flag = true;
     DateTime fakeTime= DateTime.Now;
-        public ObservableCollection<BO.OrderForList?> SimulationOrders
+        public List<BO.OrderForList?> SimulationOrders
         {
-            get { return (ObservableCollection<BO.OrderForList?>)GetValue(SimulationOrdersProperty); }
+            get { return (List<BO.OrderForList?>)GetValue(SimulationOrdersProperty); }
             set { SetValue(SimulationOrdersProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for PlOrder.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SimulationOrdersProperty =
-            DependencyProperty.Register("SimulationOrders", typeof(ObservableCollection<BO.OrderForList?>), typeof(Window), new PropertyMetadata(null));
+            DependencyProperty.Register("SimulationOrders", typeof(List<BO.OrderForList?>), typeof(Window), new PropertyMetadata(null));
 
         public SimulationWindow()
         {
@@ -50,7 +51,7 @@ namespace PL
         }
         private void UpdateStatus_DoWork(object? sender, DoWorkEventArgs e)
         {
-            while (flag)
+            while (true)
             {
                 if (updateStatus.CancellationPending == true)
                 {
@@ -59,14 +60,13 @@ namespace PL
                 }
                 else
                 {
-                    
                     fakeTime = fakeTime.AddHours(3);
                     if(updateStatus.WorkerReportsProgress== true)
                     {
-                        updateStatus.ReportProgress(111);
+                        updateStatus.ReportProgress(11117998);
                     }
                 }
-                Thread.Sleep(1000);
+                Thread.Sleep(1200);
             }
         }
        
@@ -96,19 +96,16 @@ namespace PL
                     bl.Order.UpdateShip(order.Id);
                 if (fakeTime - order.OrderDate >= new TimeSpan(3, 0, 0, 0) && order.Status == BO.OrderStatus.Shipped)
                     bl.Order.UpdateDelivery(order.Id);
-                SimulationOrders = new (bl.Order.GetOrderList());
+                SimulationOrders = bl.Order.GetOrderList().ToList();
             }
          
-            
-
         }
 
         private void start_Click(object sender, RoutedEventArgs e)
         {
             if (updateStatus.IsBusy != true)
             {
-                flag = true;
-                this.Cursor = Cursors.Wait;
+               // this.Cursor = Cursors.Wait;
                 updateStatus.RunWorkerAsync();
             }
         }
@@ -117,6 +114,13 @@ namespace PL
         {
             if (updateStatus.WorkerSupportsCancellation == true)
                 updateStatus.CancelAsync(); 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string idd = ((sender as Button).Tag).ToString();
+            int id = Convert.ToInt32(idd);
+            MessageBox.Show(bl.Order.OrderTracking(id).ToString()+"📦");
         }
     }
 }

@@ -1,4 +1,78 @@
-﻿<Window x:Class="PL.SimulationWindow"
+﻿ <Window x:Class="PL.SimulationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        DataContext="{Binding SimulationOrders,RelativeSource={RelativeSource Self}}"
+        Title="SimulationWindow" Height="450" Width="800"><Window.Resources>
+
+    <Style x:Key="header" TargetType="DataGridColumnHeader">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Foreground" Value="LightCoral"/>
+        <Setter Property="FontWeight" Value="ExtraBold"/>
+    </Style>
+</Window.Resources>
+<Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="11*"/>
+        <RowDefinition Height="29*"/>
+    </Grid.RowDefinitions>
+    <Grid Grid.RowSpan="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Left" Height="41" Margin="109,14,0,0" TextWrapping="Wrap"  Text="{Binding demo}" VerticalAlignment="Top" Width="215" FontWeight="ExtraBold" FontSize="16" FontFamily="Consolas"/>
+            <MediaElement x:Name="clock" LoadedBehavior="Manual" UnloadedBehavior="Manual" Source="Y2Mate.is - Timer clock with  sound 1 hour-VytAIR068eM-360p-1660006028570.mp4" Width="NaN" Margin="8,0,443,0"/>
+        </Grid>
+        <DataGrid Grid.Row="1" x:Name="orderForListDataGrid" IsReadOnly="True" FontSize="20" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3" Grid.RowSpan="3" HorizontalAlignment="Stretch" Height="NaN" VerticalAlignment="Stretch" Width="NaN">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="Order ID" HeaderStyle="{StaticResource header}" Width="0.75*"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header=" Customer Name" HeaderStyle="{StaticResource header}" Width="1.3*"/>
+                <DataGridTextColumn x:Name="amountOfItemsColumn" Binding="{Binding AmountOfItems}" Header="Amount" HeaderStyle="{StaticResource header}" Width="0.6*"/>
+                <DataGridTextColumn x:Name="totalPriceColumn" Binding="{Binding TotalPrice}" Header="Total Price" HeaderStyle="{StaticResource header}" Width="*"/>
+                <DataGridTemplateColumn x:Name="statusColumn" Header="Status" HeaderStyle="{StaticResource header}" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="btnTracking" Text="{Binding Status}" Background="{Binding Status, Converter={StaticResource statusToBackColor}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                                <Button Content="order tracking details" Grid.Row= "4" FontSize="6" Tag="{Binding ID}"  Background="{Binding Status,Converter={StaticResource statusToBackColor}}" HorizontalAlignment="Center" Margin="20,0,0,0" FontWeight="Bold" FontFamily="Arial Black" Click="Button_Click" />
+                            </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="1.3*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ProgressBar x:Name="pbTracking" Background="LightGray" Foreground="LightSkyBlue" Value="{Binding ID, Converter={StaticResource statusToProgressValue}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+        <Button x:Name="start" Content="start" HorizontalAlignment="Left" Margin="153,0,0,0" VerticalAlignment="Top" Height="37" Width="112" Click="start_Click"/>
+        <Button x:Name="stop" Content="stop" HorizontalAlignment="Left" Margin="285,0,0,0" VerticalAlignment="Top" Height="37" Width="95" Click="stop_Click"/>
+
+    </Grid>
+
+</Window>
+
+
+
+<!--<Window x:Class="PL.SimulationWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,22 +85,20 @@
         <DataTemplate x:Key="SimulationTemplate" DataType="local:OrderForList">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="10" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="10" />
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="10" />
+                
 
 
 
 
                 </Grid.RowDefinitions>
-                <Border Grid.Row= "0"  Background="LightCyan" CornerRadius="5" Grid.RowSpan="10" >
+                <Border Grid.Row= "0"  Background="LightCyan" CornerRadius="5" Grid.RowSpan="7" >
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="1"/>
                     </Border.Effect>
@@ -45,15 +117,16 @@
                   <Run Text="{Binding AmountOfItems}"/>
                 </TextBlock>
                 <TextBlock Text="{Binding TotalPrice, StringFormat={}{0:C}}" Grid.Row= "3" FontSize="6" HorizontalAlignment="Left" Margin="5,0,0,0" FontWeight="Bold" FontFamily="Arial Black" />
-                <Button Content="{Binding Status}" Grid.Row= "4" FontSize="6"  Background="{Binding Status,Converter={StaticResource statusToBackColor}}" HorizontalAlignment="Center" Margin="5,0,0,0" FontWeight="Bold" FontFamily="Arial Black" />
-                <ProgressBar x:Name="progBarTime"  Grid.Row= "6" Margin="10,0,15,0" HorizontalAlignment="Left" Value="{Binding Status,Converter={StaticResource statusToProgressValue}}" Grid.RowSpan="2" Height="29"  VerticalAlignment="Top" Width="209" Background="#FFC9C1C1" Foreground="#FF1D1111"/>
+                <Button Content="{Binding Status}" Grid.Row= "4" FontSize="6"  Background="{Binding Status,Converter={StaticResource statusToBackColor}}" HorizontalAlignment="Left" Margin="5,0,-9,0" FontWeight="Bold" FontFamily="Arial Black" />
+                <Button Content="order tracking details" Grid.Row= "4" FontSize="6" Tag="{Binding ID}"  Background="{Binding Status,Converter={StaticResource statusToBackColor}}" HorizontalAlignment="Center" Margin="20,0,0,0" FontWeight="Bold" FontFamily="Arial Black" Click="Button_Click" />
+                <ProgressBar x:Name="progBarTime"  Grid.Row= "5" Margin="10,0,10,0" HorizontalAlignment="Left" Value="{Binding Status,Converter={StaticResource statusToProgressValue}}" Grid.RowSpan="2" Height="29"  VerticalAlignment="Top" Width="209" Background="#FFC9C1C1" Foreground="#FF1D1111"/>
 
             </Grid>
         </DataTemplate>
     </Window.Resources>
 
     <Grid Margin="20,20,20,20">
-        <ScrollViewer Background="LightCyan" Margin="20,50,20,20" Grid.Row="1" >
+        <ScrollViewer Background="LightCyan" Margin="0,50,0,0" Grid.Row="1" >
             <ListView x:Name="ordersList" ItemsSource="{Binding}" ItemTemplate="{StaticResource SimulationTemplate}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -68,4 +141,4 @@
     </Grid>
 
 
-</Window>
+</Window>-->

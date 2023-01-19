@@ -4,25 +4,18 @@
              xmlns:local="clr-namespace:PL"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <!--<Style x:Key="myButtonStyle"   TargetType="Button">
-            <Setter Property="FontSize"
-              Value="32" />
-            <Setter Property="FontFamily"
-              Value="Consolas" />
-            <Setter Property="FontWeight"
-              Value="Bold" />
-        </Style>-->
+      
 
         <LinearGradientBrush x:Key="colorInDataGrid">
-            <GradientStop Color="LightPink"
+            <GradientStop Color="DeepPink"
                     Offset="0" />
-            <GradientStop Color="Snow"
+            <GradientStop Color="HotPink"
                     Offset="0.25" />
-            <GradientStop Color="White"
+            <GradientStop Color="Pink"
                     Offset="0.5" />
-            <GradientStop Color="Gray"
+            <GradientStop Color="HotPink"
                     Offset="0.75" />
-            <GradientStop Color="DeepSkyBlue"
+            <GradientStop Color="DeepPink"
                     Offset="1" />
 
         </LinearGradientBrush>
@@ -67,11 +60,11 @@
                     <Setter Property="RenderTransform">
                         <Setter.Value>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
-                        </Setter.Value> 
+                        </Setter.Value>
                     </Setter>
-                    
+
                 </Trigger>
-                
+
             </Style.Triggers>
         </Style>
         <Style  TargetType="Window" >
@@ -90,7 +83,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!--for round button-->
+        
         <Style x:Key="RoundButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -113,10 +106,10 @@
             </Setter>
 
             <Setter Property="RenderTransform">
-                    <Setter.Value>
-                        <ScaleTransform ScaleX="1" ScaleY="1"/>
-                    </Setter.Value>
-                </Setter>
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="RenderTransform">
@@ -127,7 +120,6 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
 
 
         <Style  x:Key="RoundedEdes" TargetType="{x:Type Button}">
@@ -150,7 +142,6 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
- 
 
 
 
@@ -169,7 +160,7 @@
 
 
         <!--<local:ConvLogInToVisible x:Key="ConverLogIn"/>-->
-            <!--<local:EmptyCollectionToHiddenConverter x:Key="emptyToHidden"/>-->
+        <!--<local:EmptyCollectionToHiddenConverter x:Key="emptyToHidden"/>-->
 
     </Application.Resources>
 </Application>

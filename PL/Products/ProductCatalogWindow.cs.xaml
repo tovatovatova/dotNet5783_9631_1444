@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:PL"
-        WindowStartupLocation ="CenterScreen"
+        
         mc:Ignorable="d"
             DataContext="{Binding myProductCat, RelativeSource={RelativeSource Self}}"
 Title="ProductCatalogWindow" Height="686" Width="1212" Activated="Window_Activated">

@@ -131,41 +131,93 @@ namespace PL
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            try
+            if (myCart.CustomerAddress == null || myCart.CustomerEmail == null || myCart.CustomerName == null)
             {
-                (sender as Button).Visibility = Visibility.Hidden;
-                checkuot.Visibility = Visibility.Hidden;
-                int id = bl.Cart.OrderCreate(myCart);
-                string messegeBoxText = @"Your order has been successfully placed
-      Order Number: " + id;
-                string caption = " ";
-                MessageBoxImage icon = MessageBoxImage.Information;
+                string messageBoxText = "wrong details try again";
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBoxResult result;
-                result = MessageBox.Show(messegeBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
                 if (result == MessageBoxResult.OK)
                 {
-                    myCart.Items = null;
-
-                    ProductCatalogWindow p = new ProductCatalogWindow(myUser, myCart);
-                    p.ShowDialog();
-                    Close();
+                    return;
                 }
             }
-            catch (BO.BlIdDoNotExistException)
+            else
             {
-                MessageBox.Show("something went wrong", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-                return;
+                try
+                {
+                    (sender as Button).Visibility = Visibility.Hidden;
+                    checkuot.Visibility = Visibility.Hidden;
+                    int id = bl.Cart.OrderCreate(myCart);
+                    string messegeBoxText = @"Your order has been successfully placed
+      Order Number: " + id;
+                    string caption = " ";
+                    MessageBoxImage icon = MessageBoxImage.Information;
+                    MessageBoxResult result;
+                    result = MessageBox.Show(messegeBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        myCart.Items = null;
+
+                        ProductCatalogWindow p = new ProductCatalogWindow(myUser, myCart);
+                        p.ShowDialog();
+                        Close();
+                    }
+                }
+
+                catch (BO.BlInvalidInputException)
+                {
+                    string messageBoxText = "something went wrong";
+                    string caption = "error";
+                    MessageBoxImage icon = MessageBoxImage.Error;
+                    MessageBoxResult result;
+                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        return;
+                    }
+                }
             }
-            catch (BO.BlInvalidInputException ex)
-            {
-                MessageBox.Show("wrong details try again", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-            }
-            catch(BO.BlNullPropertyException ex) 
-            {
-                MessageBox.Show(ex.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-                return;
-            }
+
         }
+
+
+
+        //      try
+        //      {
+        //          (sender as Button).Visibility = Visibility.Hidden;
+        //          checkuot.Visibility = Visibility.Hidden;
+        //          int id = bl.Cart.OrderCreate(myCart);
+        //          string messegeBoxText = @"Your order has been successfully placed
+        //Order Number: " + id;
+        //          string caption = " ";
+        //          MessageBoxImage icon = MessageBoxImage.Information;
+        //          MessageBoxResult result;
+        //          result = MessageBox.Show(messegeBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+        //          if (result == MessageBoxResult.OK)
+        //          {
+        //              myCart.Items = null;
+        //              ProductCatalogWindow p = new ProductCatalogWindow(myUser, myCart);
+        //              p.ShowDialog();
+        //              Close();
+        //          }
+        //      }
+        //      catch (BO.BlIdDoNotExistException)
+        //      {
+        //          MessageBox.Show("something went wrong", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+        //          return;
+        //      }
+        //      catch (BO.BlInvalidInputException ex)
+        //      {
+        //          MessageBox.Show("wrong details try again", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+        //      }
+        //      catch(BO.BlNullPropertyException ex) 
+        //      {
+        //          MessageBox.Show(ex.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+        //          return;
+        //      }
+        //  }
 
     }
 
