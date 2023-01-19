@@ -31,7 +31,6 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 
-                <TextBlock HorizontalAlignment="Center" Height="55" TextWrapping="Wrap"  Text="{Binding fakeTime}" VerticalAlignment="Center" Width="292" FontWeight="ExtraBold" FontSize="16" FontFamily="Consolas" Grid.Column="1"/>
 
                 
             </Grid>
