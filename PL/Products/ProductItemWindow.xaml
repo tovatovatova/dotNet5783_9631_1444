@@ -33,10 +33,10 @@
             </TextBlock>
             <TextBlock  Text="{Binding Price, StringFormat={}{0:C}}" Style="{StaticResource textOfItem}" Grid.Row= "4" FontSize="21" HorizontalAlignment="Left" Margin="470,160,0,-15" />
         </Grid>
-        <Button x:Name="addToCart" Visibility="{Binding InStock,Converter={StaticResource booleanToVisibilityConverter}}"  Margin="10,460,687,125"    Click="btnAdd_Click"   TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
+        <Button x:Name="addToCart" Width="155" Content="Add To Cart" Visibility="{Binding InStock,Converter={StaticResource booleanToVisibilityConverter}}"  Margin="10,499,850,267"    Click="btnAdd_Click"   TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
             <Button.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="10"/>
+                    <Setter Property="CornerRadius" Value="10"/> 
                 </Style>
             </Button.Resources>
             <Button.Background>
