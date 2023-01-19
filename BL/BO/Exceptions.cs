@@ -48,13 +48,15 @@ namespace BO
         public BlIncorrectDateException(string message, Exception innerException) : base(message, innerException) { }
         public override string ToString() => $"{message}";
     }
+    [Serializable]
     public class BlInvalidInputException : Exception
     {
         public string? Entity;
         public BlInvalidInputException(string ent) : base() { Entity = ent; }
         public BlInvalidInputException(string Entity, Exception innerException) : base(Entity, innerException) { }
         public override string ToString() => $"invalid {Entity}";
-    } 
+    }
+    [Serializable]
     public class BlOutOfStockException : Exception
     {
         public string? Entity;

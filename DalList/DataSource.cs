@@ -45,12 +45,7 @@ internal static class DataSource
         createAndIinitOrders();
         createAndIinitOrderItems();
         createAndIinitUsers();
-        //initialize files-temporary
-        //XMLTools.SaveListToXMLSerializer(ProductList, "products");
-        //XMLTools.SaveListToXMLSerializer(OrderList, "order");
-        //XMLTools.SaveListToXMLSerializer(OrderItemList, "orderItems");
-        //XMLTools.SaveListToXMLSerializer(UserList, "users");
-
+      
     }
 
 
@@ -117,12 +112,12 @@ internal static class DataSource
             addOrder.CustomerEmail = addOrder.CustomerName + "@gmail.com";//thread of the name with ordinary end of gmail adress
             TimeSpan ts = new TimeSpan(randNumbers.Next(3), randNumbers.Next(23), randNumbers.Next(59), randNumbers.Next(59));
             addOrder.OrderDate = new DateTime(randNumbers.Next(2020, 2023), randNumbers.Next(1, 12), randNumbers.Next(1, 29),randNumbers.Next(0,23), randNumbers.Next(0, 59), randNumbers.Next(0, 59));
-            if(i<20*0.8)//80% of the orders will have ship date right after the order date
+            if(i<20*10)//80% of the orders will have ship date right after the order date
                  addOrder.ShipDate = addOrder.OrderDate + ts;
             else
                 addOrder.ShipDate = null;
             ts = new TimeSpan(randNumbers.Next(3), randNumbers.Next(0), randNumbers.Next(0, 3), randNumbers.Next(0, 23), randNumbers.Next(0, 59));
-            if(i < 20*0.6)//60% of the orders will have delavery date(12 orders)
+            if(i < 3)//60% of the orders will have delavery date(12 orders)
                 addOrder.DeliveryDate = addOrder.ShipDate + ts;
            else
                 addOrder.DeliveryDate=null;

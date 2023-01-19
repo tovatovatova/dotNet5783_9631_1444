@@ -128,7 +128,7 @@ namespace PL
     public class StringToBitmap : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {//gets an id of product and create a path to picture
+        {//gets string of product and create a path to picture
             BitmapImage bitmap;
             try
             {

@@ -49,22 +49,7 @@ namespace BO
         /// The total price of the order
         /// </summary>
         public double TotalPrice { get; set; }
-        /// <summary>
-        /// function to return one string of the order details-ovveride the function Tostring of object class
-        /// </summary>
-        /// <returns></returns>
-        //        public override string ToString() => $@"
-        //        order ID:{Id}
-        //        customer name:{CustomerName}
-        //        customer email:{CustomerEmail}
-        //        customer address:{CustomerAddress} 
-        //        order status:{Status}
-        //        date order:{OrderDate}
-        //        ship date:{ShipDate}
-        //        date delivery: {DeliveryDate}
-        //        items in order:{ string.Join(' ',Items)}
-        //        total price for order:{TotalPrice}
-        //";
+     
         public override string ToString() => this.ToStringProperty();
 
     }
