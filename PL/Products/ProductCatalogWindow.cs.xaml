@@ -7,7 +7,7 @@
         
         mc:Ignorable="d"
             DataContext="{Binding myProductCat, RelativeSource={RelativeSource Self}}"
-Title="ProductCatalogWindow" Height="686" Width="1212" Activated="Window_Activated">
+Title="ProductCatalogWindow" Height="634" Width="1172" Activated="Window_Activated">
 
     <Window.Resources>
 

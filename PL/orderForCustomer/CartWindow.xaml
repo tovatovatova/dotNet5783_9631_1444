@@ -76,7 +76,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Grid  x:Name="grid1"   Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,24,0,0" Height="215" Width="185">
+        <Grid  x:Name="grid1" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,24,0,0" Height="215" Width="185">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
