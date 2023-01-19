@@ -81,14 +81,6 @@
     <ImagesSource>\Images\100009</ImagesSource>
   </Product>
   <Product>
-    <Id>100010</Id>
-    <Name>blue donats</Name>
-    <Price>33</Price>
-    <AmountInStock>8</AmountInStock>
-    <ProductCategoty>Donats</ProductCategoty>
-    <ImagesSource>\Images\100010</ImagesSource>
-  </Product>
-  <Product>
     <Id>100012</Id>
     <Name>mini donats</Name>
     <Price>54</Price>
@@ -180,7 +172,7 @@
     <Id>100023</Id>
     <Name>gluten free lemon cake</Name>
     <Price>29</Price>
-    <AmountInStock>20</AmountInStock>
+    <AmountInStock>19</AmountInStock>
     <ProductCategoty>Specials</ProductCategoty>
     <ImagesSource>\Images\100023</ImagesSource>
   </Product>
@@ -188,17 +180,9 @@
     <Id>100024</Id>
     <Name>gluten free mini donats</Name>
     <Price>49</Price>
-    <AmountInStock>19</AmountInStock>
+    <AmountInStock>17</AmountInStock>
     <ProductCategoty>Specials</ProductCategoty>
     <ImagesSource>\Images\100024</ImagesSource>
-  </Product>
-  <Product>
-    <Id>100025</Id>
-    <Name>sugar free fruits cupcake</Name>
-    <Price>49</Price>
-    <AmountInStock>2</AmountInStock>
-    <ProductCategoty>Specials</ProductCategoty>
-    <ImagesSource>\Images\100025</ImagesSource>
   </Product>
   <Product>
     <Id>100026</Id>
@@ -223,5 +207,13 @@
     <AmountInStock>5</AmountInStock>
     <ProductCategoty>GiftBoxes</ProductCategoty>
     <ImagesSource>\Images\c263098cf8219ed6c0a2d3a11f46148b.jpg</ImagesSource>
+  </Product>
+  <Product>
+    <Id>123</Id>
+    <Name>gift</Name>
+    <Price>50</Price>
+    <AmountInStock>20</AmountInStock>
+    <ProductCategoty>GiftBoxes</ProductCategoty>
+    <ImagesSource>\</ImagesSource>
   </Product>
 </ArrayOfProduct>
