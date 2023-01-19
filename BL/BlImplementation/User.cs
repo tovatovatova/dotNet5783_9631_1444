@@ -1,8 +1,10 @@
 ﻿using BlApi;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BlImplementation
@@ -25,8 +27,15 @@ namespace BlImplementation
         }
         public void addUser(BO.User user)
         {
-            if (user.UserName == null||user.Email==null||user.Password==null||user.Email.Contains("@gmail.com")==false) 
-                throw new BO.BlInvalidInputException("user");
+
+            if (user.UserName == null) 
+                throw new BO.BlInvalidInputException("user name");
+            string strRegex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+            Regex re = new Regex(strRegex, RegexOptions.IgnoreCase);
+            if (!re.IsMatch(user.Email) || user.Email == null)
+                throw new BO.BlInvalidInputException("user email");
+            if (user?.Password == null)
+                throw new BO.BlInvalidInputException("user password");
             try
             {
                 dal.User.Add(new DO.User() { UserName=user.UserName,Password=user.Password, Email=user.Email});

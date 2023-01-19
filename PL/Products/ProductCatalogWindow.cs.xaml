@@ -9,9 +9,6 @@
 Title="ProductCatalogWindow" Height="634" Width="1172" Activated="Window_Activated">
 
     <Window.Resources>
-
-
-
         <DataTemplate x:Key="ProductItemTemplate" DataType="local:ProductItem">
             <Grid>
                 <Grid.RowDefinitions>

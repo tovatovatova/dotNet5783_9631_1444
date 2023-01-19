@@ -173,7 +173,7 @@ namespace PL
             catch (BO.BlInvalidInputException ex)
             {
                 //throw an error message box 
-                MessageBox.Show("invalid " + ex.Entity?.ToString() + " details", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("invalid " + ex.Entity?.ToString() , "", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             catch (BO.BlIdAlreadyExistException ex)

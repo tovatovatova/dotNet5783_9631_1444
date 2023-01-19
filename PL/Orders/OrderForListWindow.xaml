@@ -35,9 +35,6 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Content="{Binding Status}"/>
-                                <!--<ComboBox>
-                                <ComboBoxItem Content="{Binding Status}"/>
-                            </ComboBox>-->
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
