@@ -83,7 +83,7 @@ FontSize="20" Margin="458,298,57,108"  />
                 <Button x:Name="btnSub" Style="{StaticResource ButtonStyle}" Content="OK" HorizontalAlignment="Left" Margin="90,90,0,0" VerticalAlignment="Top" Click="btnSubmit_Click" Grid.Column="1" Height="44" Grid.Row="1" Width="107"/>
             </Grid>
         </Grid>
-        <Button Content="Button" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Margin="25,233,0,0" VerticalAlignment="Top" Click="Button_Click" RenderTransformOrigin="0.02,0.081"/>
+        <Button Content="Simulation" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Margin="25,233,0,0" VerticalAlignment="Top" Click="Button_Click" RenderTransformOrigin="0.02,0.081" Width="135"/>
     </Grid>
 </Window>
 
