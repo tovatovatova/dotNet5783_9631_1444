@@ -164,9 +164,9 @@ namespace PL
                     {
                         myCart.Items = null;
 
-                        ProductCatalogWindow p = new ProductCatalogWindow(myUser, myCart);
+                      //  ProductCatalogWindow p = new ProductCatalogWindow(myUser, myCart);
                         Close();
-                        p.Show();
+                     //   p.Show();
 
                     }
                 }
@@ -196,41 +196,7 @@ namespace PL
 
 
 
-        //      try
-        //      {
-        //          (sender as Button).Visibility = Visibility.Hidden;
-        //          checkuot.Visibility = Visibility.Hidden;
-        //          int id = bl.Cart.OrderCreate(myCart);
-        //          string messegeBoxText = @"Your order has been successfully placed
-        //Order Number: " + id;
-        //          string caption = " ";
-        //          MessageBoxImage icon = MessageBoxImage.Information;
-        //          MessageBoxResult result;
-        //          result = MessageBox.Show(messegeBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-        //          if (result == MessageBoxResult.OK)
-        //          {
-        //              myCart.Items = null;
-        //              ProductCatalogWindow p = new ProductCatalogWindow(myUser, myCart);
-        //              p.ShowDialog();
-        //              Close();
-        //          }
-        //      }
-        //      catch (BO.BlIdDoNotExistException)
-        //      {
-        //          MessageBox.Show("something went wrong", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-        //          return;
-        //      }
-        //      catch (BO.BlInvalidInputException ex)
-        //      {
-        //          MessageBox.Show("wrong details try again", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-        //      }
-        //      catch(BO.BlNullPropertyException ex) 
-        //      {
-        //          MessageBox.Show(ex.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-        //          return;
-        //      }
-        //  }
-
+        
     }
 
 
