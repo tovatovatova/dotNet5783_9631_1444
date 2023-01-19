@@ -97,6 +97,7 @@ namespace PL
                 if (fakeTime - order.OrderDate >= new TimeSpan(3, 0, 0, 0) && order.Status == BO.OrderStatus.Shipped)
                     bl.Order.UpdateDelivery(order.Id);
                 SimulationOrders = bl.Order.GetOrderList().ToList();
+             
             }
          
         }
