@@ -105,7 +105,7 @@ namespace PL
         {
             if (updateStatus.IsBusy != true)
             {
-               // this.Cursor = Cursors.Wait;
+               //this.Cursor = Cursors.Wait;
                 updateStatus.RunWorkerAsync();
             }
         }

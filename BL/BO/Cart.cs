@@ -35,15 +35,6 @@ namespace BO
         /// <returns></returns>
         public override string ToString() => this.ToStringProperty();
 
-        //        public override string ToString() => @$"
-
-        //        customer name:{CustomerName}
-        //        customer email:{CustomerEmail}
-        //        customer address:{CustomerAddress} 
-        //        items in cart:{string.Join("", Items)}
-        //        total price:{TotalPrice}
-        //";
-
-        //    }
+       
     }
 }

@@ -30,21 +30,7 @@ namespace BO
             return str+"\n";
 
         }
-        //foreach (PropertyInfo item in t.GetType().GetProperties())
-        //{
-        //    if (!(item is IEnumerable<object>))
-        //    {
-        //        str += "\n" + item.Name
-        //     + ": " + item.GetValue(t, null) + "\n";
-        //    }
-        //    else
-        //    {
-        //        str += "\n" + item.Name + ":";
-        //        foreach (var item1 in (IEnumerable<object>)item)
-        //        {
-        //            str += item.ToString();
-        //        }
-        //    }
+      
 
     }
 
