@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
+        WindowStartupLocation ="CenterScreen"
         mc:Ignorable="d"
         DataContext="{Binding PlUser,RelativeSource={RelativeSource Self}}"
         Title="MainWindow" Height="450" Width="800" >
 
     <Grid Margin="0,-14,0,0" RenderTransformOrigin="0.5,0.5"  Grid.IsSharedSizeScope="True" >
         <Grid.Background >
-            <ImageBrush ImageSource="{Binding ElementName=MainWindow1,Path=Title,Converter={StaticResource imageConverter} }"  Opacity="0.7"/>
+            <ImageBrush ImageSource="{Binding ElementName=MainWindow1,Path=Title,Converter={StaticResource imageConverter} }" />
               
         </Grid.Background>
 
@@ -19,7 +20,6 @@
         </Grid.FocusVisualStyle>
 
         <Label x:Name="lblTracking" Content="Enter number of order for tracking:"  HorizontalAlignment="Left" Visibility="Hidden" Margin="465,265,0,0" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="19"/>
-        <!--<TextBox x:Name="txtOrderId" HorizontalAlignment="Left" Margin="610,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="125" Height="25" TextChanged="txtOrderId_TextChanged"/>-->
         <Button x:Name="btnTracking" Content="Track" HorizontalAlignment="Left" Margin="458,213,0,0" VerticalAlignment="Top" Height="47" Width="285" Click="btnTracking_Click"  Visibility="Hidden"/>
         <Button x:Name="btnProduct" Content="Products" HorizontalAlignment="Left" Margin="30,379,0,0" VerticalAlignment="Top"   RenderTransformOrigin="0.31,0.116" Visibility="Hidden" Click="btnProduct_Click"/>
         <Button x:Name="btnOrder" Content="Orders" HorizontalAlignment="Left" Margin="210,379,0,0" VerticalAlignment="Top" Visibility="Hidden" Click="btnOrder_Click_1" />
@@ -56,7 +56,7 @@ FontSize="20" Margin="458,298,57,108"  />
                 </Label.RenderTransform>
             </Label>
             <Label  x:Name="lblWrong" Content="Wrong user name or password " Visibility="Hidden" HorizontalAlignment="Left" Margin="150,218,0,0" VerticalAlignment="Top" Height="28" Width="230" Background="{x:Null}" Foreground="#FFE91515"/>
-            <Button x:Name="btnLog"  Content="Log" HorizontalAlignment="Left" Margin="323,151,0,0" VerticalAlignment="Top" Click="btnLog_Click" />
+            <Button x:Name="btnLog"  Content="OK" HorizontalAlignment="Left" Margin="323,151,0,0" VerticalAlignment="Top" Click="btnLog_Click" />
         </Grid>
         <Button x:Name="btnCreate"   Content="Sign In" HorizontalAlignment="Left" Margin="25,168,0,0" VerticalAlignment="Top" Click="btnCreate_Click" />
         <Grid x:Name="submit" Visibility="Hidden"  >
@@ -80,7 +80,7 @@ FontSize="20" Margin="458,298,57,108"  />
                 <Label Content="Email:" HorizontalAlignment="Center" Margin="0,12,0,0" VerticalAlignment="Top" Height="23" Width="52" RenderTransformOrigin="0.423,-7.783" Grid.Row="1"/>
                 <TextBox x:Name="emailtxb" Grid.Column="1" HorizontalAlignment="Left" Height="17" Grid.Row="1" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" Margin="37,18,0,0"/>
                 <Label x:Name="lblDetails" Content="Enter your details:" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Top" FontStretch="Expanded" Foreground="#FF30ABBC" FontFamily="Bodoni MT Black" Background="{x:Null}" FontSize="20" Height="35" Width="220" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
-                <Button x:Name="btnSub" Content="Submit" HorizontalAlignment="Left" Margin="90,90,0,0" VerticalAlignment="Top" Click="btnSubmit_Click" Grid.Column="1" Height="44" Grid.Row="1" Width="107"/>
+                <Button x:Name="btnSub" Content="OK" HorizontalAlignment="Left" Margin="90,90,0,0" VerticalAlignment="Top" Click="btnSubmit_Click" Grid.Column="1" Height="44" Grid.Row="1" Width="107"/>
             </Grid>
         </Grid>
         <Button Content="Button"  HorizontalAlignment="Left" Margin="25,233,0,0" VerticalAlignment="Top" Click="Button_Click" RenderTransformOrigin="0.02,0.081"/>

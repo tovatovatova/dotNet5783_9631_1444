@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using BO;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -131,20 +133,36 @@ namespace PL
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            try
+            string strRegex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+            Regex re = new Regex(strRegex, RegexOptions.IgnoreCase);
+                if (myCart.CustomerAddress == null || myCart.CustomerEmail == null || myCart.CustomerName == null||!re.IsMatch(myCart.CustomerEmail))
             {
-                (sender as Button).Visibility = Visibility.Hidden;
-                checkuot.Visibility = Visibility.Hidden;
-                int id = bl.Cart.OrderCreate(myCart);
-                string messegeBoxText = @"Your order has been successfully placed
-      Order Number: " + id;
-                string caption = " ";
-                MessageBoxImage icon = MessageBoxImage.Information;
+                string messageBoxText = "wrong details try again";
+                string caption = "error";
+                MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBoxResult result;
-                result = MessageBox.Show(messegeBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
                 if (result == MessageBoxResult.OK)
                 {
-                    myCart.Items = null;
+                    return;
+                }
+            }
+            else
+            {
+                try
+                {
+                    (sender as Button).Visibility = Visibility.Hidden;
+                    checkuot.Visibility = Visibility.Hidden;
+                    int id = bl.Cart.OrderCreate(myCart);
+                    string messegeBoxText = @"Your order has been successfully placed
+      Order Number: " + id;
+                    string caption = " ";
+                    MessageBoxImage icon = MessageBoxImage.Information;
+                    MessageBoxResult result;
+                    result = MessageBox.Show(messegeBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        myCart.Items = null;
 
                     ProductCatalogWindow p = new ProductCatalogWindow(myUser, myCart);
                     p.ShowDialog();
@@ -165,6 +183,9 @@ namespace PL
             }
         }
 
+
+
+        
     }
 
 

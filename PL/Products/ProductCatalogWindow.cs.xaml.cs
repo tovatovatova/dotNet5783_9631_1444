@@ -99,16 +99,18 @@ namespace PL
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            CartWindow c;
             if (user != null)//user in system
             {
-                CartWindow c = new CartWindow(cart, user);
-                c.ShowDialog();
+                c = new CartWindow(cart, user);
+                Close();
+                c.Show();
             }
             else
             {
-                CartWindow c=new CartWindow( cart);
+             c=new CartWindow( cart);
                 Close();
-                c.ShowDialog();
+                c.Show();
             }
             
             
@@ -123,6 +125,11 @@ namespace PL
         private void cxbSortByCategory_Unchecked(object sender, RoutedEventArgs e)
         {
             myProductCat=bl.Product.GetCatalog().ToList();
+        }
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            myProductCat = bl.Product.GetCatalog().ToList().Where(item => item.Category == Enum.Parse<BO.Category>((sender as TextBlock).Text.ToString())).ToList();
         }
     }
     

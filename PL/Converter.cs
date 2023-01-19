@@ -54,20 +54,7 @@ namespace PL
             return 0;
         }
     }
-    //public class EmptyCollectionToHiddenConverter : IValueConverter
-    //{
-
-    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        return ((List<BO.OrderItem>)value).Count()>0 ? Visibility.Visible : Visibility.Hidden;
-
-    //    }
-
-    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        return null;
-    //    }
-    //}
+   
     public class HiddenTOVisible : IValueConverter
     {
 
@@ -117,16 +104,16 @@ namespace PL
     }
     public class StatusToInt : IValueConverter
     {
-
-
+        private static Random rand=new Random();
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+           
             if ((BO.OrderStatus)value == BO.OrderStatus.Ordered)
-                return 20;
+                return rand.Next(1, 30);
             else if ((BO.OrderStatus)value == BO.OrderStatus.Shipped)
-                return 40;
+                return rand.Next(31,70);
             else
-                return 60;
+                return 100;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -164,166 +151,153 @@ namespace PL
 
 
     public class StringToBitmapFromSource : IValueConverter
-    {//gets a image source name and return a path to the picture
+    {//gets string name and return a path to the picture
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            
+            string final;
+            BitmapImage bitmap;
             try
             {
-                string final;
-                BitmapImage bitmap;
-                string strImage = value?.ToString() ?? throw new Exception();//name of picture                                                            
+
+                string strImage = value?.ToString() ?? throw new Exception();                                                            
                 try
                 {
-                    if (strImage.Contains(".PNG"))//if image ends with .PNG
-                    {
-                        final = Environment.CurrentDirectory[..^4] + strImage ;
-                        bitmap= new BitmapImage(new Uri(final));
-                        return bitmap;
-                    } 
+
+                    final = Environment.CurrentDirectory[..^4] + strImage;
+                    bitmap = new BitmapImage(new Uri(final));
+                    return bitmap;
+
                 }
                 catch (Exception)
                 {
-
-                    throw;
+                    final = Environment.CurrentDirectory[..^4] + strImage;
+                    bitmap = new BitmapImage(new Uri(final));
+                    return bitmap;
                 }
-                final = Environment.CurrentDirectory[..^4] +strImage +".jpg" ;
-                bitmap = new BitmapImage(new Uri(final));   
-                return bitmap;
+
             }
+
             catch (Exception ex)
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory[..^4] + @"\Images\noPicture.jpg"));
+                bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory[..^4] + @"\Images\noPicture.jpg"));
                 return bitmap;//return defult picture
             }
         }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value.ToString();
-
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public class AmountToComboBox : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            try
-            {
-                BO.Cart cart = value as BO.Cart;
-                int items = cart.Items.Count();
-                List<int> lst = new List<int>();
-
-                for (int i = 0; i < items; i++)
-                {
-                    lst.Add(i);
-                }
-                return lst;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return 0;
-        }
-
-    }
-
-    //public class ConverBtnToVisibile : IValueConverter
-    //{
-    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        return (Button)value
-    //    }
-
-    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
-
-
-
-
-    public class ConverPng : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            try
-            {
-                string startImage = value?.ToString() ?? throw new Exception();
-                string addDir = Environment.CurrentDirectory[..^4];
-                string final = addDir + @"\Images\" + startImage + ".png";
-                BitmapImage bitmap = new BitmapImage(new Uri(final));
-                return bitmap;
-            }
-            catch (Exception ex)
-            {
-                BitmapImage bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory + @"\Images\noPicture.jpg"));
-                return bitmap;
-            }
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-
-        }
-    }
-    public class ConvLogInToVisible : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-
-            BO.User user = value as BO.User;
-            if (user.Log == BO.LogIn.Customer)//if customer
-            {
-                return (Visibility)value == Visibility.Visible;
-
-            }
-            else /*(user.Log == BO.LogIn.Maneger)*/ //if maneger
-            {
-                return (Visibility)value == Visibility.Hidden;
-
-            }
-        }
             public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
+            {
+                return value.ToString();
 
-            throw new NotImplementedException();
+            }
         }
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public class AmountToComboBox : IValueConverter
+        {
+            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                try
+                {
+                    BO.Cart cart = value as BO.Cart;
+                    int items = cart.Items.Count();
+                    List<int> lst = new List<int>();
+
+                    for (int i = 0; i < items; i++)
+                    {
+                        lst.Add(i);
+                    }
+                    return lst;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+
+            }
+
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                return 0;
+            }
+
+        }
 
     
-}
+
+
+
+
+        public class ConverPng : IValueConverter
+        {
+            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                try
+                {
+                    string startImage = value?.ToString() ?? throw new Exception();
+                    string addDir = Environment.CurrentDirectory[..^4];
+                    string final = addDir + @"\Images\" + startImage + ".png";
+                    BitmapImage bitmap = new BitmapImage(new Uri(final));
+                    return bitmap;
+                }
+                catch (Exception ex)
+                {
+                    BitmapImage bitmap = new BitmapImage(new Uri(Environment.CurrentDirectory + @"\Images\noPicture.jpg"));
+                    return bitmap;
+                }
+            }
+
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                throw new NotImplementedException();
+
+            }
+        }
+        public class ConvLogInToVisible : IValueConverter
+        {
+            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+
+                BO.User user = value as BO.User;
+                if (user.Log == BO.LogIn.Customer)//if customer
+                {
+                    return (Visibility)value == Visibility.Visible;
+
+                }
+                else /*(user.Log == BO.LogIn.Maneger)*/ //if maneger
+                {
+                    return (Visibility)value == Visibility.Hidden;
+
+                }
+            }
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+
+                throw new NotImplementedException();
+            }
+        }
+
+
+    }
 

@@ -101,5 +101,6 @@
                 </Button.Resources>
             </Button>
         </Grid>
+        <Button Content="Back ↪" HorizontalAlignment="Left" Margin="763,4,0,0" VerticalAlignment="Top" FontFamily="Arial Black" Click="Button_Click_2"/>
     </Grid>
 </Window>
