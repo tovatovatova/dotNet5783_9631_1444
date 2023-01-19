@@ -20,7 +20,7 @@
     <Id>100002</Id>
     <Name>crep</Name>
     <Price>30</Price>
-    <AmountInStock>4</AmountInStock>
+    <AmountInStock>3</AmountInStock>
     <ProductCategoty>Desserts</ProductCategoty>
     <ImagesSource>\Images\100002</ImagesSource>
   </Product>
@@ -36,7 +36,7 @@
     <Id>100004</Id>
     <Name>black and white donats</Name>
     <Price>50</Price>
-    <AmountInStock>9</AmountInStock>
+    <AmountInStock>8</AmountInStock>
     <ProductCategoty>GiftBoxes</ProductCategoty>
     <ImagesSource>\\\\Images\100004</ImagesSource>
   </Product>
