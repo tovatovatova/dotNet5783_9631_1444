@@ -65,8 +65,8 @@
 
             </DataGrid>
         </Grid>
-        <Button x:Name="start" Content="start" HorizontalAlignment="Left" Margin="153,0,0,0" VerticalAlignment="Top" Height="37" Width="112" Click="start_Click" Background="#FFF1A9A9"/>
-        <Button x:Name="stop" Content="stop" HorizontalAlignment="Left" Margin="285,0,0,0" VerticalAlignment="Top" Height="37" Width="95" Click="stop_Click" Background="#FFF1A9A9"/>
+        <Button x:Name="start" Content="start" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Margin="153,0,0,0" VerticalAlignment="Top" Height="37" Width="112" Click="start_Click" Background="#FFF1A9A9"/>
+        <Button x:Name="stop" Content="stop" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Margin="285,0,0,0" VerticalAlignment="Top" Height="37" Width="95" Click="stop_Click" Background="#FFF1A9A9"/>
 
     </Grid>
 

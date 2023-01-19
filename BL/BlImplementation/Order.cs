@@ -243,9 +243,7 @@ namespace BlImplementation
         /// <exception cref="BO.BlNullPropertyException">throw if couldnt convert</exception>
         public BO.Order? ConvertOrderDoToBO(DO.Order? doOrder)
         {
-            BO.Order boOrder;//what about rhe exeptions below (email)%$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-                             //try
-                             //{
+            BO.Order boOrder;
             boOrder = new BO.Order()//create bo order and put tb\he details from do order
             {//if cant convert throw exception
                 Id = doOrder?.OrderId ?? throw new BO.BlNullPropertyException("order id"),
@@ -275,7 +273,7 @@ namespace BlImplementation
                                 Price = items?.Price ?? 0,
                                 Amount = items?.Amount ?? 0,
                                 TotalPrice = items?.Price * items?.Amount ?? throw new BO.BlNullPropertyException("total price"),
-                                ImagesSource = $@"C:\Users\tovar\source\repos\tovatovatova\dotNet5783_9631_1444\PL\pictures\" + items?.ProductId ?? 0 + ".jpg"
+                                ImagesSource = /*"\\" +*/items?.ImagesSource
 
                             };
             boOrder.TotalPrice = boOrder.Items.Sum(item => item.TotalPrice);//the total price of the order

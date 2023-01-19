@@ -69,7 +69,7 @@
         <Run Text="{Binding TotalPrice,UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:C}}" />
         </TextBlock>
 
-        <Button  x:Name="checkuot" Content="CHECKOUT" HorizontalAlignment="Left" Margin="18,527,0,0" Visibility="{Binding TotalPrice,Converter={StaticResource doubletoHidden},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Top" RenderTransformOrigin="-0.318,2.341" Height="72" Width="195" Click="Button_Click">
+        <Button  x:Name="checkuot"  Style="{StaticResource ButtonStyle}" Content="CHECKOUT" HorizontalAlignment="Left" Margin="18,527,0,0" Visibility="{Binding TotalPrice,Converter={StaticResource doubletoHidden},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Top" RenderTransformOrigin="-0.318,2.341" Height="72" Width="195" Click="Button_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="20"/>
@@ -101,6 +101,6 @@
                 </Button.Resources>
             </Button>
         </Grid>
-        <Button Content="Back ↪" HorizontalAlignment="Left" Margin="763,4,0,0" VerticalAlignment="Top" FontFamily="Arial Black" Click="Button_Click_2"/>
+        <Button Content="Back ↪" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Margin="763,4,0,0" VerticalAlignment="Top" FontFamily="Arial Black" Click="Button_Click_2"/>
     </Grid>
 </Window>

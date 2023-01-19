@@ -135,7 +135,7 @@ namespace PL
         {
             string strRegex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
             Regex re = new Regex(strRegex, RegexOptions.IgnoreCase);
-                if (myCart.CustomerAddress == null || myCart.CustomerEmail == null || myCart.CustomerName == null||!re.IsMatch(myCart.CustomerEmail))
+            if (myCart.CustomerAddress == null || myCart.CustomerEmail == null || myCart.CustomerName == null || !re.IsMatch(myCart.CustomerEmail))
             {
                 string messageBoxText = "wrong details try again";
                 string caption = "error";
@@ -164,29 +164,25 @@ namespace PL
                     {
                         myCart.Items = null;
 
-                      //  ProductCatalogWindow p = new ProductCatalogWindow(myUser, myCart);
+                        ProductCatalogWindow p = new ProductCatalogWindow(myUser, myCart);
+                        p.ShowDialog();
                         Close();
-                     //   p.Show();
-
                     }
                 }
-
-                catch (BO.BlInvalidInputException)
+                catch (BO.BlIdDoNotExistException)
                 {
-                    string messageBoxText = "something went wrong";
-                    string caption = "error";
-                    MessageBoxImage icon = MessageBoxImage.Error;
-                    MessageBoxResult result;
-                    result = MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, icon, MessageBoxResult.OK);
-                    if (result == MessageBoxResult.OK)
-                    {
-                        return;
-                    }
+                    MessageBox.Show("something went wrong", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                }
+                catch (BO.BlInvalidInputException ex)
+                {
+                    MessageBox.Show("wrong details try again", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                }
+                catch (BO.BlNullPropertyException ex)
+                {
+                    MessageBox.Show(ex.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
                 }
             }
-
         }
-
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             ProductCatalogWindow p = new ProductCatalogWindow(myUser, myCart);
@@ -194,11 +190,5 @@ namespace PL
             p.Show();
         }
 
-
-
-        
     }
-
-
 }
-

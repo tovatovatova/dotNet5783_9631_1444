@@ -3,16 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:local="clr-namespace:PL"
-        
+        xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
             DataContext="{Binding myProductCat, RelativeSource={RelativeSource Self}}"
 Title="ProductCatalogWindow" Height="634" Width="1172" Activated="Window_Activated">
 
     <Window.Resources>
-
-
-
         <DataTemplate x:Key="ProductItemTemplate" DataType="local:ProductItem">
             <Grid>
                 <Grid.RowDefinitions>

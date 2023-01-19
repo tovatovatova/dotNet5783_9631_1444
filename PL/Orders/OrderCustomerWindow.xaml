@@ -111,7 +111,6 @@
             <DatePicker x:Name="deliveryDateDatePicker"  Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="8" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
             <Label Grid.Column="0" Content="Status:"  HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
-            <!--<TextBox x:Name="statusTextBox" Grid.Column="1" Grid.Row="9" IsReadOnly="True" HorizontalAlignment="Left" Height="NaN" Margin="3" VerticalAlignment="Center" Width="120" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>-->
             <ComboBox x:Name="statusComboBox" Grid.Column="1" IsReadOnly="True" IsEnabled="False" HorizontalAlignment="Left" Height="NaN"  Margin="3" Grid.Row="9" VerticalAlignment="Center" Width="120" SelectedItem="{Binding Status}">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>

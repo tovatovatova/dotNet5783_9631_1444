@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        WindowStartupLocation ="CenterScreen"
     DataContext="{Binding orderTracking, RelativeSource={RelativeSource Self}}"
-    Title="OrderTrackingWindow" Height="312" Width="625">
+    Title="OrderTrackingWindow" Height="333" Width="625">
     <Window.Resources>
 
     </Window.Resources>
@@ -31,20 +30,13 @@
 
             <DataGrid x:Name="trackingDataGrid" IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Tracking}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="3,0,-166,-139" Grid.Column="1" Grid.Row="2">
                 <DataGrid.Columns>
-                    <!--<DataGridTemplateColumn x:Name="item1Column" Header="Item 1" IsReadOnly="True" Width="SizeToHeader">-->
-                        <!--<DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <DatePicker SelectedDate="{Binding Item1, Mode=OneWay}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>-->
-                        <DataGridTextColumn x:Name="item1Column" Binding="{Binding Item1}" Header="Item 1" IsReadOnly="True" Width="100" />
+                    <DataGridTextColumn x:Name="item1Column" Binding="{Binding Item1}" Header="Item 1" IsReadOnly="True" Width="100" />
 
                         <DataGridTextColumn x:Name="item2Column" Binding="{Binding Item2}" Header="Item 2" IsReadOnly="True" Width="100"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        <Button Content="order details" HorizontalAlignment="Left" Margin="20,248,0,0" VerticalAlignment="Top" FontSize="16" Click="Button_Click"/>
+        <Button Content="order details" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Margin="20,248,0,0" VerticalAlignment="Top" FontSize="16" Click="Button_Click" Width="135"/>
 
     </Grid>
 </Window>
