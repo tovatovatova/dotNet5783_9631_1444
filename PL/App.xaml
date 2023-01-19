@@ -176,9 +176,13 @@
         <local:NoBooleanToVisibilityConverter x:Key="notBoolToVis"/>
         <local:HiddenTOVisible x:Key="Hiddentovisible"/>
         <local:StringToBitmapFromSource x:Key="stringToBitmapWithSource"/>
+        <local:StatusToColor x:Key="statusToBackColor"/>
 
 
-            <!--<local:ConvLogInToVisible x:Key="ConverLogIn"/>-->
+        <local:StatusToInt x:Key="statusToProgressValue"/>
+
+
+        <!--<local:ConvLogInToVisible x:Key="ConverLogIn"/>-->
             <!--<local:EmptyCollectionToHiddenConverter x:Key="emptyToHidden"/>-->
 
     </Application.Resources>

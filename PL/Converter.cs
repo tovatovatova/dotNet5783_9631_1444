@@ -117,8 +117,6 @@ namespace PL
     }
     public class StatusToInt : IValueConverter
     {
-
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if ((BO.OrderStatus)value == BO.OrderStatus.Ordered)
@@ -164,7 +162,7 @@ namespace PL
 
 
     public class StringToBitmapFromSource : IValueConverter
-    {//gets a image source name and return a path to the picture
+    {//gets string name and return a path to the picture
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string final;
@@ -172,7 +170,7 @@ namespace PL
             try
             {
 
-                string strImage = value?.ToString() ?? throw new Exception();//name of picture                                                            
+                string strImage = value?.ToString() ?? throw new Exception();                                                            
                 try
                 {
 
@@ -183,7 +181,7 @@ namespace PL
                 }
                 catch (Exception)
                 {
-                    final = Environment.CurrentDirectory[..^4] + strImage + ".jpg";
+                    final = Environment.CurrentDirectory[..^4] + strImage;
                     bitmap = new BitmapImage(new Uri(final));
                     return bitmap;
                 }
@@ -257,18 +255,7 @@ namespace PL
 
         }
 
-        //public class ConverBtnToVisibile : IValueConverter
-        //{
-        //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        //    {
-        //        return (Button)value
-        //    }
-
-        //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-        //}
+    
 
 
 
