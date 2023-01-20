@@ -288,4 +288,20 @@
     <Amount>1</Amount>
     <ImagesSource>\</ImagesSource>
   </OrderItem>
+  <OrderItem>
+    <OrderItemId>100035</OrderItemId>
+    <ProductId>100024</ProductId>
+    <OrderId>100023</OrderId>
+    <Price>49</Price>
+    <Amount>2</Amount>
+    <ImagesSource>\</ImagesSource>
+  </OrderItem>
+  <OrderItem>
+    <OrderItemId>100036</OrderItemId>
+    <ProductId>100023</ProductId>
+    <OrderId>100023</OrderId>
+    <Price>29</Price>
+    <Amount>1</Amount>
+    <ImagesSource>\</ImagesSource>
+  </OrderItem>
 </ArrayOfOrderItem>
