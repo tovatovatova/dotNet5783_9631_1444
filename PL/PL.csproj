@@ -10,11 +10,11 @@
 	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	  <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 	  <UseCommonOutputDirectory>true</UseCommonOutputDirectory>
-	  <ApplicationIcon>MainWindow (1).ico</ApplicationIcon>
+	  <ApplicationIcon>donat.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="MainWindow (1).ico" />
+    <Content Include="donat.ico" />
   </ItemGroup>
 
   <ItemGroup>
