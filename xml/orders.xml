@@ -42,7 +42,7 @@
 		<CustomerEmail>levi@gmail.com</CustomerEmail>
 		<CustomerAddress>ben guryon</CustomerAddress>
 		<OrderDate>2023-01-14T21:41:32</OrderDate>
-		<ShipDate>2023-01-11T22:08:02</ShipDate>
+		<ShipDate>2023-01-01T22:08:02</ShipDate>
 		<DeliveryDate xsi:nil="true" />
 	</Order>
 	<Order>
@@ -51,7 +51,7 @@
 		<CustomerEmail>orit@gmail.com</CustomerEmail>
 		<CustomerAddress>geva</CustomerAddress>
 		<OrderDate>2023-01-01T03:41:40</OrderDate>
-		<ShipDate>2023-01-07T22:08:02</ShipDate>
+		<ShipDate>2023-01-19T22:08:02</ShipDate>
 		<DeliveryDate xsi:nil="true" />
 	</Order>
 	<Order>
