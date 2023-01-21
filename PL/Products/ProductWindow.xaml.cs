@@ -30,7 +30,17 @@ namespace PL
     public partial class ProductWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
-        Regex rg = new Regex("[0-9]+");
+        public static readonly DependencyProperty MyImageSourceProperty =
+        DependencyProperty.Register("MyImageSource",typeof(BitmapImage), typeof(Window),new PropertyMetadata(null));
+      
+            
+            
+
+        public BitmapImage MyImageSource
+        {
+            get { return (BitmapImage)GetValue(MyImageSourceProperty); }
+            set { SetValue(MyImageSourceProperty, value); }
+        }
 
         public BO.Product? PlProduct
         {
@@ -41,7 +51,13 @@ namespace PL
         public static readonly DependencyProperty PlProductProperty =
             DependencyProperty.Register("PlProduct", typeof(BO.Product), typeof(Window), new PropertyMetadata(null));
         List<TextBox> txtlst = new List<TextBox>();
-
+        public bool IsUpdate
+        {
+            get { return (bool)GetValue(IsUpdateProperty); }
+            set { SetValue(IsUpdateProperty, value); }
+        }
+        public static readonly DependencyProperty IsUpdateProperty =
+    DependencyProperty.Register("IsUpdate", typeof(bool), typeof(Window),new PropertyMetadata(false));
         /// <summary>
         /// productWindow empty constructor provide the option to add new product
         /// </summary>
@@ -77,11 +93,11 @@ namespace PL
                 PlProduct = bl.Product.GetProductDetails(id);//return product from BO 
                                                              // categoryComboBox.SelectedItem = PlProduct.Category;
             }
-            catch (BO.BlIdDoNotExistException ex)//product doesnt exist
+            catch (BO.BlIdDoNotExistException)//product doesnt exist
             {//throw an error message box 
-                MessageBox.Show(ex.Message.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-                return;
+                MessageBox.Show("oops,this product is unavaliable😪");
             }
+            IsUpdate= true; 
             btnUpdate.Visibility = Visibility.Visible;
         }
         /// <summary>
@@ -100,22 +116,22 @@ namespace PL
             try//try to add the product - call to a bl function  add
             {
                 bl.Product.AddProduct(PlProduct);
-                MessageBox.Show("product added successfully", " ", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
-                Close();
+                MessageBox.Show("product added successfully");
+                    Close();
             }
             catch (BO.BlIdAlreadyExistException ex)
             {
-                MessageBox.Show(ex.Message.ToString() + "\n try again", "", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-                return;
+                MessageBox.Show("oops, product with this ID already exist");
+                    return;
             }
             catch (BO.BlInvalidInputException ex)
             {
-                MessageBox.Show(ex.ToString() + " \n check your input", "", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-                return;
+                MessageBox.Show("check your input, something wrong");
+                    return;
             }
             catch (BO.BlWrongCategoryException ex)
             {
-                MessageBox.Show(ex.ToString() + "\n" + "choose category again", "", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                MessageBox.Show("choose category again");
                 return;
             }
         }
@@ -131,13 +147,9 @@ namespace PL
             bool flag = false;
             try//if all are valid -try to update them
             {
-                foreach (var item in txtlst)
-                {
-                    if (item.BorderBrush == Brushes.Red)
-                        flag = true;
-                }
-                bl.Product.UpdateProduct(PlProduct!);
-                Close();
+                var lst = txtlst.Where(item => item.Text.ToString() == " ");
+                if (lst.Count() != 0)
+                    MessageBox.Show("check the details maybe you forgot something");
             }
             catch (BO.BlIdDoNotExistException ex)
             {
@@ -156,32 +168,33 @@ namespace PL
             {
                 bl.Product.DeleteProduct(PlProduct.ID);//try to delete product
             }
-            catch (BO.BlInvalidInputException ex)//worng input
-            {
-
-                MessageBox.Show(ex.Entity+ "\ntry again", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-                return;
-            }
+         
             catch (BO.BlIdDoNotExistException ex)//product doesnt exist
             {
-                MessageBox.Show(ex.Message.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                MessageBox.Show( "can not delete");
                 return;
             }
-            catch (BO.BlNullPropertyException ex)//product exists in order-cant delete
+            catch (BO.BlIdAlreadyExistException ex)//product exists in order-cant delete
             {
-                MessageBox.Show(ex.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-                return;
+                MessageBox.Show("oops, you cant delete product that already exist in order");
             }
             Close();
         }
 
         private void btnAddPic_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
+            try
             {
-                picImgBox.Source = new BitmapImage(new Uri(openFileDialog.FileName));
-                PlProduct.ImagesSource = openFileDialog.FileName;
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    MyImageSource = new BitmapImage(new Uri(openFileDialog.FileName));
+                    PlProduct.ImagesSource = openFileDialog.FileName;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("we cant add this picture");
             }
         }
 

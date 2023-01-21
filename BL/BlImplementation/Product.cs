@@ -60,8 +60,7 @@ namespace BlImplementation
         /// <exception cref="BO.BlNullPropertyException">throw if cant delte becouse roduct exist in orders</exception>
         public void DeleteProduct(int id)
         {
-            if (id <= 0)//negative id
-                throw new BO.BlInvalidInputException("product ID");
+            
             IEnumerable<DO.OrderItem>? idOfOrderItem = from DO.Order order in dal.Order.GetAll()//runs on list of order
                                                        from DO.OrderItem item in dal.OrderItem.GetAll()//runs on list of order item
                                                        where (order.OrderId == item.OrderId)
@@ -80,7 +79,7 @@ namespace BlImplementation
                 }
             }
             else//exist-cant delete-throw exeption
-                throw new BO.BlNullPropertyException("cant delete, exist in orders");////565#$%&^*&
+                throw new BO.BlIdAlreadyExistException("the product is in order");
 
         }
 

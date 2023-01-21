@@ -63,10 +63,10 @@ namespace PL
                     fakeTime = fakeTime.AddHours(3);
                     if(updateStatus.WorkerReportsProgress== true)
                     {
-                        updateStatus.ReportProgress(11117998);
+                        updateStatus.ReportProgress(11117);
                     }
                 }
-                Thread.Sleep(1200);
+                Thread.Sleep(1500);
             }
         }
        
@@ -88,11 +88,12 @@ namespace PL
 
         private void UpdateStatus_ProgressChanged(object? sender, ProgressChangedEventArgs e)
         {
+            Random rn = new Random();
             List<BO.OrderForList?> temp = bl.Order.GetOrderList().ToList();
             foreach (var item in SimulationOrders)
             {
                 BO.Order order = bl.Order.GetOrderByID(item?.ID ?? throw new NullReferenceException());
-                if (fakeTime - order.OrderDate >= new TimeSpan(1, 0, 0, 0) && order.Status == BO.OrderStatus.Ordered)
+                if (fakeTime - order.OrderDate >= new TimeSpan(2, 0, 0, 0) && order.Status == BO.OrderStatus.Ordered)
                     bl.Order.UpdateShip(order.Id);
                 if (fakeTime - order.OrderDate >= new TimeSpan(3, 0, 0, 0) && order.Status == BO.OrderStatus.Shipped)
                     bl.Order.UpdateDelivery(order.Id);

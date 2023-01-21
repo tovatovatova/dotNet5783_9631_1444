@@ -19,6 +19,7 @@ namespace BO
     public class BlIdAlreadyExistException : Exception//if already exist
     {
         public BlIdAlreadyExistException(string message, Exception innerException) : base(message, innerException) { }
+        public BlIdAlreadyExistException(string message) : base(message) { }
 
         public override string ToString() => base.ToString() ;
     }
