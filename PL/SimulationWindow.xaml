@@ -10,17 +10,17 @@
     <Window.Resources>
 
         <Style x:Key="gridHeader" TargetType="DataGridColumnHeader">
-            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontSize" Value="10"/>
             <Setter Property="Foreground" Value="LightCoral"/>
             <Setter Property="FontWeight" Value="ExtraBold"/>
         </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="29*"/>
+            <RowDefinition Height="5*"/>
+           
         </Grid.RowDefinitions>
-        <Grid Grid.RowSpan="2">
+        <Grid Grid.RowSpan="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="8*"/>
@@ -30,34 +30,35 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
 
-                
+
+
             </Grid>
             <DataGrid Grid.Row="1" x:Name="orderForListDataGrid" IsReadOnly="True" FontSize="20"  AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3" Grid.RowSpan="3" HorizontalAlignment="Stretch" Height="NaN" VerticalAlignment="Stretch" Width="NaN">
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="Order ID" HeaderStyle="{StaticResource gridHeader}" Width="0.75*"/>
-                    <DataGridTextColumn x:Name="nameColumn" Binding="{Binding CustomerName}" Header=" Customer Name" HeaderStyle="{StaticResource gridHeader}" Width="0.8*"/>
-                    <DataGridTextColumn x:Name="amountOfItemsColumn" Binding="{Binding AmountOfItems}" Header="Amount" HeaderStyle="{StaticResource gridHeader}" Width="0.6*"/>
-                    <DataGridTextColumn x:Name="totalPriceColumn" Binding="{Binding TotalPrice}" Header="Total Price" HeaderStyle="{StaticResource gridHeader}" Width="0.6*"/>
-                    <DataGridTemplateColumn x:Name="statusColumn" Header="Status" HeaderStyle="{StaticResource gridHeader}" Width="0.3*"  >
+                    <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="Order ID" HeaderStyle="{StaticResource gridHeader}" Width="0.4*"/>
+                    <DataGridTextColumn x:Name="nameColumn" Binding="{Binding CustomerName}" Header=" Customer Name" HeaderStyle="{StaticResource gridHeader}" Width="0.5*"/>
+                    <DataGridTextColumn x:Name="amountOfItemsColumn" Binding="{Binding AmountOfItems}" Header="Amount" HeaderStyle="{StaticResource gridHeader}" Width="0.2*" />
+                    <DataGridTextColumn x:Name="totalPriceColumn" Binding="{Binding TotalPrice}" Header="Total Price" HeaderStyle="{StaticResource gridHeader}" Width="0.3*"/>
+                    <DataGridTemplateColumn x:Name="statusColumn" Header="Status" HeaderStyle="{StaticResource gridHeader}" Width="0.4*"  >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock x:Name="btnTracking" Text="{Binding Status}" Background="{Binding Status, Converter={StaticResource statusToBackColor}}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="0.5*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="order tracking details" Grid.Row= "4" FontSize="6" Tag="{Binding ID}"  HorizontalAlignment="Center" Margin="20,0,0,0" FontWeight="Bold" FontFamily="Arial Black" Click="Button_Click" Background="#FFB5D4D4" Foreground="#FF040C0C" />
+                                <Button Content="order tracking details" Grid.Row= "4" FontSize="6" Tag="{Binding ID}"  HorizontalAlignment="Stretch" Margin="0,0,0,0" FontWeight="Bold" FontFamily="Arial Black" Click="Button_Click" Background="#FFB5D4D4" Foreground="#FF040C0C" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn Width="1.3*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ProgressBar x:Name="pbTracking" Background="LightGray"  Value="{Binding Status, Converter={StaticResource statusToProgressValue}}">
+                                <ProgressBar x:Name="pbTracking" Tag="pbTrackingB"  Value="{Binding Status, Converter={StaticResource statusToProgressValue}}" Background="Black">
+                                  
                                     <ProgressBar.Foreground>
                                         <ImageBrush ImageSource="{Binding ElementName=pbTracking,Path=Name,Converter={StaticResource imageConverter}}"/>
                                     </ProgressBar.Foreground>

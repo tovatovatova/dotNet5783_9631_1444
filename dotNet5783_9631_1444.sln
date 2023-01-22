@@ -87,8 +87,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{DE4398
 		Images\emptyCart.jpg = Images\emptyCart.jpg
 		Images\images.jpg = Images\images.jpg
 		Images\low.png = Images\low.png
+		Images\mainWin.jpg = Images\mainWin.jpg
 		Images\MainWindow.jpg = Images\MainWindow.jpg
 		Images\noPicture.jpg = Images\noPicture.jpg
+		Images\pbTracking.jpg = Images\pbTracking.jpg
+		Images\pbTrackingB.jpg = Images\pbTrackingB.jpg
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "DalXml\DalXml.csproj", "{3D0E7AFA-2317-4187-BF09-DCD639F762EC}"

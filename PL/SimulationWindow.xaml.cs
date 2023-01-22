@@ -66,7 +66,7 @@ namespace PL
                         updateStatus.ReportProgress(11117);
                     }
                 }
-                Thread.Sleep(1500);
+                Thread.Sleep(2000);
             }
         }
        
@@ -93,7 +93,7 @@ namespace PL
             foreach (var item in SimulationOrders)
             {
                 BO.Order order = bl.Order.GetOrderByID(item?.ID ?? throw new NullReferenceException());
-                if (fakeTime - order.OrderDate >= new TimeSpan(2, 0, 0, 0) && order.Status == BO.OrderStatus.Ordered)
+                if (fakeTime - order.OrderDate >= new TimeSpan(3, 0, 0, 0) && order.Status == BO.OrderStatus.Ordered)
                     bl.Order.UpdateShip(order.Id);
                 if (fakeTime - order.OrderDate >= new TimeSpan(3, 0, 0, 0) && order.Status == BO.OrderStatus.Shipped)
                     bl.Order.UpdateDelivery(order.Id);

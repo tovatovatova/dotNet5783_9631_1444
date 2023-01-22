@@ -92,11 +92,11 @@ namespace PL
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if ((BO.OrderStatus)value == BO.OrderStatus.Ordered)
-                return Brushes.LightGreen;
+                return Brushes.CornflowerBlue;
             else if ((BO.OrderStatus)value == BO.OrderStatus.Shipped)
-                return Brushes.LightSkyBlue;
+                return Brushes.MediumTurquoise;
             else
-                return Brushes.LightPink;
+                return Brushes.GreenYellow;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
