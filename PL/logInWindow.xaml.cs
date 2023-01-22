@@ -68,7 +68,7 @@ namespace PL
         {
             try
             {
-              bl.User.GetUser(MyUser.UserName,MyUser.Password); 
+               MyUser= bl.User.GetUser(MyUser.UserName,MyUser.Password); 
                 MessageBox.Show("Welcome "+ MyUser.UserName+"💖");
                 MenuWindow menu = new MenuWindow(MyUser);
                 Close();

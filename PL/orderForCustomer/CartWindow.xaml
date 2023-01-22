@@ -66,16 +66,13 @@
         </ScrollViewer>
         <TextBlock x:Name="txtTotalPCart"   HorizontalAlignment="Left" Margin="18,433,0,0"  FontSize="25" FontFamily="Arial Black" VerticalAlignment="Top" >
         <Run Text="Total:"/>
-        <Run Text="{Binding TotalPrice,UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:C}}" />
+        <Run Text="{Binding TotalPrice}" />
+         <Run Text="$" />
         </TextBlock>
 
-        <Button  x:Name="checkuot"  Style="{StaticResource ButtonStyle}" Content="CHECKOUT" HorizontalAlignment="Left" Margin="18,527,0,0" Visibility="{Binding TotalPrice,Converter={StaticResource doubletoHidden},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Top" RenderTransformOrigin="-0.318,2.341" Height="72" Width="195" Click="Button_Click">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="20"/>
-                </Style>
-            </Button.Resources>
-        </Button>
+        <Button  x:Name="checkuot"  Style="{StaticResource ButtonStyle}" Content="CHECKOUT" HorizontalAlignment="Left" Margin="18,527,0,0" Visibility="{Binding TotalPrice,Converter={StaticResource doubletoHidden},UpdateSourceTrigger=PropertyChanged,Mode=OneWay }" VerticalAlignment="Top" RenderTransformOrigin="-0.318,2.341" Height="72" Width="195" Click="Button_Click"/>
+
+
         <Grid  x:Name="grid1" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,24,0,0" Height="215" Width="185">
 
             <Grid.RowDefinitions>
@@ -94,11 +91,7 @@
             <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBox x:Name="customerNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="{Binding CustomerName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Button Content="confirm" HorizontalAlignment="Left" Margin="18,16,0,0" Grid.Row="7" Click="Button_Click_1">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
+                
             </Button>
         </Grid>
         <Button Content="Back ↪" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Margin="763,4,0,0" VerticalAlignment="Top" FontFamily="Arial Black" Click="Button_Click_2"/>

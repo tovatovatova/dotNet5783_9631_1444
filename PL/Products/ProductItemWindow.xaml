@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         DataContext="{Binding myProduct,RelativeSource={RelativeSource Self}}"
-        Title="ProductItemWindow" Height="822" Width="1015">
-   
+        Title="ProductItemWindow" Height="780" Width="900">
+
     <Grid OpacityMask="LightCyan" Background="LightCyan">
         <Grid x:Name="oneItemGrid" Margin="-80,29,10,239" Background="LightCyan" >
             <Grid.RowDefinitions>
@@ -29,32 +29,17 @@
 
 
             <TextBlock x:Name="outof" Text="             out of stock    " HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFA9C1C1" Grid.ColumnSpan="1" FontFamily="Cooper Black" Foreground="Gray" FontSize="59" Visibility="{Binding InStock , Converter={StaticResource notBoolToVis}}" Width="724">
-               
+
             </TextBlock>
             <TextBlock  Text="{Binding Price, StringFormat={}{0:C}}" Style="{StaticResource textOfItem}" Grid.Row= "4" FontSize="21" HorizontalAlignment="Left" Margin="470,160,0,-15" />
         </Grid>
-        <Button x:Name="addToCart" Width="155" Content="Add To Cart" Visibility="{Binding InStock,Converter={StaticResource booleanToVisibilityConverter}}"  Margin="10,499,850,267"    Click="btnAdd_Click"   TextBlock.LineHeight="40" BorderThickness="1,1,1,1" Padding="1,1,1,1">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="10"/> 
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <ImageBrush ImageSource="{Binding ElementName=addToCart,Path=Name,Converter={StaticResource imageConverter}}" Stretch="None" TileMode="FlipX">
-                    <ImageBrush.RelativeTransform>
-                        <TransformGroup>
-                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="2"/>
-                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                            <RotateTransform CenterX="0.5" CenterY="0.5"/>
-                            <TranslateTransform X="0" Y="2"/>
-                        </TransformGroup>
-                    </ImageBrush.RelativeTransform>
-                </ImageBrush>
-            </Button.Background>
+        <Button Content="add To Cart" Style="{StaticResource ButtonStyle}" Visibility="{Binding InStock,Converter={StaticResource booleanToVisibilityConverter}}"   Click="btnAdd_Click" HorizontalAlignment="Left" Margin="10,382,0,0" VerticalAlignment="Top" Width="330" Height="90" FontSize="20"/>
 
-            <Button.Effect>
-                <DropShadowEffect ShadowDepth="2"/>
-            </Button.Effect>
-        </Button>
+
+
+
+
+
+
     </Grid>
 </Window>

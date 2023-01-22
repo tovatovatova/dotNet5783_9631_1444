@@ -59,6 +59,7 @@ namespace BlImplementation
             result.UserName = users.ToArray()[0].UserName;  
             result.Password = users.ToArray()[0].Password;
             result.Email = users.ToArray()[0].Email;
+            result.Log= (BO.LogIn)users.ToArray()[0].Log;
             return result;
             //exists
         }

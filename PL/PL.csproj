@@ -14,6 +14,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Products\addToCart.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="donat.ico" />
   </ItemGroup>
 
@@ -23,6 +27,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Products\addToCart.jpg" />
   </ItemGroup>
 
 </Project>

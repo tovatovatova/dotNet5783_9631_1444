@@ -39,9 +39,12 @@ namespace PL
 
         public MenuWindow(BO.User user)
         {
-            InitializeComponent();
+                  InitializeComponent();
             MyMenuUser = user;
-            IsAdmin = MyMenuUser.Log == BO.LogIn.Maneger ? true :  false;
+            if (MyMenuUser.Log == BO.LogIn.Maneger)
+                IsAdmin = true;
+            else IsAdmin= false;
+
         }
 
         private void btnOrder_Click_1(object sender, RoutedEventArgs e)

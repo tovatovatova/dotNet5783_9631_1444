@@ -22,13 +22,16 @@ namespace PL
     public partial class ProductCatalogWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
-       BO. Cart cart = new BO.Cart();
+       
 
-        //public List<BO.OrderForList?> PlOrder
-        //{
-        //    get { return (List<BO.OrderForList?>)GetValue(PlOrderProperty); }
-        //    set { SetValue(PlOrderProperty, value); }//@#$%^&*()_(*&UY^T%R$#$%^&*(
-        //} 
+        public BO.Cart cart
+        {
+            get { return (BO.Cart)GetValue(cartProperty); }
+            set { SetValue(cartProperty, value); }
+        }
+        public static readonly DependencyProperty cartProperty =
+            DependencyProperty.Register("cart", typeof(BO.Cart), typeof(Window), new PropertyMetadata(null));
+
         public List<BO.ProductItem?> myProductCat
         {
             get { return (List<BO.ProductItem?>)GetValue(myProductCatProperty); }
@@ -37,6 +40,13 @@ namespace PL
         // Using a DependencyProperty as the backing store for PlProduct.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty myProductCatProperty =
             DependencyProperty.Register("myProductCat", typeof(List<BO.ProductItem?>), typeof(Window), new PropertyMetadata(null));
+        public int amount
+        {
+            get { return (int)GetValue(amountProperty); }
+            set { SetValue(amountProperty, value); }
+        }
+        public static readonly DependencyProperty amountProperty =
+            DependencyProperty.Register("amount", typeof(int), typeof(Window), new PropertyMetadata(0));
        
 
         public BO.User? user
@@ -71,10 +81,9 @@ namespace PL
                 cart.Items = new List<BO.OrderItem>();
             }
             InitializeComponent();
-            txtAmountInCart.Text = cart.Items.Count().ToString();
             myProductCat = new List<BO.ProductItem>();
             myProductCat = bl.Product.GetCatalog().ToList();
-           
+            amount = cart.Items.Count();
 
 
         }
@@ -90,10 +99,10 @@ namespace PL
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            if (cart==null||cart.Items.Count()==0||cart.Items == null)
-                txtAmountInCart.Text = "0";
+            if (cart == null || cart.Items.Count() == 0 || cart.Items == null)
+                amount = 0;
             else
-                txtAmountInCart.Text = cart.Items.Count().ToString();
+                amount = cart.Items.Count();
                
         }
 

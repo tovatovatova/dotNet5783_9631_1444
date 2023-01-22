@@ -28,21 +28,13 @@ namespace PL
     public partial class CartWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
-        public ObservableCollection<BO.OrderItem?> myOrderItems
-        {
-            get { return (ObservableCollection<BO.OrderItem?>)GetValue(myOrderItemsProperty); }
-            set { SetValue(myOrderItemsProperty, value); }
-        }
-        // Using a DependencyProperty as the backing store for PlProduct.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty myOrderItemsProperty =
-            DependencyProperty.Register("myOrderItems", typeof(ObservableCollection<BO.OrderItem?>), typeof(Window), new PropertyMetadata(null));
-        public BO.Cart myCart
+          public BO.Cart myCart
         {
             get { return (BO.Cart)GetValue(myCartProperty); }
             set { SetValue(myCartProperty, value); }
         }
         public static readonly DependencyProperty myCartProperty =
-            DependencyProperty.Register("myCartItems", typeof(BO.Cart), typeof(Window), new PropertyMetadata(null));
+            DependencyProperty.Register("myCart", typeof(BO.Cart), typeof(Window), new PropertyMetadata(null));
 
 
         public BO.User? myUser
@@ -61,8 +53,6 @@ namespace PL
         public CartWindow(Cart cart)
         {
             myCart = cart;
-
-
             InitializeComponent();
 
         }
@@ -84,10 +74,12 @@ namespace PL
 
                 orderItemsListView.ItemsSource = myCart.Items;
                 orderItemsListView.Items.Refresh();
+                myCart.TotalPrice = myCart.TotalPrice;
+                myCart = myCart;
                 txtTotalPCart.Text = "Total:" + myCart.TotalPrice.ToString() + "$";
 
             }
-            catch (BO.BlOutOfStockException ex)
+            catch (BO.BlOutOfStockException)
             {
                 (sender as Button).IsEnabled = false;
             }
@@ -104,7 +96,7 @@ namespace PL
         {
 
             BO.OrderItem item = (BO.OrderItem)(sender as Button).DataContext;
-            bl.Cart.UpdateProductInCart(myCart, item.Amount - 1, item.ProductID);
+           myCart=bl.Cart.UpdateProductInCart(myCart, item.Amount - 1, item.ProductID);
             orderItemsListView.ItemsSource = myCart.Items;
             orderItemsListView.Items.Refresh();
             txtTotalPCart.Text = "Total:" + myCart.TotalPrice.ToString() + "$";
