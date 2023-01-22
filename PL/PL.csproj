@@ -14,6 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="mainWin.jpg" />
     <None Remove="Products\addToCart.jpg" />
   </ItemGroup>
 
@@ -30,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="mainWin.jpg" />
     <Resource Include="Products\addToCart.jpg" />
   </ItemGroup>
 

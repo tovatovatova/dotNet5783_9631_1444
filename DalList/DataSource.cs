@@ -110,19 +110,29 @@ internal static class DataSource
             addOrder.CustomerName = names[i % 5];//from the arrey 
             addOrder.CustomerAddress = address[randNumbers.Next(4)];
             addOrder.CustomerEmail = addOrder.CustomerName + "@gmail.com";//thread of the name with ordinary end of gmail adress
-            TimeSpan ts = new TimeSpan(randNumbers.Next(3), randNumbers.Next(23), randNumbers.Next(59), randNumbers.Next(59));
-            addOrder.OrderDate = new DateTime(randNumbers.Next(2020, 2023), randNumbers.Next(1, 12), randNumbers.Next(1, 29),randNumbers.Next(0,23), randNumbers.Next(0, 59), randNumbers.Next(0, 59));
+            TimeSpan ts = new TimeSpan(1, randNumbers.Next(23), randNumbers.Next(59), randNumbers.Next(59));
+            addOrder.OrderDate = new DateTime(2023, 1, randNumbers.Next(17, 20), randNumbers.Next(0,23), randNumbers.Next(0, 59), randNumbers.Next(0, 59));
             if(i<10)//80% of the orders will have ship date right after the order date
                  addOrder.ShipDate = addOrder.OrderDate + ts;
             else
                 addOrder.ShipDate = null;
-            ts = new TimeSpan(randNumbers.Next(3), randNumbers.Next(0), randNumbers.Next(0, 3), randNumbers.Next(0, 23), randNumbers.Next(0, 59));
+            ts = new TimeSpan(1, 0, randNumbers.Next(0, 3), randNumbers.Next(0, 23), randNumbers.Next(0, 59));
             if(i < 3)//60% of the orders will have delavery date(12 orders)
                 addOrder.DeliveryDate = addOrder.ShipDate + ts;
            else
                 addOrder.DeliveryDate=null;
             OrderList.Add(addOrder);
         }
+        Order addOrder2 = new Order();
+        addOrder2.OrderId = Config.NextOrderNumber;//initialize running number
+        addOrder2.CustomerName = names[4];//from the arrey 
+        addOrder2.CustomerAddress = address[randNumbers.Next(4)];
+        addOrder2.CustomerEmail = addOrder2.CustomerName + "@gmail.com";//thread of the name with ordinary end of gmail adress
+        addOrder2.OrderDate = new DateTime(2023, 1, 21);
+        addOrder2.DeliveryDate = null;
+        addOrder2.ShipDate = null;
+        OrderList.Add(addOrder2);
+
     }
     private static void createAndIinitOrderItems()
     {
