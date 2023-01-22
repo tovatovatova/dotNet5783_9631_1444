@@ -1,0 +1,19 @@
+﻿<Window x:Class="PL.TrackingId"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+
+        Title="TrackingId" Height="201" Width="280">
+    <Grid >
+        <Grid.Background>
+            <ImageBrush/>
+        </Grid.Background>
+        <Label Content="Enter number of order for tracking:" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="86,0,0,0" TextWrapping="Wrap" Text="{Binding orderTracking.ID }" VerticalAlignment="Center" Width="120" KeyDown="OnKeyDownHandler"/>
+
+    </Grid>
+</Window>

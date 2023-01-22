@@ -31,11 +31,7 @@ namespace PL
     {
         BlApi.IBl bl = BlApi.Factory.Get();
         public static readonly DependencyProperty MyImageSourceProperty =
-        DependencyProperty.Register("MyImageSource",typeof(BitmapImage), typeof(Window),new PropertyMetadata(null));
-      
-            
-            
-
+        DependencyProperty.Register("MyImageSource", typeof(BitmapImage), typeof(Window), new PropertyMetadata(null));
         public BitmapImage MyImageSource
         {
             get { return (BitmapImage)GetValue(MyImageSourceProperty); }
@@ -57,7 +53,7 @@ namespace PL
             set { SetValue(IsUpdateProperty, value); }
         }
         public static readonly DependencyProperty IsUpdateProperty =
-    DependencyProperty.Register("IsUpdate", typeof(bool), typeof(Window),new PropertyMetadata(false));
+    DependencyProperty.Register("IsUpdate", typeof(bool), typeof(Window), new PropertyMetadata(false));
         /// <summary>
         /// productWindow empty constructor provide the option to add new product
         /// </summary>
@@ -65,7 +61,6 @@ namespace PL
         {
             InitializeComponent();
             categoryComboBox.ItemsSource = Enum.GetValues(typeof(BO.Category));
-            btnAdd.Visibility = Visibility.Visible;//add button getting visible
             PlProduct = new BO.Product();
             txtlst.Add(nameTextBox);
             txtlst.Add(priceTextBox);
@@ -97,44 +92,14 @@ namespace PL
             {//throw an error message box 
                 MessageBox.Show("oops,this product is unavaliable😪");
             }
-            IsUpdate= true; 
-            btnUpdate.Visibility = Visibility.Visible;
+            IsUpdate = true;
         }
         /// <summary>
         /// the event when user press the butt-ADD in order to finish the adding
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            if (categoryComboBox.SelectedItem == null)//check if the user choose category and show message if not
-            {
-                MessageBox.Show("choose category", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-                return;
-            }
-
-            try//try to add the product - call to a bl function  add
-            {
-                bl.Product.AddProduct(PlProduct);
-                MessageBox.Show("product added successfully");
-                    Close();
-            }
-            catch (BO.BlIdAlreadyExistException ex)
-            {
-                MessageBox.Show("oops, product with this ID already exist");
-                    return;
-            }
-            catch (BO.BlInvalidInputException ex)
-            {
-                MessageBox.Show("check your input, something wrong");
-                    return;
-            }
-            catch (BO.BlWrongCategoryException ex)
-            {
-                MessageBox.Show("choose category again");
-                return;
-            }
-        }
+       
 
         /// <summary>
         /// when update button press- the function calls and responsible of meking the update of existin product
@@ -142,46 +107,92 @@ namespace PL
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            bool flag = false;
-            try//if all are valid -try to update them
-            {
-                var lst = txtlst.Where(item => item.Text.ToString() == " ");
-                if (lst.Count() != 0)
-                    MessageBox.Show("check the details maybe you forgot something");
-            }
-            catch (BO.BlIdDoNotExistException ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-                return;
-            }
-            catch (BO.BlInvalidInputException ex)
-            {
-                MessageBox.Show(ex.ToString() + "\ntry again", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-                  return;
-            }
-        }
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                bl.Product.DeleteProduct(PlProduct.ID);//try to delete product
-            }
-         
-            catch (BO.BlIdDoNotExistException ex)//product doesnt exist
-            {
-                MessageBox.Show( "can not delete");
-                return;
-            }
-            catch (BO.BlIdAlreadyExistException ex)//product exists in order-cant delete
-            {
-                MessageBox.Show("oops, you cant delete product that already exist in order");
-            }
-            Close();
-        }
+       
 
         private void btnAddPic_Click(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+        private void okBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (PlProduct.ImagesSource != null)//has picture
+            {
+                string imName = PlProduct.ImagesSource.Substring(PlProduct.ImagesSource.LastIndexOf("\\"));
+                if (!File.Exists(Environment.CurrentDirectory[..^4] + @"\Images" + imName))//check if there is anything in the path
+                {//if not
+                    File.Copy(PlProduct.ImagesSource, Environment.CurrentDirectory[..^4] + @"\Images" + imName);//creates a path
+                }
+                PlProduct.ImagesSource = @"Images" + imName;
+
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("do you want to add product without picture?","Confirmation", MessageBoxButton.YesNoCancel);
+                if (result == MessageBoxResult.No)
+                {
+                    return;
+                }
+
+            }
+            if (IsUpdate)
+            {
+                try//if all are valid -try to update them
+                {
+                    var lst = txtlst.Where(item => item.Text.ToString() == " ");
+                    if (lst.Count() != 0)
+                    {
+                        MessageBox.Show("check the details maybe you forgot something");
+                        return;
+                    }
+                    bl.Product.UpdateProduct(PlProduct);
+                    Close();
+                }
+                catch (BO.BlIdDoNotExistException ex)
+                {
+                    MessageBox.Show(ex.Message.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                    return;
+                }
+                catch (BO.BlInvalidInputException ex)
+                {
+                    MessageBox.Show(ex.ToString() + "\ntry again", "error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                    return;
+                }
+            }
+            else
+            {
+                if (categoryComboBox.SelectedItem == null)//check if the user choose category and show message if not
+                {
+                    MessageBox.Show("choose category");
+                    return;
+                }
+
+                try//try to add the product - call to a bl function  add
+                {
+                    bl.Product.AddProduct(PlProduct);
+                    MessageBox.Show("product added successfully");
+                    Close();
+                }
+                catch (BO.BlIdAlreadyExistException)
+                {
+                    MessageBox.Show("oops, product with this ID already exist");
+                    return;
+                }
+                catch (BO.BlInvalidInputException)
+                {
+                    MessageBox.Show("check your input, something wrong");
+                    return;
+                }
+                catch (BO.BlWrongCategoryException)
+                {
+                    MessageBox.Show("choose category again");
+                    return;
+                }
+            }
+        }
+
+        private void btnCHoosePic_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -197,18 +208,23 @@ namespace PL
                 MessageBox.Show("we cant add this picture");
             }
         }
-
-        private void okBtn_Click(object sender, RoutedEventArgs e)
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (PlProduct.ImagesSource != null)//has picture
+            try
             {
-                string imName = PlProduct.ImagesSource.Substring(PlProduct.ImagesSource.LastIndexOf("\\"));
-                if (!File.Exists(Environment.CurrentDirectory[..^4] + @"\Images" + imName))//check if there is anything in the path
-                {//if not
-                    File.Copy(PlProduct.ImagesSource, Environment.CurrentDirectory[..^4] + @"\Images" + imName);//creates a path
-                }
-                PlProduct.ImagesSource = @"Images" + imName;
+                bl.Product.DeleteProduct(PlProduct.ID);//try to delete product
             }
+
+            catch (BO.BlIdDoNotExistException ex)//product doesnt exist
+            {
+                MessageBox.Show("can not delete");
+                return;
+            }
+            catch (BO.BlIdAlreadyExistException ex)//product exists in order-cant delete
+            {
+                MessageBox.Show("oops, you cant delete product that already exist in order");
+            }
+            Close();
         }
     }
 

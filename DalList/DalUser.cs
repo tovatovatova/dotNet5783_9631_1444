@@ -44,10 +44,8 @@ public class DalUser : IUser
 
     }
 
-    public void Update(User user)
+    public void Update(User item)
     {
-        User? addUser = DataSource.UserList.FirstOrDefault(user => user?.Password == user?.Password) ?? throw new DalIdDoNotExistException(user.Password, "user");
-        int UserIndex = DataSource.UserList.FindIndex(user => user?.Password == user?.Password);
-        DataSource.UserList[UserIndex] = user;
+        throw new NotImplementedException();
     }
 }

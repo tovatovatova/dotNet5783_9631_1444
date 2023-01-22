@@ -62,7 +62,7 @@
     <Price>30</Price>
     <AmountInStock>4</AmountInStock>
     <ProductCategoty>GiftBoxes</ProductCategoty>
-    <ImagesSource>\Images\100007</ImagesSource>
+    <ImagesSource>\Images\mr-donutsWhite.jpg</ImagesSource>
   </Product>
   <Product>
     <Id>100008</Id>
@@ -193,27 +193,19 @@
     <ImagesSource>\Images\100026</ImagesSource>
   </Product>
   <Product>
-    <Id>100027</Id>
-    <Name>holiday cookies</Name>
-    <Price>69</Price>
-    <AmountInStock>30</AmountInStock>
-    <ProductCategoty>GiftBoxes</ProductCategoty>
-    <ImagesSource>\Images\100027</ImagesSource>
+    <Id>78687</Id>
+    <Name>ww</Name>
+    <Price>2</Price>
+    <AmountInStock>3</AmountInStock>
+    <ProductCategoty>Cakes</ProductCategoty>
+    <ImagesSource>\Images\9c5bf2d7447e09fcdbfeb55c87fb5a5a.jpg</ImagesSource>
   </Product>
   <Product>
-    <Id>111</Id>
-    <Name>mjjdcn</Name>
-    <Price>5</Price>
-    <AmountInStock>5</AmountInStock>
-    <ProductCategoty>GiftBoxes</ProductCategoty>
-    <ImagesSource>\Images\c263098cf8219ed6c0a2d3a11f46148b.jpg</ImagesSource>
-  </Product>
-  <Product>
-    <Id>123</Id>
-    <Name>gift</Name>
-    <Price>50</Price>
-    <AmountInStock>20</AmountInStock>
-    <ProductCategoty>GiftBoxes</ProductCategoty>
-    <ImagesSource>\</ImagesSource>
+    <Id>7868</Id>
+    <Name>w</Name>
+    <Price>34</Price>
+    <AmountInStock>3</AmountInStock>
+    <ProductCategoty>Cakes</ProductCategoty>
+    <ImagesSource>\Images\7cc805e6ec9af483f7f70889462cf716.jpg</ImagesSource>
   </Product>
 </ArrayOfProduct>

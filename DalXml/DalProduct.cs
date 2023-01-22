@@ -19,7 +19,7 @@ internal class DalProduct : IProduct
         bool x = lstProd.Any(prod => prod?.Id == item.Id);
         if (x)
             throw new DalIdAlreadyExistException(item.Id, "product");
-        item.ImagesSource = "\\" + item.ImagesSource;
+  //      item.ImagesSource = "\\" + item.ImagesSource;
         lstProd.Add(item);
         XMLTools.SaveListToXMLSerializer<DO.Product>(lstProd, s_products);
         return item.Id;
@@ -53,8 +53,6 @@ internal class DalProduct : IProduct
         List<Product?> lstProd = XMLTools.LoadListFromXMLSerializer<DO.Product>(s_products);
         Product? addProduct = lstProd.FirstOrDefault(prod => prod?.Id == item.Id) ?? throw new DalIdDoNotExistException(item.Id, "product");
         int ProductIndex = lstProd.FindIndex(x => x?.Id == item.Id);
-        //if (lstProd[ProductIndex]?.ImagesSource!=item.ImagesSource)//the image was changed
-        //    lstProd[ProductIndex].ImagesSource=item.ImagesSource;
         lstProd[ProductIndex] = item;
         XMLTools.SaveListToXMLSerializer<DO.Product>(lstProd, s_products);
     }

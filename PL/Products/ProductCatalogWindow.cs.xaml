@@ -74,9 +74,9 @@ Title="ProductCatalogWindow" Height="634" Width="1172" Activated="Window_Activat
             </Grid.ColumnDefinitions>
             <TextBlock  Text="Cakes" Grid.Row="0" Grid.Column="0" FontSize="17" HorizontalAlignment="Left" Style="{StaticResource textOfItem}" Grid.RowSpan="2" VerticalAlignment="Top" MouseDown="TextBlock_MouseDown"/>
             <TextBlock  Text="Donats" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" FontSize="17"  Grid.RowSpan="2" Style="{StaticResource textOfItem}" VerticalAlignment="Top" MouseDown="TextBlock_MouseDown"/>
-            <TextBlock  Text="GiftBoxes" HorizontalAlignment="Left" Grid.Row="0" FontSize="17" Grid.Column="2"  Style="{StaticResource textOfItem}" VerticalAlignment="Top" MouseDown="TextBlock_MouseDown"/>
-            <TextBlock  Text="Desserts" HorizontalAlignment="Left"  Grid.Row="0"  FontSize="17" Grid.Column="3" Style="{StaticResource textOfItem}" VerticalAlignment="Top" MouseDown="TextBlock_MouseDown"/>
-            <TextBlock  Text="Specials" HorizontalAlignment="Left" Grid.Row="0" FontSize="17" Grid.Column="4"  Style="{StaticResource textOfItem}" VerticalAlignment="Top" MouseDown="TextBlock_MouseDown"/>
+            <TextBlock  Text="GiftBoxes" HorizontalAlignment="Left" FontSize="17" Grid.Column="1"  Style="{StaticResource textOfItem}" VerticalAlignment="Center" MouseDown="TextBlock_MouseDown" Grid.ColumnSpan="2" Margin="92,0,0,0"/>
+            <TextBlock  Text="Desserts" HorizontalAlignment="Left"  FontSize="17" Grid.Column="3" Style="{StaticResource textOfItem}" VerticalAlignment="Center" MouseDown="TextBlock_MouseDown" Margin="2,0,0,0"/>
+            <TextBlock  Text="Specials" HorizontalAlignment="Center" FontSize="17" Grid.Column="4"  Style="{StaticResource textOfItem}" VerticalAlignment="Center" MouseDown="TextBlock_MouseDown"/>
 
         </Grid>
     </Grid>

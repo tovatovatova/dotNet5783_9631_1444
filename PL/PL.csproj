@@ -14,6 +14,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="1000_F_96752232_vi3lv5DF0btnXckN7TF7Ct5mScd57Gkt.jpg" />
+    <None Remove="images.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="donat.ico" />
   </ItemGroup>
 
@@ -23,6 +28,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="1000_F_96752232_vi3lv5DF0btnXckN7TF7Ct5mScd57Gkt.jpg" />
+    <Resource Include="images.png" />
   </ItemGroup>
 
 </Project>

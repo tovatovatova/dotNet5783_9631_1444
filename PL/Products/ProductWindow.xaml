@@ -42,11 +42,9 @@
         <Label Grid.Column="0" Content="In Stock:" HorizontalAlignment="Left" Margin="2,10,0,0" Grid.Row="4" VerticalAlignment="Top"/>
         <TextBox x:Name="inStockTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="1,14,0,0" Grid.Row="4" Text="{Binding PlProduct.InStock}" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.539,-0.264"/>
 
-        <Button x:Name="btnAdd"  Style="{StaticResource ButtonStyle}" Content="Add"  Visibility="{Binding IsUpdate,Converter={StaticResource notBoolToVis}}"  Background="#FF32BBC4"    Click="btnAdd_Click" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" RenderTransformOrigin="0.388,5.877" Margin="540,65,0,85" />
-        <Button x:Name="btnUpdate" Style="{StaticResource ButtonStyle}" Content="Update" Click="btnUpdate_Click" Background="#FF32BBC4"  Grid.Column="1"  Grid.Row="5" HorizontalAlignment="Right" Visibility="{Binding IsUpdate,Converter={StaticResource booleanToVisibilityConverter}}" Margin="540,135,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.873,1.206"/>
-        <Button x:Name="btnDelete" Style="{StaticResource ButtonStyle}" Content="Delete" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"  Background="#FF32BBC4" Margin="540,205,0,-55" Click="btnDelete_Click"/>
-        <Button x:Name="btnAddPic" Style="{StaticResource ButtonStyle}" Content="add Picture" HorizontalAlignment="Left" Margin="24,145,0,0" Grid.Row="5" VerticalAlignment="Top" Click="btnAddPic_Click" Width="129" Grid.ColumnSpan="2"/>
-        <Border  CornerRadius="5" Margin="181,15,142,75" Grid.RowSpan="6" Grid.Column="1"  >
+        <Button x:Name="btnCHoosePic" Style="{StaticResource ButtonStyle}"  Content="choose picture"    Background="#FF32BBC4"    Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" RenderTransformOrigin="0.388,5.877" Margin="533,63,0,97" FontSize="16" Width="152" FontFamily="Aharoni" Click="btnCHoosePic_Click" />
+        <Button x:Name="btnDelete" Style="{StaticResource ButtonStyle}"  Content="Delete" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"  Background="#FF32BBC4" Margin="99,182,0,-22" Click="btnDelete_Click"/>
+        <Border  CornerRadius="5" Margin="156,15,167,75" Grid.RowSpan="6" Grid.Column="1"  >
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="1"/>
             </Border.Effect>
@@ -54,7 +52,7 @@
                 <ImageBrush ImageSource="{Binding PlProduct.ImagesSource ,Converter={StaticResource imageConverter}}" />
             </Border.Background>
         </Border>
-        <Button x:Name="okBtn" Style="{StaticResource ButtonStyle}" Content="OK" HorizontalAlignment="Left" Margin="24,215,0,-55" Grid.Row="5" Click="okBtn_Click"/>
+        <Button x:Name="okBtn" Style="{StaticResource ButtonStyle}" Content="OK" HorizontalAlignment="Left" Margin="40,182,0,-22" Grid.Row="5" Click="okBtn_Click" RenderTransformOrigin="-2.293,0.108" Grid.ColumnSpan="2"/>
 
     </Grid>
 

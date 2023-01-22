@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using BO;
+using DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace BlImplementation
         {
             if (user.UserName==null) throw new BO.BlInvalidInputException("user name");
           IEnumerable<DO.User> use=from DO.User u in dal.User.GetAll()
-                  where (u.UserName==user.UserName)&&(u.Password==user.Password)/*&&((BO.LogIn)(u.Log)==user.Log)*//*&&(u.Email==user.Email)*/
+                  where (u.UserName==user.UserName)&&(u.Password==user.Password)
                   select u;
             if (use.Count()==0)//if empty-there was nothing equals to the given user
                 throw new BO.BlIdDoNotExistException("user doesnt exist");//user doesnt exist
@@ -46,48 +47,20 @@ namespace BlImplementation
             }
         }
 
-        public void deleteUser(int id)
+        public BO.User? GetUser(string name, int password)
         {
-            try
-            {
-                dal.User.Delete(id);//try to delete user with this id-password
-            }
-            catch (DO.DalIdDoNotExistException ex)
-            {
-                throw new BO.BlIdDoNotExistException("this user doesnt exist", ex);
-            }
-        }
-
-        public IEnumerable<BO.User?> GetListedListByFilter(Func<BO.User?, bool>? filter = null)
-        {
-            return from BO.User u in GetAllUsers()
-                   where filter(u)
-                   select u;
-        }
-
-        public void updateUser(BO.User user)
-        {
-            if (user.UserName == " ")
-                throw new BO.BlInvalidInputException("user name");
-            
-            try
-            {
-                dal.User.Update(new DO.User() { UserName = user.UserName, Password = user.Password, Log = (DO.LogIn)(user.Log),Email=user.Email });
-            }
-            catch (DO.DalIdDoNotExistException ex)
-            {
-                throw new BO.BlIdDoNotExistException("user doesnt exist", ex);
-            }
-            
-        }
-        public IEnumerable<BO.User?> GetAllUsers()
-        {
-            return dal.User.GetAll().Select(user => new BO.User()
-            {
-                UserName = user?.UserName ?? throw new BO.BlNullPropertyException("missing user name"),
-                Password = user?.Password ?? throw new BO.BlNullPropertyException("missing password"),
-                Log = (BO.LogIn)(user?.Log)
-            });
+            if( (name== null)||(password<=0) )throw new BO.BlInvalidInputException("user name");
+            IEnumerable<DO.User> users = from DO.User u in dal.User.GetAll()
+            where (u.UserName ==name) && (u.Password == password)
+                                       select u;
+            if (users.Count() == 0)//if empty-there was nothing equals to the given user
+                throw new BO.BlIdDoNotExistException("user doesnt exist");//user doesnt exist
+            BO.User result = new BO.User();
+            result.UserName = users.ToArray()[0].UserName;  
+            result.Password = users.ToArray()[0].Password;
+            result.Email = users.ToArray()[0].Email;
+            return result;
+            //exists
         }
     }
 }

@@ -37,18 +37,7 @@ namespace PL
         // Using a DependencyProperty as the backing store for PlOrderTracking.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty orderTrackingProperty =
             DependencyProperty.Register("orderTracking", typeof(BO.OrderTracking), typeof(Window), new PropertyMetadata(null));
-       // private List<Tuple<DateTime?, string>> tracking = new List<Tuple<DateTime?, string>>();
-
-        //public List<Tuple<DateTime?, string>> tracking
-        //{
-        //    get { return (List<Tuple<DateTime?, string>>)GetValue(trackingProperty); }
-        //    set { SetValue(trackingProperty, value); }
-        //}
-
-        //// Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty trackingProperty =
-        //    DependencyProperty.Register("tracking", typeof(List<Tuple<DateTime?, string>>), typeof(Window), new PropertyMetadata(0));
-        BlApi.IBl bl = BlApi.Factory.Get();
+             BlApi.IBl bl = BlApi.Factory.Get();
 
 
    

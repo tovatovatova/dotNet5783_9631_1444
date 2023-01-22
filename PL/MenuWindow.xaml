@@ -1,0 +1,19 @@
+﻿<Window x:Class="PL.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        DataContext="{Binding IsAdmin,RelativeSource={RelativeSource Self}}"
+        Title="MenuWindow" Height="470" Width="617">
+    <Grid Margin="0,0,10,-6">
+        <Button x:Name="btnTracking"  Visibility="{Binding IsAdmin,Converter={StaticResource notBoolToVis}}" Style="{StaticResource ButtonStyle}" Content="Track order" Height="NaN" Width="NaN" Click="btnTracking_Click" Margin="85,195,313,166"  />
+        <Button x:Name="btnNewOrder" Visibility="{Binding IsAdmin,Converter={StaticResource notBoolToVis}}" Style="{StaticResource ButtonStyle}" Content="Catalog" Height="NaN"  Width="NaN" Click="btnNewOrder_Click"  Margin="85,92,321,296" />
+        <Button x:Name="btnProduct" Visibility="{Binding IsAdmin,Converter={StaticResource booleanToVisibilityConverter}}" Style="{StaticResource ButtonStyle}" Content="Products" Height="NaN"  Width="NaN"  Click="btnProduct_Click" Margin="339,195,101,178" />
+        <Button x:Name="btnOrder" Visibility="{Binding IsAdmin,Converter={StaticResource booleanToVisibilityConverter}}" Style="{StaticResource ButtonStyle}" Content="Orders" Height="NaN"  Width="NaN" Click="btnOrder_Click_1" Margin="339,92,101,296"  />
+
+
+
+    </Grid>
+</Window>
